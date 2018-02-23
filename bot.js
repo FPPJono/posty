@@ -9,9 +9,7 @@ bot.on('ready', () => {
     var welcome = bot.channels.find("name", "welcome");
     welcome.send("Welcome to the Swag Pigs Server!\nBy clicking the :white_check_mark: button below, you agree to all the rules stated in <#269998962717491201>.\nOnce you have hit the checkmark, go ahead to <#269990219665637377> to say hi to everyone, and check out the other channel topics we have on the server! :pig:")
                 .then(function (message) {
-                    message.react("👍")
-                    message.react("👎")
-                    message.pin()
+                    message.react("✅")
                 }).catch(function() {
                     //Something
                     });
