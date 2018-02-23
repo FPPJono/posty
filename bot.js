@@ -9,6 +9,7 @@ bot.on('ready', () => {
 });
 
 bot.on('message', message => {
+    var sender = message.author;
     if (message.content === 'ping') {
     	message.reply('pong');
   	}
