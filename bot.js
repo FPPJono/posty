@@ -6,6 +6,8 @@ const PREFIX = "!";
 bot.on('ready', () => {
     console.log('I am ready!');
     bot.user.setPresence({ game: { name: 'somethin', type: 0 } }); //playing game
+    var welcome = bot.channels.find("name", "welcome");
+    welcome.send("Welcome to the Swag Pigs Server!\nBy clicking the :white_check_mark: button below, you agree to all the rules stated in #rules.\n Once you have hit the checkmark, go ahead to #banter to say hi to everyone, and check out the other channel topics we have on the server! :pig:")
 });
 
 bot.on('message', message => {
