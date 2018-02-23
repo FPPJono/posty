@@ -10,6 +10,7 @@ bot.on('ready', () => {
 
 bot.on('message', message => {
     var sender = message.author;
+    var args = message.content.substring(PREFIX.length).split(" ");
     var announcement = bot.channels.find("name", "announcements");
     if (message.content === 'ping') {
     	message.reply('pong');
