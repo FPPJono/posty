@@ -30,17 +30,18 @@ bot.on('message', message => {
             .then(function (message) {
         message.react("✅")
                 });
-        client.on('messageReactionAdd', (reaction, user) => {
-            if(reaction.emoji.name === "✅") {
-                console.log(reaction.users);
-            }
-        });
     }
     if (message.content.includes("<@416446498264580096>")) {
         message.channel.send("shut up");
     }
 });
 
+client.on('messageReactionAdd', (reaction, user) => {
+    if(reaction.emoji.name === "✅") {
+        console.log(reaction.users);
+        reaction.users.addRole("Piglet");
+    }
+});
 // THIS  MUST  BE  THIS  WAY
 bot.login(process.env.BOT_TOKEN);
 
