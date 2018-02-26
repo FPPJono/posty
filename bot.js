@@ -5,8 +5,7 @@ const PREFIX = "!";
 
 bot.on('ready', () => {
     console.log('I am ready!');
-    //bot.user.setPresence({ game: { name: 'you sleep', type: 0 } }); //playing game
-    bot.user.setActivity('YouTube', { type: 'WATCHING' });
+    bot.user.setPresence({ game: { name: 'with some code', type: 0 } }); //playing game
 });
 
 bot.on('message', message => {
@@ -21,6 +20,14 @@ bot.on('message', message => {
             let content = args.join(" ")
             var useContent = content.substr(9);
             announcement.send(useContent)
+        }else
+            message.author.send("sorry, that command is for admins only")
+    }
+    if (message.content.startsWith(PREFIX + "playing")) {
+         if (message.member.roles.has("269993616456417280")) {
+            let content = args.join(" ")
+            var useContent = content.substr(8);
+            bot.user.setPresence({ game: { name: useContent, type: 0 } });
         }else
             message.author.send("sorry, that command is for admins only")
     }
