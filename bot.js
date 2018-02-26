@@ -53,7 +53,7 @@ bot.on('message', message => {
 });
 
 bot.on('messageReactionAdd', (reaction, user) => {
-    if (message.channel.id === '416694660833083402'){
+    if (reaction.channel.id === '416694660833083402'){
         if (reaction.user.id !== "416446498264580096"){
             if(reaction.emoji.name === "✅") {
                 const guildMember = reaction.members;
