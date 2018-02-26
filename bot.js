@@ -10,14 +10,17 @@ bot.on('ready', () => {
     bot.user.setPresence({ game: { name: "in some dirt", type: 0}});
 });
 
+bot.on("message", async message => {
+     if (message.content === '!ping') {
+        const m = await message.channel.send("Ping?");
+        m.edit(`Pong! ${m.createdTimestamp - message.createdTimestamp}ms.`);   	
+  	}
+});
+
 bot.on('message', message => {
     var sender = message.author;
     var args = message.content.substring(PREFIX.length).split(" ");
     var announcement = bot.channels.find("name", "announcements");
-    if (message.content === '!ping') {
-        const m = await message.channel.send("Ping?");
-        m.edit(`Pong! ${m.createdTimestamp - message.createdTimestamp}ms.`);   	
-  	}
     if (message.content.startsWith(PREFIX + "announce")) {
          if (message.member.roles.has("269993616456417280")) {
             let content = args.join(" ")
