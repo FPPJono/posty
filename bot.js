@@ -28,12 +28,7 @@ bot.on('message', message => {
                 var welcome = bot.channels.find("name", "welcome");
                 welcome.bulkDelete(99)
                     let msg = await welcome.send("Welcome to the Swag Pigs Server!\nBy clicking the :white_check_mark: button below, you agree to all the rules stated in <#269998962717491201>.\nOnce you have hit the checkmark, go ahead to <#269990219665637377> to say hi to everyone, and check out the other channel topics we have on the server! :pig:")
-                        .then(function (message) {
-                        message.react("✅")
-                    }).catch(function() {
-                        //Something
-                        });
-                    await msg.react("✅");
+
         }else
             message.author.send("sorry, that command is for admins only")
     }
