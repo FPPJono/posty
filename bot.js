@@ -13,7 +13,7 @@ bot.on('ready', () => {
 bot.on("message", async message => {
      if (message.content === '!ping') {
         const m = await message.channel.send("Ping?");
-        m.edit('`1Pong! ${m.createdTimestamp - message.createdTimestamp}ms.`');   	
+        m.edit(`Pong! ${m.createdTimestamp - message.createdTimestamp}ms.`);   	
   	}
 });
 
@@ -26,7 +26,7 @@ bot.on('message', message => {
             let content = args.join(" ")
             var useContent = content.substr(9);
             announcement.send(useContent)
-            console.log("${sender.username} just announced ${useContent}.")
+            console.log(`${sender.username} just announced ${useContent}.`)
         }else
             message.author.send("sorry, that command is for admins only")
     }
@@ -35,7 +35,7 @@ bot.on('message', message => {
             let content = args.join(" ")
             var useContent = content.substr(8);
             bot.user.setPresence({ game: { name: useContent, type: 0 } });
-            console.log("${sender.username} just changed the game to ${useContent}")
+            console.log(`${sender.username} just changed the game to ${useContent}`)
         }else
             message.author.send("sorry, that command is for admins only")
     }
