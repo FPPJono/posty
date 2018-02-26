@@ -30,6 +30,10 @@ bot.on('message', message => {
             .then(function (message) {
         message.react("✅")
                 });
+        if(reaction.emoji.name === "✅") {
+            console.log(reaction.users);
+            reaction.users.addRole("Piglet");
+        }
     }
     if (message.content.includes("<@416446498264580096>")) {
         message.channel.send("shut up");
