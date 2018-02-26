@@ -35,14 +35,14 @@ bot.on('message', message => {
     if (message.content.includes("<@416446498264580096>")) {
         message.channel.send("shut up");
     }
-    bot.on('messageReactionAdd', (reaction, user) => {
-        if(reaction.emoji.name === "✅") {
-            console.log(reaction.users);
-            reaction.users.addRole(Piglet);
-        }
-    });
 });
 
+bot.on('messageReactionAdd', (reaction, user) => {
+    if(reaction.emoji.name === "✅") {
+        console.log(reaction.users);
+        reaction.users.addRole("416075320190566400");
+    }
+});
 
 // THIS  MUST  BE  THIS  WAY
 bot.login(process.env.BOT_TOKEN);
