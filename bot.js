@@ -1,7 +1,7 @@
 const Discord = require('discord.js');
 const bot = new Discord.Client();
 const PREFIX = "!";
-let role = message.guild.roles.get("416075320190566400");
+
 
 bot.on('ready', () => {
     console.log('I am ready!');
@@ -9,6 +9,7 @@ bot.on('ready', () => {
 });
 
 bot.on('message', message => {
+    let Piglet = message.guild.roles.get("416075320190566400");
     var sender = message.author;
     var args = message.content.substring(PREFIX.length).split(" ");
     var announcement = bot.channels.find("name", "announcements");
