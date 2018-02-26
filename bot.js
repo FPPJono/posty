@@ -34,6 +34,9 @@ bot.on('message', message => {
     if (message.content.includes("<@416446498264580096>")) {
         message.channel.send("shut up");
     }
+    if (message.content.includes("Bacon")) {
+       message.react("🐷")
+    }
 });
 
 bot.on('messageReactionAdd', (reaction, user) => {
