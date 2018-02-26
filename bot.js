@@ -52,11 +52,11 @@ bot.on('message', message => {
     }
 });
 
-bot.on('messageReactionAdd', function(users) => {
+bot.on('messageReactionAdd', (reaction, user) => {
     if(reaction.emoji.name === "✅") {
         const guildMember = reaction.users;
         console.log(`${user.username} reacted with "${reaction.emoji.name}".`);
-        users.addRole(users.guild.roles.find("name", setup.verify));
+        user.addRole(user.guild.roles.find("name", setup.verify));
     }
 });
 
