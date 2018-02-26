@@ -33,7 +33,7 @@ bot.on('message', message => {
                     }).catch(function() {
                         //Something
                         });
-                    await msg.react("✅");
+                    
         }else
             message.author.send("sorry, that command is for admins only")
     }
