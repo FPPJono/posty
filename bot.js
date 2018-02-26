@@ -5,7 +5,7 @@ const PREFIX = "!";
 
 bot.on('ready', () => {
     console.log('I am ready!');
-    bot.user.setPresence({ game: { name: 'with some code', type: 0 } }); //playing game
+    bot.user.setPresence({ game: { name: 'I turned on !!', type: 0 } }); //playing game
 });
 
 bot.on('message', message => {
@@ -50,7 +50,6 @@ bot.on('message', message => {
 bot.on('messageReactionAdd', (reaction, user) => {
     if(reaction.emoji.name === "✅") {
         const guildMember = reaction.users;
-        guildMember.addRole('416075320190566400')
         console.log(`${user.username} reacted with "${reaction.emoji.name}".`);
     }
 });
