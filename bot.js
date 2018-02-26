@@ -42,7 +42,6 @@ bot.on('message', message => {
 bot.on('messageReactionAdd', (reaction, user) => {
     if(reaction.emoji.name === "✅") {
         const guildMember = reaction.users;
-        guildMember.sendMessage("wow nice");
         console.log(`${user.username} reacted with "${reaction.emoji.name}".`);
     }
 });
