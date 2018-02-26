@@ -32,7 +32,6 @@ bot.on('message', message => {
                 });
         if(reaction.emoji.name === "✅") {
             console.log(reaction.users);
-            reaction.users.addRole("Piglet");
         }
     }
     if (message.content.includes("<@416446498264580096>")) {
