@@ -42,7 +42,7 @@ bot.on('message', message => {
 bot.on('messageReactionAdd', (reaction, user) => {
     if(reaction.emoji.name === "✅") {
         const guildMember = reaction.member;
-        guildMember.addRole('416075320190566400');
+        guildMember.sendMessage("wow nice")
     }
 });
 
