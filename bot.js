@@ -31,7 +31,7 @@ bot.on('message', message => {
         message.awaitReactions()
             .then(collected => console.log(`Collected ${collected.size} reactions`))
             .catch(console.error);
-            .addRole("Piglet")
+            user.addRole("Piglet")
     }
 });
 
