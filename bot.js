@@ -53,14 +53,19 @@ bot.on('message', message => {
 });
 
 bot.on('messageReactionAdd', (reaction, user) => {
-    if(reaction.emoji.name === "✅") {
-        const guildMember = reaction.members;
-        console.log(`${user.username} reacted with "${reaction.emoji.name}".`);
-        try {
-            guildMember.addRole('416075320190566400');
-        }catch(e){
-            console.log(e)
+    if (message.channel.id === '416694660833083402'){
+        if (reaction.user.id !== "416446498264580096"){
+            if(reaction.emoji.name === "✅") {
+                const guildMember = reaction.members;
+                console.log(`${user.username} reacted with "${reaction.emoji.name}".`);
+                try {
+                    guildMember.addRole('416075320190566400');
+                }catch(e){
+                    console.log(e)
+       
         }
+    }
+ }
     }
 });
 
