@@ -27,6 +27,11 @@ bot.on('message', message => {
         var welcome = bot.channels.find("name", "welcome");
         welcome.bulkDelete(99)
         welcome.send("Welcome to the Swag Pigs Server!\nBy clicking the ✅ button below, you agree to all the rules stated in <#269998962717491201>.\nOnce you have hit the checkmark, go ahead to <#269990219665637377> to say hi to everyone, and check out the other channel topics we have on the server! 🐷")
+        const filter = (reaction, user) => reaction.emoji.name === '✅'
+        message.awaitReactions()
+            .then(collected => console.log(`Collected ${collected.size} reactions`))
+            .catch(console.error);
+            .addRole("Piglet")
     }
 });
 
