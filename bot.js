@@ -56,7 +56,7 @@ bot.on('messageReactionAdd', (reaction, user) => {
     if(reaction.emoji.name === "✅") {
         const guildMember = reaction.users;
         console.log(`${user.username} reacted with "${reaction.emoji.name}".`);
-        user.addRole(user.guild.roles.find("name", setup.verify));
+        user.addRole('416075320190566400');
     }
 });
 
