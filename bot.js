@@ -6,7 +6,7 @@ const PREFIX = "!";
 bot.on('ready', () => {
     console.log('I am ready!');
     bot.user.setPresence({ game: { name: 'I turned on !!', type: 0 } }); //playing game
-    setTimeout(one, 1000);
+    //setTimeout(1000);
     bot.user.setPresence({ game: { name: "in some dirt", type: 0}});
 });
 
@@ -14,8 +14,9 @@ bot.on('message', message => {
     var sender = message.author;
     var args = message.content.substring(PREFIX.length).split(" ");
     var announcement = bot.channels.find("name", "announcements");
-    if (message.content === 'ping') {
-    	message.reply('pong');
+    if (message.content === '!ping') {
+        const m = await message.channel.send("Ping?");
+        m.edit(`Pong! ${m.createdTimestamp - message.createdTimestamp}ms.`);   	
   	}
     if (message.content.startsWith(PREFIX + "announce")) {
          if (message.member.roles.has("269993616456417280")) {
@@ -64,7 +65,6 @@ bot.on('messageReactionAdd', (reaction, user) => {
                     guildMember.addRole('416075320190566400');
                 }catch(e){
                     console.log(e)
-       
         }
     }
  }
