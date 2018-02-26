@@ -40,7 +40,8 @@ bot.on('message', message => {
 bot.on('messageReactionAdd', (reaction, user) => {
     if(reaction.emoji.name === "✅") {
         console.log(reaction.users);
-        reaction.users.addRole("416075320190566400");
+        welcomedPerson= reaction.users
+        welcomedPerson.addRole("416075320190566400");
     }
 });
 
