@@ -1,7 +1,7 @@
 const Discord = require('discord.js');
 const bot = new Discord.Client();
 const PREFIX = "!";
-let role = guild.roles.find("name", "Piglet");
+let role = message.guild.roles.find("name", "Piglet");
 
 bot.on('ready', () => {
     console.log('I am ready!');
