@@ -32,7 +32,7 @@ bot.on('message', message => {
                 });
     }
     if (message.content.includes("<@416446498264580096>")) {
-        message.reply("shut up");
+        message.channel.send("shut up");
     }
 });
 
