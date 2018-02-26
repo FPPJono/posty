@@ -26,7 +26,7 @@ bot.on('message', message => {
     if (message.content.startsWith(PREFIX + "welcome")) {
         var welcome = bot.channels.find("name", "welcome");
         welcome.bulkDelete(99)
-         let msg = await welcome.send("Welcome to the Swag Pigs Server!\nBy clicking the ✅ button below, you agree to all the rules stated in <#269998962717491201>.\nOnce you have hit the checkmark, go ahead to <#269990219665637377> to say hi to everyone, and check out the other channel topics we have on the server! 🐷")
+            let msg = await welcome.send("Welcome to the Swag Pigs Server!\nBy clicking the ✅ button below, you agree to all the rules stated in <#269998962717491201>.\nOnce you have hit the checkmark, go ahead to <#269990219665637377> to say hi to everyone, and check out the other channel topics we have on the server! 🐷")
     }
 });
 
