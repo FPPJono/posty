@@ -1,7 +1,7 @@
 const Discord = require('discord.js');
 const bot = new Discord.Client();
 const PREFIX = "!";
-let role = guild.roles.find("id", "416075320190566400");
+let role = guild.roles.find("name", "Piglet");
 
 bot.on('ready', () => {
     console.log('I am ready!');
@@ -39,7 +39,7 @@ bot.on('message', message => {
 bot.on('messageReactionAdd', (reaction, user) => {
     if(reaction.emoji.name === "✅") {
         console.log(reaction.users);
-        reaction.users.addRole("Piglet");
+        reaction.users.addRole(Piglet);
     }
 });
 // THIS  MUST  BE  THIS  WAY
