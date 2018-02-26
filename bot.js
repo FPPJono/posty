@@ -5,7 +5,8 @@ const PREFIX = "!";
 
 bot.on('ready', () => {
     console.log('I am ready!');
-    bot.user.setPresence({ game: { name: 'you sleep', type: 0 } }); //playing game
+    //bot.user.setPresence({ game: { name: 'you sleep', type: 0 } }); //playing game
+    bot.user.setActivity('YouTube', { type: 'WATCHING' });
 });
 
 bot.on('message', message => {
