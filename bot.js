@@ -33,7 +33,7 @@ bot.on('message', message => {
             .catch(console.error);
             user.addRole("Piglet")
     }
-    if (message.content.includes(<@416446498264580096>)) {
+    if (message.content.includes("<@416446498264580096>")) {
         message.reply("shut up");
     }
 });
