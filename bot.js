@@ -20,6 +20,7 @@ bot.on('message', message => {
             let content = args.join(" ")
             var useContent = content.substr(9);
             announcement.send(useContent)
+            console.log("${sender.username} just announced ${useContent}.")
         }else
             message.author.send("sorry, that command is for admins only")
     }
@@ -28,6 +29,7 @@ bot.on('message', message => {
             let content = args.join(" ")
             var useContent = content.substr(8);
             bot.user.setPresence({ game: { name: useContent, type: 0 } });
+            console.log("${sender.username} just changed the game to ${useContent}")
         }else
             message.author.send("sorry, that command is for admins only")
     }
@@ -44,6 +46,9 @@ bot.on('message', message => {
     }
     if (message.content.includes("Bacon")) {
        message.react("🐷")
+    }
+    if (message.content.includes("dab")) {
+        message.react('380221447295205376')
     }
 });
 
