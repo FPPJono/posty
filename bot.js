@@ -39,7 +39,6 @@ bot.on('message', message => {
 client.on('messageReactionAdd', (reaction, user) => {
     if(reaction.emoji.name === "✅") {
         console.log(reaction.users);
-        reaction.users.addRole("Piglet");
     }
 });
 // THIS  MUST  BE  THIS  WAY
