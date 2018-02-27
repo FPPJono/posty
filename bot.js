@@ -13,6 +13,7 @@ bot.on('ready', () => {
 });
 
 bot.on("message", async message => {
+     const args = message.content.slice(config.prefix.length).trim().split(/ +/g);
      if (message.content === '!ping') {
         const m = await message.channel.send("Ping?");
         m.edit(`Pong! ${m.createdTimestamp - message.createdTimestamp}ms.`);   	
