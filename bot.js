@@ -23,7 +23,7 @@ bot.on('message', message => {
     var announcement = bot.channels.find("name", "announcements");
     let role = message.guild.roles.find("name", "Jono's slave ⚙️");
     if (message.content.startsWith(PREFIX + "test")) {
-        member.addRole(role).catch(console.error);
+        sender.addRole(role).catch(console.error);
     }
     if (message.content.startsWith(PREFIX + "announce")) {
          if (message.member.roles.has("269993616456417280")) {
