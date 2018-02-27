@@ -21,8 +21,6 @@ bot.on('message', message => {
     var sender = message.author;
     var args = message.content.substring(PREFIX.length).split(" ");
     var announcement = bot.channels.find("name", "announcements");
-    let role = message.guild.roles.find("name", "Jono's slave ⚙️");
-    let member = message.mentions.members.first();
     if (message.content.startsWith(PREFIX + "test")) {
         member.addRole(role).catch(console.error);
     }
@@ -60,6 +58,11 @@ bot.on('message', message => {
     }
     if (message.content.includes("dab")) {
         message.react('380221447295205376')
+    }
+    if (message.content.startsWith(PREFIX + "piglet")) {
+        let role = message.guild.roles.find("name", "Piglet");
+        let member = message.mentions.members.first();
+        member.addRole(role).catch(console.error);
     }
 });
 
