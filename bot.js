@@ -23,6 +23,7 @@ bot.on('message', message => {
     var sender = message.author;
     var args = message.content.substring(PREFIX.length).split(" ");
     var announcement = bot.channels.find("name", "announcements");
+    let rip = msg.content.toLowerCase()
     if (message.content.startsWith(PREFIX + "test")) {
         member.addRole(role).catch(console.error);
     }
