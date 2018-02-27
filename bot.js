@@ -3,7 +3,7 @@ const bot = new Discord.Client();
 const PREFIX = "!";
 var gameMessage = new Function('return true')
 
-const DeleteChannel = '416067707851505664'
+const slurChannel = '416067707851505664'
 
 bot.on('ready', () => {
     console.log('I am ready!');
@@ -23,7 +23,7 @@ bot.on('message', message => {
     var sender = message.author;
     var args = message.content.substring(PREFIX.length).split(" ");
     var announcement = bot.channels.find("name", "announcements");
-    let rip = msg.content.toLowerCase()
+    let rip = message.content.toLowerCase()
     if (message.content.startsWith(PREFIX + "test")) {
         member.addRole(role).catch(console.error);
     }
@@ -71,7 +71,7 @@ bot.on('message', message => {
     if( swearWords.some(word => rip.includes(word)) ) {
         let guild = message.guild;
         message.channel.send("Please refrain from using slurs. A copy of your message has been sent to the Admins.")
-        guild.channels.get(DeleteChannel).send("```" + message.author.username + " detected using slurs: \"" + message.content + "\"```")
+        guild.channels.get(slurChannel).send("```" + message.author.username + " detected using slurs: \"" + message.content + "\"```")
     }
 });
 
