@@ -79,9 +79,9 @@ bot.on('message', message => {
     if (message.content.includes("dab")) {
         message.react('380221447295205376')
     }
-    if (rip.content.includes("spreadsheet")) {
-        rip.react('416071297920008192')
-        rip.channel.send("ha loser")
+    if (rip.includes("spreadsheet")) {
+        message.react('416071297920008192')
+        message.channel.send("ha loser")
     }
     //if (message.content.startsWith(PREFIX + "piglet")) {
       //  let role = message.guild.roles.find("name", "Piglet");
