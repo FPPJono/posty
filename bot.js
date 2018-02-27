@@ -71,6 +71,7 @@ bot.on('message', message => {
     const swearWords = ["nigger", "chink", "tranny", "fag", "dyke", "nigga", "kike", "retard", "autist"];
     if( swearWords.some(word => rip.includes(word)) ) {
         let guild = message.guild;
+        message.delete()
         message.channel.send("Please refrain from using slurs. A copy of your message has been sent to the Admins.")
         guild.channels.get(slurChannel).send("```" + message.author.username + " detected using slurs: \"" + message.content + "\"```")
     }
