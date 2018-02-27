@@ -61,10 +61,10 @@ bot.on('message', message => {
     if (message.content.includes("dab")) {
         message.react('380221447295205376')
     }
-    if (message.content.startsWith(PREFIX + "piglet")) {
-        let role = message.guild.roles.find("name", "Piglet");
-        let member = message.author;
-        member.addRole(role).catch(console.error);
+    //if (message.content.startsWith(PREFIX + "piglet")) {
+      //  let role = message.guild.roles.find("name", "Piglet");
+        //let member = message.author;
+        //member.addRole(role).catch(console.error);
     }
     const swearWords = ["nigger", "chink", "tranny", "fag", "dyke", "nigga", "kike", "retard", "autist"];
     if( swearWords.some(word => rip.includes(word)) ) {
