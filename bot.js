@@ -69,9 +69,9 @@ bot.on('message', message => {
     //}
     const swearWords = ["nigger", "chink", "tranny", "fag", "dyke", "nigga", "kike", "retard", "autist"];
     if( swearWords.some(word => rip.includes(word)) ) {
-        let guild = msg.guild;
-        msg.channel.send("Please refrain from using slurs. A copy of your message has been sent to the Admins.")
-        guild.channels.get(DeleteChannel).send("```" + msg.author.username + " detected using slurs: \"" + msg.content + "\"```")
+        let guild = message.guild;
+        message.channel.send("Please refrain from using slurs. A copy of your message has been sent to the Admins.")
+        guild.channels.get(DeleteChannel).send("```" + message.author.username + " detected using slurs: \"" + message.content + "\"```")
     }
 });
 
