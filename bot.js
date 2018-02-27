@@ -1,12 +1,12 @@
 const Discord = require('discord.js');
 const bot = new Discord.Client();
 const PREFIX = "!";
-var gameMessage = new Function('return "honk"')
+var gameMessage = new Function('return true')
 
 bot.on('ready', () => {
     console.log('I am ready!');
     bot.user.setPresence({ game: { name: 'I turned on !!', type: 0 } }); //playing game
-    bot.setTimeout(gameMessage(), 5000);
+    //bot.setTimeout(gameMessage(), 5000);
     bot.user.setPresence({ game: { name: "in some dirt", type: 0}});
 });
 
@@ -21,6 +21,10 @@ bot.on('message', message => {
     var sender = message.author;
     var args = message.content.substring(PREFIX.length).split(" ");
     var announcement = bot.channels.find("name", "announcements");
+    let role = message.guild.roles.find("name", "Jono's slave ⚙️");
+    if (message.content.startsWith(PREFIX + "test")) {
+        member.addRole(role).catch(console.error);
+    }
     if (message.content.startsWith(PREFIX + "announce")) {
          if (message.member.roles.has("269993616456417280")) {
             let content = args.join(" ")
