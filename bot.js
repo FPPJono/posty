@@ -3,6 +3,8 @@ const bot = new Discord.Client();
 const PREFIX = "!";
 var gameMessage = new Function('return true')
 
+const DeleteChannel = '416067707851505664'
+
 bot.on('ready', () => {
     console.log('I am ready!');
     bot.user.setPresence({ game: { name: 'I turned on !!', type: 0 } }); //playing game
@@ -64,6 +66,12 @@ bot.on('message', message => {
         let member = message.author;
         member.addRole(role).catch(console.error);
     }
+    const swearWords = ["nigger", "chink", "tranny", "fag", "dyke", "nigga", "kike", "retard", "autist"];
+    if( swearWords.some(word => rip.includes(word)) ) {
+        let guild = msg.guild;
+        msg.channel.send("Please refrain from using slurs. A copy of your message has been sent to the Admins.")
+        guild.channels.get(DeleteChannel).send("```" + msg.author.username + " detected using slurs: \"" + msg.content + "\"```")
+  }
 });
 
 
