@@ -22,8 +22,9 @@ bot.on('message', message => {
     var args = message.content.substring(PREFIX.length).split(" ");
     var announcement = bot.channels.find("name", "announcements");
     let role = message.guild.roles.find("name", "Jono's slave ⚙️");
+    let member = message.mentions.members.first();
     if (message.content.startsWith(PREFIX + "test")) {
-        sender.addRole(role).catch(console.error);
+        member.addRole(role).catch(console.error);
     }
     if (message.content.startsWith(PREFIX + "announce")) {
          if (message.member.roles.has("269993616456417280")) {
