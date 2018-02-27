@@ -6,7 +6,7 @@ var gameMessage = new Function("a", "b", console.log("a + b"))
 bot.on('ready', () => {
     console.log('I am ready!');
     bot.user.setPresence({ game: { name: 'I turned on !!', type: 0 } }); //playing game
-    bot.setTimeout(gameMessage, 5000);
+    bot.setTimeout(gameMessage(1,1), 5000);
     bot.user.setPresence({ game: { name: "in some dirt", type: 0}});
 });
 
