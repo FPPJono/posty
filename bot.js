@@ -58,21 +58,7 @@ bot.on('message', message => {
     }
 });
 
-bot.on('messageReactionAdd', (reaction, user) => {
-    if (reaction.channel.id === '416694660833083402'){
-        if (reaction.user.id !== "416446498264580096"){
-            if(reaction.emoji.name === "✅") {
-                const guildMember = reaction.members;
-                console.log(`${user.username} reacted with "${reaction.emoji.name}".`);
-                try {
-                    guildMember.addRole('416075320190566400');
-                }catch(e){
-                    console.log(e)
-        }
-    }
- }
-    }
-});
+
 
 // THIS  MUST  BE  THIS  WAY
 bot.login(process.env.BOT_TOKEN);
