@@ -21,6 +21,7 @@ bot.on("message", async message => {
 
 bot.on('message', message => {
     var sender = message.author;
+    if(message.author.bot) return;
     var args = message.content.substring(PREFIX.length).split(" ");
     var announcement = bot.channels.find("name", "announcements");
     let rip = message.content.toLowerCase()
