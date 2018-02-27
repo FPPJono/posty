@@ -71,7 +71,7 @@ bot.on('message', message => {
         let guild = msg.guild;
         msg.channel.send("Please refrain from using slurs. A copy of your message has been sent to the Admins.")
         guild.channels.get(DeleteChannel).send("```" + msg.author.username + " detected using slurs: \"" + msg.content + "\"```")
-  }
+    }
 });
 
 
