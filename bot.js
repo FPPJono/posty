@@ -1,7 +1,7 @@
 const Discord = require('discord.js');
 const bot = new Discord.Client();
 const PREFIX = "!";
-var gameMessage = new Function('return honk')
+var gameMessage = new Function('return "honk"')
 
 bot.on('ready', () => {
     console.log('I am ready!');
