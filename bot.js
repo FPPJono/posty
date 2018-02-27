@@ -6,7 +6,7 @@ const PREFIX = "!";
 bot.on('ready', () => {
     console.log('I am ready!');
     bot.user.setPresence({ game: { name: 'I turned on !!', type: 0 } }); //playing game
-    window.setTimeout(slowAlert, 5000);
+    scope.setTimeout(slowAlert, 5000);
     bot.user.setPresence({ game: { name: "in some dirt", type: 0}});
 });
 
