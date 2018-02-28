@@ -35,7 +35,7 @@ bot.on("message", async message => {
     }
     if(message.content.startsWith(PREFIX + "say")) {
         const sayMessage = args.join(" ");
-        var useContent = sayMessage.substr(8);
+        var useContent = sayMessage.substr(4);
         message.delete().catch(O_o=>{}); 
         message.channel.send(useContent);
     }
