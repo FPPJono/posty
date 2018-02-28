@@ -33,7 +33,7 @@ bot.on("message", async message => {
         message.channel.bulkDelete(fetched)
             .catch(error => message.reply(`Couldn't delete messages because of: ${error}`));
     }
-    if(message.content.startsWith(PREFIX + "say") {
+    if(message.content.startsWith(PREFIX + "say")) {
         const sayMessage = args.join(" ");
         message.delete().catch(O_o=>{}); 
         message.channel.send(sayMessage);
