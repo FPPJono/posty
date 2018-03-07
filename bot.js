@@ -112,11 +112,12 @@ bot.on('message', message => {
         message.react('416071297920008192')
         message.channel.send("ha loser")
     }
-    //if (message.content.startsWith(PREFIX + "piglet")) {
-      //  let role = message.guild.roles.find("name", "Piglet");
-        //let member = message.author;
-        //member.addRole(role).catch(console.error);
-    //}
+    if (message.content.startsWith(PREFIX + "piglet")) {
+        let role = message.guild.roles.find("name", "Piglet");
+        let member = message.author;
+        member.addRole(role).catch(console.error);
+        member.sendMessage("h")
+    }
     const swearWords = ["nigger", "chink", "tranny", "fag", "dyke", "nigga", "kike", "retard", "autist", "negroid", "dike"];
     var swearCheck = rip
     const byPass = ["halfaglass", "klondike"]
