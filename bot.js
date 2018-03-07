@@ -32,7 +32,7 @@ bot.on("message", async message => {
     if (message.content.startsWith(PREFIX + "rate")){
         const thingToRate = args.join(" ");
         var ratedThing = thingToRate.substr(5);
-        message.channel.send("```I would rate ${ratedThing} ${getRandomInt(10)} out of 10!```");
+        message.channel.send(`I would rate ${ratedThing} ${getRandomInt(10)} out of 10!`);
     }
 });
 
