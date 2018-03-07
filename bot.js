@@ -120,6 +120,22 @@ bot.on('message', message => {
         message.channel.send("Please refrain from using slurs. A copy of your message has been sent to the Admins.")
             .then(m => m.delete(7500));
         guild.channels.get(slurChannel).send("```" + message.author.username + " detected using slurs: \"" + message.content + "\"```")
+        const embed = {
+            "description": "this supports [named links](https://discordapp.com) on top of the previously shown subset of markdown.",
+            "color": 6569894,
+            "footer": {
+                "icon_url": `${message.author.avatarURL}`,
+                "text": "footer text"
+            },
+            "thumbnail": {
+                "url": "https://cdn.discordapp.com/embed/avatars/0.png"
+            },
+            "author": {
+                "name": "The Slur Finder Machine",
+                "icon_url": "https://cdn.discordapp.com/app-icons/416446498264580096/4f17fb88d33f4655d85154ee064f030d.png"
+            }
+            };
+            channel.send({ embed });
     }
     if (message.content.startsWith(PREFIX + "clear")) {
         if (message.member.roles.has("269993616456417280")) {
