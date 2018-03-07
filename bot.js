@@ -113,9 +113,10 @@ bot.on('message', message => {
     //}
     const swearWords = ["nigger", "chink", "tranny", "fag", "dyke", "nigga", "kike", "retard", "autist"];
     var swearCheck = rip
+    const byPass = ["halfaglass"]
     swearCheck = swearCheck.replace(/\s/g, '')
-    if( swearWords.some(word => swearCheck.includes(word)) ) {
-        if (message.content.includes("halfaglass")) return;
+    if( swearWords.some(word => swearCheck.includes(word))) {
+        if (byPass.some(word => swearCheck.includes(word))) return;
         let guild = message.guild;
         message.delete()
         message.channel.send("Please refrain from using slurs. A copy of your message has been sent to the Admins.")
