@@ -10,10 +10,10 @@ function getRandomInt (max) {
 }
 
 var eightBall = [
-    "```I would say..... yes!```"
-    "```Probably not```"
-    "```maybe?```"
-    "```I dont think so```"
+    "```I would say..... yes!```",
+    "```Probably not```",
+    "```maybe?```",
+    "```I dont think so```",
     "```probably```"
 ]
 
