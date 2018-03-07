@@ -113,7 +113,7 @@ bot.on('message', message => {
             .then(m => m.delete(7500));
         guild.channels.get(slurChannel).send("```" + message.author.username + " detected using slurs: \"" + message.content + "\"```")
     }
-    if (message.content.includes(PREFIX + "clear")) {
+    if (message.content.startsWith(PREFIX + "clear")) {
         if (message.member.roles.has("269993616456417280")) {
             let messagecount = parseInt(args[1]) || 1;
             message.channel.fetchMessages({limit: Math.min(messagecount + 1, 100)})
@@ -125,7 +125,10 @@ bot.on('message', message => {
         }else
             message.channel.send("sorry thats for admins only :/");
     }
-    
+    if (message.content.startsWith(PREFIX + "8ball")) {
+        if (args[1] != null) message.channel.send(eightball[Math.floor(Math.random() * eightball.length).toString(16)]);
+        else message.channel.send("what's your question? lol\n```Correct usage: !8ball question```");
+    }
 });
 
 
