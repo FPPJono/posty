@@ -12,9 +12,15 @@ function getRandomInt (max) {
 var eightBall = [
     "I would say..... yes!",
     "Probably not",
-    "maybe?",
+    "heck maybe, idk",
     "I dont think so",
-    "probably"
+    "eh, probably",
+    "hmmm.... maybe not",
+    "*concentrate*, and try again",
+    "look man im just a bot go ask someone who cares",
+    "those who ask will get their answer eventually, try again",
+    "haha! yes!",
+    "hah, nope"
 ]
 
 bot.on('ready', () => {
@@ -117,7 +123,8 @@ bot.on('message', message => {
         if (message.member.roles.has("269993616456417280")) {
             let messagecount = parseInt(args[1]) || 1;
             message.channel.fetchMessages({limit: Math.min(messagecount + 1, 100)})
-            message.channel.bulkDelete(messagecount +1)
+            message.channel.bulkDelete(1)
+            message.channel.bulkDelete(messagecount)
             .then(() => {
                     message.channel.send(`:white_check_mark: Deleted \`${messagecount}\` messages.`)
                         .then(m => m.delete(2000));
@@ -133,7 +140,7 @@ bot.on('message', message => {
                 "color": 122353,
                 "footer": {
                     "icon_url": "https://cdn.discordapp.com/app-icons/416446498264580096/4f17fb88d33f4655d85154ee064f030d.png",
-                    "text": "Copyright Jono's Jontronics Ltd. 2097"
+                    "text": "The Magic 8 Ball Machine"
                 }
                 };
                 message.channel.send({ embed });
