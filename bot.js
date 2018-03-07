@@ -29,6 +29,11 @@ bot.on("message", async message => {
         message.delete().catch(O_o=>{}); 
         message.channel.send(useContent);
     }
+    if message.content.startsWith(PREFIX + "rate"){
+        const thingToRate = args.join(" ");
+        var ratedThing = thingToRate.substr(5);
+        message.channel.send("```I would rate", thingToRate, getRandomInt(10), "out of 10!```");
+    }
 });
 
 bot.on('message', message => {
