@@ -138,6 +138,8 @@ bot.on('message', message => {
         if (message.member.roles.has("269993616456417280")) {
             message.delete()
             let messagecount = parseInt(args[1]) || 1;
+            if messagecount > 100 return;
+            if messagecount < 2 return;
             message.channel.fetchMessages({limit: Math.min(messagecount + 1, 100)})
             message.channel.bulkDelete(messagecount)
             .then(() => {
