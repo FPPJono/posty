@@ -125,7 +125,8 @@ bot.on('message', message => {
         if (message.member.roles.has("269993616456417280")) {
             let messagecount = parseInt(args[1]) || 1;
             message.channel.fetchMessages({limit: Math.min(messagecount + 1, 100)})
-            message.channel.bulkDelete(1)
+            message.channel.send("```clearing messages...```");
+            message.channel.bulkDelete(2)
             message.channel.bulkDelete(messagecount)
             .then(() => {
                     message.channel.send(`:white_check_mark: Deleted \`${messagecount}\` messages.`)
