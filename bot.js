@@ -126,8 +126,19 @@ bot.on('message', message => {
             message.channel.send("sorry thats for admins only :/");
     }
     if (message.content.startsWith(PREFIX + "8ball")) {
-        if (args[1] != null) message.channel.send(eightBall[Math.floor(Math.random() * eightBall.length).toString(16)]);
-        else message.channel.send("what's your question? lol\n```Correct usage: !8ball question```");
+        if (args[1] != null){
+            message.channel.send(eightBall[Math.floor(Math.random() * eightBall.length).toString(16)]);
+            const embed = {
+                "description": `${eightBall[Math.floor(Math.random() * eightBall.length).toString(16)]}`,
+                "url": "https://discordapp.com",
+                "color": 122353,
+                "footer": {
+                    "icon_url": "https://cdn.discordapp.com/app-icons/416446498264580096/4f17fb88d33f4655d85154ee064f030d.png",
+                    "text": "Copyright Jono's Jontronics Ltd. 2097"
+                }
+                };
+                message.channel.send({ embed });
+        }else message.channel.send("what's your question? lol\n```Correct usage: !8ball question```");
     }
 });
 
