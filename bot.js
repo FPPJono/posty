@@ -93,13 +93,13 @@ bot.on('message', message => {
         message.react("✅")
                 });
     }
-    if (message.content.includes("<@416446498264580096>")) {
+    if (rip.includes("<@416446498264580096>")) {
         message.channel.send("shut up");
     }
-    if (message.content.includes("Bacon")) {
+    if (rip.includes("nacon")) {
        message.react("🐷")
     }
-    if (message.content.includes("dab")) {
+    if (rip.includes("dab")) {
         message.react('380221447295205376')
     }
     if (rip.includes("spreadsheet")) {
