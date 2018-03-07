@@ -110,8 +110,8 @@ bot.on('message', message => {
         let guild = message.guild;
         message.delete()
         message.channel.send("Please refrain from using slurs. A copy of your message has been sent to the Admins.")
-        guild.channels.get(slurChannel).send("```" + message.author.username + " detected using slurs: \"" + message.content + "\"```")
             .then(m => m.delete(2000));
+        guild.channels.get(slurChannel).send("```" + message.author.username + " detected using slurs: \"" + message.content + "\"```")
     }
     if (message.content.includes(PREFIX + "clear")) {
         let messagecount = parseInt(args[1]) || 1;
