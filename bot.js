@@ -116,7 +116,7 @@ bot.on('message', message => {
     if (message.content.includes(PREFIX + "clear")) {
         if (message.member.roles.has("269993616456417280")) {
             let messagecount = parseInt(args[1]) || 1;
-            var deletedMessages = -1;
+            var deletedMessages = -messagecount;
             message.channel.fetchMessages({limit: Math.min(messagecount + 1, 100)}).then(messages => {
                 messages.forEach(m => {
                     m.delete().catch(console.error);
