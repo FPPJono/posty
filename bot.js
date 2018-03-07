@@ -145,7 +145,7 @@ bot.on('message', message => {
             .then(() => {
                     const embed = {
                         "description": `:white_check_mark: Deleted ${messagecount} messages.`,
-                        "color": 6569894,
+                        "color": 123732,
                         "author": {
                             "name": "The Magical Message Deleter",
                             "icon_url": "https://cdn.discordapp.com/app-icons/416446498264580096/4f17fb88d33f4655d85154ee064f030d.png"
