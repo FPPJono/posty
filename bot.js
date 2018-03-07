@@ -130,7 +130,7 @@ bot.on('message', message => {
             .then(() => {
                     message.channel.send(`:white_check_mark: Deleted \`${messagecount}\` messages.`)
                         .then(m => m.delete(2000));
-            }).catch(console.error);
+            })
         }else
             message.channel.send("sorry thats for admins only :/");
     }
