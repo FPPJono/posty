@@ -129,7 +129,7 @@ bot.on('message', message => {
             }).catch(console.error);
         }
         }else
-            print("sorry thats for admins only :/")
+            message.channel.send("sorry thats for admins only :/");
 });
 
 
