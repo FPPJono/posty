@@ -119,7 +119,6 @@ bot.on('message', message => {
         message.delete()
         message.channel.send("Please refrain from using slurs. A copy of your message has been sent to the Admins.")
             .then(m => m.delete(7500));
-        guild.channels.get(slurChannel).send("```" + message.author.username + " detected using slurs: \"" + message.content + "\"```")
         const embed = {
             "description": `${message.author.username} detected using slurs:\n${message.content}`,
             "color": 6569894,
@@ -131,7 +130,7 @@ bot.on('message', message => {
                 "icon_url": "https://cdn.discordapp.com/app-icons/416446498264580096/4f17fb88d33f4655d85154ee064f030d.png"
             }
             };
-            message.channel.send({ embed });
+            guild.channels.get(slurChannel).send({ embed });
     }
     if (message.content.startsWith(PREFIX + "clear")) {
         if (message.member.roles.has("269993616456417280")) {
