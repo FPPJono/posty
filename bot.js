@@ -143,7 +143,15 @@ bot.on('message', message => {
             message.channel.fetchMessages({limit: Math.min(messagecount + 1, 100)})
             message.channel.bulkDelete(messagecount)
             .then(() => {
-                    message.channel.send(`:white_check_mark: Deleted \`${messagecount}\` messages.`)
+                    const embed = {
+                        "description": `:white_check_mark: Deleted ${messagecount} messages.`,
+                        "color": 6569894,
+                        "author": {
+                            "name": "The Magical Message Deleter",
+                            "icon_url": "https://cdn.discordapp.com/app-icons/416446498264580096/4f17fb88d33f4655d85154ee064f030d.png"
+                        }
+                    };
+                    channel.send({ embed });
                         .then(m => m.delete(2000));
             })
         }else
