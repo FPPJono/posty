@@ -14,7 +14,7 @@ bot.on('ready', () => {
     bot.user.setPresence({ game: { name: 'I turned on !!', type: 0 } }); //playing game
     //bot.setTimeout(gameMessage(), 5000);
     bot.user.setPresence({ game: { name: "in some dirt", type: 0}});
-    console.log("```I would rate ${getRandomInt(10)}/10```")
+    console.log("```I would rate",getRandomInt(10),"/10```")
 });
 
 bot.on("message", async message => {
@@ -23,21 +23,6 @@ bot.on("message", async message => {
         const m = await message.channel.send("Ping?");
         m.edit(`Pong! ${m.createdTimestamp - message.createdTimestamp}ms.`);   	
   	}
-    if(message.content.startsWith(PREFIX + "purge")) {
-        // This command removes all messages from all users in the channel, up to 100.
-        
-        // get the delete count, as an actual number.
-        const deleteCount = parseInt(args[0], 10);
-    
-        // Ooooh nice, combined conditions. <3
-        if(!deleteCount || deleteCount < 2 || deleteCount > 100)
-            return message.reply("Please provide a number between 2 and 100 for the number of messages to delete");
-    
-        // So we get our messages, and delete them. Simple enough, right?
-        const fetched = await message.channel.fetchMessages({count: deleteCount});
-        message.channel.bulkDelete(fetched)
-            .catch(error => message.reply(`Couldn't delete messages because of: ${error}`));
-    }
     if(message.content.startsWith(PREFIX + "send")) {
         const sayMessage = args.join(" ");
         var useContent = sayMessage.substr(5);
