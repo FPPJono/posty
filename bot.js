@@ -121,14 +121,10 @@ bot.on('message', message => {
             .then(m => m.delete(7500));
         guild.channels.get(slurChannel).send("```" + message.author.username + " detected using slurs: \"" + message.content + "\"```")
         const embed = {
-            "description": "this supports [named links](https://discordapp.com) on top of the previously shown subset of markdown.",
+            "description": `${message.author.username} detected using slurs:\n${message.content}`,
             "color": 6569894,
-            "footer": {
-                "icon_url": `${message.author.avatarURL}`,
-                "text": "footer text"
-            },
             "thumbnail": {
-                "url": "https://cdn.discordapp.com/embed/avatars/0.png"
+                "url": `${message.author.avatarURL}`
             },
             "author": {
                 "name": "The Slur Finder Machine",
