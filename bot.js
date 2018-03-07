@@ -9,6 +9,9 @@ function getRandomInt (max) {
     return Math.floor(Math.random() * Math.floor(max));
 }
 
+var eightBall = [
+    "```I would say..... yes!"
+
 bot.on('ready', () => {
     console.log('I am ready!');
     bot.user.setPresence({ game: { name: 'I turned on !!', type: 0 } }); //playing game
@@ -23,10 +26,13 @@ bot.on("message", async message => {
         m.edit(`Pong! ${m.createdTimestamp - message.createdTimestamp}ms.`);   	
   	}
     if(message.content.startsWith(PREFIX + "send")) {
-        const sayMessage = args.join(" ");
-        var useContent = sayMessage.substr(5);
-        message.delete().catch(O_o=>{}); 
-        message.channel.send(useContent);
+        if (message.member.roles.has("269993616456417280")) {
+            const sayMessage = args.join(" ");
+            var useContent = sayMessage.substr(5);
+            message.delete().catch(O_o=>{}); 
+            message.channel.send(useContent);
+        }else
+            print("sorry thats for admins only")
     }
     if (message.content.startsWith(PREFIX + "rate")){
         const thingToRate = args.join(" ");
@@ -103,8 +109,26 @@ bot.on('message', message => {
         message.delete()
         message.channel.send("Please refrain from using slurs. A copy of your message has been sent to the Admins.")
         guild.channels.get(slurChannel).send("```" + message.author.username + " detected using slurs: \"" + message.content + "\"```")
+            .then(m => m.delete(2000));
     }
+    if (message.content.includes(PREFIX + "clear")) {
+        let messagecount = parseInt(args[1]) || 1;
 
+        var deletedMessages = -1;
+
+        message.channel.fetchMessages({limit: Math.min(messagecount + 1, 100)}).then(messages => {
+            messages.forEach(m => {
+                if (m.author.id == bot.user.id) {
+                    m.delete().catch(console.error);
+                    deletedMessages++;
+                }
+            });
+        }).then(() => {
+                if (deletedMessages === -1) deletedMessages = 0;
+                message.channel.send(`:white_check_mark: Purged \`${deletedMessages}\` messages.`)
+                    .then(m => m.delete(2000));
+        }).catch(console.error);
+    }
 });
 
 
