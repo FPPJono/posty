@@ -114,7 +114,8 @@ bot.on('message', message => {
     }
     if (message.content.startsWith(PREFIX + "piglet")) {
         let role = message.guild.roles.find("name", "Piglet");
-        let member = message.author;
+        let guild = message.guild;
+        let member = guild.member(message.author);
         member.addRole(role).catch(console.error);
         member.sendMessage("h")
     }
