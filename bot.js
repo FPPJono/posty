@@ -37,7 +37,7 @@ bot.on("message", async message => {
             message.delete().catch(O_o=>{}); 
             message.channel.send(useContent);
         }else
-            print("sorry thats for admins only")
+            message.channel.send("sorry thats for admins only");
     }
     if (message.content.startsWith(PREFIX + "rate")){
         const thingToRate = args.join(" ");
