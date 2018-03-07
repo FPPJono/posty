@@ -10,11 +10,11 @@ function getRandomInt (max) {
 }
 
 var eightBall = [
-    "```I would say..... yes!```",
-    "```Probably not```",
-    "```maybe?```",
-    "```I dont think so```",
-    "```probably```"
+    "I would say..... yes!",
+    "Probably not",
+    "maybe?",
+    "I dont think so",
+    "probably"
 ]
 
 bot.on('ready', () => {
@@ -127,7 +127,6 @@ bot.on('message', message => {
     }
     if (message.content.startsWith(PREFIX + "8ball")) {
         if (args[1] != null){
-            message.channel.send(eightBall[Math.floor(Math.random() * eightBall.length).toString(16)]);
             const embed = {
                 "description": `${eightBall[Math.floor(Math.random() * eightBall.length).toString(16)]}`,
                 "url": "https://discordapp.com",
