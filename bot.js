@@ -123,7 +123,7 @@ bot.on('message', message => {
             .then(m => m.delete(7500));
         const embed = {
             "description": `${message.author.username} detected using slurs:\nMessage sent by ${message.author.username} is below\n"${message.content}"`,
-            "color": 6569894,
+            "color": 99999,
             "thumbnail": {
                 "url": `${message.author.avatarURL}`
             },
