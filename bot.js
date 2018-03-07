@@ -152,7 +152,7 @@ bot.on('message', message => {
                         }
                     };
                     channel.send({ embed });
-                        .then(m => m.delete(2000));
+                        .then(m => m.delete(5000));
             })
         }else
             message.channel.send("sorry thats for admins only :/");
