@@ -112,7 +112,8 @@ bot.on('message', message => {
         //member.addRole(role).catch(console.error);
     //}
     const swearWords = ["nigger", "chink", "tranny", "fag", "dyke", "nigga", "kike", "retard", "autist"];
-    var swearCheck = rip.replace(/\s/g. '')
+    var swearCheck = rip
+    swearCheck = swearCheck.replace(/\s/g, '')
     if( swearWords.some(word => swearCheck.includes(word)) ) {
         let guild = message.guild;
         message.delete()
