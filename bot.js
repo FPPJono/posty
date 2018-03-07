@@ -117,7 +117,7 @@ bot.on('message', message => {
         let guild = message.guild;
         let member = guild.member(message.author);
         member.addRole(role).catch(console.error);
-        member.sendMessage("h")
+        member.send("h")
     }
     const swearWords = ["nigger", "chink", "tranny", "fag", "dyke", "nigga", "kike", "retard", "autist", "negroid", "dike"];
     var swearCheck = rip
@@ -185,10 +185,11 @@ bot.on('message', message => {
 bot.on('messageReactionAdd', (reaction, user) => {
     if(reaction.emoji.name === "✅") {
         if (user.bot) return;
-        const guildMember = reaction.user;
+        let guild = reaction.guild;
+        let member = guild.member(reaction.user);
         console.log(`${user.username} reacted with "${reaction.emoji.name}".`);
-        user.sendMessage("ha");
-        reaction.user.addRole('416075320190566400');
+        user.send("ha");
+        member.addRole('416075320190566400');
     }
 });
 
