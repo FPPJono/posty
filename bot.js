@@ -96,7 +96,7 @@ bot.on('message', message => {
     if (rip.includes("<@416446498264580096>")) {
         message.channel.send("shut up");
     }
-    if (rip.includes("nacon")) {
+    if (rip.includes("bacon")) {
        message.react("🐷")
     }
     if (rip.includes("dab")) {
