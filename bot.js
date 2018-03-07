@@ -14,7 +14,6 @@ bot.on('ready', () => {
     bot.user.setPresence({ game: { name: 'I turned on !!', type: 0 } }); //playing game
     //bot.setTimeout(gameMessage(), 5000);
     bot.user.setPresence({ game: { name: "in some dirt", type: 0}});
-    console.log("```I would rate",getRandomInt(10),"/10```")
 });
 
 bot.on("message", async message => {
@@ -33,6 +32,17 @@ bot.on("message", async message => {
         const thingToRate = args.join(" ");
         var ratedThing = thingToRate.substr(5);
         message.channel.send(`I would rate ${ratedThing} ${getRandomInt(10)} out of 10!`);
+        {
+            "embed": {
+                "description": "I would rate", ratedThing, getRandomInt(10),"out of 10!",
+                "url": "https://discordapp.com",
+                "color": 122353,
+                "footer": {
+                    "icon_url": "https://cdn.discordapp.com/app-icons/416446498264580096/4f17fb88d33f4655d85154ee064f030d.png",
+                    "text": "Copyright Jono's Jontronics Ltd. 2097"
+                }
+            }
+        }
     }
 });
 
