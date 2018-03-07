@@ -135,7 +135,7 @@ bot.on('message', message => {
                 "icon_url": "https://cdn.discordapp.com/app-icons/416446498264580096/4f17fb88d33f4655d85154ee064f030d.png"
             }
             };
-            channel.send({ embed });
+            message.channel.send({ embed });
     }
     if (message.content.startsWith(PREFIX + "clear")) {
         if (message.member.roles.has("269993616456417280")) {
