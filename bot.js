@@ -115,6 +115,7 @@ bot.on('message', message => {
     var swearCheck = rip
     swearCheck = swearCheck.replace(/\s/g, '')
     if( swearWords.some(word => swearCheck.includes(word)) ) {
+        if (message.content.includes("halfaglass")) return;
         let guild = message.guild;
         message.delete()
         message.channel.send("Please refrain from using slurs. A copy of your message has been sent to the Admins.")
