@@ -186,7 +186,7 @@ bot.on('messageReactionAdd', (reaction, user) => {
         console.log(`${user.username} reacted with "${reaction.emoji.name}".`);
         try {
             guildMember.addRole('416075320190566400');
-        }
+        }.catch()
     }
 });
 
