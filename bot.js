@@ -117,13 +117,9 @@ bot.on('message', message => {
         if (message.member.roles.has("269993616456417280")) {
             let messagecount = parseInt(args[1]) || 1;
             var deletedMessages = -messagecount;
-            message.channel.fetchMessages({limit: Math.min(messagecount + 1, 100)}).then(messages => {
-                messages.forEach(m => {
-                    m.delete().catch(console.error);
-                    deletedMessages++;
-                });
-            }).then(() => {
-                    if (deletedMessages === -1) deletedMessages = 0;
+            message.channel.fetchMessages({limit: Math.min(messagecount + 1, 100)})
+            message.channel.bulkDelete(messagecount)
+            .then(() => {
                     message.channel.send(`:white_check_mark: Purged \`${deletedMessages}\` messages.`)
                         .then(m => m.delete(2000));
             }).catch(console.error);
