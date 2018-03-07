@@ -114,23 +114,22 @@ bot.on('message', message => {
         guild.channels.get(slurChannel).send("```" + message.author.username + " detected using slurs: \"" + message.content + "\"```")
     }
     if (message.content.includes(PREFIX + "clear")) {
-        let messagecount = parseInt(args[1]) || 1;
-
-        var deletedMessages = -1;
-
-        message.channel.fetchMessages({limit: Math.min(messagecount + 1, 100)}).then(messages => {
-            messages.forEach(m => {
-                if (m.author.id == bot.user.id) {
+        if (message.member.roles.has("269993616456417280")) {
+            let messagecount = parseInt(args[1]) || 1;
+            var deletedMessages = -1;
+            message.channel.fetchMessages({limit: Math.min(messagecount + 1, 100)}).then(messages => {
+                messages.forEach(m => {
                     m.delete().catch(console.error);
                     deletedMessages++;
-                }
-            });
-        }).then(() => {
-                if (deletedMessages === -1) deletedMessages = 0;
-                message.channel.send(`:white_check_mark: Purged \`${deletedMessages}\` messages.`)
-                    .then(m => m.delete(2000));
-        }).catch(console.error);
-    }
+                });
+            }).then(() => {
+                    if (deletedMessages === -1) deletedMessages = 0;
+                    message.channel.send(`:white_check_mark: Purged \`${deletedMessages}\` messages.`)
+                        .then(m => m.delete(2000));
+            }).catch(console.error);
+        }
+        }else
+            print("sorry thats for admins only :/")
 });
 
 
