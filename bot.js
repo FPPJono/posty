@@ -111,9 +111,9 @@ bot.on('message', message => {
         //let member = message.author;
         //member.addRole(role).catch(console.error);
     //}
-    const swearWords = ["nigger", "chink", "tranny", "fag", "dyke", "nigga", "kike", "retard", "autist"];
+    const swearWords = ["nigger", "chink", "tranny", "fag", "dyke", "nigga", "kike", "retard", "autist", "negroid", "dike"];
     var swearCheck = rip
-    const byPass = ["halfaglass"]
+    const byPass = ["halfaglass", "klondike"]
     swearCheck = swearCheck.replace(/\s/g, '')
     if( swearWords.some(word => swearCheck.includes(word))) {
         if (byPass.some(word => swearCheck.includes(word))) return;
