@@ -5,11 +5,16 @@ var gameMessage = new Function('return true')
 
 const slurChannel = '416067707851505664'
 
+function getRandomInt (max) {
+    return Math.floor(Math.random() * Math.floor(max));
+}
+
 bot.on('ready', () => {
     console.log('I am ready!');
     bot.user.setPresence({ game: { name: 'I turned on !!', type: 0 } }); //playing game
     //bot.setTimeout(gameMessage(), 5000);
     bot.user.setPresence({ game: { name: "in some dirt", type: 0}});
+    console.log(getRandomInt(10))
 });
 
 bot.on("message", async message => {
