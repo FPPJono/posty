@@ -61,9 +61,6 @@ bot.on('message', message => {
     var args = message.content.substring(PREFIX.length).split(" ");
     var announcement = bot.channels.find("name", "announcements");
     let rip = message.content.toLowerCase()
-    if (message.content.startsWith(PREFIX + "test")) {
-        member.addRole(role).catch(console.error);
-    }
     if (message.content.startsWith(PREFIX + "announce")) {
          if (message.member.roles.has("269993616456417280")) {
             let content = args.join(" ")
