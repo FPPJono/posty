@@ -126,7 +126,7 @@ bot.on('message', message => {
             message.channel.send("sorry thats for admins only :/");
     }
     if (message.content.startsWith(PREFIX + "8ball")) {
-        if (args[1] != null) message.channel.send(eightball[Math.floor(Math.random() * eightball.length).toString(16)]);
+        if (args[1] != null) message.channel.send(eightBall[Math.floor(Math.random() * eightBall.length).toString(16)]);
         else message.channel.send("what's your question? lol\n```Correct usage: !8ball question```");
     }
 });
