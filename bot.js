@@ -180,5 +180,15 @@ bot.on('message', message => {
     }
 });
 
+bot.on('messageReactionAdd', (reaction, user) => {
+    if(reaction.emoji.name === "✅") {
+        const guildMember = reaction.user;
+        console.log(`${user.username} reacted with "${reaction.emoji.name}".`);
+        try {
+            guildMember.addRole('416075320190566400');
+        }
+    }
+});
+
 // Sneaky Sneaky Token. Dont Share Kiddos
 bot.login(process.env.BOT_TOKEN);
