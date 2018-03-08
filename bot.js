@@ -194,4 +194,4 @@ bot.on('messageReactionAdd', (reaction, user) => {
 });
 
 // Sneaky Sneaky Token. Dont Share Kiddos
-bot.login(process.env.BOT_TOKEN);
+bot.login('NDE2NDQ2NDk4MjY0NTgwMDk2.DYJEqg.noiUhtSXzNO4A4spCctUfKSCEmI');
