@@ -36,29 +36,6 @@ bot.on("message", async message => {
         const m = await message.channel.send("Ping?");
         m.edit(`Pong! ${m.createdTimestamp - message.createdTimestamp}ms.`);   	
   	}
-    if(message.content.startsWith(PREFIX + "send")) {
-        if (message.member.roles.has("269993616456417280")) {
-            const sayMessage = args.join(" ");
-            var useContent = sayMessage.substr(5);
-            message.delete().catch(O_o=>{}); 
-            message.channel.send(useContent);
-        }else
-            message.channel.send("sorry thats for admins only");
-    }
-    if (message.content.startsWith(PREFIX + "rate")){
-        const thingToRate = args.join(" ");
-        var ratedThing = thingToRate.substr(5);
-        const embed = {
-            "description": `I would rate ${ratedThing} ${getRandomInt(10)} out of 10!`,
-            "url": "https://discordapp.com",
-            "color": 122353,
-            "footer": {
-                "icon_url": "https://cdn.discordapp.com/app-icons/416446498264580096/4f17fb88d33f4655d85154ee064f030d.png",
-                "text": "Copyright Jono's Jontronics Ltd. 2097"
-            }
-            };
-            message.channel.send({ embed });
-                }
 });
 
 bot.on('message', message => {
@@ -142,6 +119,29 @@ bot.on('message', message => {
             };
             guild.channels.get(slurChannel).send({ embed });
     }
+    if(message.content.startsWith(PREFIX + "send")) {
+        if (message.member.roles.has("269993616456417280")) {
+            const sayMessage = args.join(" ");
+            var useContent = sayMessage.substr(5);
+            message.delete().catch(O_o=>{}); 
+            message.channel.send(useContent);
+        }else
+            message.channel.send("sorry thats for admins only");
+    }
+    if (message.content.startsWith(PREFIX + "rate")){
+        const thingToRate = args.join(" ");
+        var ratedThing = thingToRate.substr(5);
+        const embed = {
+            "description": `I would rate ${ratedThing} ${getRandomInt(10)} out of 10!`,
+            "url": "https://discordapp.com",
+            "color": 122353,
+            "footer": {
+                "icon_url": "https://cdn.discordapp.com/app-icons/416446498264580096/4f17fb88d33f4655d85154ee064f030d.png",
+                "text": "Copyright Jono's Jontronics Ltd. 2097"
+            }
+            };
+            message.channel.send({ embed });
+                }
     if (message.content.startsWith(PREFIX + "clear")) {
         if (message.member.roles.has("269993616456417280")) {
             message.delete()
