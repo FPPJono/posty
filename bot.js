@@ -30,20 +30,15 @@ bot.on('ready', () => {
     bot.user.setPresence({ game: { name: "in some dirt", type: 0}});
 });
 
-bot.on("message", async message => {
-     const args = message.content.slice(PREFIX.length).trim().split(/ +/g);
-     if (message.content === '!ping') {
-        const m = await message.channel.send("Ping?");
-        m.edit(`Pong! ${m.createdTimestamp - message.createdTimestamp}ms.`);   	
-  	}
-});
-
 bot.on('message', message => {
     var sender = message.author;
     if(message.author.bot) return;
     var args = message.content.substring(PREFIX.length).split(" ");
     var announcement = bot.channels.find("name", "announcements");
     let rip = message.content.toLowerCase()
+    if (message.content.startsWith(PREFIX + "ping")) {
+        message.channel.send(`Pong! ${bot.ping}ms`)
+    }
     if (message.content.startsWith(PREFIX + "announce")) {
          if (message.member.roles.has("269993616456417280")) {
             let content = args.join(" ")
