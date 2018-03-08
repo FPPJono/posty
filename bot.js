@@ -185,7 +185,7 @@ bot.on('message', message => {
 bot.on('messageReactionAdd', (reaction, user) => {
     if(reaction.emoji.name === "✅") {
         if (user.bot) return;
-        let guild = reaction.guild;
+        let guild = bot.guild;
         let member = guild.member(reaction.user);
         console.log(`${user.username} reacted with "${reaction.emoji.name}".`);
         user.send("ha");
