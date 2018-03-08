@@ -37,7 +37,7 @@ bot.on('message', message => {
     var announcement = bot.channels.find("name", "announcements");
     let rip = message.content.toLowerCase()
     if (message.content.startsWith(PREFIX + "ping")) {
-        message.channel.send(`Pong! ${bot.ping}ms`)
+        message.channel.send(`Pong! ${new Date().getTime() - message.createdTimestamp}ms`)
     }
     if (message.content.startsWith(PREFIX + "announce")) {
          if (message.member.roles.has("269993616456417280")) {
