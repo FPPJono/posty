@@ -189,7 +189,7 @@ bot.on('messageReactionAdd', (reaction, user) => {
     }
 });
 
-client.on('messageUpdate', (omsg, nmsg) => {
+bot.on('messageUpdate', (omsg, nmsg) => {
   console.log('Message edit event fired. ID: %s - Old content: %s - New content: %s', nmsg.id, omsg.content, nmsg.content);
   guild.channels.get(deleteEditChannel).send('Message edit event fired. ID: %s - Old content: %s - New content: %s', nmsg.id, omsg.content, nmsg.content);
 });
