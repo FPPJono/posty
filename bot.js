@@ -5,7 +5,7 @@ var gameMessage = new Function('return true')
 
 const slurChannel = '416067707851505664'
 const deleteEditChannel = '416067660095291392'
-const admin = '269993616456417280'
+const admin = '414198754632269834'
 
 function getRandomInt (max) {
     return Math.floor(Math.random() * Math.floor(max));
