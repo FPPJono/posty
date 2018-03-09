@@ -65,7 +65,6 @@ bot.on('message', message => {
     if (message.content.startsWith(PREFIX + "welcome")) {
         if (message.member.roles.has(admin)) {
             var welcome = bot.channels.find("name", "welcome");
-            welcome.bulkDelete(99)
             welcome.send("Welcome to the Swag Pigs Server!\nBy clicking the ✅ button below, you agree to all the rules stated in <#269998962717491201>.\nOnce you have hit the checkmark, go ahead to <#269990219665637377> to say hi to everyone, and check out the other channel topics we have on the server! 🐷")
                 .then(function (message) {
             message.react("✅")
@@ -194,7 +193,7 @@ bot.on('messageReactionAdd', (reaction, user) => {
 //bot.on('messageUpdate', (omsg, nmsg) => {
   //console.log('Message edit event fired. ID: %s - Old content: %s - New content: %s', nmsg.id, omsg.content, nmsg.content);
  // let guild = omsg.guild;
-//  guild.channels.get(deleteEditChannel).send(`Message edit event fired.Old content: ${omsg.content}\nNew content: ${nmsg.content});
+//  guild.channels.get(deleteEditChannel).send(`Message edit event fired.\nOld content: ${omsg.content}\nNew content: ${nmsg.content}`);
 //});
 
 // Sneaky Sneaky Token. Dont Share Kiddos
