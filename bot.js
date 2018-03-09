@@ -29,6 +29,7 @@ bot.on('ready', () => {
     bot.user.setPresence({ game: { name: 'I turned on !!', type: 0 } }); //playing game
     //bot.setTimeout(gameMessage(), 5000);
     bot.user.setPresence({ game: { name: "in some dirt", type: 0}});
+    bot.user.setUsername("Kevin Bacon");
 });
 
 bot.on('message', message => {
