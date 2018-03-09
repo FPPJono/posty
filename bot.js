@@ -3,8 +3,8 @@ const bot = new Discord.Client();
 const PREFIX = "!";
 var gameMessage = new Function('return true')
 
-const slurChannel = '416067707851505664'
-const deleteEditChannel = '416067660095291392'
+const slurChannel = '421807112029732884'
+const deleteEditChannel = '421807112029732884'
 const admin = '414198754632269834'
 
 function getRandomInt (max) {
