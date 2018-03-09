@@ -189,11 +189,11 @@ bot.on('messageReactionAdd', (reaction, user) => {
     }
 });
 
-bot.on('messageUpdate', (omsg, nmsg) => {
-  console.log('Message edit event fired. ID: %s - Old content: %s - New content: %s', nmsg.id, omsg.content, nmsg.content);
-  let guild = omsg.guild;
-  guild.channels.get(deleteEditChannel).send(`Message edit event fired.Old content: ${omsg.content}\nNew content: ${nmsg.content});
-});
+//bot.on('messageUpdate', (omsg, nmsg) => {
+  //console.log('Message edit event fired. ID: %s - Old content: %s - New content: %s', nmsg.id, omsg.content, nmsg.content);
+ // let guild = omsg.guild;
+//  guild.channels.get(deleteEditChannel).send(`Message edit event fired.Old content: ${omsg.content}\nNew content: ${nmsg.content});
+//});
 
 // Sneaky Sneaky Token. Dont Share Kiddos
 bot.login('NDE2NDQ2NDk4MjY0NTgwMDk2.DYJLNQ.qVXmgk9Ca2InfVev2b6Ju8WM4DE');
