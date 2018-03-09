@@ -4,6 +4,7 @@ const PREFIX = "!";
 var gameMessage = new Function('return true')
 
 const slurChannel = '416067707851505664'
+const deleteEditChannel = '416067660095291392'
 
 function getRandomInt (max) {
     return Math.floor(Math.random() * Math.floor(max));
@@ -186,6 +187,11 @@ bot.on('messageReactionAdd', (reaction, user) => {
         user.send("ha");
         member.addRole('416075320190566400');
     }
+});
+
+client.on('messageUpdate', (omsg, nmsg) => {
+  console.log('Message edit event fired. ID: %s - Old content: %s - New content: %s', nmsg.id, omsg.content, nmsg.content);
+  guild.channels.get(deleteEditChannel).send('Message edit event fired. ID: %s - Old content: %s - New content: %s', nmsg.id, omsg.content, nmsg.content);
 });
 
 // Sneaky Sneaky Token. Dont Share Kiddos
