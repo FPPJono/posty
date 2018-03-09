@@ -5,6 +5,7 @@ var gameMessage = new Function('return true')
 
 const slurChannel = '416067707851505664'
 const deleteEditChannel = '416067660095291392'
+const admin = '269993616456417280'
 
 function getRandomInt (max) {
     return Math.floor(Math.random() * Math.floor(max));
@@ -42,7 +43,7 @@ bot.on('message', message => {
         message.channel.send(`Pong! ${new Date().getTime() - message.createdTimestamp}ms`)
     }
     if (message.content.startsWith(PREFIX + "announce")) {
-         if (message.member.roles.has("269993616456417280")) {
+         if (message.member.roles.has(admin)) {
             let content = args.join(" ")
             var useContent = content.substr(9);
             announcement.send(useContent)
@@ -52,7 +53,7 @@ bot.on('message', message => {
                 .then(m => m.delete(5000));
     }
     if (message.content.startsWith(PREFIX + "playing")) {
-        if (message.member.roles.has("269993616456417280")) {
+        if (message.member.roles.has(admin)) {
             let content = args.join(" ")
             var useContent = content.substr(8);
             bot.user.setPresence({ game: { name: useContent, type: 0 } });
@@ -62,7 +63,7 @@ bot.on('message', message => {
                 .then(m => m.delete(5000));
     }
     if (message.content.startsWith(PREFIX + "welcome")) {
-        if (message.member.roles.has("269993616456417280")) {
+        if (message.member.roles.has(admin)) {
             var welcome = bot.channels.find("name", "welcome");
             welcome.bulkDelete(99)
             welcome.send("Welcome to the Swag Pigs Server!\nBy clicking the ✅ button below, you agree to all the rules stated in <#269998962717491201>.\nOnce you have hit the checkmark, go ahead to <#269990219665637377> to say hi to everyone, and check out the other channel topics we have on the server! 🐷")
@@ -117,7 +118,7 @@ bot.on('message', message => {
             guild.channels.get(slurChannel).send({ embed });
     }
     if(message.content.startsWith(PREFIX + "send")) {
-        if (message.member.roles.has("269993616456417280")) {
+        if (message.member.roles.has(admin)) {
             const sayMessage = args.join(" ");
             var useContent = sayMessage.substr(5);
             message.delete().catch(O_o=>{}); 
@@ -140,7 +141,7 @@ bot.on('message', message => {
             message.channel.send({ embed });
                 }
     if (message.content.startsWith(PREFIX + "clear")) {
-        if (message.member.roles.has("269993616456417280")) {
+        if (message.member.roles.has(admin)) {
             message.delete()
             let messagecount = parseInt(args[1]) || 1;
             if (messagecount > 100) return;
