@@ -189,9 +189,9 @@ bot.on('messageReactionAdd', (reaction, user) => {
     }
 });
 
-bot.on('messageUpdate', (omsg, nmsg, message) => {
+bot.on('messageUpdate', (omsg, nmsg) => {
   console.log('Message edit event fired. ID: %s - Old content: %s - New content: %s', nmsg.id, omsg.content, nmsg.content);
-  let guild = message.guild;
+  let guild = omsg.guild;
   guild.channels.get(deleteEditChannel).send('Message edit event fired. ID: %s - Old content: %s - New content: %s', nmsg.id, omsg.content, nmsg.content);
 });
 
