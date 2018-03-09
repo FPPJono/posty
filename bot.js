@@ -11,19 +11,7 @@ function getRandomInt (max) {
     return Math.floor(Math.random() * Math.floor(max));
 }
 
-var eightBall = [
-    "I would say..... yes!",
-    "Probably not",
-    "heck maybe, idk",
-    "I dont think so",
-    "eh, probably",
-    "hmmm.... maybe not",
-    "*concentrate*, and try again",
-    "look man im just a bot go ask someone who cares",
-    "those who ask will get their answer eventually, try again",
-    "haha! yes!",
-    "hah, nope"
-]
+var eightBall = ["I would say..... yes!","Probably not","heck maybe, idk","I dont think so","eh, probably","hmmm.... maybe not","*concentrate*, and try again","look man im just a bot go ask someone who cares","those who ask will get their answer eventually, try again","haha! yes!","hah, nope"]
 
 bot.on('ready', () => {
     console.log('I am ready!');
@@ -193,6 +181,18 @@ bot.on('messageReactionAdd', (reaction, user) => {
 bot.on('messageUpdate', (omsg, nmsg) => {
   console.log('Message edit event fired. ID: %s - Old content: %s - New content: %s', nmsg.id, omsg.content, nmsg.content);
   let guild = omsg.guild;
+  const embed = {
+    "description": `${omsg.author.username} detected using slurs:\nMessage sent in channel #${omsg.channel.name}\nOriginal message:\n"${omsg.content}"\nNew Message:\n"${nmsg.content}"`,
+    "color": 99999,
+    "thumbnail": {
+        "url": `${omsg.author.avatarURL}`
+    },
+    "author": {
+        "name": "The Magical Edit Searcher",
+                "icon_url": "https://cdn.discordapp.com/app-icons/416446498264580096/4f17fb88d33f4655d85154ee064f030d.png"
+            }
+            };
+            guild.channels.get(deleteEditChannel).send({ embed });
   guild.channels.get(deleteEditChannel).send(`Message edit event fired.\nOld content: ${omsg.content}\nNew content: ${nmsg.content}`);
 });
 
