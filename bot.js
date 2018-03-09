@@ -192,7 +192,7 @@ bot.on('messageReactionAdd', (reaction, user) => {
 bot.on('messageUpdate', (omsg, nmsg) => {
   console.log('Message edit event fired. ID: %s - Old content: %s - New content: %s', nmsg.id, omsg.content, nmsg.content);
   let guild = omsg.guild;
-  guild.channels.get(deleteEditChannel).send('Message edit event fired. ID: %s - Old content: %s - New content: %s', nmsg.id, omsg.content, nmsg.content);
+  guild.channels.get(deleteEditChannel).send(`Message edit event fired.Old content: ${omsg.content}\nNew content: ${nmsg.content});
 });
 
 // Sneaky Sneaky Token. Dont Share Kiddos
