@@ -82,9 +82,8 @@ bot.on('message', message => {
         member.send("h")
     }
     const swearWords = ["nigger", "chink", "tranny", "fag", "dyke", "nigga", "kike", "retard", "autist", "negroid", "dike"];
-    var swearCheck = rip
+    var swearCheck = rip.replace(/\s/g, '')
     const byPass = ["halfaglass", "klondike"]
-    swearCheck = swearCheck.replace(/\s/g, '')
     if( swearWords.some(word => swearCheck.includes(word))) {
         if (byPass.some(word => swearCheck.includes(word))) return;
         let guild = message.guild;
@@ -201,6 +200,8 @@ bot.on('messageDelete', message => {
     if(message.content.startsWith('!clear')) return;
     if(message.content.startsWith('!send')) return;
     const swearWords = ["nigger", "chink", "tranny", "fag", "dyke", "nigga", "kike", "retard", "autist", "negroid", "dike"];
+    let rip = message.content.toLowerCase()
+    var swearCheck = rip.replace(/\s/g, '')
     if(swearWords.some(word => swearCheck.includes(word))) return;
     console.log(`${message.author} just deleted their message`)
     const embed = {
