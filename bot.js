@@ -179,11 +179,11 @@ bot.on('messageReactionAdd', (reaction, user) => {
 });
 
 bot.on('messageUpdate', (omsg, nmsg) => {
-  if(message.author.bot) return;
-  console.log('Message edit event fired. ID: %s - Old content: %s - New content: %s', nmsg.id, omsg.content, nmsg.content);
+  if(omsg.author.bot) return;
+  console.log(`${omsg.author.username} just edited their message`);
   let guild = omsg.guild;
   const embed = {
-    "description": `${omsg.author.username} detected using slurs:\nMessage sent in channel #${omsg.channel.name}\nOriginal message:\n"${omsg.content}"\nNew Message:\n"${nmsg.content}"`,
+    "description": `${omsg.author.username} just edited their message\nMessage sent in channel #${omsg.channel.name}\nOriginal message:\n"${omsg.content}"\nNew Message:\n"${nmsg.content}"`,
     "color": 99999,
     "thumbnail": {
         "url": `${omsg.author.avatarURL}`
