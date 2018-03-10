@@ -190,10 +190,33 @@ bot.on('messageUpdate', (omsg, nmsg) => {
     },
     "author": {
         "name": "The Magical Edit Searcher",
-                "icon_url": "https://cdn.discordapp.com/app-icons/416446498264580096/4f17fb88d33f4655d85154ee064f030d.png"
-            }
-            };
-            guild.channels.get(deleteEditChannel).send({ embed });
+        "icon_url": "https://cdn.discordapp.com/app-icons/416446498264580096/4f17fb88d33f4655d85154ee064f030d.png"
+    }
+    };
+    guild.channels.get(deleteEditChannel).send({ embed });
+});
+
+bot.on('messageDelete', message => {
+    if(message.author.bot) return;
+    if(message.content.startsWith('!clear')) return;
+    if(message.content.startsWith('!send')) return;
+    if(message.content.startsWith('')) return;
+    const swearWords = ["nigger", "chink", "tranny", "fag", "dyke", "nigga", "kike", "retard", "autist", "negroid", "dike"];
+    if(swearWords.some(word => swearCheck.includes(word)))) return;
+    if(!message) return;
+    if(!message.content) return;
+    const embed = {
+        "description": `${message.author.username} just deleted their message\nMessage sent in channel #${message.channel.name}\nOriginal message:\n"${message.content}"`,
+        "color": 99999,
+        "thumbnail": {
+            "url": `${message.author.avatarURL}`
+        },
+        "author": {
+            "name": "The Delete Scanner",
+            "icon_url": "https://cdn.discordapp.com/app-icons/416446498264580096/4f17fb88d33f4655d85154ee064f030d.png"
+        }
+        };
+        guild.channels.get(deleteEditChannel).send({ embed });
 });
 
 // Sneaky Sneaky Token. Dont Share Kiddos
