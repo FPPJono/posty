@@ -202,7 +202,7 @@ bot.on('messageDelete', message => {
     if(message.content.startsWith('!send')) return;
     if(message.content.startsWith('')) return;
     const swearWords = ["nigger", "chink", "tranny", "fag", "dyke", "nigga", "kike", "retard", "autist", "negroid", "dike"];
-    if(swearWords.some(word => swearCheck.includes(word)))) return;
+    if(swearWords.some(word => swearCheck.includes(word))) return;
     if(!message) return;
     if(!message.content) return;
     const embed = {
