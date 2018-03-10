@@ -196,6 +196,7 @@ bot.on('messageUpdate', (omsg, nmsg) => {
 });
 
 bot.on('messageDelete', message => {
+    let guild = message.guild;
     if(message.author.bot) return;
     if(message.content.startsWith('!clear')) return;
     if(message.content.startsWith('!send')) return;
