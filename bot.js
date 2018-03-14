@@ -164,6 +164,9 @@ bot.on('message', message => {
                 message.channel.send({ embed });
         }else message.channel.send("what's your question? lol\n```Correct usage: !8ball question```");
     }
+    if (message.content.startsWith(PREFIX + "warn")) {
+        message.mentions.users.send("stop being naughty")
+    }
 });
 
 bot.on('messageReactionAdd', (reaction, user) => {
