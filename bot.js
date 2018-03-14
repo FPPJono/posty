@@ -166,7 +166,7 @@ bot.on('message', message => {
     }
     if (message.content.startsWith(PREFIX + "warn")) {
         let guild = message.guild;
-        guild.member(msg.mentions.users.first()).send("h")
+        guild.member(message.mentions.users.first()).send("h")
     }
 });
 
