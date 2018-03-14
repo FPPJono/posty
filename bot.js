@@ -182,8 +182,8 @@ bot.on('message', message => {
                 }
             };
             guild.channels.get(warnChannel).send({ embed });
-        }
         }else message.channel.send("sorry that command is for admins only");
+    }
 });
 
 bot.on('messageReactionAdd', (reaction, user) => {
