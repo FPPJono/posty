@@ -180,8 +180,8 @@ bot.on('message', message => {
                     "name": "The Warning Machine",
                     "icon_url": "https://cdn.discordapp.com/app-icons/416446498264580096/4f17fb88d33f4655d85154ee064f030d.png"
                 }
-                };
-                guild.channels.get(warnChannel).send({ embed });
+            };
+            guild.channels.get(warnChannel).send({ embed });
         }
         }else
             message.channel.send("sorry that command is for admins only")
