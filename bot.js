@@ -188,10 +188,11 @@ bot.on('message', message => {
     if (message.content.startsWith(PREFIX + "suggest")) {
         let guild = message.guild;
         let suggestion = message.content.substr(8)
+        message.delete()
         message.channel.send(`\`\`\`Thank you for your suggestion!\`\`\``)
             .then(m => m.delete(5000));
         const embed = {
-        "description": `${message.author} has suggested the change/modification below:\n${suggestion}`,
+        "description": `${message.author.username} has suggested the change/modification below:\n${suggestion}`,
             "color": 99999,
             "thumbnail": {
                 "url": `${message.author.avatarURL}`
