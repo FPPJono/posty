@@ -7,6 +7,8 @@ const slurChannel = '421807112029732884'
 const deleteEditChannel = '421807112029732884'
 const warnChannel = '421807112029732884'
 const suggestChannel = '421807112029732884'
+const memesChannel = '423550039282024460'
+const artChannel = '423550143921651722'
 const admin = '414198754632269834'
 
 function getRandomInt (max) {
@@ -82,6 +84,21 @@ bot.on('message', message => {
         let member = guild.member(message.author);
         member.addRole(role).catch(console.error);
         member.send("h")
+    }
+    if (message.channel.id === artChannel) {
+        if (message.attatchments.size >= 1) {
+            message.react('❤')
+        }
+    }
+    if (message.channel.id === memesChannel) {
+        if (message.attatchments.size >= 1) {
+            message.react('👌')
+            message.react('👎')
+        }
+        if (rip.includes('http')) {
+            message.react('👌')
+            message.react('👎')
+        }
     }
     const swearWords = ["nigger", "chink", "tranny", "fag", "dyke", "nigga", "kike", "retard", "autist", "negroid", "dike"];
     var swearCheck = rip.replace(/\s/g, '')
@@ -241,6 +258,7 @@ bot.on('messageDelete', message => {
     if(message.content.startsWith('!clear')) return;
     if(message.content.startsWith('!send')) return;
     if(message.content.startsWith('!warn')) return;
+    if(message.content.startsWith('!suggest')) return;
     const swearWords = ["nigger", "chink", "tranny", "fag", "dyke", "nigga", "kike", "retard", "autist", "negroid", "dike"];
     let rip = message.content.toLowerCase()
     var swearCheck = rip.replace(/\s/g, '')
