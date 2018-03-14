@@ -171,7 +171,7 @@ bot.on('message', message => {
             let warning = message.content.substr(28)
             guild.member(message.mentions.users.first()).send(`you have been warned for:${warning}`)
             const embed = {
-                "description": `${message.mentions.users.first().username} has been warned for the reason below:\n${warning}`,
+                "description": `${message.mentions.users.first().username} has been warned for the reason below:\n\`\`\`${warning}\`\`\``,
                 "color": 99999,
                 "thumbnail": {
                     "url": `${message.author.avatarURL}`
