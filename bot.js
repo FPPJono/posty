@@ -6,6 +6,7 @@ var gameMessage = new Function('return true')
 const slurChannel = '421807112029732884'
 const deleteEditChannel = '421807112029732884'
 const warnChannel = '421807112029732884'
+const suggestChannel = '421807112029732884'
 const admin = '414198754632269834'
 
 function getRandomInt (max) {
@@ -184,6 +185,24 @@ bot.on('message', message => {
             guild.channels.get(warnChannel).send({ embed });
         }else message.channel.send("sorry that command is for admins only");
     }
+    if (message.content.startsWith(PREFIX + "suggest")) {
+        let guild = message.guild;
+        let suggestion = message.content.substr(8)
+        message.channel.send(`\`\`\`Thank you for your suggestion!\`\`\``)
+            .then(m => m.delete(5000));
+        const embed = {
+        "description": `${message.author} has suggested the change/modification below:\n${suggestion}`,
+            "color": 99999,
+            "thumbnail": {
+                "url": `${message.author.avatarURL}`
+            },
+            "author": {
+                "name": "The Suggestion Box",
+                "icon_url": "https://cdn.discordapp.com/app-icons/416446498264580096/4f17fb88d33f4655d85154ee064f030d.png"
+            }
+        };
+        guild.channels.get(suggestChannel).send({ embed });
+    }
 });
 
 bot.on('messageReactionAdd', (reaction, user) => {
@@ -220,6 +239,7 @@ bot.on('messageDelete', message => {
     if(message.author.bot) return;
     if(message.content.startsWith('!clear')) return;
     if(message.content.startsWith('!send')) return;
+    if(message.content.startsWith('!warn')) return;
     const swearWords = ["nigger", "chink", "tranny", "fag", "dyke", "nigga", "kike", "retard", "autist", "negroid", "dike"];
     let rip = message.content.toLowerCase()
     var swearCheck = rip.replace(/\s/g, '')
