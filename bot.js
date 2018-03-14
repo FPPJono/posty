@@ -5,6 +5,7 @@ var gameMessage = new Function('return true')
 
 const slurChannel = '421807112029732884'
 const deleteEditChannel = '421807112029732884'
+const warnChannel = '421807112029732884'
 const admin = '414198754632269834'
 
 function getRandomInt (max) {
@@ -165,8 +166,12 @@ bot.on('message', message => {
         }else message.channel.send("what's your question? lol\n```Correct usage: !8ball question```");
     }
     if (message.content.startsWith(PREFIX + "warn")) {
-        let guild = message.guild;
-        guild.member(message.mentions.users.first()).send("h")
+        if (message.member.roles.has(admin)) {
+            let guild = message.guild;
+            let warning = message.content.substr(21)
+            guild.member(message.mentions.users.first()).send(`you have been warned for:${warning}`)
+        }else
+            message.channel.send("sorry that command is for admins only")
     }
 });
 
