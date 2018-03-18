@@ -229,6 +229,10 @@ bot.on('messageReactionAdd', (reaction, user) => {
     if(reaction.emoji.name === "✅") {
         if (user.bot) return;
         let guild = bot.guild;
+        let welcome = bot.channels.find("name","welcome")
+        if (reaction.channel != welcome) { 
+            return
+        }
         bot.channels.find("name","general").send(`Welcome ${reaction.users.array().toString().substr(22)} to the Swag Pigs server!`);
         console.log(`${reaction.users.array().toString()} reacted with "${reaction.emoji.name}".`);
         user.send("ha");
