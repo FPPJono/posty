@@ -86,12 +86,12 @@ bot.on('message', message => {
         member.send("h")
     }
     if (message.channel.id === artChannel) {
-        if (message.attachment.size() >= 1) {
+        if (message.attachments.size() >= 1) {
             message.react('❤️')
         }
     }
     if (message.channel.id === memesChannel) {
-        if (message.attachment.size() >= 1) {
+        if (message.attachments.size() >= 1) {
             message.react('👌')
             message.react('👎')
         }
