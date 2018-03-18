@@ -230,7 +230,7 @@ bot.on('messageReactionAdd', (reaction, user) => {
         if (user.bot) return;
         let guild = bot.guild;
         bot.channels.find("name","general").send(`Welcome ${reaction.user} to the swag pigs server`);
-        console.log(`${reaction.user.displayName} reacted with "${reaction.emoji.name}".`);
+        console.log(`${reaction.user} reacted with "${reaction.emoji.name}".`);
         user.send("ha");
         //member.addRole('416075320190566400');
     }
