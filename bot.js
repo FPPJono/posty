@@ -88,7 +88,7 @@ bot.on('message', message => {
     if (message.channel.id === artChannel) {
         let a = message.attachments.array().length;
         if (a >= 1) {
-            message.react('❤️')
+            message.react('👌')
         }
     }
     if (message.channel.id === memesChannel) {
