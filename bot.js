@@ -86,7 +86,9 @@ bot.on('message', message => {
         member.send("h")
     }
     if (message.channel.id === artChannel) {
-        if (message.attachments.size() >= 1) {
+        let Foo[] foos = message.attachments.toArray(new Foo[message.attachments.size()]);
+        let a = Foo.length;
+        if (a >= 1) {
             message.react('❤️')
         }
     }
