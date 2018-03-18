@@ -235,7 +235,6 @@ bot.on('messageReactionAdd', (reaction, user) => {
         }
         bot.channels.find("name","general").send(`Welcome ${reaction.users.array().toString().substr(22)} to the Swag Pigs server!`);
         console.log(`${reaction.users.array().toString()} reacted with "${reaction.emoji.name}".`);
-        user.send("ha");
         //member.addRole('416075320190566400');
     }
 });
