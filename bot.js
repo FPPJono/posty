@@ -229,8 +229,8 @@ bot.on('messageReactionAdd', (reaction, user) => {
     if(reaction.emoji.name === "✅") {
         if (user.bot) return;
         let guild = bot.guild;
-        bot.channels.find("name","general").send(`Welcome ${reaction.user} to the swag pigs server`);
-        console.log(`${reaction.user} reacted with "${reaction.emoji.name}".`);
+        bot.channels.find("name","general").send(`Welcome ${reaction.users} to the swag pigs server`);
+        console.log(`${reaction.users} reacted with "${reaction.emoji.name}".`);
         user.send("ha");
         //member.addRole('416075320190566400');
     }
