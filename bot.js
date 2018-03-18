@@ -229,7 +229,7 @@ bot.on('messageReactionAdd', (reaction, user) => {
     if(reaction.emoji.name === "✅") {
         if (user.bot) return;
         let guild = bot.guild;
-        let member = guild.member(reaction.user);
+        bot.channels.get("name","general").send("H")
         console.log(`${member.displayName} reacted with "${reaction.emoji.name}".`);
         user.send("ha");
         //member.addRole('416075320190566400');
