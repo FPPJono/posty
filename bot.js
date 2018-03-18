@@ -11,6 +11,8 @@ const memesChannel = '423550039282024460'
 const artChannel = '423550143921651722'
 const admin = '414198754632269834'
 
+var attachments = [];
+
 function getRandomInt (max) {
     return Math.floor(Math.random() * Math.floor(max));
 }
@@ -86,8 +88,7 @@ bot.on('message', message => {
         member.send("h")
     }
     if (message.channel.id === artChannel) {
-        let Foo[] foos = message.attachments.toArray(new Foo[message.attachments.size()]);
-        let a = Foo.length;
+        let a = message.attachments.array().length()
         if (a >= 1) {
             message.react('❤️')
         }
