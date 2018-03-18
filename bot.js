@@ -230,7 +230,7 @@ bot.on('messageReactionAdd', (reaction, user) => {
         if (user.bot) return;
         let guild = bot.guild;
         let welcome = bot.channels.find("name","welcome")
-        if (reaction.channel != welcome) { 
+        if (reaction.message.channel != welcome) { 
             return;
         }
         bot.channels.find("name","general").send(`Welcome ${reaction.users.array().toString().substr(22)} to the Swag Pigs server!`);
