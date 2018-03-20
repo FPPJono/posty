@@ -188,7 +188,7 @@ bot.on('message', message => {
                 "description": `${message.mentions.users.first().username} has been warned for the reason below:\n${warning}`,
                 "color": 99999,
                 "thumbnail": {
-                    "url": `${message.author.avatarURL}`
+                    "url": `${message.mentions.users.first().avatarURL}`
                 },
                 "author": {
                     "name": "The Warning Machine",
