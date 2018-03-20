@@ -229,7 +229,7 @@ bot.on('messageReactionAdd', (reaction, user) => {
     if(reaction.emoji.name === "✅") {
         if (user.bot) return;
         let guild = reaction.message.guild;
-        let member = guild.member(reaction.user);
+        let member = guild.member(user);
         let welcome = bot.channels.find("name","welcome")
         if (reaction.message.channel != welcome) { 
             return;
