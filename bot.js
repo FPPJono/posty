@@ -230,7 +230,7 @@ bot.on('messageReactionAdd', (reaction, user) => {
         }
         bot.channels.find("name","banter").send(`Welcome ${reaction.users.array().toString().substr(reaction.users.array().toString().length - 21)} to the Swag Pigs server!`);
         console.log(`${reaction.users.array().toString()} reacted with "${reaction.emoji.name}".`);
-        member.addRole('421804369789452288');
+        member.addRole('421793270142861322');
     }
 });
 
