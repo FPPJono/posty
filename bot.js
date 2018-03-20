@@ -57,7 +57,7 @@ bot.on('message', message => {
     if (message.content.startsWith(PREFIX + "welcome")) {
         if (message.member.roles.has(admin)) {
             var welcome = bot.channels.find("name", "welcome");
-            welcome.send("Welcome to the Swag Pigs Server!\nBy clicking the ✅ button below, you agree to all the rules stated in <#269998962717491201>.\nOnce you have hit the checkmark, go ahead to <#269990219665637377> to say hi to everyone, and check out the other channel topics we have on the server! 🐷")
+            welcome.send("Welcome to the Swag Pigs Server!\nBy clicking the ✅ button below, you agree to all the rules stated in <#421791585861238784>.\nOnce you have hit the checkmark, go ahead to <#421778879133384705> to say hi to everyone, and check out the other channel topics we have on the server! 🐷")
                 .then(function (message) {
             message.react("✅")
                     });
@@ -233,7 +233,7 @@ bot.on('messageReactionAdd', (reaction, user) => {
         if (reaction.message.channel != welcome) { 
             return;
         }
-        bot.channels.find("name","general").send(`Welcome ${reaction.users.array().toString().substr(reaction.users.array().toString().length - 19)} to the Swag Pigs server!`);
+        bot.channels.find("name","general").send(`Welcome ${reaction.users.array().toString().substr(reaction.users.array().toString().length - 21)} to the Swag Pigs server!`);
         console.log(`${reaction.users.array().toString()} reacted with "${reaction.emoji.name}".`);
         //member.addRole('416075320190566400');
     }
