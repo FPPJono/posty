@@ -9,7 +9,7 @@ const warnChannel = '421794304059768852'
 const suggestChannel = '423547474704072715'
 const memesChannel = '421790539021811722'
 const artChannel = '421790550778183701'
-const admin = '414198754632269834'
+const admin = '421779825699848212'
 
 function getRandomInt (max) {
     return Math.floor(Math.random() * Math.floor(max));
