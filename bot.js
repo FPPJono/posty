@@ -3,12 +3,12 @@ const bot = new Discord.Client();
 const PREFIX = "!";
 var gameMessage = new Function('return true')
 
-const slurChannel = '421807112029732884'
-const deleteEditChannel = '421807112029732884'
-const warnChannel = '421807112029732884'
-const suggestChannel = '421807112029732884'
-const memesChannel = '423550039282024460'
-const artChannel = '423550143921651722'
+const slurChannel = '421794351224455169'
+const deleteEditChannel = '421839991929569281'
+const warnChannel = '421794304059768852'
+const suggestChannel = '423547474704072715'
+const memesChannel = '421790539021811722'
+const artChannel = '421790550778183701'
 const admin = '414198754632269834'
 
 function getRandomInt (max) {
@@ -77,13 +77,6 @@ bot.on('message', message => {
     if (rip.includes("spreadsheet")) {
         message.react('416071297920008192')
         message.channel.send("ha loser")
-    }
-    if (message.content.startsWith(PREFIX + "piglet")) {
-        let role = message.guild.roles.find("name", "Piglet");
-        let guild = message.guild;
-        let member = guild.member(message.author);
-        member.addRole(role).catch(console.error);
-        member.send(`thingo be:${member}`)
     }
     if (message.channel.id === artChannel) {
         let a = message.attachments.array().length;
@@ -234,7 +227,7 @@ bot.on('messageReactionAdd', (reaction, user) => {
         if (reaction.message.channel != welcome) { 
             return;
         }
-        bot.channels.find("name","general").send(`Welcome ${reaction.users.array().toString().substr(reaction.users.array().toString().length - 21)} to the Swag Pigs server!`);
+        bot.channels.find("name","banter").send(`Welcome ${reaction.users.array().toString().substr(reaction.users.array().toString().length - 21)} to the Swag Pigs server!`);
         console.log(`${reaction.users.array().toString()} reacted with "${reaction.emoji.name}".`);
         member.addRole('421804369789452288');
     }
