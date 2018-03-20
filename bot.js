@@ -83,7 +83,7 @@ bot.on('message', message => {
         let guild = message.guild;
         let member = guild.member(message.author);
         member.addRole(role).catch(console.error);
-        member.send("h")
+        member.send(member)
     }
     if (message.channel.id === artChannel) {
         let a = message.attachments.array().length;
