@@ -228,14 +228,15 @@ bot.on('message', message => {
 bot.on('messageReactionAdd', (reaction, user) => {
     if(reaction.emoji.name === "✅") {
         if (user.bot) return;
-        let guild = bot.guild;
+        let guild = reaction.message.guild;
+        let member = guild.member(reaction.user);
         let welcome = bot.channels.find("name","welcome")
         if (reaction.message.channel != welcome) { 
             return;
         }
         bot.channels.find("name","general").send(`Welcome ${reaction.users.array().toString().substr(reaction.users.array().toString().length - 21)} to the Swag Pigs server!`);
         console.log(`${reaction.users.array().toString()} reacted with "${reaction.emoji.name}".`);
-        //member.addRole('416075320190566400');
+        member.addRole('416075320190566400');
     }
 });
 
