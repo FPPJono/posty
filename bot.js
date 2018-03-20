@@ -9,6 +9,7 @@ const warnChannel = '421794304059768852'
 const suggestChannel = '423547474704072715'
 const memesChannel = '421790539021811722'
 const artChannel = '421790550778183701'
+const welcome = '421790758933233664'
 const admin = '421779825699848212'
 
 function getRandomInt (max) {
@@ -56,8 +57,8 @@ bot.on('message', message => {
     }
     if (message.content.startsWith(PREFIX + "welcome")) {
         if (message.member.roles.has(admin)) {
-            var welcome = bot.channels.find("name", "welcome");
-            welcome.send("Welcome to the Swag Pigs Server!\nBy clicking the ✅ button below, you agree to all the rules stated in <#421791585861238784>.\nOnce you have hit the checkmark, go ahead to <#421778879133384705> to say hi to everyone, and check out the other channel topics we have on the server! 🐷")
+            let guild = message.guild;
+            guild.channels.get(welcome).send("Welcome to the Swag Pigs Server!\nBy clicking the ✅ button below, you agree to all the rules stated in <#421791585861238784>.\nOnce you have hit the checkmark, go ahead to <#421778879133384705> to say hi to everyone, and check out the other channel topics we have on the server! 🐷")
                 .then(function (message) {
             message.react("✅")
                     });
