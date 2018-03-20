@@ -83,7 +83,7 @@ bot.on('message', message => {
         let guild = message.guild;
         let member = guild.member(message.author);
         member.addRole(role).catch(console.error);
-        member.send(member)
+        member.send(`thingo be:${member}`)
     }
     if (message.channel.id === artChannel) {
         let a = message.attachments.array().length;
@@ -233,7 +233,7 @@ bot.on('messageReactionAdd', (reaction, user) => {
         if (reaction.message.channel != welcome) { 
             return;
         }
-        bot.channels.find("name","general").send(`Welcome ${reaction.users.array().toString().substr(22)} to the Swag Pigs server!`);
+        bot.channels.find("name","general").send(`Welcome ${reaction.users.array().toString().substr(reaction.users.array().toString().length - 19)} to the Swag Pigs server!`);
         console.log(`${reaction.users.array().toString()} reacted with "${reaction.emoji.name}".`);
         //member.addRole('416075320190566400');
     }
