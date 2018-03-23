@@ -197,7 +197,7 @@ bot.on('message', message => {
         if (message.member.roles.has(admin)) {
             let guild = message.guild;
             let warning = message.content.substr(28)
-            let color  = message.guild.member(message.author).displayColor
+            let color  = message.guild.member(message.mentions.users.first()).displayColor
             guild.member(message.mentions.users.first()).send(`you have been warned for: \`${warning}\` Please improve your behaviour or you may be kicked or banned from this server in the future.`)
             const embed = {
                 "description": `${message.mentions.users.first().username} has been warned for the reason below:\n${warning}`,
