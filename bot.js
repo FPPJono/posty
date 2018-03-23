@@ -103,12 +103,13 @@ bot.on('message', message => {
     if( swearWords.some(word => swearCheck.includes(word))) {
         if (byPass.some(word => swearCheck.includes(word))) return;
         let guild = message.guild;
+        let color  = message.guild.member(message.author).displayColor
         message.delete()
         message.channel.send("Please refrain from using slurs. A copy of your message has been sent to the Admins.")
             .then(m => m.delete(7500));
         const embed = {
             "description": `${message.author.username} detected using slurs:\nMessage sent in channel #${message.channel.name}\nMessage sent by ${message.author.username} is below\n"${message.content}"`,
-            "color": 99999,
+            "color": color,
             "thumbnail": {
                 "url": `${message.author.avatarURL}`
             },
@@ -131,11 +132,10 @@ bot.on('message', message => {
     if (message.content.startsWith(PREFIX + "rate")){
         const thingToRate = args.join(" ");
         var ratedThing = thingToRate.substr(5);
-        let color  = message.guild.member(message.author).displayColor
         const embed = {
             "description": `I would rate ${ratedThing} ${getRandomInt(10)} out of 10!`,
             "url": "https://discordapp.com",
-            "color": color,
+            "color": 65535,
             "footer": {
                 "icon_url": "https://cdn.discordapp.com/app-icons/416446498264580096/4f17fb88d33f4655d85154ee064f030d.png",
                 "text": "Copyright Jono's Jontronics Ltd. 2097"
@@ -185,7 +185,7 @@ bot.on('message', message => {
         const embed = {
             "description": `${coinFlip[Math.floor(Math.random() * coinFlip.length).toString(16)]}`,
             "url": "https://discordapp.com",
-            "color": 122353,
+            "color": 16776448,
             "footer": {
                 "icon_url": "https://cdn.discordapp.com/app-icons/416446498264580096/4f17fb88d33f4655d85154ee064f030d.png",
                 "text": "The Coin Flipper 3,000"
@@ -197,10 +197,11 @@ bot.on('message', message => {
         if (message.member.roles.has(admin)) {
             let guild = message.guild;
             let warning = message.content.substr(28)
+            let color  = message.guild.member(message.author).displayColor
             guild.member(message.mentions.users.first()).send(`you have been warned for: \`${warning}\` Please improve your behaviour or you may be kicked or banned from this server in the future.`)
             const embed = {
                 "description": `${message.mentions.users.first().username} has been warned for the reason below:\n${warning}`,
-                "color": 99999,
+                "color": color,
                 "thumbnail": {
                     "url": `${message.mentions.users.first().avatarURL}`
                 },
@@ -215,12 +216,13 @@ bot.on('message', message => {
     if (message.content.startsWith(PREFIX + "suggest")) {
         let guild = message.guild;
         let suggestion = message.content.substr(8)
+        let color  = message.guild.member(message.author).displayColor
         message.delete()
         message.channel.send(`\`\`\`Thank you for your suggestion!\`\`\``)
             .then(m => m.delete(5000));
         const embed = {
         "description": `${message.author.username} has suggested the change/modification below:\n${suggestion}`,
-            "color": 99999,
+            "color": color,
             "thumbnail": {
                 "url": `${message.author.avatarURL}`
             },
@@ -243,7 +245,7 @@ bot.on('messageReactionAdd', (reaction, user) => {
             return;
         }
         bot.channels.find("name","banter").send(`Welcome ${reaction.users.array().toString().substr(reaction.users.array().toString().length - 21)} to the Swag Pigs server!`);
-        console.log(`${reaction.users.array().toString()} reacted with "${reaction.emoji.name}".`);
+        console.log(`${reaction.users.array().toString().substr(reaction.users.array().tostring.length - 21)} reacted with "${reaction.emoji.name}".`);
         member.addRole('421793270142861322');
     }
 });
@@ -252,9 +254,10 @@ bot.on('messageUpdate', (omsg, nmsg) => {
   if(omsg.author.bot) return;
   console.log(`${omsg.author.username} just edited their message`);
   let guild = omsg.guild;
+  let color  = guild.member(omsg.author).displayColor
   const embed = {
     "description": `${omsg.author.username} just edited their message\nMessage sent in channel #${omsg.channel.name}\nOriginal message:\n"${omsg.content}"\nNew Message:\n"${nmsg.content}"`,
-    "color": 99999,
+    "color": color,
     "thumbnail": {
         "url": `${omsg.author.avatarURL}`
     },
@@ -278,9 +281,10 @@ bot.on('messageDelete', message => {
     var swearCheck = rip.replace(/\s/g, '')
     if(swearWords.some(word => swearCheck.includes(word))) return;
     console.log(`${message.author} just deleted their message`)
+    let color  = message.guild.member(message.author).displayColor
     const embed = {
         "description": `${message.author.username} just deleted their message\nMessage sent in channel #${message.channel.name}\nOriginal message:\n"${message.content}"`,
-        "color": 99999,
+        "color": color,
         "thumbnail": {
             "url": `${message.author.avatarURL}`
         },
