@@ -17,6 +17,7 @@ function getRandomInt (max) {
 }
 
 var eightBall = ["I would say..... yes!","Probably not","heck maybe, idk","I dont think so","eh, probably","hmmm.... maybe not","*concentrate*, and try again","look man im just a bot go ask someone who cares","those who ask will get their answer eventually, try again","haha! yes!","hah, nope"]
+var coinFlip = ["The coin landed on heads!", "The coin landed on tails"]
 
 bot.on('ready', () => {
     console.log('I am ready!');
@@ -178,6 +179,18 @@ bot.on('message', message => {
                 };
                 message.channel.send({ embed });
         }else message.channel.send("what's your question? lol\n```Correct usage: !8ball question```");
+    }
+    if (message.content.startsWith(PREFIX + "coinflip")) {
+        const embed = {
+            "description": `${coinFlip[Math.floor(Math.random() * coinFlip.length).toString(16)]}`,
+            "url": "https://discordapp.com",
+            "color": 122353,
+            "footer": {
+                "icon_url": "https://cdn.discordapp.com/app-icons/416446498264580096/4f17fb88d33f4655d85154ee064f030d.png",
+                "text": "The Coin Flipper 3,000"
+            }
+        };
+        message.channel.send({ embed });
     }
     if (message.content.startsWith(PREFIX + "warn")) {
         if (message.member.roles.has(admin)) {
