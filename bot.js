@@ -131,9 +131,7 @@ bot.on('message', message => {
     if (message.content.startsWith(PREFIX + "rate")){
         const thingToRate = args.join(" ");
         var ratedThing = thingToRate.substr(5);
-        let guild  = message.guild;
-        let member = guild.member(message.author);
-        let color = member.displayColor
+        let color  = message.guild.member(message.author).displayColor
         const embed = {
             "description": `I would rate ${ratedThing} ${getRandomInt(10)} out of 10!`,
             "url": "https://discordapp.com",
