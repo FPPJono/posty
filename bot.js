@@ -245,7 +245,7 @@ bot.on('messageReactionAdd', (reaction, user) => {
             return;
         }
         bot.channels.find("name","banter").send(`Welcome ${reaction.users.array().toString().substr(reaction.users.array().toString().length - 21)} to the Swag Pigs server!`);
-        console.log(`${reaction.users.array().toString().substr(reaction.users.array().tostring.length - 21)} reacted with "${reaction.emoji.name}".`);
+        console.log(`${reaction.users.array().toString().substr(reaction.users.array().toString().length - 21)} reacted with "${reaction.emoji.name}".`);
         member.addRole('421793270142861322');
     }
 });
