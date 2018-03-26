@@ -8,9 +8,8 @@
   },
   "dependencies": {
     "discord.js": "11.1.0",
-    "request": "2.81.0"
+    "request": "2.81.0",
+    "googleapis@25.*",
+    "google-auth-library@0.*"
   }
 }
-
-$npm install googleapis@25.* --save
-$npm install google-auth-library@0.* --save
