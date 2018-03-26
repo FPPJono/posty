@@ -12,5 +12,5 @@
   }
 }
 
-npm install googleapis@25.* --save
-npm install google-auth-library@0.* --save
+$npm install googleapis@25.* --save
+$npm install google-auth-library@0.* --save
