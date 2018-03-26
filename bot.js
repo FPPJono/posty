@@ -1,5 +1,9 @@
 const Discord = require('discord.js');
 const bot = new Discord.Client();
+var fs = require('fs');
+var readline = require('readline');
+var google = require('googleapis');
+var googleAuth = require('google-auth-library');
 const PREFIX = "!";
 var gameMessage = new Function('return true')
 
