@@ -261,8 +261,7 @@ bot.on('message', message => {
             message.channel.send({files: ["https://cdn.discordapp.com/attachments/428427184877600769/428427196516925442/IMG_20180322_124222_038.jpg"]})
         } else {
             var pfp = message.author.avatarURL
-            message.channel.send({files:[{attachment: pfp, name: `avatar.png`}]})
-            message.channel.send(`${pfp.slice(0, -10).substr(pfp.slice(0, -10).length - 4)}`)
+            message.channel.send({files:[{attachment: pfp, name: `avatar${pfp.slice(0, -10).substr(pfp.slice(0, -10).length - 4)}`}]})
         }
     }
 });
