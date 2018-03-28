@@ -256,11 +256,13 @@ bot.on('message', message => {
     }   
     if (message.content.startsWith(PREFIX + "avatar")) {
         if (message.mentions.users.array().toString().length >= 1) {
-            message.channel.send(message.author.avatarURL)
+            var pfp = message.mentions.users.first().avatarURL
+            message.channel.send(pfp)
             message.channel.send({files: ["https://cdn.discordapp.com/attachments/428427184877600769/428427196516925442/IMG_20180322_124222_038.jpg"]})
         } else {
-            message.channel.send({files:[{attachment: message.author.avatarURL, name: `avatar.${message.author.avatarURL.slice(0, -10).substr(message.author.avatarURL.slice(0, -10).length - 4))}`}]})
-            message.channel.send(message.author.avatarURL)
+            var pfp = message.author.avatarURL
+            message.channel.send({files:[{attachment: pfp, name: `avatar.${pfp.slice(0, -10).substr(pfp.slice(0, -10).length - 4))}`}]})
+            message.channel.send(pfp)
         }
     }
 });
