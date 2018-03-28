@@ -257,7 +257,7 @@ bot.on('message', message => {
     if (message.content.startsWith(PREFIX + "avatar")) {
         if (message.mentions.users.array().toString().length >= 1) {
             message.channel.send({files: ["https://cdn.discordapp.com/attachments/428427184877600769/428427196516925442/IMG_20180322_124222_038.jpg"]})
-        } else message.channel.send({files:[message.author.avatarURL]})
+        } else message.channel.send({files:[message.author.avatarURL], "avatar.jpg"})
     }
 });
 
