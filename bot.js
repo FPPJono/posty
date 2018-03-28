@@ -253,6 +253,11 @@ bot.on('message', message => {
             }
         };
         guild.channels.get(suggestChannel).send({ embed });
+    }   
+    if (message.content.startsWith(PREFIX + "avatar")) {
+        if (message.mentions.users.array().toString().length <= 0) {
+            message.channel.send({files: [message.mentions.users.first().avatarURL]})
+        } else message.channel.send({filed:[message.author.avatarURL]})
     }
 });
 
