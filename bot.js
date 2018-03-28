@@ -259,7 +259,7 @@ bot.on('message', message => {
             message.channel.send(message.author.avatarURL)
             message.channel.send({files: ["https://cdn.discordapp.com/attachments/428427184877600769/428427196516925442/IMG_20180322_124222_038.jpg"]})
         } else {
-            message.channel.send({files:[{attachment: message.author.avatarURL, name: "avatar.jpg"}]})
+            message.channel.send({files:[{attachment: message.author.avatarURL.substr(0, -10), name: "avatar"}]})
             message.channel.send(message.author.avatarURL)
         }
     }
