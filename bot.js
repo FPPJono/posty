@@ -46,8 +46,12 @@ bot.on('ready', () => {
     //bot.setTimeout(gameMessage(), 5000);
     bot.user.setPresence({ game: { name: "in some dirt", type: 0}});
     bot.user.setUsername("Kevin Bacon");
-    var startupchannel = bot.channels.get('421790758933233664')
-    startupchannel.send("test")
+    var welcome = bot.channels.get('421790758933233664')
+    welcome.bulkDelete(99)
+    welcome.send("Welcome to the Swag Pigs Server!\nBy clicking the ✅ button below, you agree to all the rules stated in <#421791585861238784>.\nOnce you have hit the checkmark, go ahead to <#421778879133384705> to say hi to everyone, and check out the other channel topics we have on the server! 🐷")
+        .then(function (message) {
+    message.react("✅")
+            });
 });
 
 bot.on('message', message => {
