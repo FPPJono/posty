@@ -46,6 +46,8 @@ bot.on('ready', () => {
     //bot.setTimeout(gameMessage(), 5000);
     bot.user.setPresence({ game: { name: "in some dirt", type: 0}});
     bot.user.setUsername("Kevin Bacon");
+    var startupchannel = bot.channels.get('421790758933233664')
+    startupchannel.send("test")
 });
 
 bot.on('message', message => {
@@ -283,6 +285,7 @@ bot.on('messageReactionAdd', (reaction, user) => {
 
 bot.on('messageUpdate', (omsg, nmsg) => {
   if(omsg.author.bot) return;
+  if(omsg.content === nmsg.content) return;
   console.log(`${omsg.author.username} just edited their message`);
   let guild = omsg.guild;
   let color  = guild.member(omsg.author).displayColor
