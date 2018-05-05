@@ -117,7 +117,7 @@ bot.on('message', message => {
     const swearWords = ["nigger", "chink", "tranny", "fag", "dyke", "nigga", "kike", "retard", "autist", "negroid", "dike"];
     var swearCheck = rip.replace(/\s/g, '')
     var swearCheck = rip.replace(/​/g, '')
-    const byPass = ["halfaglass", "klondike"]
+    const byPass = ["halfaglass", "klondike", "warfage"]
     if( swearWords.some(word => swearCheck.includes(word))) {
         if (byPass.some(word => swearCheck.includes(word))) return;
         let guild = message.guild;
@@ -261,9 +261,9 @@ bot.on('message', message => {
         }
     }
     if (message.content.startsWith(PREFIX + "morse")) {
-        var chars = {'a':'x','b':'y','c':'z'};
+        var chars = {'a':'.- ','b':'-... ','c':'-.-.','d':'-.. ','e':'. ','f':'..-. ','g':'--. ','h':'.... ','i':'.. ','j':'.--- ','k':'-.- '};
         var s = rip.substr(7);
-        s = s.replace(/[abc]/g, m => chars[m]);
+        s = s.replace(/[abcdefghijk]/g, m => chars[m]);
         message.channel.send(`${s}`)
     }
 });
