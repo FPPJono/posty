@@ -262,7 +262,7 @@ bot.on('message', message => {
     }
     if (message.content.startsWith(PREFIX + "morse")) {
         var chars = {'a':'x','b':'y','c':'z'};
-        const s = rip.substr(7);
+        var s = rip.substr(7);
         s = s.replace(/[abc]/g, m => chars[m]);
         message.channel.send(`${s}`)
     }
