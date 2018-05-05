@@ -260,6 +260,12 @@ bot.on('message', message => {
             message.channel.send({files:[{attachment: pfp, name: `avatar${pfp.slice(0, -10).substr(pfp.slice(0, -10).length - 4)}`}]})
         }
     }
+    if (message.content.startsWith(PREFIX + "morse")) {
+        var chars = {'a':'.- ','b':'-... ','c':'-.-.','d':'-.. ','e':'. ','f':'..-. ','g':'--. ','h':'.... ','i':'.. ','j':'.--- ','k':'-.- ','l':'.-.. ','m':'-- ','n':'-. ','o':'--- ','p':'.--. ','q':'--.- ','r':'.-. ','s':'... ','t':'- ','u':'..- ','v':'...- ','w':'.-- ','x','-..- ','y':'-.-- ','z':'--.. ','1':'.---- ','2':'..--- ','3':'...-- ','4':'....- ','5':'..... ','6':'-.... ','7':'--... ','8':'---.. ','9':'----. ','0':'----- '};
+        var s = rip.content.substr(7);
+        s = s.replace(/[abcdefghijklmnopqrstuvwxyz1234567890]/g, m => chars[m]);
+        message.channel.send(`${s}`)
+    }
 });
 
 bot.on('messageReactionAdd', (reaction, user) => {
