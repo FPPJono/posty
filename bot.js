@@ -313,11 +313,11 @@ bot.on('messageUpdate', (omsg, nmsg) => {
       "fields": [
         {
           "name": "Original message:",
-          "value": `${omsg.content}`
+          "value": `${omsg.content.substr(0,1024)}`
         },
         {
           "name": "New Message:",
-          "value": `${nmsg.content}`
+          "value": `${nmsg.content.substr(0,1024)}`
         },
         {
           "name": "Attached Image",
@@ -340,16 +340,16 @@ bot.on('messageUpdate', (omsg, nmsg) => {
       "fields": [
         {
           "name": "Original message:",
-          "value": `${omsg.content}`
+          "value": `${omsg.content.substr(0,1024)}`
         },
         {
           "name": "New Message:",
-          "value": `${nmsg.content}`
+          "value": `${nmsg.content.substr(0,1024)}`
         }
       ]
       }
   guild.channels.get(deleteEditChannel).send({ embed });
-});
+};
 
 bot.on('messageDelete', message => {
     let guild = message.guild;
