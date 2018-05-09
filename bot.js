@@ -143,9 +143,10 @@ bot.on('message', message => {
         if (message.member.roles.has(admin)) {
             const sayMessage = args.join(" ");
             var useContent = sayMessage.substr(5);
-            var attachments = message.attachments
+            var attachments = (message.attachments).array()
             message.delete().catch(O_o=>{}); 
-            if (message.attachments.array().length >= 1){ message.channel.send(`${useContent} haha ${attachments.array().toString()}`)}
+            if (message.attachments.array().length >= 1){ message.channel.send(`${useContent}`)
+                attachments.forEach(function(attachment){message.channel.send({file:`${attachment.url}`})})}
             if (message.attachments.array().length <= 0){ message.channel.send(`${useContent}`)}
         }else
             message.channel.send("sorry thats for admins only");
