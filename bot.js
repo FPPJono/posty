@@ -296,7 +296,7 @@ bot.on('messageUpdate', (omsg, nmsg) => {
     let color = guild.member(omsg.author).displayColor
     var attachments = (omsg.attachments).array()
     if (omsg.attachments.array().length >= 1) {
-        const embed = {
+        var embed = {
             "title": `${omsg.author.username} just edited their message`,
             "description": `Message sent in channel #${omsg.channel.name}`,
             "color": color,
@@ -325,8 +325,9 @@ bot.on('messageUpdate', (omsg, nmsg) => {
                 }
             ]
         }
-    } else {
-        const embed = {
+    }
+    if (omsg.attachments.array().length <= 0) {
+        var embed = {
             "title": `${omsg.author.username} just edited their message`,
             "description": `Message sent in channel #${omsg.channel.name}`,
             "color": color,
