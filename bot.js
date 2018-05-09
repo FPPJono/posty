@@ -299,28 +299,55 @@ bot.on('messageUpdate', (omsg, nmsg) => {
     const embed = {
       "title": `${omsg.author.username} just edited their message`,
       "description": `Message sent in channel #${omsg.channel.name}`,
-      "fields": [
-        {"name": "Original message:", "value": `${omsg.content}`}
-        {"name": "New message:", "value": `${nmsg.content}`}
-        {"name": "Attached Image:" "value": `link: ${attachments[0].url}`}
-      ],
-      "image": {"url": `${attachments[0].url}`},
       "color": color,
-      "thumbnail": {"url": `${omsg.author.avatarURL}`},
-      "author": { "name": "The Magical Edit Searcher", "icon_url": "https://cdn.discordapp.com/app-icons/416446498264580096/4f17fb88d33f4655d85154ee064f030d.png"}
+      "thumbnail": {
+         "url": `${omsg.author.avatarURL}`
+      },
+      "image": {
+         "url": `${attachments[0].url}`
+      },
+      "author": {
+         "name": "The Magical Edit Searcher",
+         "icon_url": "https://cdn.discordapp.com/app-icons/416446498264580096/4f17fb88d33f4655d85154ee064f030d.png"
+      },
+      "fields": [
+        {
+          "name": "Original message:",
+          "value": `${omsg.content}`
+        },
+        {
+          "name": "New Message:",
+          "value": `${nmsg.content}`
+        },
+        {
+          "name": "Attached Image",
+          "value": `Link: ${attachments[0].url}`
+        }
+      ]
       }
   }else {
     const embed = {
       "title": `${omsg.author.username} just edited their message`,
       "description": `Message sent in channel #${omsg.channel.name}`,
-      "fields": [
-        {"name": "Original message:", "value": `${omsg.content}`}
-        {"name": "New message:", "value": `${nmsg.content}`}
-      ],
       "color": color,
-      "thumbnail": {"url": `${omsg.author.avatarURL}`},
-      "author": { "name": "The Magical Edit Searcher", "icon_url": "https://cdn.discordapp.com/app-icons/416446498264580096/4f17fb88d33f4655d85154ee064f030d.png"}
-      };
+      "thumbnail": {
+         "url": `${omsg.author.avatarURL}`
+      },
+      "author": {
+         "name": "The Magical Edit Searcher",
+         "icon_url": "https://cdn.discordapp.com/app-icons/416446498264580096/4f17fb88d33f4655d85154ee064f030d.png"
+      },
+      "fields": [
+        {
+          "name": "Original message:",
+          "value": `${omsg.content}`
+        },
+        {
+          "name": "New Message:",
+          "value": `${nmsg.content}`
+        }
+      ]
+      }
   guild.channels.get(deleteEditChannel).send({ embed });
 });
 
