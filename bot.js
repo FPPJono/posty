@@ -297,7 +297,7 @@ bot.on('messageUpdate', (omsg, nmsg) => {
   var attachments = (omsg.attachments).array()
   if (omsg.attachments.array().length >= 1) {
     const embed = {
-      "title": `${omsg.author.username} just edited their message",
+      "title": `${omsg.author.username} just edited their message`,
       "description": `Message sent in channel #${omsg.channel.name}`,
       "fields": [
         {"name": "Original message:", "value": `${omsg.content}`}
@@ -311,7 +311,7 @@ bot.on('messageUpdate', (omsg, nmsg) => {
       }
   }else {
     const embed = {
-      "title": `${omsg.author.username} just edited their message",
+      "title": `${omsg.author.username} just edited their message`,
       "description": `Message sent in channel #${omsg.channel.name}`,
       "fields": [
         {"name": "Original message:", "value": `${omsg.content}`}
