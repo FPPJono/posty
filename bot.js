@@ -68,7 +68,8 @@ bot.on('message', message => {
          if (message.member.roles.has(admin)) {
             let content = args.join(" ")
             var useContent = content.substr(9);
-            announcement.send(useContent)
+            var attachments = message.attachments
+            announcement.send(useContent, {attachments})
             console.log(`${sender.username} just announced ${useContent}.`)
         }else
             message.channel.send("sorry, that command is for admins only")
@@ -142,8 +143,9 @@ bot.on('message', message => {
         if (message.member.roles.has(admin)) {
             const sayMessage = args.join(" ");
             var useContent = sayMessage.substr(5);
+            var attachments = message.attachments
             message.delete().catch(O_o=>{}); 
-            message.channel.send(useContent);
+            message.channel.send(useContent, {attachments});
         }else
             message.channel.send("sorry thats for admins only");
     }
