@@ -289,67 +289,68 @@ bot.on('messageReactionAdd', (reaction, user) => {
 });
 
 bot.on('messageUpdate', (omsg, nmsg) => {
-  if(omsg.author.bot) return;
-  if(omsg.content === nmsg.content) return;
-  console.log(`${omsg.author.username} just edited their message`);
-  let guild = omsg.guild;
-  let color  = guild.member(omsg.author).displayColor
-  var attachments = (omsg.attachments).array()
-  if (omsg.attachments.array().length >= 1) {
-    const embed = {
-      "title": `${omsg.author.username} just edited their message`,
-      "description": `Message sent in channel #${omsg.channel.name}`,
-      "color": color,
-      "thumbnail": {
-         "url": `${omsg.author.avatarURL}`
-      },
-      "image": {
-         "url": `${attachments[0].url}`
-      },
-      "author": {
-         "name": "The Magical Edit Searcher",
-         "icon_url": "https://cdn.discordapp.com/app-icons/416446498264580096/4f17fb88d33f4655d85154ee064f030d.png"
-      },
-      "fields": [
-        {
-          "name": "Original message:",
-          "value": `${omsg.content.substr(0,1024)}`
-        },
-        {
-          "name": "New Message:",
-          "value": `${nmsg.content.substr(0,1024)}`
-        },
-        {
-          "name": "Attached Image",
-          "value": `Link: ${attachments[0].url}`
+    if (omsg.author.bot) return;
+    if (omsg.content === nmsg.content) return;
+    console.log(`${omsg.author.username} just edited their message`);
+    let guild = omsg.guild;
+    let color = guild.member(omsg.author).displayColor
+    var attachments = (omsg.attachments).array()
+    if (omsg.attachments.array().length >= 1) {
+        const embed = {
+            "title": `${omsg.author.username} just edited their message`,
+            "description": `Message sent in channel #${omsg.channel.name}`,
+            "color": color,
+            "thumbnail": {
+                "url": `${omsg.author.avatarURL}`
+            },
+            "image": {
+                "url": `${attachments[0].url}`
+            },
+            "author": {
+                "name": "The Magical Edit Searcher",
+                "icon_url": "https://cdn.discordapp.com/app-icons/416446498264580096/4f17fb88d33f4655d85154ee064f030d.png"
+            },
+            "fields": [
+                {
+                    "name": "Original message:",
+                    "value": `${omsg.content.substr(0, 1024)}`
+                },
+                {
+                    "name": "New Message:",
+                    "value": `${nmsg.content.substr(0, 1024)}`
+                },
+                {
+                    "name": "Attached Image",
+                    "value": `Link: ${attachments[0].url}`
+                }
+            ]
         }
-      ]
-      }
-  }else {
-    const embed = {
-      "title": `${omsg.author.username} just edited their message`,
-      "description": `Message sent in channel #${omsg.channel.name}`,
-      "color": color,
-      "thumbnail": {
-         "url": `${omsg.author.avatarURL}`
-      },
-      "author": {
-         "name": "The Magical Edit Searcher",
-         "icon_url": "https://cdn.discordapp.com/app-icons/416446498264580096/4f17fb88d33f4655d85154ee064f030d.png"
-      },
-      "fields": [
-        {
-          "name": "Original message:",
-          "value": `${omsg.content.substr(0,1024)}`
-        },
-        {
-          "name": "New Message:",
-          "value": `${nmsg.content.substr(0,1024)}`
+    } else {
+        const embed = {
+            "title": `${omsg.author.username} just edited their message`,
+            "description": `Message sent in channel #${omsg.channel.name}`,
+            "color": color,
+            "thumbnail": {
+                "url": `${omsg.author.avatarURL}`
+            },
+            "author": {
+                "name": "The Magical Edit Searcher",
+                "icon_url": "https://cdn.discordapp.com/app-icons/416446498264580096/4f17fb88d33f4655d85154ee064f030d.png"
+            },
+            "fields": [
+                {
+                    "name": "Original message:",
+                    "value": `${omsg.content.substr(0, 1024)}`
+                },
+                {
+                    "name": "New Message:",
+                    "value": `${nmsg.content.substr(0, 1024)}`
+                }
+            ]
         }
-      ]
-      }
-  guild.channels.get(deleteEditChannel).send({ embed });
-};
+    }
+    guild.channels.get(deleteEditChannel).send({ embed });
+});
 
 bot.on('messageDelete', message => {
     let guild = message.guild;
