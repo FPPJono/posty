@@ -145,7 +145,7 @@ bot.on('message', message => {
             var useContent = sayMessage.substr(5);
             var attachments = message.attachments
             message.delete().catch(O_o=>{}); 
-            if (message.attachments.array().length >= 1){ message.channel.send(`${useContent} haha ${attachments.toString()}`)}
+            if (message.attachments.array().length >= 1){ message.channel.send(`${useContent} haha ${attachments.array().toString()}`)}
             if (message.attachments.array().length <= 0){ message.channel.send(`${useContent}`)}
         }else
             message.channel.send("sorry thats for admins only");
