@@ -32,6 +32,7 @@ const memesChannel = '421790539021811722'
 const artChannel = '421790550778183701'
 const announcements = '421770846915264526'
 const welcome = '421790758933233664'
+const banter = '421778879133384705'
 const admin = '421779825699848212'
 
 function getRandomInt (max) {
@@ -289,7 +290,7 @@ bot.on('messageReactionAdd', (reaction, user) => {
         if (reaction.message.channel != bot.channels.get(welcome)) { 
             return;
         }
-        bot.channels.find("name","banter").send(`Welcome ${reaction.users.array().toString().substr(reaction.users.array().toString().length - 21)} to the Swag Pigs server!`);
+        bot.channels.get(banter).send(`Welcome ${reaction.users.array().toString().substr(reaction.users.array().toString().length - 21)} to the Swag Pigs server!`);
         console.log(`${reaction.users.array().toString().substr(reaction.users.array().toString().length - 21)} reacted with "${reaction.emoji.name}".`);
         member.addRole('421793270142861322');
     }
