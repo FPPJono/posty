@@ -24,6 +24,7 @@ doc.useServiceAccountAuth(creds, function (err) {
 
 //Bot Code
 
+//channels
 const slurChannel = '421794351224455169'
 const deleteEditChannel = '421839991929569281'
 const warnChannel = '421794304059768852'
@@ -33,12 +34,15 @@ const artChannel = '421790550778183701'
 const announcements = '421770846915264526'
 const welcome = '421790758933233664'
 const banter = '421778879133384705'
+
+//roles
 const admin = '421779825699848212'
 
 function getRandomInt (max) {
     return Math.floor(Math.random() * Math.floor(max));
 }
 
+//lists
 var eightBall = ["I would say..... yes!","Probably not","heck maybe, idk","I dont think so","eh, probably","hmmm.... maybe not","*concentrate*, and try again","look man im just a bot go ask someone who cares","those who ask will get their answer eventually, try again","haha! yes!","hah, nope"]
 var coinFlip = ["The coin landed on heads!", "The coin landed on tails"]
 
@@ -68,12 +72,12 @@ bot.on('message', message => {
     var sender = message.author;
     if(message.author.bot) return;
     var args = message.content.substring(PREFIX.length).split(" ");
-    var announcement = bot.channels.find(`${announcements}`);
+    var announcement = bot.channels.get(announcements);
     let rip = message.content.toLowerCase()
     if (message.content.startsWith(PREFIX + "ping")) {
         message.channel.send(`Pong! ${new Date().getTime() - message.createdTimestamp}ms`)
     }
-    if (message.content.startsWith(PREFIX + "announce")) {
+    /*if (message.content.startsWith(PREFIX + "announce")) {
          if (message.member.roles.has(admin)) {
             let content = args.join(" ")
             var useContent = content.substr(9);
@@ -95,6 +99,7 @@ bot.on('message', message => {
             message.channel.send("sorry, that command is for admins only")
                 .then(m => m.delete(5000));
     }
+    */
     if (rip.includes("<@416446498264580096>")) {
         message.channel.send("shut up");
     }
