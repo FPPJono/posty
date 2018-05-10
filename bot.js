@@ -77,18 +77,6 @@ bot.on('message', message => {
     if (message.content.startsWith(PREFIX + "ping")) {
         message.channel.send(`Pong! ${new Date().getTime() - message.createdTimestamp}ms`)
     }
-    /*if (message.content.startsWith(PREFIX + "announce")) {
-         if (message.member.roles.has(admin)) {
-            let content = args.join(" ")
-            var useContent = content.substr(9);
-            var attachments = message.attachments
-            announcement.send(useContent)
-            if (message.attachments.array().length >= 1) {attachments.forEach(function(attachment){message.channel.send({file:`${attachment.url}`})})}
-            console.log(`${sender.username} just announced ${useContent}.`)
-        }else
-            message.channel.send("sorry, that command is for admins only")
-                .then(m => m.delete(5000));
-    }
     if (message.content.startsWith(PREFIX + "playing")) {
         if (message.member.roles.has(admin)) {
             let content = args.join(" ")
@@ -99,7 +87,6 @@ bot.on('message', message => {
             message.channel.send("sorry, that command is for admins only")
                 .then(m => m.delete(5000));
     }
-    */
     if (rip.includes("<@416446498264580096>")) {
         message.channel.send("shut up");
     }
