@@ -44,7 +44,7 @@ var coinFlip = ["The coin landed on heads!", "The coin landed on tails"]
 bot.on('ready', () => {
     console.log('I am ready!');
     bot.user.setPresence({ game: { name: 'I turned on !!', type: 0 } }); //playing game
-    bot.user.setPresence({ game: { name: "in some dirt", type: 0}});
+    function(stateChange(newState){setTimeout(function(){if (newState == -1){bot.user.setPresence({ game: { name: "in some dirt", type: 0}})}})})
     bot.user.setUsername("Kevin Bacon");
     bot.channels.get(welcome).send("test")
     bot.channels.get(welcome).bulkDelete(2)
