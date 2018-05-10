@@ -366,17 +366,54 @@ bot.on('messageDelete', message => {
     if(swearWords.some(word => swearCheck.includes(word))) return;
     console.log(`${message.author} just deleted their message`)
     let color  = message.guild.member(message.author).displayColor
-    const embed = {
-        "description": `${message.author.username} just deleted their message\nMessage sent in channel #${message.channel.name}\nOriginal message:\n"${message.content}"`,
-        "color": color,
-        "thumbnail": {
-            "url": `${message.author.avatarURL}`
-        },
-        "author": {
-            "name": "The Delete Scanner",
-            "icon_url": "https://cdn.discordapp.com/app-icons/416446498264580096/4f17fb88d33f4655d85154ee064f030d.png"
+    var attachments = (message.attachments).array()
+    if (message.attachments.array().length >= 1) {
+        var embed = {
+            "title": `${message.author.username} just deleted their message`,
+            "description": `Message sent in channel #${message.channel.name}`,
+            "color": color,
+            "thumbnail": {
+                "url": `${message.author.avatarURL}`
+            },
+            "image": {
+                "url": `${attachments[0].url}`
+            },
+            "author": {
+                "name": "The Delete Scanner",
+                "icon_url": "https://cdn.discordapp.com/app-icons/416446498264580096/4f17fb88d33f4655d85154ee064f030d.png"
+            },
+            "fields": [
+                {
+                    "name": "Original message:",
+                    "value": `${message.content.substr(0, 1024)}`
+                },
+                {
+                    "name": "Attached Image",
+                    "value": `Link: ${attachments[0].url}`
+                }
+            ]
         }
-        };
+    }
+    if (message.attachments.array().length <= 0) {
+        var embed = {
+            "title": `${message.author.username} just deleted their message`,
+            "description": `Message sent in channel #${message.channel.name}`,
+            "color": color,
+            "thumbnail": {
+                "url": `${message.author.avatarURL}`
+            },
+            "author": {
+                "name": "The Delete Scanner",
+                "icon_url": "https://cdn.discordapp.com/app-icons/416446498264580096/4f17fb88d33f4655d85154ee064f030d.png"
+            },
+            "fields": [
+                {
+                    "name": "Original message:",
+                    "value": `${message.content.substr(0, 1024)}`
+                }
+            ]
+        }
+    }
     guild.channels.get(deleteEditChannel).send({ embed });
 });
 
