@@ -48,7 +48,7 @@ bot.on('ready', () => {
     bot.user.setUsername("Kevin Bacon");
     bot.channels.get(welcome).send("test")
     bot.channels.get(welcome).bulkDelete(2)
-    welcome.send("Welcome to the Swag Pigs Server!\nBy clicking the ✅ button below, you agree to all the rules stated in <#421791585861238784>.\nOnce you have hit the checkmark, go ahead to <#421778879133384705> to say hi to everyone, and check out the other channel topics we have on the server! 🐷")
+    bot.channels.get(welcome).send("Welcome to the Swag Pigs Server!\nBy clicking the ✅ button below, you agree to all the rules stated in <#421791585861238784>.\nOnce you have hit the checkmark, go ahead to <#421778879133384705> to say hi to everyone, and check out the other channel topics we have on the server! 🐷")
         .then(function (message) {
     message.react("✅")
             });
