@@ -41,10 +41,19 @@ function getRandomInt (max) {
 var eightBall = ["I would say..... yes!","Probably not","heck maybe, idk","I dont think so","eh, probably","hmmm.... maybe not","*concentrate*, and try again","look man im just a bot go ask someone who cares","those who ask will get their answer eventually, try again","haha! yes!","hah, nope"]
 var coinFlip = ["The coin landed on heads!", "The coin landed on tails"]
 
+function wait(ms){
+   var start = new Date().getTime();
+   var end = start;
+   while(end < start + ms) {
+     end = new Date().getTime();
+  }
+}
+
 bot.on('ready', () => {
     console.log('I am ready!');
     bot.user.setPresence({ game: { name: 'I turned on !!', type: 0 } }); //playing game
-    function stateChange(newState){setTimeout(function(){if (newState == -1){bot.user.setPresence({ game: { name: "in some dirt", type: 0}})}})}
+    wait(5000)
+    bot.user.setPresence({ game: { name: 'in some dirt', type: 0 } });
     bot.user.setUsername("Kevin Bacon");
     bot.channels.get(welcome).send("test")
     bot.channels.get(welcome).bulkDelete(2)
