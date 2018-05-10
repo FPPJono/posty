@@ -47,7 +47,7 @@ bot.on('ready', () => {
     //bot.setTimeout(gameMessage(), 5000);
     bot.user.setPresence({ game: { name: "in some dirt", type: 0}});
     bot.user.setUsername("Kevin Bacon");
-    var welcome = bot.channels.get("id", `${welcome}`)
+    var welcome = bot.channels.find("id", `${welcome}`)
     welcome.send("test")
     welcome.bulkDelete(2)
     welcome.send("Welcome to the Swag Pigs Server!\nBy clicking the ✅ button below, you agree to all the rules stated in <#421791585861238784>.\nOnce you have hit the checkmark, go ahead to <#421778879133384705> to say hi to everyone, and check out the other channel topics we have on the server! 🐷")
@@ -60,7 +60,7 @@ bot.on('message', message => {
     var sender = message.author;
     if(message.author.bot) return;
     var args = message.content.substring(PREFIX.length).split(" ");
-    var announcement = bot.channels.get("id", `${announcements}`);
+    var announcement = bot.channels.find("id", `${announcements}`);
     let rip = message.content.toLowerCase()
     if (message.content.startsWith(PREFIX + "ping")) {
         message.channel.send(`Pong! ${new Date().getTime() - message.createdTimestamp}ms`)
@@ -279,7 +279,7 @@ bot.on('messageReactionAdd', (reaction, user) => {
         if (user.bot) return;
         let guild = reaction.message.guild;
         let member = guild.member(user);
-        let welcome = bot.channels.get("id", `${welcome}`)
+        let welcome = bot.channels.find("id", `${welcome}`)
         if (reaction.message.channel != welcome) { 
             return;
         }
