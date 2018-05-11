@@ -245,7 +245,6 @@ bot.on('message', message => {
             let content = message.content.substr(26)
             guild.member(message.mentions.users.first()).send(content)
             var attachments = (message.attachments).array()
-            guild.member(message.mentions.users.first()).send(content)
             if (message.attachments.array().length >= 1) {
                 attachments.forEach(function (attachment) { guild.member(message.mentions.users.first()).send({ file: `${attachment.url}` })})
             }
