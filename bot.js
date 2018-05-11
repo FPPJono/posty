@@ -237,6 +237,13 @@ bot.on('message', message => {
             guild.channels.get(warnChannel).send({ embed });
         }else message.channel.send("sorry that command is for admins only");
     }
+    if (message.content.startsWith(PREFIX + "dm")) {
+        if (message.member.roles.has(admin)) {
+            let guild = message.guild;
+            let message = message.content.substr(22)
+            guild.member(message.mentions.users.first()).send(message)
+        }else message.channel.send("sorry that command is for admins only");
+    }
     if (message.content.startsWith(PREFIX + "suggest")) {
         let guild = message.guild;
         let suggestion = message.content.substr(8)
