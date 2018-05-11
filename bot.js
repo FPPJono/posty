@@ -244,7 +244,7 @@ bot.on('message', message => {
             guild.member(message.mentions.users.first()).send(content)
             var attachments = (message.attachments).array()
             if (message.attachments.array().length >= 1){ guild.member(message.mentions.users.first()).send(content)
-                attachments.forEach(function(attachment){guild.member(message.mentions.users.first()).send({file:`${attachment.url}`})
+                attachments.forEach(function(attachment){guild.member(message.mentions.users.first()).send({file:`${attachment.url}`}))
             if (message.attachments.array().length <= 0){ guild.member(message.mentions.users.first()).send(content)}
         }else message.channel.send("sorry that command is for admins only");
     }
