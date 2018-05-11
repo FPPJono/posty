@@ -240,8 +240,8 @@ bot.on('message', message => {
     if (message.content.startsWith(PREFIX + "dm")) {
         if (message.member.roles.has(admin)) {
             let guild = message.guild;
-            let message = message.content.substr(22)
-            guild.member(message.mentions.users.first()).send(message)
+            let content = message.content.substr(22)
+            guild.member(message.mentions.users.first()).send(content)
         }else message.channel.send("sorry that command is for admins only");
     }
     if (message.content.startsWith(PREFIX + "suggest")) {
