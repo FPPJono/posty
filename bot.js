@@ -240,8 +240,12 @@ bot.on('message', message => {
     if (message.content.startsWith(PREFIX + "dm")) {
         if (message.member.roles.has(admin)) {
             let guild = message.guild;
-            let content = message.content.substr(22)
+            let content = message.content.substr(26)
             guild.member(message.mentions.users.first()).send(content)
+            var attachments = (message.attachments).array()
+            if (message.attachments.array().length >= 1){ guild.member(message.mentions.users.first()).send(content)
+                attachments.forEach(function(attachment){guild.member(message.mentions.users.first()).send({file:`${attachment.url}`})
+            if (message.attachments.array().length <= 0){ guild.member(message.mentions.users.first()).send(content)}
         }else message.channel.send("sorry that command is for admins only");
     }
     if (message.content.startsWith(PREFIX + "suggest")) {
