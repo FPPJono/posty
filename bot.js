@@ -285,6 +285,12 @@ bot.on('message', message => {
             s = s.replace(/[abcdefghijklmnopqrstuvwxyz1234567890 ]/g, m => chars[m]);
             message.channel.send(`${s}`)
         }
+        if (message.content.startsWith(PREFIX + "emote")) {
+            var chars = {'a': '🅰', 'b': '🅱', 'c': '🇨', 'd': '🇩', 'e': '🇪', 'f': '🇫', 'g': '🇬', 'h': '🇭', 'i': '🇮', 'j': '🇯', 'k': '🇰', 'l': '🇱', 'm': '🇲', 'n': '🇳', 'o': '🅾', 'p': '🇵', 'q': '🇶', 'r': '🇷', 's': '🇸', 't': '🇹', 'u': '🇺', 'v': '🇻', 'w': '🇼', 'x': '🇽', 'y': '🇾', 'z': '🇿'};
+            var s = rip.substr(7);
+            s = s.replace(/[abcdefghijklmnopqrstuvwxyz]/g, m => chars[m]);
+            message.channel.send(`${s}`)
+        }
     });
 
 bot.on('messageReactionAdd', (reaction, user) => {
