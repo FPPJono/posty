@@ -253,7 +253,7 @@ bot.on('message', message => {
                 "url": `${person.avatarURL}`
             },
             "author": {
-                "name": `${person}`,
+                "name": `${person.username}`,
                 "icon_url": `${person.avatarURL}`
             },
             "fields": [
@@ -275,7 +275,7 @@ bot.on('message', message => {
                 },
                 {
                     "name": "Joined",
-                    "value": `${message.guild.member(person).joinedTimestamp}`
+                    "value": `${message.guild.member(person).joinedAt.toUTCString}`
                 }
             ]
         };
