@@ -128,7 +128,7 @@ bot.on('message', message => {
         }
     }
     if (message.content.startsWith(PREFIX + "randomhex")) {
-        let color = `${getRandomInt(16777215)}`
+        let color = getRandomInt(16777215)
         var embed = {
             "description": `#${decimalToHexString(color)}`,
             "color": color
