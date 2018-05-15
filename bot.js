@@ -239,6 +239,46 @@ bot.on('message', message => {
             guild.channels.get(warnChannel).send({ embed });
         } else message.channel.send("sorry that command is for admins only");
     }
+    if (message.content.startsWith(PREFIX + "userinfo")) {
+        let guild = message.guild;
+        if (message.mentions.users.array().toString().length >= 1) { 
+            let person = message.mentions.users.first()
+        }else {let person = message.author}
+        let color = message.guild.member(person).displayColor
+        const embed = {
+            "color": color,
+            "thumbnail": {
+                "url": `${person.avatarURL}`
+            },
+            "author": {
+                "name": `${person}`,
+                "icon_url": `${person.avatarURL}`
+            },
+            "fields": [
+                {
+                    "name": "Display name",
+                    "value": `${message.guild.member(person).displayName}`
+                },
+                {
+                    "name": "User ID",
+                    "value": `${person.id}`
+                },
+                {
+                    "name": "Roles",
+                    "value": `${message.guild.member(person).roles.array().toString().substr(0, 1024)}`
+                },
+                {
+                    "name": "Top Role Color",
+                    "value": `${message.guild.member(person).displayHexColor}` 
+                },
+                {
+                    "name": "Joined",
+                    "value": `${message.guild.member(person).joinedTimestamp}`
+                }
+            ]
+        };
+        message.channel.send({ embed });
+    }
     if (message.content.startsWith(PREFIX + "dm")) {
         if (message.member.roles.has(admin)) {
             let guild = message.guild;
