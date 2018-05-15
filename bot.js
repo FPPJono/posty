@@ -119,14 +119,13 @@ bot.on('message', message => {
     }
     if (message.content.startsWith(PREFIX + "randomhex")) {
         let color = `${getRandomInt(16777215)}`
-        const embed = {
-            "description": `#${color.hexColor}`,
-            "url": "https://discordapp.com",
-            "color": color,
-            "footer": {
-                "icon_url": "https://cdn.discordapp.com/app-icons/416446498264580096/4f17fb88d33f4655d85154ee064f030d.png",
-                "text": "Copyright Jono's Jontronics Ltd. 2097"
-            }
+        var colorembed = {
+            "description": `bef`,
+            "color": color
+        };
+        var embed = {
+            "description": `#${colorembed.hexColor}`,
+            "color": color
         };
         message.channel.send({ embed });
     }
