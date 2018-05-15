@@ -242,8 +242,10 @@ bot.on('message', message => {
     if (message.content.startsWith(PREFIX + "userinfo")) {
         let guild = message.guild;
         if (message.mentions.users.array().toString().length >= 1) { 
-            let person = message.mentions.users.first()
-        }else let person = message.author
+            var person = message.mentions.users.first()
+        }else {
+            var person = message.author
+        }
         let color = message.guild.member(person).displayColor
         const embed = {
             "color": color,
