@@ -118,7 +118,7 @@ bot.on('message', message => {
         }
     }
     if (message.content.startsWith(PREFIX + "randomhex")) {
-        let color = ${getRandomInt(99999999)}
+        let color = `${getRandomInt(99999999)}`
         const embed = {
             "description": `#${color.hexColor}`,
             "url": "https://discordapp.com",
