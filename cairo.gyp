@@ -2,7 +2,7 @@
   "targets": [
     {
       "target_name": "cairo",
-      "sources": [ "\libcairo.so.2" ]
+      "sources": [ "libcairo.so.2" ]
     }
   ]
 }
