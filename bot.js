@@ -117,6 +117,19 @@ bot.on('message', message => {
             message.react('👎')
         }
     }
+    if (message.content.startsWith(PREFIX + "randomhex")) {
+        let color = ${getRandomInt(99999999)}
+        const embed = {
+            "description": `#${color.hexColor}`,
+            "url": "https://discordapp.com",
+            "color": color,
+            "footer": {
+                "icon_url": "https://cdn.discordapp.com/app-icons/416446498264580096/4f17fb88d33f4655d85154ee064f030d.png",
+                "text": "Copyright Jono's Jontronics Ltd. 2097"
+            }
+        };
+        message.channel.send({ embed });
+    }
     const swearWords = ["nigger", "chink", "tranny", "fag", "dyke", "nigga", "kike", "retard", "autist", "negroid", "dike"];
     var swearCheck = rip.replace(/\s/g, '')
     var swearCheck = rip.replace(/​/g, '').replace(/ /g, '')
