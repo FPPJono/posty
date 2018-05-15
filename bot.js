@@ -275,7 +275,7 @@ bot.on('message', message => {
                 },
                 {
                     "name": "Joined",
-                    "value": `${message.guild.member(person).joinedAt.toUTCString}`
+                    "value": `${message.guild.member(person).joinedAt.toUTCString()}`
                 }
             ]
         };
