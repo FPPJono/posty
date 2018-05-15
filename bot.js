@@ -1,5 +1,6 @@
 const Discord = require('discord.js');
 const bot = new Discord.Client();
+const mysql = require("mysql");
 const PREFIX = "!";
 var gameMessage = new Function('return true')
 
@@ -23,6 +24,19 @@ doc.useServiceAccountAuth(creds, function (err) {
 });
 
 //Bot Code
+
+//mysql
+var con = mysql.createConnection({
+    host: "localhost",
+    user: "root",
+    password: process.env.mysqlPass,
+    database: "bacon"
+})
+
+con.connect(err => {
+    if(err) throw err;
+    console.log("connected to database!")
+})
 
 //channels
 const slurChannel = '421794351224455169'
