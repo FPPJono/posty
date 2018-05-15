@@ -119,12 +119,8 @@ bot.on('message', message => {
     }
     if (message.content.startsWith(PREFIX + "randomhex")) {
         let color = `${getRandomInt(16777215)}`
-        var colorembed = {
-            "description": `bef`,
-            "color": color
-        };
         var embed = {
-            "description": `#${colorembed.hexColor}`,
+            "description": `#${color.toString(16)}`,
             "color": color
         };
         message.channel.send({ embed });
