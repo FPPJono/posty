@@ -54,6 +54,16 @@ function wait(ms) {
     }
 }
 
+function decimalToHexString(number)
+{
+    if (number < 0)
+    {
+        number = 0xFFFFFFFF + number + 1;
+    }
+
+    return number.toString(16).toUpperCase();
+}
+
 bot.on('ready', () => {
     console.log('I am ready!');
     bot.user.setPresence({ game: { name: 'I turned on !!', type: 0 } }); //playing game
@@ -120,7 +130,7 @@ bot.on('message', message => {
     if (message.content.startsWith(PREFIX + "randomhex")) {
         let color = `${getRandomInt(16777215)}`
         var embed = {
-            "description": `#${color.toString(16)}`,
+            "description": `#${decimalToHexString(color)}`,
             "color": color
         };
         message.channel.send({ embed });
