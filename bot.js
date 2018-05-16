@@ -1,26 +1,47 @@
+//bot requirements
 const Discord = require('discord.js');
 const bot = new Discord.Client();
 const PREFIX = "!";
 var gameMessage = new Function('return true')
 
-//google sheets stuff
-var fs = require('fs');
-var readline = require('readline');
-var google = require('googleapis');
-var googleAuth = require('google-auth-library');
-var GoogleSpreadsheet = require('google-spreadsheet');
-var creds = require('./client_secret.json');
+//google sheets API connection
+var request = require('request');
+var cheerio = require('cheerio');
+var Spreadsheet = require('edit-google-spreadsheet');
 
-// Create a document object using the ID of the spreadsheet - obtained from its URL.
-var doc = new GoogleSpreadsheet('_vjNCPU8lsbbEFfGBWPIE9AovE_Df1eX4xORNxLK5g');
+var ticker = "LVS"
+var yURL = "hhtp://finance.yahoo.com/q/ks?s="
+var financeDetails = new Array()
+var keyStr = new Array()
 
-// Authenticate with the Google Spreadsheets API.
-doc.useServiceAccountAuth(creds, function (err) {
-    // Get all of the rows from the spreadsheet.
-    doc.getRows(1, function (err, rows) {
-        console.log(rows);
-    });
-});
+function sheetReady(err, spreadsheet) {
+    if (err) throw (err)
+    spreadsheet.add({1: {1:"steve"}})
+    spreadsheet.add({1:{2:"bef"}})
+    spreadsheet.add({2:{1:"test"}})
+}
+
+request(yURL, function (error, response, body) {
+    if (!error && response.statusCode == 200) {
+        var $ = cheerio.load(body)
+        var td = $('.yfnc_tablehead1')
+        $(td).each(function(j, val) {
+            keyStr[j] = $(val).text()
+        })
+        var tData = $('.yfnc_tablehead1')
+        $(tData).each(function(j, val) {
+            financeDetails[j] = $(val).text()
+        })
+        Spreadsheet.create({
+            debug: true,
+            username: "fppjono@gmail.com",
+            password: process.env.password,
+            spreadsheetName: "test",
+            worksheetName: "yote",
+            callback: sheetReady
+        })
+    }
+})
 
 //Bot Code
 
