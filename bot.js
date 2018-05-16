@@ -111,7 +111,7 @@ bot.on('message', message => {
             message.channel.send("sorry, that command is for admins only")
                 .then(m => m.delete(5000));
     }
-    if (rip.includes("<@416446498264580096>")) {
+    if ((rip.includes("<@416446498264580096>"))||(rip.includes("<@!416446498264580096>"))) {
         message.channel.send("shut up");
     }
     if (rip.includes("bacon")) {
