@@ -208,6 +208,13 @@ bot.on('message', message => {
         } else
             message.channel.send("sorry thats for admins only");
     }
+    if (message.content.startsWith(PREFIX + "stoptype")) {
+        if (message.member.roles.has(admin)) {
+            message.delete().catch(O_o => { })
+            message.channel.stopTyping()
+        } else
+            message.channel.send("sorry thats for admins only");
+    }
     if (message.content.startsWith(PREFIX + "rate")) {
         const thingToRate = args.join(" ");
         var ratedThing = thingToRate.substr(5);
@@ -470,7 +477,7 @@ bot.on('messageUpdate', (omsg, nmsg) => {
 bot.on('messageDelete', message => {
     let guild = message.guild;
     if (message.author.bot) return;
-    if ((message.content.startsWith('!clear'))||(message.content.startsWith('!send'))||(message.content.startsWith('!warn'))||(message.content.startsWith('!suggest'))||(message.content.startsWith('!type'))) return;
+    if ((message.content.startsWith('!clear'))||(message.content.startsWith('!send'))||(message.content.startsWith('!warn'))||(message.content.startsWith('!suggest'))||(message.content.startsWith('!type'))||(message.content.startsWith('!stoptype'))) return;
     const swearWords = ["nigger", "chink", "tranny", "fag", "dyke", "nigga", "kike", "retard", "autist", "negroid", "dike"];
     let rip = message.content.toLowerCase()
     var swearCheck = rip.replace(/\s/g, '')
