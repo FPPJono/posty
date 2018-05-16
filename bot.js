@@ -12,7 +12,7 @@ var Spreadsheet = require('edit-google-spreadsheet');
 var google = require('googleapis');
 var sheets = google.sheets('v4');
 
-authorize(function(authClient) {
+/*authorize(function(authClient) {
   var request = {
     spreadsheetId: '1LAT5fQd7lOsH_tQyCleufWLCMua6MGHRDAjxqpz0AOI',
     range: 'Sheet1',
@@ -47,7 +47,7 @@ function authorize(callback) {
     return;
   }
   callback(authClient);
-}
+}*/
 
 //Bot Code
 
