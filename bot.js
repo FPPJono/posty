@@ -193,7 +193,7 @@ bot.on('message', message => {
             var attachments = (message.attachments).array()
             message.delete().catch(O_o => { });
             message.channel.startTyping()
-            wait(((useContent.toString().array().length()/3)*1000))
+            wait(((useContent.toString().length()/3)*1000))
             if (message.attachments.array().length >= 1) {
                 message.channel.send(`${useContent}`)
                 attachments.forEach(function (attachment) { message.channel.send({ file: `${attachment.url}` }) })
