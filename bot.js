@@ -193,12 +193,16 @@ bot.on('message', message => {
             var attachments = (message.attachments).array()
             message.delete().catch(O_o => { });
             message.channel.startTyping()
-                .then(m => m.channel.stopTyping((useContent.length/3)*1000))
-            if (message.attachments.array().length >= 1) {
-                message.channel.send(`${useContent}`)
-                attachments.forEach(function (attachment) { message.channel.send({ file: `${attachment.url}` }) })
-            }
-            if (message.attachments.array().length <= 0) { message.channel.send(`${useContent}`) }
+                .then(() => {
+                    wait((useContent.length/3)*1000)
+                    if (message.attachments.array().length >= 1) {
+                        message.channel.send(`${useContent}`)
+                        attachments.forEach(function (attachment) { message.channel.send({ file: `${attachment.url}` }) })
+                    }
+                    if (message.attachments.array().length <= 0) { message.channel.send(`${useContent}`) }
+                    message.channel.stopTyping()
+                })
+
         } else
             message.channel.send("sorry thats for admins only");
     }
