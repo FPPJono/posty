@@ -201,6 +201,12 @@ bot.on('message', message => {
         } else
             message.channel.send("sorry thats for admins only");
     }
+    if (message.content.startsWith(PREFIX + "type")) {
+        if (message.member.roles.has(admin)) {
+            message.channel.startTyping()
+        } else
+            message.channel.send("sorry thats for admins only");
+    }
     if (message.content.startsWith(PREFIX + "rate")) {
         const thingToRate = args.join(" ");
         var ratedThing = thingToRate.substr(5);
