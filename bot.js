@@ -9,35 +9,44 @@ var request = require('request');
 var cheerio = require('cheerio');
 var Spreadsheet = require('edit-google-spreadsheet');
 
-function makeApiCall() {
-  var params = {
-    spreadsheetId: process.env.API_KEY,
+var google = require('googleapis');
+var sheets = google.sheets('v4');
+
+authorize(function(authClient) {
+  var request = {
+    spreadsheetId: '1LAT5fQd7lOsH_tQyCleufWLCMua6MGHRDAjxqpz0AOI',
     range: 'Sheet1',
+    auth: authClient,
   };
 
-  var request = gapi.client.sheets.spreadsheets.values.get(params);
-  request.then(function(response) {
-    console.log(response.result);
-  }, function(reason) {
-    console.error('error: ' + reason.result.error.message);
+  sheets.spreadsheets.values.get(request, function(err, response) {
+    if (err) {
+      console.error(err);
+      return;
+    }
+
+    // TODO: Change code below to process the `response` object:
+    console.log(JSON.stringify(response, null, 2));
   });
-}
+});
 
-function initClient() {
-  var API_KEY = 'AIzaSyAPLVDUwAx_FG98sURWqOZ0kPMtwuLvdF4';
+function authorize(callback) {
+  // TODO: Change placeholder below to generate authentication credentials. See
+  // https://developers.google.com/sheets/quickstart/nodejs#step_3_set_up_the_sample
+  //
+  // Authorize using one of the following scopes:
+  //   'https://www.googleapis.com/auth/drive'
+  //   'https://www.googleapis.com/auth/drive.file'
+  //   'https://www.googleapis.com/auth/drive.readonly'
+  //   'https://www.googleapis.com/auth/spreadsheets'
+  //   'https://www.googleapis.com/auth/spreadsheets.readonly'
+  var authClient = 'https://www.googleapis.com/auth/spreadsheets.readonly'
 
-  var CLIENT_ID = '308956282144-atph68r3pod34uq1ital82iv4da0p1l9.apps.googleusercontent.com';
-  var SCOPE = 'http://www.googleapis.com/auth/spreadsheets.readonly';
-
-  gapi.client.init({
-    'apiKey': API_KEY,
-    'clientId': CLIENT_ID,
-    'scope': SCOPE,
-    'discoveryDocs': ['https://sheets.googleapis.com/$discovery/rest?version=v4'],
-  }).then(function() {
-    gapi.auth2.getAuthInstance().isSignedIn.listen(updateSignInStatus);
-    updateSignInStatus(gapi.auth2.getAuthInstance().isSignedIn.get());
-  });
+  if (authClient == null) {
+    console.log('authentication failed');
+    return;
+  }
+  callback(authClient);
 }
 
 //Bot Code
