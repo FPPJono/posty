@@ -470,10 +470,7 @@ bot.on('messageUpdate', (omsg, nmsg) => {
 bot.on('messageDelete', message => {
     let guild = message.guild;
     if (message.author.bot) return;
-    if (message.content.startsWith('!clear')) return;
-    if (message.content.startsWith('!send')) return;
-    if (message.content.startsWith('!warn')) return;
-    if (message.content.startsWith('!suggest')) return;
+    if (message.content.startsWith('!clear'||'!send'||'!warn'||'!suggest'||'!type')) return;
     const swearWords = ["nigger", "chink", "tranny", "fag", "dyke", "nigga", "kike", "retard", "autist", "negroid", "dike"];
     let rip = message.content.toLowerCase()
     var swearCheck = rip.replace(/\s/g, '')
