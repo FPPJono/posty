@@ -11,7 +11,7 @@ var Spreadsheet = require('edit-google-spreadsheet');
 
 function makeApiCall() {
   var params = {
-    spreadsheetId: '1LAT5fQd7lOsH_tQyCleufWLCMua6MGHRDAjxqpz0AOI',
+    spreadsheetId: process.env.API_KEY,
     range: 'Sheet1',
   };
 
@@ -30,7 +30,7 @@ function initClient() {
   var SCOPE = 'http://www.googleapis.com/auth/spreadsheets.readonly';
 
   gapi.client.init({
-    'apiKey': process.env.API_KEY,
+    'apiKey': API_KEY,
     'clientId': CLIENT_ID,
     'scope': SCOPE,
     'discoveryDocs': ['https://sheets.googleapis.com/$discovery/rest?version=v4'],
