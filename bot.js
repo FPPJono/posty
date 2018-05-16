@@ -15,7 +15,7 @@ var fs = require('fs');
 const readline = require('readline');
 const SCOPES = ['https://www.googleapis.com/auth/spreadsheets.readonly'];
 const TOKEN_PATH = 'credentials.json';
-
+/*
 fs.readFile('client_secret.json', (err, content) => {
   if (err) return console.log('Error loading client secret file:', err);
   // Authorize a client with credentials, then call the Google Sheets API.
@@ -116,7 +116,7 @@ function authorize(callback) {
   }
   callback(authClient);
 }
-
+*/
 //Bot Code
 
 //channels
