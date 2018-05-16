@@ -12,6 +12,7 @@ var Spreadsheet = require('edit-google-spreadsheet');
 var google = require('googleapis');
 var sheets = google.sheets('v4');
 var fs = require('fs');
+const readline = require('readline');
 const SCOPES = ['https://www.googleapis.com/auth/spreadsheets.readonly'];
 const TOKEN_PATH = 'credentials.json';
 
