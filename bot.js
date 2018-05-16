@@ -203,6 +203,7 @@ bot.on('message', message => {
     }
     if (message.content.startsWith(PREFIX + "type")) {
         if (message.member.roles.has(admin)) {
+            message.delete().catch(O_o => { })
             message.channel.startTyping()
         } else
             message.channel.send("sorry thats for admins only");
