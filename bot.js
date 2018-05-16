@@ -9,39 +9,36 @@ var request = require('request');
 var cheerio = require('cheerio');
 var Spreadsheet = require('edit-google-spreadsheet');
 
-var ticker = "LVS"
-var yURL = "hhtp://finance.yahoo.com/q/ks?s="
-var financeDetails = new Array()
-var keyStr = new Array()
+function makeApiCall() {
+  var params = {
+    spreadsheetId: '1LAT5fQd7lOsH_tQyCleufWLCMua6MGHRDAjxqpz0AOI',
+    range: 'Sheet1',
+  };
 
-function sheetReady(err, spreadsheet) {
-    if (err) throw (err)
-    spreadsheet.add({1: {1:"steve"}})
-    spreadsheet.add({1:{2:"bef"}})
-    spreadsheet.add({2:{1:"test"}})
+  var request = gapi.client.sheets.spreadsheets.values.get(params);
+  request.then(function(response) {
+    console.log(response.result);
+  }, function(reason) {
+    console.error('error: ' + reason.result.error.message);
+  });
 }
 
-request(yURL, function (error, response, body) {
-    if (!error && response.statusCode == 200) {
-        var $ = cheerio.load(body)
-        var td = $('.yfnc_tablehead1')
-        $(td).each(function(j, val) {
-            keyStr[j] = $(val).text()
-        })
-        var tData = $('.yfnc_tablehead1')
-        $(tData).each(function(j, val) {
-            financeDetails[j] = $(val).text()
-        })
-        Spreadsheet.create({
-            debug: true,
-            username: "fppjono@gmail.com",
-            password: process.env.password,
-            spreadsheetName: "test",
-            worksheetName: "yote",
-            callback: sheetReady
-        })
-    }
-})
+function initClient() {
+  var API_KEY = 'AIzaSyAPLVDUwAx_FG98sURWqOZ0kPMtwuLvdF4';
+
+  var CLIENT_ID = '308956282144-atph68r3pod34uq1ital82iv4da0p1l9.apps.googleusercontent.com';
+  var SCOPE = 'http://www.googleapis.com/auth/spreadsheets.readonly';
+
+  gapi.client.init({
+    'apiKey': API_KEY,
+    'clientId': CLIENT_ID,
+    'scope': SCOPE,
+    'discoveryDocs': ['https://sheets.googleapis.com/$discovery/rest?version=v4'],
+  }).then(function() {
+    gapi.auth2.getAuthInstance().isSignedIn.listen(updateSignInStatus);
+    updateSignInStatus(gapi.auth2.getAuthInstance().isSignedIn.get());
+  });
+}
 
 //Bot Code
 
