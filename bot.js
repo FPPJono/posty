@@ -283,15 +283,7 @@ bot.on('message', message => {
     if (message.content.startsWith(PREFIX + "rate")) {
         const thingToRate = args.join(" ");
         var ratedThing = thingToRate.substr(5);
-        const embed = {
-            "description": `I would rate ${ratedThing} ${getRandomInt(10)} out of 10!`,
-            "url": "https://discordapp.com",
-            "color": 65535,
-            "footer": {
-                "icon_url": "https://cdn.discordapp.com/app-icons/416446498264580096/4f17fb88d33f4655d85154ee064f030d.png",
-                "text": "Copyright Jono's Jontronics Ltd. 2097"
-            }
-        };
+        var embed = basicEmbed(65535, `I would rate ${ratedThing} ${getRandomInt(10)} out of 10!`)
         message.channel.send({ embed });
     }
     if (message.content.startsWith(PREFIX + "clear")) {
@@ -303,14 +295,7 @@ bot.on('message', message => {
             message.channel.fetchMessages({ limit: Math.min(messagecount + 1, 100) })
             message.channel.bulkDelete(messagecount)
                 .then(() => {
-                    const embed = {
-                        "description": `:white_check_mark: Deleted ${messagecount} messages.`,
-                        "color": 123732,
-                        "author": {
-                            "name": "The Magical Message Deleter",
-                            "icon_url": "https://cdn.discordapp.com/app-icons/416446498264580096/4f17fb88d33f4655d85154ee064f030d.png"
-                        }
-                    };
+                    var embed = basicEmbed(123732, `:white_check_mark: Deleted ${messagecount} messages.`)
                     message.channel.send({ embed })
                         .then(m => m.delete(5000));
                 })
@@ -320,28 +305,12 @@ bot.on('message', message => {
     }
     if (message.content.startsWith(PREFIX + "8ball")) {
         if (args[1] != null) {
-            const embed = {
-                "description": `${eightBall[Math.floor(Math.random() * eightBall.length).toString(16)]}`,
-                "url": "https://discordapp.com",
-                "color": 122353,
-                "footer": {
-                    "icon_url": "https://cdn.discordapp.com/app-icons/416446498264580096/4f17fb88d33f4655d85154ee064f030d.png",
-                    "text": "The Magic 8 Ball Machine"
-                }
-            };
+            var embed = basicEmbed(122353, `${eightBall[Math.floor(Math.random() * eightBall.length).toString(16)]}`)
             message.channel.send({ embed });
         } else message.channel.send("what's your question? lol\n```Correct usage: !8ball question```");
     }
     if (message.content.startsWith(PREFIX + "coinflip")) {
-        const embed = {
-            "description": `${coinFlip[Math.floor(Math.random() * coinFlip.length).toString(16)]}`,
-            "url": "https://discordapp.com",
-            "color": 16776448,
-            "footer": {
-                "icon_url": "https://cdn.discordapp.com/app-icons/416446498264580096/4f17fb88d33f4655d85154ee064f030d.png",
-                "text": "The Coin Flipper 3,000"
-            }
-        };
+        var embed = basicEmbed(16776448, `${coinFlip[Math.floor(Math.random() * coinFlip.length).toString(16)]}`)
         message.channel.send({ embed });
     }
     if (message.content.startsWith(PREFIX + "warn")) {
