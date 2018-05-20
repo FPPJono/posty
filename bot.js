@@ -137,6 +137,14 @@ function getRandomInt(max) {
     return Math.floor(Math.random() * Math.floor(max));
 }
 
+function basicEmbed(color, text) {
+  var embed = {
+    "description": `${text}`,
+    "color": color
+  };
+  return(embed)
+}
+
 //lists
 var eightBall = ["I would say..... yes!", "Probably not", "heck maybe, idk", "I dont think so", "eh, probably", "hmmm.... maybe not", "*concentrate*, and try again", "look man im just a bot go ask someone who cares", "those who ask will get their answer eventually, try again", "haha! yes!", "hah, nope"]
 var coinFlip = ["The coin landed on heads!", "The coin landed on tails"]
@@ -224,10 +232,11 @@ bot.on('message', message => {
     }
     if (message.content.startsWith(PREFIX + "randomhex")) {
         let color = getRandomInt(16777215)
-        var embed = {
+        /*var embed = {
             "description": `#${decimalToHexString(color)}`,
             "color": color
-        };
+        };*/
+        basicEmbed(color, `#${decimalToHexString(color)}`)
         message.channel.send({ embed });
     }
     const swearWords = ["nigger", "chink", "tranny", "fag", "dyke", "nigga", "kike", "retard", "autist", "negroid", "dike"];
