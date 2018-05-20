@@ -138,10 +138,7 @@ function getRandomInt(max) {
 }
 
 function basicEmbed(color, text) {
-  var embed = {
-    "description": `${text}`,
-    "color": color
-  };
+  var embed = {"description": `${text}`,"color": color};
   return(embed)
 }
 
@@ -159,11 +156,7 @@ function wait(ms) {
 
 function decimalToHexString(number)
 {
-    if (number < 0)
-    {
-        number = 0xFFFFFFFF + number + 1;
-    }
-
+    if (number < 0) {number = 0xFFFFFFFF + number + 1}
     return number.toString(16).toUpperCase();
 }
 
@@ -232,11 +225,11 @@ bot.on('message', message => {
     }
     if (message.content.startsWith(PREFIX + "randomhex")) {
         let color = getRandomInt(16777215)
-        /*var embed = {
+        var embed = {
             "description": `#${decimalToHexString(color)}`,
             "color": color
-        };*/
-        basicEmbed(color, `#${decimalToHexString(color)}`)
+        };
+        //basicEmbed(color, `#${decimalToHexString(color)}`)
         message.channel.send({ embed });
     }
     const swearWords = ["nigger", "chink", "tranny", "fag", "dyke", "nigga", "kike", "retard", "autist", "negroid", "dike"];
