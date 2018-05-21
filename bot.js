@@ -237,7 +237,7 @@ bot.on('message', message => {
         var embed = basicEmbed(color, `#${decimalToHexString(color)}`)
         message.channel.send({ embed });
     }
-    const swearWords = ["nigger", "chink", "tranny", "fag", "dyke", "nigga", "kike", "retard", "autist", "negroid", "dike"];
+    const swearWords = ["nigger", "chink", "tranny", "fag", "dyke", "nigga", "kike", "autist", "negroid", "dike"];
     var swearCheck = rip.replace(/\s/g, '')
     var swearCheck = rip.replace(/​/g, '').replace(/ /g, '').replace(/᠎/g, '')
     const byPass = ["halfaglass", "klondike", "warfage"]
@@ -522,7 +522,7 @@ bot.on('messageDelete', message => {
     let guild = message.guild;
     if (message.author.bot) return;
     if ((message.content.startsWith('!clear'))||(message.content.startsWith('!send'))||(message.content.startsWith('!warn'))||(message.content.startsWith('!suggest'))||(message.content.startsWith('!type'))||(message.content.startsWith('!stoptype'))) return;
-    const swearWords = ["nigger", "chink", "tranny", "fag", "dyke", "nigga", "kike", "retard", "autist", "negroid", "dike"];
+    const swearWords = ["nigger", "chink", "tranny", "fag", "dyke", "nigga", "kike", "autist", "negroid", "dike"];
     let rip = message.content.toLowerCase()
     var swearCheck = rip.replace(/\s/g, '')
     if (swearWords.some(word => swearCheck.includes(word))) return;
