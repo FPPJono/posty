@@ -586,7 +586,7 @@ const correctchannel = "447967753639297025"
 bot.on('ready', () => {
     bot.channels.get(correctchannel).send("test")
     bot.channels.get(correctchannel).bulkDelete(2)
-    const embed = {"description": "```To get a timezone role,\njust react to this message with the emote\nthats next to the time zone role you want```\n*if your time zone isnt here, tell someone and it'll probably be added at some point*","color": 965737,"fields": [{"name": ":regional_indicator_a:","value": "AZ (UTC - 7)"},{"name":":regional_indicator_b:","value": "Central Time (UTC - 6)"},{"name":":regional_indicator_c:","value": "NZ (UTC + 12)"},{"name":":regional_indicator_d:","value": "PDT (UTC - 7)"}]};
+    const embed = {"description": "```To get a timezone role,\njust react to this message with the emote\nthats next to the time zone role you want```\n*if your time zone isnt here, tell someone and it'll probably be added at some point*","color": 965737,"fields": [{"name": ":regional_indicator_a:","value": "AZ (UTC - 7)"},{"name":":regional_indicator_b:","value": "Central Time (UTC - 6)"},{"name":":regional_indicator_c:","value": "NZ (UTC + 12)"},{"name":":regional_indicator_d:","value": "PDT (UTC - 8)"}]};
     bot.channels.get(correctchannel).send({embed})
         .then(function (message) {
             message.react("🇦")
