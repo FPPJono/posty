@@ -594,7 +594,7 @@ bot.on('ready', () => {
             message.react("🇨")
             message.react("🇩")
         });
-    bot.channels.get(correctchannel).send("*if your time zone isnt here,\nplease send it in <#425570477281378305>*")
+    bot.channels.get(correctchannel).send("if your time zone isnt here,please send it in <#425570477281378305>")
 });
 
 bot.on('messageReactionAdd', (reaction, user) => {
