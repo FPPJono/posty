@@ -569,5 +569,31 @@ bot.on('messageDelete', message => {
     guild.channels.get(deleteEditChannel).send({ embed });
 });
 
+//timeRoles
+
+const correctchannel = "447967753639297025"
+/*
+bot.on('ready', () => {
+    bot.channels.get(correctchannel).send("test")
+    bot.channels.get(correctchannel).bulkDelete(2)
+    const timeEmbed = 
+    bot.channels.get(correctchannel).send({embed})
+        .then(function (message) {
+            message.react("🇳🇿")
+        });
+});
+*/
+bot.on('messageReactionAdd', (reaction, user) => {
+    if (reaction.emoji.name === "✅") {
+        if (user.bot) return;
+        let guild = reaction.message.guild;
+        let member = guild.member(user);
+        if (reaction.message.channel != bot.channels.get(correctchannel)) {
+            return;
+        }
+        member.addRole('421793270142861322');
+    }
+});
+
 // Sneaky Sneaky Token. Dont Share Kiddos
 bot.login(process.env.BOT_TOKEN);
