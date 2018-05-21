@@ -192,6 +192,16 @@ bot.on('message', message => {
             message.channel.send("sorry, that command is for admins only")
                 .then(m => m.delete(5000));
     }
+    if (message.content.startsWith(PREFIX + "watching")) {
+        if (message.member.roles.has(admin)) {
+            let content = args.join(" ")
+            var useContent = content.substr(9);
+            bot.user.setPresence({ game: { name: useContent, type: 3 } });
+            console.log(`${sender.username} just made the bot watching ${useContent}`)
+        } else
+            message.channel.send("sorry, that command is for admins only")
+                .then(m => m.delete(5000));
+    }
     if ((rip.includes("<@416446498264580096>"))||(rip.includes("<@!416446498264580096>"))) {
         message.channel.send("shut up");
     }
