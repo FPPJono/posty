@@ -582,26 +582,46 @@ bot.on('messageDelete', message => {
 //timeRoles
 
 const correctchannel = "447967753639297025"
-/*
+
 bot.on('ready', () => {
     bot.channels.get(correctchannel).send("test")
     bot.channels.get(correctchannel).bulkDelete(2)
-    const timeEmbed = 
+    const embed = {"description": "```To get a timezone role,\njust react to this message with the emote\nthats next to the time zone role you want```","color": 965737,"fields": [{"name": ":regional_indicator_a:","value": "AZ (UTC - 7)"},{"name":":regional_indicator_b:","value": "Central Time (UTC - 6)"},{"name":":regional_indicator_c:","value": "NZ (UTC + 12)"}]};
     bot.channels.get(correctchannel).send({embed})
         .then(function (message) {
-            message.react("🇳🇿")
+            message.react("🇦")
+            message.react("🇧")
+            message.react("🇨")
         });
 });
-*/
+
 bot.on('messageReactionAdd', (reaction, user) => {
-    if (reaction.emoji.name === "✅") {
+    if (reaction.emoji.name === "🇦") {
         if (user.bot) return;
         let guild = reaction.message.guild;
         let member = guild.member(user);
         if (reaction.message.channel != bot.channels.get(correctchannel)) {
             return;
         }
-        member.addRole('421793270142861322');
+        member.addRole('447978247695892499');
+    }
+    if (reaction.emoji.name === "🇧") {
+        if (user.bot) return;
+        let guild = reaction.message.guild;
+        let member = guild.member(user);
+        if (reaction.message.channel != bot.channels.get(correctchannel)) {
+            return;
+        }
+        member.addRole('447979856710336513');
+    }
+    if (reaction.emoji.name === "🇨") {
+        if (user.bot) return;
+        let guild = reaction.message.guild;
+        let member = guild.member(user);
+        if (reaction.message.channel != bot.channels.get(correctchannel)) {
+            return;
+        }
+        member.addRole('447970716953083925');
     }
 });
 
