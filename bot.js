@@ -476,7 +476,7 @@ bot.on('message', async message => {
 
 //Reaction Handling
 
-function reactionRole(channel, roleid, emoji) {
+function reactionRole(channel, roleid, emoji, reaction, user) {
     if (reaction.emoji.name === emoji) {
         if (user.bot) return;
         let guild = reaction.message.guild;
@@ -648,10 +648,10 @@ bot.on('ready', () => {
 });
 
 bot.on('messageReactionAdd', (reaction, user) => {
-    reactionRole(correctchannel, '447978247695892499', "🇦")
-    reactionRole(correctchannel, '447979856710336513', "🇧")
-    reactionRole(correctchannel, '447970716953083925', "🇨")
-    reactionRole(correctchannel, '447983013758894100', "🇩")
+    reactionRole(correctchannel, '447978247695892499', "🇦", reaction, user)
+    reactionRole(correctchannel, '447979856710336513', "🇧", reaction, user)
+    reactionRole(correctchannel, '447970716953083925', "🇨", reaction, user)
+    reactionRole(correctchannel, '447983013758894100', "🇩", reaction, user)
     /*
     if (reaction.emoji.name === "🇦") {
         if (user.bot) return;
