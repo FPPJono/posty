@@ -1,6 +1,7 @@
 //bot requirements
 const Discord = require('discord.js');
 const ytdl = require('ytdl-core')
+const ffmpeg = require('ffmpeg-binaries')
 const bot = new Discord.Client();
 const PREFIX = "!";
 var gameMessage = new Function('return true')
