@@ -447,7 +447,7 @@ bot.on('message', async message => {
     //Music bot commands
 
     if (message.content.startsWith(`${PREFIX}play`)) {
-        const voiceChannel = message.author.voiceChannel
+        const voiceChannel = message.member.voiceChannel
         if (!voiceChannel) return message.channel.send("you must be in a voice channel to use this command")
         const permissions = voiceChannel.permissionsFor(message.client.user)
         if (!permissions.has('CONNECT')) {
