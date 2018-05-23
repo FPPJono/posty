@@ -466,6 +466,7 @@ bot.on('message', async message => {
     const dispatcher = connection.playStream(ytdl(args[1]))
         .on('end', () => {
             console.log("song ended")
+            voiceChannel.leave()
         })
         .on('error', error => {
             console.log(error)
