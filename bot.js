@@ -462,11 +462,10 @@ bot.on('message', async message => {
         } catch (error) {
             console.log(`I could not join the voice channel: ${error}`)
         }
-        const streamOptions = {seek:0, volume:1}
         voiceChannel.join()
           .then(connection => {
             const stream = ytdl('https://www.youtube.com/watch?v=b3hvAOb8arY', {filter: 'audioonly'})
-            const dispatcher = connection.playStream(stream, streamOptions)
+            const dispatcher = connection.playStream(stream)
           })
     }
     if(message.content.startsWith(`${PREFIX}leave`)) {
