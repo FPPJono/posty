@@ -469,6 +469,9 @@ bot.on('message', async message => {
             const dispatcher = connection.playStream(stream, streamOptions)
           })
     }
+    if(message.content.startsWith(`${PREFIX}leave`)) {
+      message.member.voiceChannel.leave()
+    }
 });
 
 
