@@ -463,18 +463,30 @@ bot.on('message', async message => {
             console.log(`I could not join the voice channel: ${error}`)
         }
         voiceChannel.join()
-          .then(connection => {
-            const stream = ytdl('https://www.youtube.com/watch?v=b3hvAOb8arY', {filter: 'audioonly'})
-            const dispatcher = connection.playStream(stream)
-          })
+            .then(connection => {
+                const stream = ytdl('https://www.youtube.com/watch?v=b3hvAOb8arY', { filter: 'audioonly' })
+                const dispatcher = connection.playStream(stream)
+            })
     }
-    if(message.content.startsWith(`${PREFIX}leave`)) {
-      message.member.voiceChannel.leave()
+    if (message.content.startsWith(`${PREFIX}leave`)) {
+        message.member.voiceChannel.leave()
     }
 });
 
 
-//Reaction Handling (will create function to decrease lines used)
+//Reaction Handling
+
+function reactionRole(channel, roleid, emoji) {
+    if (reaction.emoji.name === emoji) {
+        if (user.bot) return;
+        let guild = reaction.message.guild;
+        let member = guild.member(user);
+        if (reaction.message.channel != bot.channels.get(channel)) {
+            return;
+        }
+        member.addRole(roleid);
+    }
+}
 
 bot.on('messageReactionAdd', (reaction, user) => {
     if (reaction.emoji.name === "✅") {
@@ -636,6 +648,11 @@ bot.on('ready', () => {
 });
 
 bot.on('messageReactionAdd', (reaction, user) => {
+    reactionRole(correctchannel, '447978247695892499', "🇦")
+    reactionRole(correctchannel, '447979856710336513', "🇧")
+    reactionRole(correctchannel, '447970716953083925', "🇨")
+    reactionRole(correctchannel, '447983013758894100', "🇩")
+    /*
     if (reaction.emoji.name === "🇦") {
         if (user.bot) return;
         let guild = reaction.message.guild;
@@ -672,6 +689,7 @@ bot.on('messageReactionAdd', (reaction, user) => {
         }
         member.addRole('447983013758894100');
     }
+    */
 });
 
 // Sneaky Sneaky Token. Dont Share Kiddos
