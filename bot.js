@@ -462,16 +462,14 @@ bot.on('message', async message => {
         } catch (error) {
             console.log(`I could not join the voice channel: ${error}`)
         }
+        const streamOptions = {seek:0, volume:1}
+        voiceChannel.join()
+          .then(connection => {
+            const stream = ytdl(args[1], {filter: 'audioonly'})
+            const dispatcher = connection.playStream(stream, streamOptions)
+          })
     }
 
-    const dispatcher = connection.playStream(ytdl(args[1]))
-        .on('end', () => {
-            console.log("song ended")
-            voiceChannel.leave()
-        })
-        .on('error', error => {
-            console.log(error)
-        });
     dispatcher.setVolumeLogarithmic(5 / 5)
 });
 
