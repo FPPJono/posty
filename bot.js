@@ -652,44 +652,6 @@ bot.on('messageReactionAdd', (reaction, user) => {
     reactionRole(correctchannel, '447979856710336513', "🇧", reaction, user)
     reactionRole(correctchannel, '447970716953083925', "🇨", reaction, user)
     reactionRole(correctchannel, '447983013758894100', "🇩", reaction, user)
-    /*
-    if (reaction.emoji.name === "🇦") {
-        if (user.bot) return;
-        let guild = reaction.message.guild;
-        let member = guild.member(user);
-        if (reaction.message.channel != bot.channels.get(correctchannel)) {
-            return;
-        }
-        member.addRole('447978247695892499');
-    }
-    if (reaction.emoji.name === "🇧") {
-        if (user.bot) return;
-        let guild = reaction.message.guild;
-        let member = guild.member(user);
-        if (reaction.message.channel != bot.channels.get(correctchannel)) {
-            return;
-        }
-        member.addRole('447979856710336513');
-    }
-    if (reaction.emoji.name === "🇨") {
-        if (user.bot) return;
-        let guild = reaction.message.guild;
-        let member = guild.member(user);
-        if (reaction.message.channel != bot.channels.get(correctchannel)) {
-            return;
-        }
-        member.addRole('447970716953083925');
-    }
-    if (reaction.emoji.name === "🇩") {
-        if (user.bot) return;
-        let guild = reaction.message.guild;
-        let member = guild.member(user);
-        if (reaction.message.channel != bot.channels.get(correctchannel)) {
-            return;
-        }
-        member.addRole('447983013758894100');
-    }
-    */
 });
 
 // Sneaky Sneaky Token. Dont Share Kiddos
