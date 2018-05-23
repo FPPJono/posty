@@ -469,8 +469,6 @@ bot.on('message', async message => {
             const dispatcher = connection.playStream(stream, streamOptions)
           })
     }
-
-    dispatcher.setVolumeLogarithmic(5 / 5)
 });
 
 
