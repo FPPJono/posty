@@ -448,7 +448,7 @@ bot.on('message', async message => {
 
     if (message.content.startsWith(`${PREFIX}play`)) {
         const voiceChannel = message.author.voiceChannel
-        if (!voiceChannel) return message.channel.send({ basicEmbed(122353, "you must be in a voice channel to use this command") })
+        if (!voiceChannel) return message.channel.send("you must be in a voice channel to use this command")
         const permissions = voiceChannel.permissionsFor(message.client.user)
         if (!permissions.has('CONNECT')) {
             return message.channel.send("I cannot connect to that voice channel")
