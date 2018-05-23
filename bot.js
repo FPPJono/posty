@@ -465,7 +465,7 @@ bot.on('message', async message => {
         const streamOptions = {seek:0, volume:1}
         voiceChannel.join()
           .then(connection => {
-            const stream = ytdl(args[1], {filter: 'audioonly'})
+            const stream = ytdl('https://www.youtube.com/watch?v=b3hvAOb8arY', {filter: 'audioonly'})
             const dispatcher = connection.playStream(stream, streamOptions)
           })
     }
