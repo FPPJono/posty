@@ -648,7 +648,7 @@ bot.on('ready', () => {
     bot.channels.get(correctchannel).send("if your time zone isnt here,please send it in <#425570477281378305>")
 });
 
-bot.on('messageReactionAdd', (reaction, user) => {
+bot.on('messageReactionAdd', async (reaction, user) => {
     reactionRoleToggle(correctchannel, '447978247695892499', "🇦", reaction, user, ['447979856710336513','447970716953083925','447983013758894100'])
     reactionRoleToggle(correctchannel, '447979856710336513', "🇧", reaction, user, ['447978247695892499','447970716953083925','447983013758894100'])
     reactionRoleToggle(correctchannel, '447970716953083925', "🇨", reaction, user, ['447978247695892499','447979856710336513','447983013758894100'])
