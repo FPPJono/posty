@@ -485,6 +485,7 @@ function reactionRoleToggle(channel, roleid, emoji, reaction, user, roles) {
             return;
         }
         member.addRole(roleid);
+        member.removeRoles(roles)
     }
 }
 
