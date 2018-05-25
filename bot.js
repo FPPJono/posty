@@ -484,8 +484,7 @@ function reactionRoleToggle(channel, roleid, emoji, reaction, user, roles) {
         if (reaction.message.channel != bot.channels.get(channel)) {
             return;
         }
-        member.removeRoles(roles)
-        member.addRole(roleid);
+        member.removeRoles(roles).then(member.addRole(roleid))
     }
 }
 
