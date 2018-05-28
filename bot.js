@@ -247,6 +247,7 @@ bot.on('message', message => {
     const byPass = ["halfaglass", "klondike", "warfage", "of a g"]
     if (swearWords.some(word => swearCheck.includes(word))) {
         if (byPass.some(word => swearCheck.includes(word))) return;
+        if (byPass.some(word => rip.includes(word))) return;
         let guild = message.guild;
         let color = message.guild.member(message.author).displayColor
         message.delete()
