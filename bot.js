@@ -54,7 +54,7 @@ bot.on('ready', () => {
     bot.user.setPresence({ game: { name: 'I turned on !!', type: 0 } }); //playing game
     wait(5000)
     bot.user.setPresence({ game: { name: 'something heck idk', type: 0 } });
-    bot.user.setUsername("Posty");
+    bot.user.setUsername("Leon Dechino");
 });
 
 bot.on('message', message => {
