@@ -11,129 +11,17 @@ var request = require('request');
 var cheerio = require('cheerio');
 var Spreadsheet = require('edit-google-spreadsheet');
 
-var google = require('googleapis');
-var sheets = google.sheets('v4');
-var fs = require('fs');
-const readline = require('readline');
-const SCOPES = ['https://www.googleapis.com/auth/spreadsheets.readonly'];
-const TOKEN_PATH = 'credentials.json';
-/*
-fs.readFile('client_secret.json', (err, content) => {
-  if (err) return console.log('Error loading client secret file:', err);
-  // Authorize a client with credentials, then call the Google Sheets API.
-  authorize(JSON.parse(content), listMajors);
-});
-
-function authorize(credentials, callback) {
-  const {client_secret, client_id, redirect_uris} = credentials.installed;
-  const oAuth2Client = new google.auth.OAuth2(
-      client_id, client_secret, redirect_uris[0]);
-
-  // Check if we have previously stored a token.
-  fs.readFile(TOKEN_PATH, (err, token) => {
-    if (err) return getNewToken(oAuth2Client, callback);
-    oAuth2Client.setCredentials(JSON.parse(token));
-    callback(oAuth2Client);
-  });
-}
-
-function getNewToken(oAuth2Client, callback) {
-  const authUrl = oAuth2Client.generateAuthUrl({
-    access_type: 'offline',
-    scope: SCOPES,
-  });
-  console.log('Authorize this app by visiting this url:', authUrl);
-  const rl = readline.createInterface({
-    input: process.stdin,
-    output: process.stdout,
-  });
-  rl.question('Enter the code from that page here: ', (code) => {
-    rl.close();
-    oAuth2Client.getToken(code, (err, token) => {
-      if (err) return callback(err);
-      oAuth2Client.setCredentials(token);
-      // Store the token to disk for later program executions
-      fs.writeFile(TOKEN_PATH, JSON.stringify(token), (err) => {
-        if (err) console.error(err);
-        console.log('Token stored to', TOKEN_PATH);
-      });
-      callback(oAuth2Client);
-    });
-  });
-}
-
-function listMajors(auth) {
-  const sheets = google.sheets({version: 'v4', auth});
-  sheets.spreadsheets.values.get({
-    spreadsheetId: '1BxiMVs0XRA5nFMdKvBdBZjgmUUqptlbs74OgvE2upms',
-    range: 'Class Data!A2:E',
-  }, (err, {data}) => {
-    if (err) return console.log('The API returned an error: ' + err);
-    const rows = data.values;
-    if (rows.length) {
-      console.log('Name, Major:');
-      // Print columns A and E, which correspond to indices 0 and 4.
-      rows.map((row) => {
-        console.log(`${row[0]}, ${row[4]}`);
-      });
-    } else {
-      console.log('No data found.');
-    }
-  });
-}
-
-authorize(function(authClient) {
-  var request = {
-    spreadsheetId: '1LAT5fQd7lOsH_tQyCleufWLCMua6MGHRDAjxqpz0AOI',
-    range: 'Sheet1',
-    auth: authClient,
-  };
-
-  sheets.spreadsheets.values.get(request, function(err, response) {
-    if (err) {
-      console.error(err);
-      return;
-    }
-
-    // TODO: Change code below to process the `response` object:
-    console.log(JSON.stringify(response, null, 2));
-  });
-});
-
-function authorize(callback) {
-  // TODO: Change placeholder below to generate authentication credentials. See
-  // https://developers.google.com/sheets/quickstart/nodejs#step_3_set_up_the_sample
-  //
-  // Authorize using one of the following scopes:
-  //   'https://www.googleapis.com/auth/drive'
-  //   'https://www.googleapis.com/auth/drive.file'
-  //   'https://www.googleapis.com/auth/drive.readonly'
-  //   'https://www.googleapis.com/auth/spreadsheets'
-  //   'https://www.googleapis.com/auth/spreadsheets.readonly'
-  var authClient = 'https://www.googleapis.com/auth/spreadsheets.readonly'
-
-  if (authClient == null) {
-    console.log('authentication failed');
-    return;
-  }
-  callback(authClient);
-}
-*/
 //Bot Code
 
 //channels
-const slurChannel = '421794351224455169'
-const deleteEditChannel = '421839991929569281'
-const warnChannel = '421794304059768852'
-const suggestChannel = '423547474704072715'
-const memesChannel = '421790539021811722'
-const artChannel = '421790550778183701'
-const announcements = '421770846915264526'
-const welcome = '421790758933233664'
-const banter = '421778879133384705'
+const memesChannel = '450243552681918465'
+const hof = '450244347137359874'
+const collections = '450243593026666507'
+const artChannel = '450243533799161856'
+const suggestChannel = '450568346824343555'
 
 //roles
-const admin = '421779825699848212'
+const admin = '450156424694071296'
 
 function getRandomInt(max) {
     return Math.floor(Math.random() * Math.floor(max));
@@ -165,21 +53,14 @@ bot.on('ready', () => {
     console.log('I am ready!');
     bot.user.setPresence({ game: { name: 'I turned on !!', type: 0 } }); //playing game
     wait(5000)
-    bot.user.setPresence({ game: { name: 'in some dirt', type: 0 } });
-    bot.user.setUsername("Kevin Bacon");
-    bot.channels.get(welcome).send("test")
-    bot.channels.get(welcome).bulkDelete(2)
-    bot.channels.get(welcome).send("Welcome to the Swag Pigs Server!\nBy clicking the ✅ button below, you agree to all the rules stated in <#421791585861238784>.\nOnce you have hit the checkmark, go ahead to <#421778879133384705> to say hi to everyone, and check out the other channel topics we have on the server! 🐷")
-        .then(function (message) {
-            message.react("✅")
-        });
+    bot.user.setPresence({ game: { name: 'something heck idk', type: 0 } });
+    bot.user.setUsername("Posty");
 });
 
 bot.on('message', message => {
     var sender = message.author;
     if (message.author.bot) return;
     const args = message.content.split(" ");
-    var announcement = bot.channels.get(announcements);
     let rip = message.content.toLowerCase()
     if (message.content.startsWith(PREFIX + "ping")) {
         message.channel.send(`Pong! ${new Date().getTime() - message.createdTimestamp}ms`)
@@ -191,7 +72,7 @@ bot.on('message', message => {
             bot.user.setPresence({ game: { name: useContent, type: 0 } });
             console.log(`${sender.username} just changed the game to ${useContent}`)
         } else
-            message.channel.send("sorry, that command is for admins only")
+            message.channel.send("sorry, that command is for staff only")
                 .then(m => m.delete(5000));
     }
     if (message.content.startsWith(PREFIX + "watching")) {
@@ -201,21 +82,8 @@ bot.on('message', message => {
             bot.user.setPresence({ game: { name: useContent, type: 3 } });
             console.log(`${sender.username} just made the bot watching ${useContent}`)
         } else
-            message.channel.send("sorry, that command is for admins only")
+            message.channel.send("sorry, that command is for staff only")
                 .then(m => m.delete(5000));
-    }
-    if ((rip.includes("<@416446498264580096>")) || (rip.includes("<@!416446498264580096>"))) {
-        message.channel.send("shut up");
-    }
-    if (rip.includes("bacon")) {
-        message.react("🐷")
-    }
-    if (rip.includes("dab")) {
-        message.react('380221447295205376')
-    }
-    if (rip.includes("spreadsheet")) {
-        message.react('416071297920008192')
-        message.channel.send("ha loser")
     }
     if (message.channel.id === artChannel) {
         let a = message.attachments.array().length;
@@ -240,32 +108,6 @@ bot.on('message', message => {
         message.channel.send({ embed });
     }
 
-    //slur detection (not that great ngl)
-    const swearWords = ["nigger", "chink", "tranny", "fag", "dyke", "nigga", "kike", "autist", "negroid", "dike"];
-    var swearCheck = rip.replace(/\s/g, '')
-    var swearCheck = rip.replace(/​/g, '').replace(/ /g, '').replace(/᠎/g, '')
-    const byPass = ["halfaglass", "klondike", "warfage", "of a g"]
-    if (swearWords.some(word => swearCheck.includes(word))) {
-        if (byPass.some(word => swearCheck.includes(word))) return;
-        if (byPass.some(word => rip.includes(word))) return;
-        let guild = message.guild;
-        let color = message.guild.member(message.author).displayColor
-        message.delete()
-        message.channel.send("Please refrain from using slurs. A copy of your message has been sent to the Admins.")
-            .then(m => m.delete(7500));
-        const embed = {
-            "description": `${message.author.username} detected using slurs:\nMessage sent in channel #${message.channel.name}\nMessage sent by ${message.author.username} is below\n"${message.content}"`,
-            "color": color,
-            "thumbnail": {
-                "url": `${message.author.avatarURL}`
-            },
-            "author": {
-                "name": "The Slur Finder Machine",
-                "icon_url": "https://cdn.discordapp.com/app-icons/416446498264580096/4f17fb88d33f4655d85154ee064f030d.png"
-            }
-        };
-        guild.channels.get(slurChannel).send({ embed });
-    }
     if (message.content.startsWith(PREFIX + "send")) {
         if (message.member.roles.has(admin)) {
             const sayMessage = args.join(" ");
@@ -277,23 +119,8 @@ bot.on('message', message => {
                 attachments.forEach(function (attachment) { message.channel.send({ file: `${attachment.url}` }) })
             }
             if (message.attachments.array().length <= 0) { message.channel.send(`${useContent}`) }
-            message.channel.stopTyping()
         } else
-            message.channel.send("sorry thats for admins only");
-    }
-    if (message.content.startsWith(PREFIX + "type")) {
-        if (message.member.roles.has(admin)) {
-            message.delete().catch(O_o => { })
-            message.channel.startTyping()
-        } else
-            message.channel.send("sorry thats for admins only");
-    }
-    if (message.content.startsWith(PREFIX + "stoptype")) {
-        if (message.member.roles.has(admin)) {
-            message.delete().catch(O_o => { })
-            message.channel.stopTyping()
-        } else
-            message.channel.send("sorry thats for admins only");
+            message.channel.send("sorry thats for staff only");
     }
     if (message.content.startsWith(PREFIX + "rate")) {
         const thingToRate = args.join(" ");
@@ -315,7 +142,7 @@ bot.on('message', message => {
                         .then(m => m.delete(5000));
                 })
         } else
-            message.channel.send("sorry thats for admins only :/")
+            message.channel.send("sorry thats for staff only :/")
                 .then(m => m.delete(5000));
     }
     if (message.content.startsWith(PREFIX + "8ball")) {
@@ -346,7 +173,7 @@ bot.on('message', message => {
                 }
             };
             guild.channels.get(warnChannel).send({ embed });
-        } else message.channel.send("sorry that command is for admins only");
+        } else message.channel.send("sorry that command is for staff only");
     }
     if (message.content.startsWith(PREFIX + "userinfo")) {
         let guild = message.guild;
@@ -390,17 +217,6 @@ bot.on('message', message => {
         };
         message.channel.send({ embed });
     }
-    if (message.content.startsWith(PREFIX + "dm")) {
-        if (message.member.roles.has(admin)) {
-            let guild = message.guild;
-            let content = message.content.substr(26)
-            guild.member(message.mentions.users.first()).send(content)
-            var attachments = (message.attachments).array()
-            if (message.attachments.array().length >= 1) {
-                attachments.forEach(function (attachment) { guild.member(message.mentions.users.first()).send({ file: `${attachment.url}` }) })
-            }
-        } else message.channel.send("sorry that command is for admins only");
-    }
     if (message.content.startsWith(PREFIX + "suggest")) {
         let guild = message.guild;
         let suggestion = message.content.substr(8)
@@ -443,216 +259,6 @@ bot.on('message', message => {
         message.channel.send(`${s}`)
     }
 
-});
-
-bot.on('message', async message => {
-    //Music bot commands
-
-    if (message.content.startsWith(`${PREFIX}play`)) {
-        const voiceChannel = message.member.voiceChannel
-        if (!voiceChannel) return message.channel.send("you must be in a voice channel to use this command")
-        const permissions = voiceChannel.permissionsFor(message.client.user)
-        if (!permissions.has('CONNECT')) {
-            return message.channel.send("I cannot connect to that voice channel")
-        }
-        if (!permissions.has('SPEAK')) {
-            return message.channel.send('I cannot speak in this voice channel, check my permissions and try again')
-        }
-        try {
-            var connection = await voiceChannel.join()
-        } catch (error) {
-            console.log(`I could not join the voice channel: ${error}`)
-        }
-        voiceChannel.join()
-            .then(connection => {
-                const stream = ytdl('https://www.youtube.com/watch?v=b3hvAOb8arY', { filter: 'audioonly' })
-                const dispatcher = connection.playStream(stream)
-            })
-    }
-    if (message.content.startsWith(`${PREFIX}leave`)) {
-        message.member.voiceChannel.leave()
-    }
-});
-
-
-//Reaction Handling
-
-function reactionRoleToggle(channel, roleid, emoji, reaction, user, roles) {
-    if (reaction.emoji.name === emoji) {
-        if (user.bot) return;
-        let guild = reaction.message.guild;
-        let member = guild.member(user);
-        if (reaction.message.channel != bot.channels.get(channel)) {
-            return;
-        }
-        member.removeRoles(roles).then(member.addRole(roleid))
-    }
-}
-
-bot.on('messageReactionAdd', (reaction, user) => {
-    if (reaction.emoji.name === "✅") {
-        if (user.bot) return;
-        let guild = reaction.message.guild;
-        let member = guild.member(user);
-        if (reaction.message.channel != bot.channels.get(welcome)) {
-            return;
-        }
-        bot.channels.get(banter).send(`Welcome ${reaction.users.array().toString().substr(reaction.users.array().toString().length - 21)} to the Swag Pigs server!`);
-        console.log(`${reaction.users.array().toString().substr(reaction.users.array().toString().length - 21)} reacted with "${reaction.emoji.name}".`);
-        member.addRole('421793270142861322');
-    }
-});
-
-//Delete Edit Log Code
-bot.on('messageUpdate', (omsg, nmsg) => {
-    if (omsg.author.bot) return;
-    if (omsg.content === nmsg.content) return;
-    console.log(`${omsg.author.username} just edited their message`);
-    let guild = omsg.guild;
-    let color = guild.member(omsg.author).displayColor
-    var attachments = (omsg.attachments).array()
-    if (omsg.attachments.array().length >= 1) {
-        var embed = {
-            "title": `${omsg.author.username} just edited their message`,
-            "description": `Message sent in channel #${omsg.channel.name}`,
-            "color": color,
-            "thumbnail": {
-                "url": `${omsg.author.avatarURL}`
-            },
-            "image": {
-                "url": `${attachments[0].url}`
-            },
-            "author": {
-                "name": "The Magical Edit Searcher",
-                "icon_url": "https://cdn.discordapp.com/app-icons/416446498264580096/4f17fb88d33f4655d85154ee064f030d.png"
-            },
-            "fields": [
-                {
-                    "name": "Original message:",
-                    "value": `${omsg.content.substr(0, 1024)}`
-                },
-                {
-                    "name": "New Message:",
-                    "value": `${nmsg.content.substr(0, 1024)}`
-                },
-                {
-                    "name": "Attached Image",
-                    "value": `Link: ${attachments[0].url}`
-                }
-            ]
-        }
-    }
-    if (omsg.attachments.array().length <= 0) {
-        var embed = {
-            "title": `${omsg.author.username} just edited their message`,
-            "description": `Message sent in channel #${omsg.channel.name}`,
-            "color": color,
-            "thumbnail": {
-                "url": `${omsg.author.avatarURL}`
-            },
-            "author": {
-                "name": "The Magical Edit Searcher",
-                "icon_url": "https://cdn.discordapp.com/app-icons/416446498264580096/4f17fb88d33f4655d85154ee064f030d.png"
-            },
-            "fields": [
-                {
-                    "name": "Original message:",
-                    "value": `${omsg.content.substr(0, 1024)}`
-                },
-                {
-                    "name": "New Message:",
-                    "value": `${nmsg.content.substr(0, 1024)}`
-                }
-            ]
-        }
-    }
-    guild.channels.get(deleteEditChannel).send({ embed });
-});
-
-bot.on('messageDelete', message => {
-    let guild = message.guild;
-    if (message.author.bot) return;
-    if ((message.content.startsWith('!clear')) || (message.content.startsWith('!send')) || (message.content.startsWith('!warn')) || (message.content.startsWith('!suggest')) || (message.content.startsWith('!type')) || (message.content.startsWith('!stoptype'))) return;
-    const swearWords = ["nigger", "chink", "tranny", "fag", "dyke", "nigga", "kike", "autist", "negroid", "dike"];
-    let rip = message.content.toLowerCase()
-    var swearCheck = rip.replace(/\s/g, '')
-    if (swearWords.some(word => swearCheck.includes(word))) return;
-    console.log(`${message.author} just deleted their message`)
-    let color = message.guild.member(message.author).displayColor
-    var attachments = (message.attachments).array()
-    if (message.attachments.array().length >= 1) {
-        var embed = {
-            "title": `${message.author.username} just deleted their message`,
-            "description": `Message sent in channel #${message.channel.name}`,
-            "color": color,
-            "thumbnail": {
-                "url": `${message.author.avatarURL}`
-            },
-            "image": {
-                "url": `${attachments[0].url}`
-            },
-            "author": {
-                "name": "The Delete Scanner",
-                "icon_url": "https://cdn.discordapp.com/app-icons/416446498264580096/4f17fb88d33f4655d85154ee064f030d.png"
-            },
-            "fields": [
-                {
-                    "name": "Original message:",
-                    "value": `${message.content.substr(0, 1024)}`
-                },
-                {
-                    "name": "Attached Image",
-                    "value": `Link: ${attachments[0].url}`
-                }
-            ]
-        }
-    }
-    if (message.attachments.array().length <= 0) {
-        var embed = {
-            "title": `${message.author.username} just deleted their message`,
-            "description": `Message sent in channel #${message.channel.name}`,
-            "color": color,
-            "thumbnail": {
-                "url": `${message.author.avatarURL}`
-            },
-            "author": {
-                "name": "The Delete Scanner",
-                "icon_url": "https://cdn.discordapp.com/app-icons/416446498264580096/4f17fb88d33f4655d85154ee064f030d.png"
-            },
-            "fields": [
-                {
-                    "name": "Original message:",
-                    "value": `${message.content.substr(0, 1024)}`
-                }
-            ]
-        }
-    }
-    guild.channels.get(deleteEditChannel).send({ embed });
-});
-
-//timeRoles
-
-const correctchannel = "447967753639297025"
-
-bot.on('ready', () => {
-    bot.channels.get(correctchannel).send("test")
-    bot.channels.get(correctchannel).bulkDelete(3)
-    const embed = { "description": "```To get a timezone role,\njust react to this message with the emote\nthats next to the time zone role you want```", "color": 965737, "fields": [{ "name": ":regional_indicator_a:", "value": "AZ (UTC - 7)" }, { "name": ":regional_indicator_b:", "value": "Central Time (UTC - 6)" }, { "name": ":regional_indicator_c:", "value": "NZ (UTC + 12)" }, { "name": ":regional_indicator_d:", "value": "PST (UTC - 8)" }] };
-    bot.channels.get(correctchannel).send({ embed })
-        .then(function (message) {
-            message.react("🇦")
-            message.react("🇧")
-            message.react("🇨")
-            message.react("🇩")
-        });
-    bot.channels.get(correctchannel).send("if your time zone isnt here,please send it in <#425570477281378305>")
-});
-
-bot.on('messageReactionAdd', async (reaction, user) => {
-    reactionRoleToggle(correctchannel, '447978247695892499', "🇦", reaction, user, ['447979856710336513','447970716953083925','447983013758894100'])
-    reactionRoleToggle(correctchannel, '447979856710336513', "🇧", reaction, user, ['447978247695892499','447970716953083925','447983013758894100'])
-    reactionRoleToggle(correctchannel, '447970716953083925', "🇨", reaction, user, ['447978247695892499','447979856710336513','447983013758894100'])
-    reactionRoleToggle(correctchannel, '447983013758894100', "🇩", reaction, user, ['447978247695892499','447979856710336513','447970716953083925'])
 });
 
 // Sneaky Sneaky Token. Dont Share Kiddos
