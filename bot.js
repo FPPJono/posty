@@ -159,20 +159,7 @@ bot.on('message', message => {
         if (message.member.roles.has(admin)) {
             let guild = message.guild;
             let warning = message.content.substr(28)
-            let color = message.guild.member(message.mentions.users.first()).displayColor
             guild.member(message.mentions.users.first()).send(`you have been warned for: \`${warning}\` Please improve your behaviour or you may be kicked or banned from this server in the future.`)
-            const embed = {
-                "description": `${message.mentions.users.first().username} has been warned for the reason below:\n${warning}`,
-                "color": color,
-                "thumbnail": {
-                    "url": `${message.mentions.users.first().avatarURL}`
-                },
-                "author": {
-                    "name": "The Warning Machine",
-                    "icon_url": "https://cdn.discordapp.com/app-icons/416446498264580096/4f17fb88d33f4655d85154ee064f030d.png"
-                }
-            };
-            guild.channels.get(warnChannel).send({ embed });
         } else message.channel.send("sorry that command is for staff only");
     }
     if (message.content.startsWith(PREFIX + "userinfo")) {
@@ -232,7 +219,7 @@ bot.on('message', message => {
             },
             "author": {
                 "name": "The Suggestion Box",
-                "icon_url": "https://cdn.discordapp.com/app-icons/416446498264580096/4f17fb88d33f4655d85154ee064f030d.png"
+                "icon_url": "https://github.com/FPPJono/posty/blob/master/post-malone-youtube-640x407.jpg?raw=true"
             }
         };
         guild.channels.get(suggestChannel).send({ embed });
