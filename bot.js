@@ -85,13 +85,30 @@ bot.on('message', message => {
             message.channel.send("sorry, that command is for staff only")
                 .then(m => m.delete(5000));
     }
-    if (message.channel.id === artChannel)||(message.channel.id === collections) {
+    if (message.channel.id === collections) {
         let a = message.attachments.array().length;
         if (a >= 1) {
             message.react('👌')
         }
     }
-    if (message.channel.id === memesChannel)||(message.channel.id === hof) {
+    if (message.channel.id === artChannel) {
+        let a = message.attachments.array().length;
+        if (a >= 1) {
+            message.react('👌')
+        }
+    }
+    if (message.channel.id === memesChannel) {
+        let a = message.attachments.array().length;
+        if (a >= 1) {
+            message.react('👌')
+            message.react('👎')
+        }
+        if (rip.includes('http')) {
+            message.react('👌')
+            message.react('👎')
+        }
+    }
+    if (message.channel.id === hof) {
         let a = message.attachments.array().length;
         if (a >= 1) {
             message.react('👌')
