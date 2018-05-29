@@ -75,8 +75,12 @@ bot.on('message', message => {
                 0, 0, img.width, img.height, // source dimensions
                 0, 0, 500, 500               // destination dimensions
             );
+            var pth = path.join(BUILD_DIR,"score.jpg");
+            PImage.encodeJPEGToStream(img2,fs.createWriteStream(pth)).then(() => {
+                console.log("done writing");
+            });
         });
-        message.channel.send('toot', {files:[{attachment: img2, name:'file.png'}] })
+        message.channel.send('toot', {files:[{attachment: 'posty/scorecards/score.jpg', name:'file.jpg'}] })
     }
     if (message.content.startsWith(PREFIX + "playing")) {
         if (message.member.roles.has(admin)) {
