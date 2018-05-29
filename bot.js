@@ -76,12 +76,14 @@ bot.on('message', message => {
                 0, 0, img.width, img.height, // source dimensions
                 0, 0, 500, 500               // destination dimensions
             );
-            PImage.encodeJPEGToStream(img2,fs.createWriteStream(path)).then(() => {
+            PImage.encodeJPEGToStream(img2,fs.createWriteStream('scorecards/score.jpg')).then(() => {
                 console.log("done writing");
             });
-            var pth = path.join(BUILD_DIR,"score.jpg");
         });
-        message.channel.send('toot', {files:[{attachment: 'scorecards/beerbongs.png', name:'file.png'}] })
+        if (message.author.id === '246840305741987840') {
+            message.channel.send('toot')
+        }
+        message.channel.send({files:[{attachment: 'scorecards/score.jpg', name:'score.jpg'}] })
     }
     if (message.content.startsWith(PREFIX + "playing")) {
         if (message.member.roles.has(admin)) {
