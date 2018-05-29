@@ -1,15 +1,8 @@
 //bot requirements
 const Discord = require('discord.js');
-const ytdl = require('ytdl-core')
-const ffmpeg = require('ffmpeg-binaries')
 const bot = new Discord.Client();
 const PREFIX = "!";
 var gameMessage = new Function('return true')
-
-//google sheets API connection
-var request = require('request');
-var cheerio = require('cheerio');
-var Spreadsheet = require('edit-google-spreadsheet');
 
 //Bot Code
 
