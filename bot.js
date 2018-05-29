@@ -78,12 +78,13 @@ bot.on('message', message => {
             );
             PImage.encodeJPEGToStream(img2,fs.createWriteStream('scorecards/score.jpg')).then(() => {
                 console.log("done writing");
+                message.channel.send({files:[{attachment: 'scorecards/score.jpg', name:'score.jpg'}] })
             });
         });
         if (message.author.id === '246840305741987840') {
             message.channel.send('toot')
         }
-        message.channel.send({files:[{attachment: 'scorecards/score.jpg', name:'score.jpg'}] })
+
     }
     if (message.content.startsWith(PREFIX + "playing")) {
         if (message.member.roles.has(admin)) {
