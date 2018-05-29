@@ -73,12 +73,10 @@ bot.on('message', message => {
                 0, 0, img.width, img.height, // source dimensions
                 0, 0, 500, 500               // destination dimensions
             );
-            fnt.load(() => {
-                var ctx = c
-                ctx.fillStyle = '#ffffff'
-                ctx.font = "24pt 'Score Font'";
-                ctx.fillText("ABC", 80, 80);
-            });
+            var ctx = c
+            ctx.fillStyle = '#ffffff'
+            ctx.font = "24pt 'Score Font'";
+            ctx.fillText("ABC", 80, 80);
             PImage.encodeJPEGToStream(img2,fs.createWriteStream('scorecards/score.jpg')).then(() => {
                 console.log(`${message.author.username} has just checked their score`);
                 message.channel.send({files:[{attachment: 'scorecards/score.jpg', name:'score.jpg'}] })
