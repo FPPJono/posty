@@ -69,7 +69,7 @@ bot.on('message', message => {
     }
     if (message.content.startsWith('!score')) { 
         PImage.decodePNGFromStream(fs.createReadStream("scorecards/beerbongs.png")).then((img) => {
-            fnt.load(() => {
+            scoreFont.load(() => {
                 var img2 = PImage.make(500,500);
                 var c = img2.getContext('2d');
                 c.drawImage(img,
