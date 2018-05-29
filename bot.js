@@ -96,7 +96,7 @@ bot.on('message', message => {
         fnt.load(() => {
             var img = PImage.make(200,200);
             var ctx = img.getContext('2d');
-            ctx.fillStyle = '#ffffff';
+            ctx.fillStyle = '#000000';
             ctx.font = "48pt 'Score Font'";
             ctx.fillText("ABC", 80, 80);
             PImage.encodeJPEGToStream(img,fs.createWriteStream('scorecards/test.jpg')).then(() => {
