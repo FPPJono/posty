@@ -9,10 +9,6 @@ var PImage = require('pureimage');
 var img1 = PImage.make(500,500);
 var tmp = require('tmp')
 
-
-
-
-
 //Bot Code
 
 //channels
@@ -71,14 +67,16 @@ bot.on('message', message => {
         PImage.decodePNGFromStream(fs.createReadStream("scorecards/beerbongs.png")).then((img) => {
             var img2 = PImage.make(500,500);
             var c = img2.getContext('2d');
-            c.drawImage(img,
-                0, 0, img.width, img.height, // source dimensions
-                0, 0, 500, 500               // destination dimensions
-            );
+
             var fnt = PImage.registerFont('scorefont.ttf', 'Score Font')
             fnt.load(() => {
-                var img3 = PImage.make(200,200);
-                var ctx = img3.getContext('2d');
+                var img2 = PImage.make(500,500);
+                var c = img2.getContext('2d');
+                var ctx = img2.getContext('2d')
+                c.drawImage(img,
+                    0, 0, img.width, img.height, // source dimensions
+                    0, 0, 500, 500               // destination dimensions
+                );
                 ctx.fillStyle = '#ffffff';
                 ctx.font = "24pt 'Score Font'";
                 ctx.fillText("ABC", 80, 80);
