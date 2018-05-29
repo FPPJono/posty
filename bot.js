@@ -73,13 +73,19 @@ bot.on('message', message => {
             );
             var ctx = c
             var fnt = PImage.registerFont('scorefont.ttf', 'Score Font')
-            ctx.fillStyle = '#ffffff'
-            ctx.font = "24pt 'Score Font'";
-            ctx.fillText("ABC", 80, 80);
-            PImage.encodeJPEGToStream(img2,fs.createWriteStream('scorecards/score.jpg')).then(() => {
+            fnt.load(() => {
+                ctx.fillStyle = '#ffffff';
+                ctx.font = "48pt 'Score Font'";
+                ctx.fillText("ABC", 80, 80);
+                PImage.encodeJPEGToStream(img2,fs.createWriteStream('scorecards/test.jpg')).then(() => {
+                    console.log(`${message.author.username} has just checked their score`);
+                    message.channel.send({files:[{attachment: 'scorecards/test.jpg', name:'test.jpg'}] })
+                });
+            });
+            /*PImage.encodeJPEGToStream(img2,fs.createWriteStream('scorecards/score.jpg')).then(() => {
                 console.log(`${message.author.username} has just checked their score`);
                 message.channel.send({files:[{attachment: 'scorecards/score.jpg', name:'score.jpg'}] })
-            });
+            });*/
         });
         if (message.author.id === '246840305741987840') {
             message.channel.send('toot')
