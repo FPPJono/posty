@@ -74,7 +74,6 @@ bot.on('message', message => {
                     0, 0, img.width, img.height, // source dimensions
                     0, 0, 500, 500               // destination dimensions
                 );
-                ctx.fillStyle = '#ffffff';
                 ctx.font = "24pt 'Score Font'";
                 ctx.fillText("ABC", 80, 80);
             });
