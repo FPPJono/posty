@@ -2,7 +2,15 @@
 const Discord = require('discord.js');
 const bot = new Discord.Client();
 const PREFIX = "!";
+const fs = require('fs')
 var gameMessage = new Function('return true')
+
+var PImage = require('pureimage');
+var img1 = PImage.make(500,500);
+
+var scoreFont = PImage.registerFont('posty/scorefont.ttf', 'Score Font')
+
+
 
 //Bot Code
 
@@ -57,6 +65,18 @@ bot.on('message', message => {
     let rip = message.content.toLowerCase()
     if (message.content.startsWith(PREFIX + "ping")) {
         message.channel.send(`Pong! ${new Date().getTime() - message.createdTimestamp}ms`)
+    }
+    if (message.content.startsWith('!score')) { 
+        PImage.decodePNGFromStream(fs.createReadStream("posty/scorecards/beerbongs.png")).then((img) => {
+            console.log("size is",img.width,img.height);
+            var img2 = PImage.make(500,500);
+            var c = img2.getContext('2d');
+            c.drawImage(img,
+                0, 0, img.width, img.height, // source dimensions
+                0, 0, 500, 500               // destination dimensions
+            );
+        });
+        message.channel.send('toot', {files:[{attachment: img2, name:'file.png'}] })
     }
     if (message.content.startsWith(PREFIX + "playing")) {
         if (message.member.roles.has(admin)) {
