@@ -67,13 +67,12 @@ bot.on('message', message => {
         PImage.decodePNGFromStream(fs.createReadStream("scorecards/beerbongs.png")).then((img) => {
             var img2 = PImage.make(500,500);
             var c = img2.getContext('2d');
-
-            var fnt = PImage.registerFont('scorefont.ttf', 'Score Font')
             c.drawImage(img,
                 0, 0, img.width, img.height, // source dimensions
                 0, 0, 500, 500               // destination dimensions
             );
             var ctx = c
+            var fnt = PImage.registerFont('scorefont.ttf', 'Score Font')
             ctx.fillStyle = '#ffffff'
             ctx.font = "24pt 'Score Font'";
             ctx.fillText("ABC", 80, 80);
@@ -85,7 +84,20 @@ bot.on('message', message => {
         if (message.author.id === '246840305741987840') {
             message.channel.send('toot')
         }
-
+    }
+    if (rip.startsWith('!test')) {
+        var fnt = PImage.registerFont('scorefont.ttf', 'Score Font')
+        fnt.load(() => {
+            var img = PImage.make(200,200);
+            var ctx = img.getContext('2d');
+            ctx.fillStyle = '#ffffff';
+            ctx.font = "48pt 'Score Font'";
+            ctx.fillText("ABC", 80, 80);
+        });
+        PImage.encodeJPEGToStream(img,fs.createWriteStream('scorecards/test.jpg')).then(() => {
+            console.log(`${message.author.username} has just checked their score`);
+            message.channel.send({files:[{attachment: 'scorecards/test.jpg', name:'test.jpg'}] })
+        });
     }
     if (message.content.startsWith(PREFIX + "playing")) {
         if (message.member.roles.has(admin)) {
