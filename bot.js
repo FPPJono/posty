@@ -69,11 +69,12 @@ bot.on('message', message => {
             var c = img2.getContext('2d');
             var ctx = img2.getContext('2d')
             var fnt = PImage.registerFont('scorefont.ttf', 'Score Font')
+            c.drawImage(img,
+                0, 0, img.width, img.height, // source dimensions
+                0, 0, 500, 500               // destination dimensions
+            );
             fnt.load(() => {
-                c.drawImage(img,
-                    0, 0, img.width, img.height, // source dimensions
-                    0, 0, 500, 500               // destination dimensions
-                );
+                ctx.fillStyle = '#ffffff'
                 ctx.font = "24pt 'Score Font'";
                 ctx.fillText("ABC", 80, 80);
             });
