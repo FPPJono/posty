@@ -8,7 +8,7 @@ var gameMessage = new Function('return true')
 var PImage = require('pureimage');
 var img1 = PImage.make(500,500);
 
-var scoreFont = PImage.registerFont('posty/scorefont.ttf', 'Score Font')
+var scoreFont = PImage.registerFont('scorefont.ttf', 'Score Font')
 
 
 
@@ -67,7 +67,7 @@ bot.on('message', message => {
         message.channel.send(`Pong! ${new Date().getTime() - message.createdTimestamp}ms`)
     }
     if (message.content.startsWith('!score')) { 
-        PImage.decodePNGFromStream(fs.createReadStream("posty/scorecards/beerbongs.png")).then((img) => {
+        PImage.decodePNGFromStream(fs.createReadStream("scorecards/beerbongs.png")).then((img) => {
             console.log("size is",img.width,img.height);
             var img2 = PImage.make(500,500);
             var c = img2.getContext('2d');
@@ -80,7 +80,7 @@ bot.on('message', message => {
                 console.log("done writing");
             });
         });
-        message.channel.send('toot', {files:[{attachment: 'posty/scorecards/score.jpg', name:'file.jpg'}] })
+        message.channel.send('toot', {files:[{attachment: 'scorecards/score.jpg', name:'file.jpg'}] })
     }
     if (message.content.startsWith(PREFIX + "playing")) {
         if (message.member.roles.has(admin)) {
