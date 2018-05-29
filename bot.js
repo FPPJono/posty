@@ -93,10 +93,10 @@ bot.on('message', message => {
             ctx.fillStyle = '#ffffff';
             ctx.font = "48pt 'Score Font'";
             ctx.fillText("ABC", 80, 80);
-        });
-        PImage.encodeJPEGToStream(img,fs.createWriteStream('scorecards/test.jpg')).then(() => {
-            console.log(`${message.author.username} has just checked their score`);
-            message.channel.send({files:[{attachment: 'scorecards/test.jpg', name:'test.jpg'}] })
+            PImage.encodeJPEGToStream(img,fs.createWriteStream('scorecards/test.jpg')).then(() => {
+                console.log(`${message.author.username} has just checked their score`);
+                message.channel.send({files:[{attachment: 'scorecards/test.jpg', name:'test.jpg'}] })
+            });
         });
     }
     if (message.content.startsWith(PREFIX + "playing")) {
