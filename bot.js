@@ -9,7 +9,7 @@ var PImage = require('pureimage');
 var img1 = PImage.make(500,500);
 var tmp = require('tmp')
 
-var scoreFont = PImage.registerFont('scorefont.ttf', 'Score Font')
+
 
 
 
@@ -75,6 +75,7 @@ bot.on('message', message => {
                 0, 0, img.width, img.height, // source dimensions
                 0, 0, 500, 500               // destination dimensions
             );
+            var fnt = PImage.registerFont('scorefont.ttf', 'Score Font')
             fnt.load(() => {
                 var img3 = PImage.make(200,200);
                 var ctx = img3.getContext('2d');
