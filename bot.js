@@ -71,13 +71,13 @@ bot.on('message', message => {
         PImage.decodePNGFromStream(fs.createReadStream("scorecards/beerbongs.png")).then((img) => {
             scoreFont.load(() => {
                 var img2 = PImage.make(500,500);
-                var c = img2.getContext('2d');
-                c.drawImage(img,
+                var ctx = img2.getContext('2d');
+                ctx.drawImage(img,
                     0, 0, img.width, img.height, // source dimensions
                     0, 0, 500, 500               // destination dimensions
                 );
-                c.font = "24pt 'Score Font'"
-                c.fillText("befpacito", 80, 80)
+                ctx.font = "24pt 'Score Font'"
+                ctx.fillText("befpacito", 80, 80)
             })
             PImage.encodeJPEGToStream(img2,fs.createWriteStream('scorecards/score.jpg')).then(() => {
                 console.log(`${message.author.username} has just checked their score`);
