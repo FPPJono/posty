@@ -7,6 +7,7 @@ var gameMessage = new Function('return true')
 
 var PImage = require('pureimage');
 var img1 = PImage.make(500,500);
+var tmp = require('tmp')
 
 var scoreFont = PImage.registerFont('scorefont.ttf', 'Score Font')
 
@@ -75,10 +76,14 @@ bot.on('message', message => {
                 0, 0, img.width, img.height, // source dimensions
                 0, 0, 500, 500               // destination dimensions
             );
+            tmp.file(function _tempFileCreated(err, path, ds, cleanupCallback) {
+                PImage.encodeJPEGToStream(img2,fs.createWriteStream(path)).then(() => {
+                    console.log("done writing");
+                });
+                cleanupCallback()
+            })
             var pth = path.join(BUILD_DIR,"score.jpg");
-            PImage.encodeJPEGToStream(img2,fs.createWriteStream(pth)).then(() => {
-                console.log("done writing");
-            });
+
         });
         message.channel.send('toot', {files:[{attachment: 'scorecards/score.jpg', name:'file.jpg'}] })
     }
