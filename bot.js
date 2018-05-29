@@ -69,17 +69,20 @@ bot.on('message', message => {
     }
     if (message.content.startsWith('!score')) { 
         PImage.decodePNGFromStream(fs.createReadStream("scorecards/beerbongs.png")).then((img) => {
-            scoreFont.load(() => {
-                var img2 = PImage.make(500,500);
-                var ctx = img2.getContext('2d');
-                ctx.drawImage(img,
-                    0, 0, img.width, img.height, // source dimensions
-                    0, 0, 500, 500               // destination dimensions
-                );
-                ctx.font = "24pt 'Score Font'"
-                ctx.fillText("befpacito", 80, 80)
-            })
-            PImage.encodeJPEGToStream(img2,fs.createWriteStream('scorecards/score.jpg')).then(() => {
+            var img2 = PImage.make(500,500);
+            var c = img2.getContext('2d');
+            c.drawImage(img,
+                0, 0, img.width, img.height, // source dimensions
+                0, 0, 500, 500               // destination dimensions
+            );
+            fnt.load(() => {
+                var img3 = PImage.make(200,200);
+                var ctx = img3.getContext('2d');
+                ctx.fillStyle = '#ffffff';
+                ctx.font = "24pt 'Score Font'";
+                ctx.fillText("ABC", 80, 80);
+            });
+            PImage.encodeJPEGToStream(img3,fs.createWriteStream('scorecards/score.jpg')).then(() => {
                 console.log(`${message.author.username} has just checked their score`);
                 message.channel.send({files:[{attachment: 'scorecards/score.jpg', name:'score.jpg'}] })
             });
