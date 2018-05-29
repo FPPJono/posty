@@ -65,14 +65,11 @@ bot.on('message', message => {
     }
     if (message.content.startsWith('!score')) { 
         PImage.decodePNGFromStream(fs.createReadStream("scorecards/beerbongs.png")).then((img) => {
-            //var img2 = PImage.make(500,500);
-            //var c = img2.getContext('2d');
-
+            var img2 = PImage.make(500,500);
+            var c = img2.getContext('2d');
+            var ctx = img2.getContext('2d')
             var fnt = PImage.registerFont('scorefont.ttf', 'Score Font')
             fnt.load(() => {
-                var img2 = PImage.make(500,500);
-                var c = img2.getContext('2d');
-                var ctx = img2.getContext('2d')
                 c.drawImage(img,
                     0, 0, img.width, img.height, // source dimensions
                     0, 0, 500, 500               // destination dimensions
