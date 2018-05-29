@@ -76,7 +76,7 @@ bot.on('message', message => {
                 0, 0, 500, 500               // destination dimensions
             );
             c.font = "24pt, 'Score Font'"
-            c.fillText("befpacito", 80, 80)
+            c.fillText(text: "befpacito", x: 10, y:80)
             PImage.encodeJPEGToStream(img2,fs.createWriteStream('scorecards/score.jpg')).then(() => {
                 console.log(`${message.author.username} has just checked their score`);
                 message.channel.send({files:[{attachment: 'scorecards/score.jpg', name:'score.jpg'}] })
