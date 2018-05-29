@@ -74,7 +74,7 @@ bot.on('message', message => {
                 0, 0, 500, 500               // destination dimensions
             );
             fnt.load(() => {
-                var ctx = img2.getContext('2d')
+                var ctx = c
                 ctx.fillStyle = '#ffffff'
                 ctx.font = "24pt 'Score Font'";
                 ctx.fillText("ABC", 80, 80);
