@@ -74,7 +74,7 @@ bot.on('message', message => {
             var ctx = c
             var fnt = PImage.registerFont('scorefont.ttf', 'Score Font')
             fnt.load(() => {
-                ctx.fillStyle = '#ffffff';
+                ctx.fillStyle = '#000000';
                 ctx.font = "60pt 'Score Font'";
                 ctx.fillText(`${message.author.username}`, 149, 125);
                 PImage.encodeJPEGToStream(img2,fs.createWriteStream('scorecards/test.jpg')).then(() => {
