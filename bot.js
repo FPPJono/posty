@@ -76,16 +76,12 @@ bot.on('message', message => {
                 0, 0, img.width, img.height, // source dimensions
                 0, 0, 500, 500               // destination dimensions
             );
-            tmp.file(function _tempFileCreated(err, path, ds, cleanupCallback) {
-                PImage.encodeJPEGToStream(img2,fs.createWriteStream(path)).then(() => {
-                    console.log("done writing");
-                });
-                cleanupCallback()
-            })
+            PImage.encodeJPEGToStream(img2,fs.createWriteStream(path)).then(() => {
+                console.log("done writing");
+            });
             var pth = path.join(BUILD_DIR,"score.jpg");
-
         });
-        message.channel.send('toot', {files:[{attachment: 'scorecards/score.jpg', name:'file.jpg'}] })
+        message.channel.send('toot', {files:[{attachment: 'scorecards/beerbongs.png', name:'file.png'}] })
     }
     if (message.content.startsWith(PREFIX + "playing")) {
         if (message.member.roles.has(admin)) {
