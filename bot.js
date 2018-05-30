@@ -92,20 +92,16 @@ function scorecard(role, color, person, message) {
     });   
 }
 
-downloadImageToUrl = (url, filename, callback) => {
-
+function downloadImageToURL(url, filename, callback) {
     var client = http;
     if (url.toString().indexOf("https") === 0){
       client = https;
      }
-
     client.request(url, function(response) {                                        
       var data = new Stream();                                                    
-
       response.on('data', function(chunk) {                                       
          data.push(chunk);                                                         
       });                                                                         
-
       response.on('end', function() {                                             
          fs.writeFileSync(filename, data.read());                               
       });                                                                         
