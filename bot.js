@@ -73,7 +73,7 @@ async function scorecard(role, color, person, message) {
             ctx.fillStyle = color;
             ctx.font = "50pt 'Score Font'";
             ctx.fillText(`${person.username.toUpperCase()}`, 135, 80);
-            var stream = fs.createReadStream(`scorecards/pfp${person.id}${pfpNumber.toString()}.png`)
+            var stream = fs.createReadStream(`scorecards/pfp${person.id}${(pfpNumber - 1).toString()}.png`)
             PImage.decodePNGFromStream(stream).then((pfp) => {
                 c.drawImage(pfp,
                     0, 0, pfp.width, pfp.height,
