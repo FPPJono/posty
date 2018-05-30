@@ -3,6 +3,7 @@ const Discord = require('discord.js');
 const bot = new Discord.Client();
 const PREFIX = "!";
 const fs = require('fs')
+const request = require('request')
 var gameMessage = new Function('return true')
 
 var PImage = require('pureimage');
@@ -24,18 +25,28 @@ const beerbongs = '450155434356113418'
 const stoney = '450155315095142413'
 const august26 = '450155482263584768'
 
+//lists
+var eightBall = ["I would say..... yes!", "Probably not", "heck maybe, idk", "I dont think so", "eh, probably", "hmmm.... maybe not", "*concentrate*, and try again", "look man im just a bot go ask someone who cares", "those who ask will get their answer eventually, try again", "haha! yes!", "hah, nope"]
+var coinFlip = ["The coin landed on heads!", "The coin landed on tails"]
+
+//functions
 function getRandomInt(max) {
     return Math.floor(Math.random() * Math.floor(max));
 }
+
+var download = function(uri, filename, callback){
+  request.head(uri, function(err, res, body){
+    console.log('content-type:', res.headers['content-type']);
+    console.log('content-length:', res.headers['content-length']);
+
+    request(uri).pipe(fs.createWriteStream(filename)).on('close', callback);
+  });
+};
 
 function basicEmbed(color, text) {
     var embed = { "description": `${text}`, "color": color };
     return embed
 }
-
-//lists
-var eightBall = ["I would say..... yes!", "Probably not", "heck maybe, idk", "I dont think so", "eh, probably", "hmmm.... maybe not", "*concentrate*, and try again", "look man im just a bot go ask someone who cares", "those who ask will get their answer eventually, try again", "haha! yes!", "hah, nope"]
-var coinFlip = ["The coin landed on heads!", "The coin landed on tails"]
 
 function wait(ms) {
     var start = new Date().getTime();
@@ -51,6 +62,9 @@ function decimalToHexString(number) {
 }
 
 function scorecard(role, color, person, message) {
+    download(person.avatarURL, 'scorecards/pfp.png', function() {
+        console.log('pfp downloaded successfully')
+    })
     PImage.decodePNGFromStream(fs.createReadStream(`scorecards/${role}.png`)).then((img) => {
         var img2 = PImage.make(500,500);
         var c = img2.getContext('2d');
@@ -64,20 +78,16 @@ function scorecard(role, color, person, message) {
             ctx.fillStyle = color;
             ctx.font = "50pt 'Score Font'";
             ctx.fillText(`${person.username.toUpperCase()}`, 135, 80);
-            PImage.decodePNGFromStream(fs.createReadStream(`scorecards/beerbongs.png`)).then((pfp) => {
+            PImage.decodePNGFromStream(fs.createReadStream(`scorecards/pfp.png`)).then((pfp) => {
                 c.drawImage(pfp,
                     0, 0, pfp.width, pfp.height,
                     15, 15, 110, 110
                 )
-                /*PImage.encodePNGToStream(img2,fs.createWriteStream('scorecards/score.png')).then(() => {
+                PImage.encodePNGToStream(img2,fs.createWriteStream('scorecards/score.png')).then(() => {
                     console.log(`${message.author.username} has just checked their score`);
                     message.channel.send({files:[{attachment: 'scorecards/score.png', name:'score.png'}] })
-                });*/
+                });
             })
-            PImage.encodePNGToStream(img2,fs.createWriteStream('scorecards/score.png')).then(() => {
-                console.log(`${message.author.username} has just checked their score`);
-                message.channel.send({files:[{attachment: 'scorecards/score.png', name:'score.png'}] })
-            });
         });
     });   
 }
