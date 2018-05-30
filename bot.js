@@ -64,6 +64,11 @@ bot.on('message', message => {
         message.channel.send(`Pong! ${new Date().getTime() - message.createdTimestamp}ms`)
     }
     if (message.content.startsWith('!score')) { 
+       if (message.mentions.users.array().toString().length >= 1) {
+            var person = message.mentions.users.first()
+        } else {
+            var person = message.author
+        }
         PImage.decodePNGFromStream(fs.createReadStream("scorecards/beerbongs.png")).then((img) => {
             var img2 = PImage.make(500,500);
             var c = img2.getContext('2d');
@@ -76,7 +81,7 @@ bot.on('message', message => {
             fnt.load(() => {
                 ctx.fillStyle = '#000000';
                 ctx.font = "50pt 'Score Font'";
-                ctx.fillText(`${message.author.username.toUpperCase()}`, 149, 80);
+                ctx.fillText(`${person.username.toUpperCase()}`, 135, 80);
                 PImage.encodePNGToStream(img2,fs.createWriteStream('scorecards/score.png')).then(() => {
                     console.log(`${message.author.username} has just checked their score`);
                     message.channel.send({files:[{attachment: 'scorecards/score.png', name:'score.png'}] })
