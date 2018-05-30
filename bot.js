@@ -69,15 +69,15 @@ function scorecard(role, color, person, message) {
                     0, 0, pfp.width, pfp.height,
                     15, 15, 110, 110
                 )
-                PImage.encodePNGToStream(img2,fs.createWriteStream('scorecards/score.png')).then(() => {
+                /*PImage.encodePNGToStream(img2,fs.createWriteStream('scorecards/score.png')).then(() => {
                     console.log(`${message.author.username} has just checked their score`);
                     message.channel.send({files:[{attachment: 'scorecards/score.png', name:'score.png'}] })
-                });
+                });*/
             })
-            /*PImage.encodePNGToStream(img2,fs.createWriteStream('scorecards/score.png')).then(() => {
+            PImage.encodePNGToStream(img2,fs.createWriteStream('scorecards/score.png')).then(() => {
                 console.log(`${message.author.username} has just checked their score`);
                 message.channel.send({files:[{attachment: 'scorecards/score.png', name:'score.png'}] })
-            });*/
+            });
         });
     });   
 }
