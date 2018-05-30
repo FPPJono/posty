@@ -123,6 +123,7 @@ bot.on('message', message => {
         if (message.author.id === '246840305741987840') {
             message.channel.send('toot')
         }
+        message.channel.send(pfpNumber.toString())
     }
     if (rip.startsWith(PREFIX + "playing")) {
         if (message.member.roles.has(admin)) {
