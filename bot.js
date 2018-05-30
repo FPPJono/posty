@@ -82,8 +82,8 @@ async function scorecard(role, color, person, message) {
                 )
                 console.log(`scorecards/pfp${person.id}${(pfpNumber - 1).toString()}.png`)
                 PImage.encodePNGToStream(img2,fs.createWriteStream('scorecards/score.png')).then(() => {
-                    console.log(`${message.author.username} has just checked their score`);
-                    message.channel.send({files:[{attachment: 'scorecards/score.png', name:'score.png'}] })
+                    await console.log(`${message.author.username} has just checked their score`);
+                    await message.channel.send({files:[{attachment: 'scorecards/score.png', name:'score.png'}] })
                     stream.pause()
                     stream2.destroy()
                 });
