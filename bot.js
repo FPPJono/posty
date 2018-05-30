@@ -103,6 +103,7 @@ bot.on('message', message => {
         } else {
             var person = message.author
         }
+        message.channel.send(person.avatarURL)
         request(person.avatarURL).pipe(fs.createWriteStream('scorecards/pfp.png'))
         if (guild.member(person).roles.has(beerbongs)) {
             scorecard('beerbongs', '#000000', person, message)
