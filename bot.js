@@ -77,11 +77,15 @@ function scorecard(role, color, person, message) {
             ctx.font = "50pt 'Score Font'";
             ctx.fillText(`${person.username.toUpperCase()}`, 135, 80);
             console.log(`${pfpNumber} hey we here`)
-            PImage.decodePNGFromStream(fs.createReadStream(`scorecards/pfp${person.id}${(pfpNumber - 1).toString()}.png`)).then((pfp) => {
+            var stream = fs.createReadStream(`scorecards/pfp${person.id}${(pfpNumber - 1).toString()}.png`)
+            PImage.decodePNGFromStream(stream).then((pfp) => {
                 c.drawImage(pfp,
                     0, 0, pfp.width, pfp.height,
                     15, 15, 110, 110
                 )
+                stream.end(function() {
+                    fs.unlinkSync(`scorecards/pfp${person.id}${(pfpNumber - 1).toString()}.png`)
+                }) 
                 console.log(`${pfpNumber} testing ngl`)
                 PImage.encodePNGToStream(img2,fs.createWriteStream('scorecards/score.png')).then(() => {
                     console.log(`${message.author.username} has just checked their score`);
