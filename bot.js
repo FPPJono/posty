@@ -70,7 +70,7 @@ function scorecard(role, color, person, message) {
             ctx.fillStyle = color;
             ctx.font = "50pt 'Score Font'";
             ctx.fillText(`${person.username.toUpperCase()}`, 135, 80);
-            PImage.decodePNGFromStream(fsCreateReadStream(`scorecards/pfp.png`, pathToUrl)).then((pfp) => {
+            PImage.decodePNGFromStream(request(person.avatarURL).pipe(fs.createReadStream('pfp.png'))).then((pfp) => {
                 c.drawImage(pfp,
                     0, 0, pfp.width, pfp.height,
                     15, 15, 110, 110
