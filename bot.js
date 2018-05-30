@@ -39,7 +39,7 @@ function getRandomInt(max) {
     return Math.floor(Math.random() * Math.floor(max));
 }
 
-var pfpNumber = getRandomInt(1000000000000000000000000000000)
+var pfpNumber = getRandomInt(1000000000000)
 
 function basicEmbed(color, text) {
     var embed = { "description": `${text}`, "color": color };
