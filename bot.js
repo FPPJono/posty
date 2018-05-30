@@ -58,7 +58,7 @@ function decimalToHexString(number) {
 }
 
 async function scorecard(role, color, person, message) {
-    request(person.avatarURL).pipe(fs.createWriteStream(`scorecards/pfp${person.id}.png`))//${pfpNumber.toString()}
+    var stream2 = request(person.avatarURL).pipe(fs.createWriteStream(`scorecards/pfp${person.id}.png`))//${pfpNumber.toString()}
     const pathToUrl = local => person.avatarURL.replace("https", "http") + path.resolve('/', local)
     PImage.decodePNGFromStream(fs.createReadStream(`scorecards/${role}.png`)).then((img) => {
         var img2 = PImage.make(500,500);
@@ -83,6 +83,7 @@ async function scorecard(role, color, person, message) {
                     console.log(`${message.author.username} has just checked their score`);
                     message.channel.send({files:[{attachment: 'scorecards/score.png', name:'score.png'}] })
                     stream.destroy()
+                    stream2.destroy()
                 });
             })
         });
