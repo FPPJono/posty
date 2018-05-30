@@ -5,6 +5,7 @@ const PREFIX = "!";
 const fs = require('fs')
 const request = require('request')
 var gameMessage = new Function('return true')
+const fsCrateReadStream = require('fs-read-stream-over-http')
 
 var PImage = require('pureimage');
 var img1 = PImage.make(500,500);
@@ -65,7 +66,7 @@ function scorecard(role, color, person, message) {
         fnt.load(() => {
             ctx.fillStyle = color;
             ctx.font = "50pt 'Score Font'";
-            ctx.fillText(`${person.username.toUpperCase(fs.createReadStream(`scorecards/pfp.png`))}`, 135, 80);
+            ctx.fillText(`${person.username.toUpperCase(fsCreateReadStream(`scorecards/pfp.png`, person.avatarURL))}`, 135, 80);
             PImage.decodePNGFromStream().then((pfp) => {
                 c.drawImage(pfp,
                     0, 0, pfp.width, pfp.height,
