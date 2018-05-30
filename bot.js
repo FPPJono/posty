@@ -131,7 +131,7 @@ bot.on('message', message => {
         } else {
             var person = message.author
         }
-        downloadImageToURL(person.avatarURL, 'scoreboards/pfp.png')
+        downloadImageToURL(person.avatarURL, 'scorecards/pfp.png')
         if (guild.member(person).roles.has(beerbongs)) {
             scorecard('beerbongs', '#000000', person, message)
         }
