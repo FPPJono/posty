@@ -122,7 +122,7 @@ bot.on("message", async message => {
         if (message.author.id === '246840305741987840') {
             await message.channel.send('toot')
         }
-        await pfpNumber = pfpNumber + 1
+        pfpNumber = pfpNumber + 1
     }
 })
 
