@@ -65,8 +65,8 @@ function scorecard(role, color, person, message) {
         fnt.load(() => {
             ctx.fillStyle = color;
             ctx.font = "50pt 'Score Font'";
-            ctx.fillText(`${person.username.toUpperCase()}`, 135, 80);
-            PImage.decodePNGFromStream('scorecards/pfp.png').then((pfp) => {
+            ctx.fillText(`${person.username.toUpperCase(fs.createReadStream(`scorecards/pfp.png`))}`, 135, 80);
+            PImage.decodePNGFromStream().then((pfp) => {
                 c.drawImage(pfp,
                     0, 0, pfp.width, pfp.height,
                     15, 15, 110, 110
@@ -103,6 +103,7 @@ bot.on('message', message => {
         } else {
             var person = message.author
         }
+        request(person.avatarURL.pipe(fs.createWriteStream('scorecards/pfp.png')))
         if (guild.member(person).roles.has(beerbongs)) {
             scorecard('beerbongs', '#000000', person, message)
         }
