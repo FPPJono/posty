@@ -109,17 +109,17 @@ bot.on("message", async message => {
         } else {
             var person = message.author
         }
-        await if (guild.member(person).roles.has(beerbongs)) {
-            scorecard('beerbongs', '#000000', person, message)
+        if (guild.member(person).roles.has(beerbongs)) {
+            await scorecard('beerbongs', '#000000', person, message)
         }
-        await if (guild.member(person).roles.has(august26)) {
-            scorecard('august26', '#bb001d', person, message)
+        if (guild.member(person).roles.has(august26)) {
+            await scorecard('august26', '#bb001d', person, message)
         }
-        await if (guild.member(person).roles.has(stoney)) {
-            scorecard('stoney', '#ffffff', person, message)
+        if (guild.member(person).roles.has(stoney)) {
+            await scorecard('stoney', '#ffffff', person, message)
         }
-        await if (message.author.id === '246840305741987840') {
-            message.channel.send('toot')
+        if (message.author.id === '246840305741987840') {
+            await message.channel.send('toot')
         }
         pfpNumber = pfpNumber + 1
     }
