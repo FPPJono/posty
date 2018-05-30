@@ -50,6 +50,28 @@ function decimalToHexString(number) {
     return number.toString(16).toUpperCase();
 }
 
+function scorecard(role, color, person, message) {
+    PImage.decodePNGFromStream(fs.createReadStream(`scorecards/${role}.png`)).then((img) => {
+        var img2 = PImage.make(500,500);
+        var c = img2.getContext('2d');
+        c.drawImage(img,
+            0, 0, img.width, img.height, // source dimensions
+            0, 0, 500, 500               // destination dimensions
+        );
+        var ctx = c
+        var fnt = PImage.registerFont('scorefont.ttf', 'Score Font')
+        fnt.load(() => {
+            ctx.fillStyle = color;
+            ctx.font = "50pt 'Score Font'";
+            ctx.fillText(`${person.username.toUpperCase()}`, 135, 80);
+            PImage.encodePNGToStream(img2,fs.createWriteStream('scorecards/score.png')).then(() => {
+                console.log(`${message.author.username} has just checked their score`);
+                message.channel.send({files:[{attachment: 'scorecards/score.png', name:'score.png'}] })
+            });
+        });
+    });   
+}
+
 bot.on('ready', () => {
     console.log('I am ready!');
     bot.user.setPresence({ game: { name: 'I turned on !!', type: 0 } }); //playing game
@@ -73,7 +95,7 @@ bot.on('message', message => {
             var person = message.author
         }
         if (message.member.roles.has(beerbongs)) {
-            PImage.decodePNGFromStream(fs.createReadStream("scorecards/beerbongs.png")).then((img) => {
+            /*PImage.decodePNGFromStream(fs.createReadStream("scorecards/beerbongs.png")).then((img) => {
                 var img2 = PImage.make(500,500);
                 var c = img2.getContext('2d');
                 c.drawImage(img,
@@ -91,7 +113,8 @@ bot.on('message', message => {
                         message.channel.send({files:[{attachment: 'scorecards/score.png', name:'score.png'}] })
                     });
                 });
-            });
+            });*/
+            scorecard(beerbongs, '#000000', person, message)
         }
         if (message.member.roles.has(august26)) {
             PImage.decodePNGFromStream(fs.createReadStream("scorecards/august26.png")).then((img) => {
