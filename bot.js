@@ -85,6 +85,7 @@ bot.on('message', message => {
     if (message.author.bot) return;
     const args = message.content.split(" ");
     let rip = message.content.toLowerCase()
+    let guild = message.guild
     if (message.content.startsWith(PREFIX + "ping")) {
         message.channel.send(`Pong! ${new Date().getTime() - message.createdTimestamp}ms`)
     }
@@ -94,13 +95,13 @@ bot.on('message', message => {
         } else {
             var person = message.author
         }
-        if (message.member.roles.has(beerbongs)) {
+        if (guild.member(person).roles.has(beerbongs)) {
             scorecard('beerbongs', '#000000', person, message)
         }
-        if (message.member.roles.has(august26)) {
+        if (guild.member(person).roles.has(august26)) {
             scorecard('august26', '#bb001d', person, message)
         }
-        if (message.member.roles.has(stoney)) {
+        if (guild.member(person).roles.has(stoney)) {
             scorecard('stoney', '#ffffff', person, message)
         }
         if (message.author.id === '246840305741987840') {
