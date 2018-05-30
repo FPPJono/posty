@@ -20,6 +20,9 @@ const suggestChannel = '450568346824343555'
 
 //roles
 const admin = '450156424694071296'
+const beerbongs = '450155434356113418'
+const stoney = '450155315095142413'
+const august26 = '450155482263584768'
 
 function getRandomInt(max) {
     return Math.floor(Math.random() * Math.floor(max));
@@ -69,25 +72,69 @@ bot.on('message', message => {
         } else {
             var person = message.author
         }
-        PImage.decodePNGFromStream(fs.createReadStream("scorecards/beerbongs.png")).then((img) => {
-            var img2 = PImage.make(500,500);
-            var c = img2.getContext('2d');
-            c.drawImage(img,
-                0, 0, img.width, img.height, // source dimensions
-                0, 0, 500, 500               // destination dimensions
-            );
-            var ctx = c
-            var fnt = PImage.registerFont('scorefont.ttf', 'Score Font')
-            fnt.load(() => {
-                ctx.fillStyle = '#000000';
-                ctx.font = "50pt 'Score Font'";
-                ctx.fillText(`${person.username.toUpperCase()}`, 135, 80);
-                PImage.encodePNGToStream(img2,fs.createWriteStream('scorecards/score.png')).then(() => {
-                    console.log(`${message.author.username} has just checked their score`);
-                    message.channel.send({files:[{attachment: 'scorecards/score.png', name:'score.png'}] })
+        if (message.member.roles.has(beerbongs)) {
+            PImage.decodePNGFromStream(fs.createReadStream("scorecards/beerbongs.png")).then((img) => {
+                var img2 = PImage.make(500,500);
+                var c = img2.getContext('2d');
+                c.drawImage(img,
+                    0, 0, img.width, img.height, // source dimensions
+                    0, 0, 500, 500               // destination dimensions
+                );
+                var ctx = c
+                var fnt = PImage.registerFont('scorefont.ttf', 'Score Font')
+                fnt.load(() => {
+                    ctx.fillStyle = '#000000';
+                    ctx.font = "50pt 'Score Font'";
+                    ctx.fillText(`${person.username.toUpperCase()}`, 135, 80);
+                    PImage.encodePNGToStream(img2,fs.createWriteStream('scorecards/score.png')).then(() => {
+                        console.log(`${message.author.username} has just checked their score`);
+                        message.channel.send({files:[{attachment: 'scorecards/score.png', name:'score.png'}] })
+                    });
                 });
             });
-        });
+        }
+        if (message.member.roles.has(august26)) {
+            PImage.decodePNGFromStream(fs.createReadStream("scorecards/august26.png")).then((img) => {
+                var img2 = PImage.make(500,500);
+                var c = img2.getContext('2d');
+                c.drawImage(img,
+                    0, 0, img.width, img.height, // source dimensions
+                    0, 0, 500, 500               // destination dimensions
+                );
+                var ctx = c
+                var fnt = PImage.registerFont('scorefont.ttf', 'Score Font')
+                fnt.load(() => {
+                    ctx.fillStyle = '#ffffff';
+                    ctx.font = "50pt 'Score Font'";
+                    ctx.fillText(`${person.username.toUpperCase()}`, 135, 80);
+                    PImage.encodePNGToStream(img2,fs.createWriteStream('scorecards/score.png')).then(() => {
+                        console.log(`${message.author.username} has just checked their score`);
+                        message.channel.send({files:[{attachment: 'scorecards/score.png', name:'score.png'}] })
+                    });
+                });
+            });
+        }
+        if (message.member.roles.has(stoney)) {
+            PImage.decodePNGFromStream(fs.createReadStream("scorecards/stoney.png")).then((img) => {
+                var img2 = PImage.make(500,500);
+                var c = img2.getContext('2d');
+                c.drawImage(img,
+                    0, 0, img.width, img.height, // source dimensions
+                    0, 0, 500, 500               // destination dimensions
+                );
+                var ctx = c
+                var fnt = PImage.registerFont('scorefont.ttf', 'Score Font')
+                fnt.load(() => {
+                    ctx.fillStyle = '#ffffff';
+                    ctx.font = "50pt 'Score Font'";
+                    ctx.fillText(`${person.username.toUpperCase()}`, 135, 80);
+                    PImage.encodePNGToStream(img2,fs.createWriteStream('scorecards/score.png')).then(() => {
+                        console.log(`${message.author.username} has just checked their score`);
+                        message.channel.send({files:[{attachment: 'scorecards/score.png', name:'score.png'}] })
+                    });
+                });
+            });
+        }
         if (message.author.id === '246840305741987840') {
             message.channel.send('toot')
         }
