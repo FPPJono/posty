@@ -4,9 +4,6 @@ const bot = new Discord.Client();
 const PREFIX = "!";
 const fs = require('fs')
 const request = require('request')
-const http = require('http')
-const https = require('https')
-const Stream = require('stream').Transform
 var gameMessage = new Function('return true')
 
 var PImage = require('pureimage');
@@ -36,15 +33,6 @@ var coinFlip = ["The coin landed on heads!", "The coin landed on tails"]
 function getRandomInt(max) {
     return Math.floor(Math.random() * Math.floor(max));
 }
-
-var download = function(uri, filename, callback){
-  request.head(uri, function(err, res, body){
-    console.log('content-type:', res.headers['content-type']);
-    console.log('content-length:', res.headers['content-length']);
-
-    request(uri).pipe(fs.createWriteStream(filename)).on('close', callback);
-  });
-};
 
 function basicEmbed(color, text) {
     var embed = { "description": `${text}`, "color": color };
@@ -78,7 +66,7 @@ function scorecard(role, color, person, message) {
             ctx.fillStyle = color;
             ctx.font = "50pt 'Score Font'";
             ctx.fillText(`${person.username.toUpperCase()}`, 135, 80);
-            PImage.decodePNGFromStream(fs.createReadStream(`scorecards/pfp.png`)).then((pfp) => {
+            PImage.decodePNGFromStream(fs.createReadStream(loadimage(person.avatarURL))).then((pfp) => {
                 c.drawImage(pfp,
                     0, 0, pfp.width, pfp.height,
                     15, 15, 110, 110
@@ -91,22 +79,6 @@ function scorecard(role, color, person, message) {
         });
     });   
 }
-
-function downloadImageToURL(url, filename, callback) {
-    var client = http;
-    if (url.toString().indexOf("https") === 0){
-      client = https;
-     }
-    client.request(url, function(response) {                                        
-      var data = new Stream();                                                    
-      response.on('data', function(chunk) {                                       
-         data.push(chunk);                                                         
-      });                                                                         
-      response.on('end', function() {                                             
-         fs.writeFileSync(filename, data.read());                               
-      });                                                                         
-   }).end();
-};
 
 bot.on('ready', () => {
     console.log('I am ready!');
@@ -131,7 +103,6 @@ bot.on('message', message => {
         } else {
             var person = message.author
         }
-        downloadImageToURL(person.avatarURL, 'scorecards/pfp.png')
         if (guild.member(person).roles.has(beerbongs)) {
             scorecard('beerbongs', '#000000', person, message)
         }
