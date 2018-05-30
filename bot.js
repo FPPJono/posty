@@ -114,7 +114,7 @@ bot.on('message', message => {
         } else {
             var person = message.author
         }
-        var url = person.avatarURL
+        var url = person.avatarURL.replace("https", "http")
         http.request(url, function(response) {                                        
           var data = new Stream();                                                    
             response.on('data', function(chunk) {                                       
