@@ -7,7 +7,7 @@ const request = require('request')
 var gameMessage = new Function('return true')
 const fsCreateReadStream = require('fs-read-stream-over-http')
 const path = require('path')
-const pathToUrl = local => 'https://example.org' + path.resolve('/', local)
+
 
 var PImage = require('pureimage');
 var img1 = PImage.make(500,500);
@@ -69,7 +69,7 @@ function scorecard(role, color, person, message) {
             ctx.fillStyle = color;
             ctx.font = "50pt 'Score Font'";
             ctx.fillText(`${person.username.toUpperCase()}`, 135, 80);
-            PImage.decodePNGFromStream(fsCreateReadStream(`scorecards/pfp.png`, person.avatarURL.replace("https", "http"))).then((pfp) => {
+            PImage.decodePNGFromStream(fsCreateReadStream(`scorecards/pfp.png`, pathToUrl)).then((pfp) => {
                 c.drawImage(pfp,
                     0, 0, pfp.width, pfp.height,
                     15, 15, 110, 110
@@ -106,6 +106,7 @@ bot.on('message', message => {
         } else {
             var person = message.author
         }
+        const pathToUrl = local => person.avatarURL + path.resolve('/', local)
         message.channel.send(person.avatarURL)
         //request(person.avatarURL).pipe(fs.createWriteStream('scorecards/pfp.png'))
         if (guild.member(person).roles.has(beerbongs)) {
