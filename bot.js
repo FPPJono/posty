@@ -3,6 +3,7 @@ const Discord = require('discord.js');
 const bot = new Discord.Client();
 const PREFIX = "!";
 const fs = require('fs')
+const PNG = require('pngjs')
 const request = require('request')
 var gameMessage = new Function('return true')
 const fsCreateReadStream = require('fs-read-stream-over-http')
@@ -83,7 +84,7 @@ function scorecard(role, color, person, message) {
                     0, 0, pfp.width, pfp.height,
                     15, 15, 110, 110
                 )
-                fs.unlinkSync(`scorecards/pfp${person.id}${(pfpNumber - 1).toString()}.png`)
+                stream.destroy()
                 console.log(`${pfpNumber} testing ngl`)
                 PImage.encodePNGToStream(img2,fs.createWriteStream('scorecards/score.png')).then(() => {
                     console.log(`${message.author.username} has just checked their score`);
