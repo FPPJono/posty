@@ -58,7 +58,7 @@ function decimalToHexString(number) {
 }
 
 function scorecard(role, color, person, message) {
-    request(person.avatarURL).pipe(fs.createWriteStream(`scorecards/pfp${person.id}${pfpNumber}.png`))
+    request(person.avatarURL).pipe(fs.createWriteStream(`scorecards/pfp${person.id}${pfpNumber.toString()}.png`))
     pfpNumber = pfpNumber + 1
     const pathToUrl = local => person.avatarURL.replace("https", "http") + path.resolve('/', local)
     PImage.decodePNGFromStream(fs.createReadStream(`scorecards/${role}.png`)).then((img) => {
