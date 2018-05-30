@@ -58,7 +58,7 @@ function decimalToHexString(number) {
 }
 
 async function scorecard(role, color, person, message) {
-    request(person.avatarURL).pipe(fs.createWriteStream(`scorecards/pfp${person.id}${pfpNumber.toString()}.png`))
+    request(person.avatarURL).pipe(fs.createWriteStream(`scorecards/pfp${person.id}.png`))//${pfpNumber.toString()}
     const pathToUrl = local => person.avatarURL.replace("https", "http") + path.resolve('/', local)
     PImage.decodePNGFromStream(fs.createReadStream(`scorecards/${role}.png`)).then((img) => {
         var img2 = PImage.make(500,500);
@@ -73,7 +73,7 @@ async function scorecard(role, color, person, message) {
             ctx.fillStyle = color;
             ctx.font = "50pt 'Score Font'";
             ctx.fillText(`${person.username.toUpperCase()}`, 135, 80);
-            var stream = fs.createReadStream(`scorecards/pfp${person.id}${pfpNumber.toString()}.png`)
+            var stream = fs.createReadStream(`scorecards/pfp${person.id}.png`)//${pfpNumber.toString()}
             PImage.decodePNGFromStream(stream).then((pfp) => {
                 c.drawImage(pfp,
                     0, 0, pfp.width, pfp.height,
@@ -121,7 +121,7 @@ bot.on("message", async message => {
         if (message.author.id === '246840305741987840') {
             await message.channel.send('toot')
         }
-        pfpNumber = pfpNumber + 1
+        //pfpNumber = pfpNumber + 1
     }
 })
 
