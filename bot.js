@@ -114,7 +114,7 @@ bot.on('message', message => {
                     });
                 });
             });*/
-            scorecard(beerbongs, '#000000', person, message)
+            scorecard('beerbongs', '#000000', person, message)
         }
         if (message.member.roles.has(august26)) {
             PImage.decodePNGFromStream(fs.createReadStream("scorecards/august26.png")).then((img) => {
