@@ -64,10 +64,20 @@ function scorecard(role, color, person, message) {
             ctx.fillStyle = color;
             ctx.font = "50pt 'Score Font'";
             ctx.fillText(`${person.username.toUpperCase()}`, 135, 80);
-            PImage.encodePNGToStream(img2,fs.createWriteStream('scorecards/score.png')).then(() => {
+            PImage.decodePNGFromStream(fs.createReadStream(`${person.avatarURL}`)).then((pfp) => {
+                c.drawImage(pfp,
+                    0, 0, pfp.width, pfp.height,
+                    20, 20, 80, 80
+                )
+                PImage.encodePNGToStream(img2,fs.createWriteStream('scorecards/score.png')).then(() => {
+                    console.log(`${message.author.username} has just checked their score`);
+                    message.channel.send({files:[{attachment: 'scorecards/score.png', name:'score.png'}] })
+                });
+            })
+            /*PImage.encodePNGToStream(img2,fs.createWriteStream('scorecards/score.png')).then(() => {
                 console.log(`${message.author.username} has just checked their score`);
                 message.channel.send({files:[{attachment: 'scorecards/score.png', name:'score.png'}] })
-            });
+            });*/
         });
     });   
 }
