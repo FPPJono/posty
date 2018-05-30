@@ -5,7 +5,7 @@ const PREFIX = "!";
 const fs = require('fs')
 const request = require('request')
 var gameMessage = new Function('return true')
-const fsCrateReadStream = require('fs-read-stream-over-http')
+const fsCreateReadStream = require('fs-read-stream-over-http')
 
 var PImage = require('pureimage');
 var img1 = PImage.make(500,500);
