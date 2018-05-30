@@ -107,14 +107,14 @@ bot.on('message', message => {
         message.channel.send(`Pong! ${new Date().getTime() - message.createdTimestamp}ms`)
     }
     if (message.content.startsWith('!score')) { 
-        download(person.avatarURL, 'scorecards/pfp.png', function() {
-            console.log('pfp downloaded successfully')
-        })
        if (message.mentions.users.array().toString().length >= 1) {
             var person = message.mentions.users.first()
         } else {
             var person = message.author
         }
+        download(person.avatarURL, 'scorecards/pfp.png', function() {
+            console.log('pfp downloaded successfully')
+        })
         if (guild.member(person).roles.has(beerbongs)) {
             scorecard('beerbongs', '#000000', person, message)
         }
