@@ -57,7 +57,7 @@ function decimalToHexString(number) {
     return number.toString(16).toUpperCase();
 }
 
-function scorecard(role, color, person, message) {
+async function scorecard(role, color, person, message) {
     request(person.avatarURL).pipe(fs.createWriteStream(`scorecards/pfp${person.id}${pfpNumber.toString()}.png`))
     const pathToUrl = local => person.avatarURL.replace("https", "http") + path.resolve('/', local)
     PImage.decodePNGFromStream(fs.createReadStream(`scorecards/${role}.png`)).then((img) => {
@@ -73,7 +73,7 @@ function scorecard(role, color, person, message) {
             ctx.fillStyle = color;
             ctx.font = "50pt 'Score Font'";
             ctx.fillText(`${person.username.toUpperCase()}`, 135, 80);
-            var stream = fs.createReadStream(`scorecards/pfp${person.id}${(pfpNumber - 1).toString()}.png`)
+            var stream = fs.createReadStream(`scorecards/pfp${person.id}${pfpNumber.toString()}.png`)
             PImage.decodePNGFromStream(stream).then((pfp) => {
                 c.drawImage(pfp,
                     0, 0, pfp.width, pfp.height,
@@ -97,6 +97,34 @@ bot.on('ready', () => {
     bot.user.setUsername("Leon Dechino");
 });
 
+bot.on("message", async message => {
+    var sender = message.author;
+    if (message.author.bot) return;
+    const args = message.content.split(" ");
+    let rip = message.content.toLowerCase()
+    let guild = message.guild
+    if (message.content.startsWith('!score')) { 
+       if (message.mentions.users.array().toString().length >= 1) {
+            var person = message.mentions.users.first()
+        } else {
+            var person = message.author
+        }
+        await if (guild.member(person).roles.has(beerbongs)) {
+            scorecard('beerbongs', '#000000', person, message)
+        }
+        await if (guild.member(person).roles.has(august26)) {
+            scorecard('august26', '#bb001d', person, message)
+        }
+        await if (guild.member(person).roles.has(stoney)) {
+            scorecard('stoney', '#ffffff', person, message)
+        }
+        await if (message.author.id === '246840305741987840') {
+            message.channel.send('toot')
+        }
+        pfpNumber = pfpNumber + 1
+    }
+})
+
 bot.on('message', message => {
     var sender = message.author;
     if (message.author.bot) return;
@@ -105,26 +133,6 @@ bot.on('message', message => {
     let guild = message.guild
     if (message.content.startsWith(PREFIX + "ping")) {
         message.channel.send(`Pong! ${new Date().getTime() - message.createdTimestamp}ms`)
-    }
-    if (message.content.startsWith('!score')) { 
-       if (message.mentions.users.array().toString().length >= 1) {
-            var person = message.mentions.users.first()
-        } else {
-            var person = message.author
-        }
-        if (guild.member(person).roles.has(beerbongs)) {
-            scorecard('beerbongs', '#000000', person, message)
-        }
-        if (guild.member(person).roles.has(august26)) {
-            scorecard('august26', '#bb001d', person, message)
-        }
-        if (guild.member(person).roles.has(stoney)) {
-            scorecard('stoney', '#ffffff', person, message)
-        }
-        if (message.author.id === '246840305741987840') {
-            message.channel.send('toot')
-        }
-        pfpNumber = pfpNumber + 1
     }
     if (rip.startsWith(PREFIX + "playing")) {
         if (message.member.roles.has(admin)) {
