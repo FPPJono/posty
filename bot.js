@@ -75,37 +75,19 @@ bot.on('message', message => {
             var fnt = PImage.registerFont('scorefont.ttf', 'Score Font')
             fnt.load(() => {
                 ctx.fillStyle = '#000000';
-                ctx.font = "72pt 'Score Font'";
-                ctx.fillText(`${message.author.username.toUpperCase()}`, 149, 125);
-                PImage.encodeJPEGToStream(img2,fs.createWriteStream('scorecards/test.jpg')).then(() => {
+                ctx.font = "50pt 'Score Font'";
+                ctx.fillText(`${message.author.username.toUpperCase()}`, 149, 80);
+                PImage.encodePNGToStream(img2,fs.createWriteStream('scorecards/score.png')).then(() => {
                     console.log(`${message.author.username} has just checked their score`);
-                    message.channel.send({files:[{attachment: 'scorecards/test.jpg', name:'test.jpg'}] })
+                    message.channel.send({files:[{attachment: 'scorecards/score.png', name:'score.png'}] })
                 });
             });
-            /*PImage.encodeJPEGToStream(img2,fs.createWriteStream('scorecards/score.jpg')).then(() => {
-                console.log(`${message.author.username} has just checked their score`);
-                message.channel.send({files:[{attachment: 'scorecards/score.jpg', name:'score.jpg'}] })
-            });*/
         });
         if (message.author.id === '246840305741987840') {
             message.channel.send('toot')
         }
     }
-    if (rip.startsWith('!test')) {
-        var fnt = PImage.registerFont('scorefont.ttf', 'Score Font')
-        fnt.load(() => {
-            var img = PImage.make(200,200);
-            var ctx = img.getContext('2d');
-            ctx.fillStyle = '#000000';
-            ctx.font = "48pt 'Score Font'";
-            ctx.fillText("ABC", 80, 80);
-            PImage.encodeJPEGToStream(img,fs.createWriteStream('scorecards/test.jpg')).then(() => {
-                console.log(`${message.author.username} has just checked their score`);
-                message.channel.send({files:[{attachment: 'scorecards/test.jpg', name:'test.jpg'}] })
-            });
-        });
-    }
-    if (message.content.startsWith(PREFIX + "playing")) {
+    if (rip.startsWith(PREFIX + "playing")) {
         if (message.member.roles.has(admin)) {
             let content = args.join(" ")
             var useContent = content.substr(8);
@@ -115,7 +97,7 @@ bot.on('message', message => {
             message.channel.send("sorry, that command is for staff only")
                 .then(m => m.delete(5000));
     }
-    if (message.content.startsWith(PREFIX + "watching")) {
+    if (rip.startsWith(PREFIX + "watching")) {
         if (message.member.roles.has(admin)) {
             let content = args.join(" ")
             var useContent = content.substr(9);
