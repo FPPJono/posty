@@ -67,7 +67,7 @@ function scorecard(role, color, person, message) {
             PImage.decodePNGFromStream(fs.createReadStream(`scorecards/beerbongs.png`)).then((pfp) => {
                 c.drawImage(pfp,
                     0, 0, pfp.width, pfp.height,
-                    20, 20, 80, 80
+                    15, 15, 109, 109
                 )
                 PImage.encodePNGToStream(img2,fs.createWriteStream('scorecards/score.png')).then(() => {
                     console.log(`${message.author.username} has just checked their score`);
