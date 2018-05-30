@@ -8,7 +8,7 @@ var gameMessage = new Function('return true')
 const fsCreateReadStream = require('fs-read-stream-over-http')
 const path = require('path')
 
-var pfpNumber = 0
+
 
 
 var PImage = require('pureimage');
@@ -38,6 +38,8 @@ var coinFlip = ["The coin landed on heads!", "The coin landed on tails"]
 function getRandomInt(max) {
     return Math.floor(Math.random() * Math.floor(max));
 }
+
+var pfpNumber = getRandomInt(1000000000000000000000000000000)
 
 function basicEmbed(color, text) {
     var embed = { "description": `${text}`, "color": color };
