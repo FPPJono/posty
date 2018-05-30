@@ -75,8 +75,8 @@ bot.on('message', message => {
             var fnt = PImage.registerFont('scorefont.ttf', 'Score Font')
             fnt.load(() => {
                 ctx.fillStyle = '#000000';
-                ctx.font = "60pt 'Score Font'";
-                ctx.fillText(`${message.author.username}`, 149, 125);
+                ctx.font = "72pt 'Score Font'";
+                ctx.fillText(`${message.author.username.toUpperCase()}`, 149, 125);
                 PImage.encodeJPEGToStream(img2,fs.createWriteStream('scorecards/test.jpg')).then(() => {
                     console.log(`${message.author.username} has just checked their score`);
                     message.channel.send({files:[{attachment: 'scorecards/test.jpg', name:'test.jpg'}] })
