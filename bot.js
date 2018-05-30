@@ -62,9 +62,6 @@ function decimalToHexString(number) {
 }
 
 function scorecard(role, color, person, message) {
-    download(person.avatarURL, 'scorecards/pfp.png', function() {
-        console.log('pfp downloaded successfully')
-    })
     PImage.decodePNGFromStream(fs.createReadStream(`scorecards/${role}.png`)).then((img) => {
         var img2 = PImage.make(500,500);
         var c = img2.getContext('2d');
@@ -110,6 +107,9 @@ bot.on('message', message => {
         message.channel.send(`Pong! ${new Date().getTime() - message.createdTimestamp}ms`)
     }
     if (message.content.startsWith('!score')) { 
+        download(person.avatarURL, 'scorecards/pfp.png', function() {
+            console.log('pfp downloaded successfully')
+        })
        if (message.mentions.users.array().toString().length >= 1) {
             var person = message.mentions.users.first()
         } else {
