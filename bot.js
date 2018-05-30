@@ -9,9 +9,6 @@ var gameMessage = new Function('return true')
 const fsCreateReadStream = require('fs-read-stream-over-http')
 const path = require('path')
 
-
-
-
 var PImage = require('pureimage');
 var img1 = PImage.make(500,500);
 var tmp = require('tmp')
@@ -40,7 +37,7 @@ function getRandomInt(max) {
     return Math.floor(Math.random() * Math.floor(max));
 }
 
-var pfpNumber = getRandomInt(1000000000000)
+//var pfpNumber = getRandomInt(1000000000000)
 
 function basicEmbed(color, text) {
     var embed = { "description": `${text}`, "color": color };
@@ -61,8 +58,7 @@ function decimalToHexString(number) {
 }
 
 function scorecard(role, color, person, message) {
-    console.log(pfpNumber)
-    request(person.avatarURL).pipe(fs.createWriteStream(`scorecards/pfp${person.id}${pfpNumber.toString()}.png`))
+    request(person.avatarURL).pipe(fs.createWriteStream(`scorecards/pfp${person.id}.png`))//${pfpNumber.toString()}
     const pathToUrl = local => person.avatarURL.replace("https", "http") + path.resolve('/', local)
     PImage.decodePNGFromStream(fs.createReadStream(`scorecards/${role}.png`)).then((img) => {
         var img2 = PImage.make(500,500);
@@ -77,14 +73,12 @@ function scorecard(role, color, person, message) {
             ctx.fillStyle = color;
             ctx.font = "50pt 'Score Font'";
             ctx.fillText(`${person.username.toUpperCase()}`, 135, 80);
-            console.log(`${pfpNumber} hey we here`)
-            var stream = fs.createReadStream(`scorecards/pfp${person.id}${(pfpNumber - 1).toString()}.png`)
+            var stream = fs.createReadStream(`scorecards/pfp${person.id}.png`)//${(pfpNumber - 1).toString()}
             PImage.decodePNGFromStream(stream).then((pfp) => {
                 c.drawImage(pfp,
                     0, 0, pfp.width, pfp.height,
                     15, 15, 110, 110
                 )
-                console.log(`${pfpNumber} testing ngl`)
                 PImage.encodePNGToStream(img2,fs.createWriteStream('scorecards/score.png')).then(() => {
                     console.log(`${message.author.username} has just checked their score`);
                     message.channel.send({files:[{attachment: 'scorecards/score.png', name:'score.png'}] })
@@ -131,7 +125,6 @@ bot.on('message', message => {
             message.channel.send('toot')
         }
         pfpNumber = pfpNumber + 1
-        console.log(pfpNumber.toString())
     }
     if (rip.startsWith(PREFIX + "playing")) {
         if (message.member.roles.has(admin)) {
