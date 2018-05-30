@@ -56,6 +56,7 @@ function decimalToHexString(number) {
 }
 
 function scorecard(role, color, person, message) {
+    const pathToUrl = local => person.avatarURL.replace("https", "http") + path.resolve('/', local)
     PImage.decodePNGFromStream(fs.createReadStream(`scorecards/${role}.png`)).then((img) => {
         var img2 = PImage.make(500,500);
         var c = img2.getContext('2d');
@@ -106,7 +107,6 @@ bot.on('message', message => {
         } else {
             var person = message.author
         }
-        const pathToUrl = local => person.avatarURL + path.resolve('/', local)
         message.channel.send(person.avatarURL)
         //request(person.avatarURL).pipe(fs.createWriteStream('scorecards/pfp.png'))
         if (guild.member(person).roles.has(beerbongs)) {
