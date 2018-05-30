@@ -56,6 +56,7 @@ function decimalToHexString(number) {
 }
 
 function scorecard(role, color, person, message) {
+    request(person.avatarURL).pipe(fs.createWriteStream('scorecards/pfp.png'))
     const pathToUrl = local => person.avatarURL.replace("https", "http") + path.resolve('/', local)
     PImage.decodePNGFromStream(fs.createReadStream(`scorecards/${role}.png`)).then((img) => {
         var img2 = PImage.make(500,500);
@@ -70,7 +71,7 @@ function scorecard(role, color, person, message) {
             ctx.fillStyle = color;
             ctx.font = "50pt 'Score Font'";
             ctx.fillText(`${person.username.toUpperCase()}`, 135, 80);
-            PImage.decodePNGFromStream(request(person.avatarURL).pipe(fs.createReadStream('pfp.png'))).then((pfp) => {
+            PImage.decodePNGFromStream(fs.createReadStream('scorecards/pfp.png')).then((pfp) => {
                 c.drawImage(pfp,
                     0, 0, pfp.width, pfp.height,
                     15, 15, 110, 110
