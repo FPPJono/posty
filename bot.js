@@ -61,7 +61,6 @@ function decimalToHexString(number) {
 
 function scorecard(role, color, person, message) {
     request(person.avatarURL).pipe(fs.createWriteStream(`scorecards/pfp${person.id}${pfpNumber.toString()}.png`))
-    pfpNumber = pfpNumber + 1
     const pathToUrl = local => person.avatarURL.replace("https", "http") + path.resolve('/', local)
     PImage.decodePNGFromStream(fs.createReadStream(`scorecards/${role}.png`)).then((img) => {
         var img2 = PImage.make(500,500);
@@ -127,6 +126,7 @@ bot.on('message', message => {
         if (message.author.id === '246840305741987840') {
             message.channel.send('toot')
         }
+        pfpNumber = pfpNumber + 1
         console.log(pfpNumber.toString())
     }
     if (rip.startsWith(PREFIX + "playing")) {
