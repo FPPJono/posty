@@ -141,13 +141,13 @@ bot.on("message", async message => {
     const args = message.content.split(" ");
     let rip = message.content.toLowerCase()
     let guild = message.guild
+    if (message.mentions.users.array().toString().length >= 1) {
+        var person = message.mentions.users.first()
+    } else {
+        var person = message.author
+    }
     if (message.content.startsWith('!score')) { 
-       if (message.mentions.users.array().toString().length >= 1) {
-            var person = message.mentions.users.first()
-        } else {
-            var person = message.author
-        }
-        if (message.author.id === '246840305741987840') {
+        if (person.id === '246840305741987840') {
             await message.channel.send('toot')
         }
         pfpNumber = pfpNumber + 1
@@ -165,15 +165,10 @@ bot.on("message", async message => {
         }
     }
     if (message.content.startsWith('!testwelcome')) {
-       if (message.mentions.users.array().toString().length >= 1) {
-            var person = message.mentions.users.first()
-        } else {
-            var person = message.author
-        }
         welcomecard(person, guild)
     }
     if (message.content.startsWith('!testpfp')) {
-        request(message.author.avatarURL).pipe(fs.createWriteStream(`scorecards/welcomepfp${person.id}.png`))
+        request(person.avatarURL).pipe(fs.createWriteStream(`scorecards/welcomepfp${person.id}.png`))
         message.channel.send({files: [{attachment: `scorecards/welcomepfp${person.id}.png`, name: "test.png"}]})
     }
 })
