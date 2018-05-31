@@ -133,7 +133,8 @@ bot.on("message", async message => {
         } else {
             var person = message.author
         }
-        var stream2 = request(person.avatarURL).pipe(fs.createWriteStream(`scorecards/welcomepfp${person.id}.png`))
+        var welcomestream = request(person.avatarURL).pipe(fs.createWriteStream(`scorecards/welcomepfp${person.id}.png`))
+        var welcomestream2 = fs.createReadStream(`scorecards/welcomepfp${person.id}.png`)
         PImage.decodePNGFromStream(fs.createReadStream(`scorecards/welcomeCard.png`)).then((img) => {
             var img2 = PImage.make(500,250);
             var c = img2.getContext('2d');
@@ -149,8 +150,7 @@ bot.on("message", async message => {
                 ctx.fillText(`${person.username}`, 148, 158);
                 ctx.font = "20pt 'Score Font'";
                 ctx.fillText(`Member #${guild.memberCount}`, 324, 207);
-                var stream = fs.createReadStream(`scorecards/welcomepfp${person.id}.png`)
-                PImage.decodePNGFromStream(stream).then((pfp) => {
+                PImage.decodePNGFromStream(welcomestream2).then((pfp) => {
                     c.drawImage(pfp,
                         0, 0, pfp.width, pfp.height,
                         52, 44, 123, 115
@@ -162,7 +162,9 @@ bot.on("message", async message => {
                     });
                 })
             });
-        });  
+        });
+        welcomestream.destroy()
+        welcomestream2.destroy()
     }
 })
 
