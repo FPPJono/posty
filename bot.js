@@ -154,15 +154,15 @@ bot.on("message", async message => {
         pfpNumber = pfpNumber + 1
         if (guild.member(person).roles.has(beerbongs)) {
             await scorecard('beerbongs', '#000000', person, message)
-            return()
+            return
         }
         if (guild.member(person).roles.has(august26)) {
             await scorecard('august26', '#bb001d', person, message)
-            return()
+            return
         }
         if (guild.member(person).roles.has(stoney)) {
             await scorecard('stoney', '#ffffff', person, message)
-            return()
+            return
         }
     }
     if (message.content.startsWith('!testwelcome')) {
