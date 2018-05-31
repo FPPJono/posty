@@ -110,7 +110,8 @@ async function welcomecard(person, guild) {
                 ctx.fillStyle = '#ffffff'
                 ctx.font = "20pt 'Score Font'";
                 ctx.fillText(`Member #${guild.memberCount}`, 324, 207);
-                PImage.decodePNGFromStream(request(person.avatarURL).pipe(fs.createReadStream(`scorecards/welcomepfp${person.id}.png`))).then((pfp) => {
+                request(person.avatarURL).pipe(fs.createWriteStream(`scorecards/welcomepfp${person.id}.png`))
+                PImage.decodePNGFromStream(fs.createReadStream(`scorecards/welcomepfp${person.id}.png`)).then((pfp) => {
                     c.drawImage(pfp,
                         0, 0, pfp.width, pfp.height,
                         52, 44, 72, 72
