@@ -152,7 +152,7 @@ bot.on("message", async message => {
                 PImage.decodePNGFromStream(fs.createReadStream('scorecards/beerbongs.png')).then((pfp) => {
                     c.drawImage(pfp,
                         0, 0, pfp.width, pfp.height,
-                        52, 44, 123, 115
+                        52, 44, 70, 70
                     )
                     console.log(`scorecards/welcomepfp${person.id}.png`)
                     PImage.encodePNGToStream(img2,fs.createWriteStream('scorecards/welcome.png')).then(() => {
