@@ -146,24 +146,27 @@ bot.on("message", async message => {
                 ctx.fillStyle = '#ffffff';
                 ctx.font = "20pt 'Score Font'";
                 ctx.fillText(`${person.username}`, 148, 158);
-                fnt.load(() => {
-                    ctx.fillStyle = '#ffffff'
-                    ctx.font = "20pt 'Score Font'";
-                    ctx.fillText(`Member #${guild.memberCount}`, 324, 207);
-                    PImage.decodePNGFromStream('scorecards/beerbongs.png').then((pfp) => {
-                        c.drawImage(pfp,
-                            0, 0, pfp.width, pfp.height,
-                            52, 44, 123, 115
-                        )
-                        console.log(`scorecards/welcomepfp${person.id}.png`)
-                        PImage.encodePNGToStream(img2,fs.createWriteStream('scorecards/welcome.png')).then(() => {
-                            console.log(`${message.author.username} has just checked their score`);
-                            message.channel.send({files:[{attachment: 'scorecards/welcome.png', name:'welcome.png'}] })
-                            //welcomestream.destroy()
-                            //welcomestream2.destroy()
-                        });
-                    })
-                })
+                ctx.font = "20pt 'Score Font'";
+                ctx.fillText(`Member #${guild.memberCount}`, 324, 207);
+                /*PImage.decodePNGFromStream('scorecards/beerbongs.png').then((pfp) => {
+                    c.drawImage(pfp,
+                        0, 0, pfp.width, pfp.height,
+                        52, 44, 123, 115
+                    )
+                    console.log(`scorecards/welcomepfp${person.id}.png`)
+                    PImage.encodePNGToStream(img2,fs.createWriteStream('scorecards/welcome.png')).then(() => {
+                        console.log(`${message.author.username} has just joined the server`);
+                        message.channel.send({files:[{attachment: 'scorecards/welcome.png', name:'welcome.png'}] })
+                        //welcomestream.destroy()
+                        //welcomestream2.destroy()
+                    });
+                })*/
+                PImage.encodePNGToStream(img2,fs.createWriteStream('scorecards/welcome.png')).then(() => {
+                    console.log(`${message.author.username} has just joined the server`);
+                    message.channel.send({files:[{attachment: 'scorecards/welcome.png', name:'welcome.png'}] })
+                    //welcomestream.destroy()
+                    //welcomestream2.destroy()
+                });
             });
         });
     }
