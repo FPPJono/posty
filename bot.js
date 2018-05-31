@@ -172,7 +172,7 @@ bot.on("message", async message => {
         }
         welcomecard(person, guild)
     }
-    if (message.content.startsWith(!testpfp)) {
+    if (message.content.startsWith('!testpfp')) {
         request(person.avatarURL).pipe(fs.createWriteStream(`scorecards/welcomepfp${person.id}.png`))
         message.channel.send({files: [{attachment: `scorecards/welcomepfp${person.id}.png`, name: "test.png"}]})
     }
