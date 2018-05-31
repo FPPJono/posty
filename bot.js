@@ -186,7 +186,7 @@ bot.on("message", async message => {
         /*https.get(person.avatarURL, response => {
             response.pipe(file)
         })*/
-        request(person.avatarURL).pipe(file))
+        request(person.avatarURL).pipe(file)
         message.channel.send({files: [{attachment: `scorecards/welcomepfp${person.id}.png`, name: "test.png"}]})
     }
 })
