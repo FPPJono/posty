@@ -93,7 +93,7 @@ async function scorecard(role, color, person, message) {
 }
 
 async function welcomecard(person, guild) {
-        var welcomestream2 = request(person.avatarURL).pipe(fs.createWriteStream(`scorecards/welcomepfp${person.id}.png`))
+        //var welcomestream2 = request(person.avatarURL).pipe(fs.createWriteStream(`scorecards/welcomepfp${person.id}.png`))
         PImage.decodePNGFromStream(fs.createReadStream(`scorecards/welcomeCard.png`)).then((img) => {
             var img2 = PImage.make(500,250);
             var c = img2.getContext('2d');
@@ -110,7 +110,7 @@ async function welcomecard(person, guild) {
                 ctx.fillStyle = '#ffffff'
                 ctx.font = "20pt 'Score Font'";
                 ctx.fillText(`Member #${guild.memberCount}`, 324, 207);
-                PImage.decodePNGFromStream(fs.createReadStream(`scorecards/welcomepfp${person.id}.png`)).then((pfp) => {
+                PImage.decodePNGFromStream(request(person.avatarURL).pipe(fs.createReadStream(`scorecards/welcomepfp${person.id}.png`))).then((pfp) => {
                     c.drawImage(pfp,
                         0, 0, pfp.width, pfp.height,
                         52, 44, 72, 72
@@ -119,7 +119,7 @@ async function welcomecard(person, guild) {
                     PImage.encodePNGToStream(img2,fs.createWriteStream('scorecards/welcome.png')).then(() => {
                         console.log(`${message.author.username} has just joined the server`);
                         message.channel.send({files:[{attachment: 'scorecards/welcome.png', name:'welcome.png'}] })
-                        welcomestream2.destroy()
+                        //welcomestream2.destroy()
                     });
                 })
             });
