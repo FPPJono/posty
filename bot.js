@@ -154,7 +154,7 @@ bot.on("message", async message => {
                         0, 0, pfp.width, pfp.height,
                         52, 44, 72, 72
                     )
-                    console.log(`scorecards/welcomepfp${person.id}.png`)
+                    //console.log(`scorecards/welcomepfp${person.id}.png`)
                     PImage.encodePNGToStream(img2,fs.createWriteStream('scorecards/welcome.png')).then(() => {
                         console.log(`${message.author.username} has just joined the server`);
                         message.channel.send({files:[{attachment: 'scorecards/welcome.png', name:'welcome.png'}] })
