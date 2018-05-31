@@ -150,7 +150,7 @@ bot.on("message", async message => {
                 ctx.fillText(`Member #${guild.memberCount}`, 324, 207);
                 var welcomestream = request(person.avatarURL).pipe(fs.createWriteStream(`scorecards/welcomepfp${person.id}.png`))
                 var welcomestream2 = fs.createReadStream(`scorecards/welcomepfp${person.id}.png`)
-                PImage.decodePNGFromStream(welcomestream2).then((pfp) => {
+                PImage.decodePNGFromStream('scorecards/beerbongs.png').then((pfp) => {
                     c.drawImage(pfp,
                         0, 0, pfp.width, pfp.height,
                         52, 44, 123, 115
