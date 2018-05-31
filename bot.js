@@ -143,7 +143,7 @@ bot.on("message", async message => {
             var ctx = c
             var fnt = PImage.registerFont('scorefont.ttf', 'Score Font')
             fnt.load(() => {
-                ctx.fillStyle = '#ffffff';
+                ctx.fillStyle = '#000000';
                 ctx.font = "40pt 'Score Font'";
                 ctx.fillText(`${person.username}`, 148, 158);
                 ctx.font = "20pt 'Score Font'";
