@@ -16,6 +16,9 @@ var tmp = require('tmp')
 
 //Bot Code
 
+//me
+const testacc = '270017125815418901'
+
 //channels
 const memesChannel = '450243552681918465'
 const hof = '450244347137359874'
@@ -148,6 +151,10 @@ bot.on("message", async message => {
         var person = message.author
     }
     if (message.content.startsWith('!score')) { 
+        if (message.author.id != testacc) {
+            message.channel.send("``sorry that is being worked on``")
+            return
+        }
         if (person.id === '246840305741987840') {
             await message.channel.send('toot')
         }
@@ -166,10 +173,18 @@ bot.on("message", async message => {
         }
     }
     if (message.content.startsWith('!testwelcome')) {
+        if (message.author.id != testacc) {
+            message.channel.send("``sorry that is being worked on``")
+            return
+        }
         welcomecard(person, guild)
     }
     if (message.content.startsWith('!testpfp')) {
-        const file = fs.createWriteStream("scorecards/welcomepfp${person.id}.png")
+        if (message.author.id != testacc) {
+            message.channel.send("``sorry that is being worked on``")
+            return
+        }
+        const file = fs.createWriteStream(`scorecards/welcomepfp${person.id}.png`)
         https.get(person.avatarURL, response => {
             response.pipe(file)
         })
