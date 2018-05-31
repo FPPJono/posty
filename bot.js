@@ -21,6 +21,7 @@ const hof = '450244347137359874'
 const collections = '450243593026666507'
 const artChannel = '450243533799161856'
 const suggestChannel = '450568346824343555'
+const welcome = '450165137001807873'
 
 //roles
 const admin = '450156424694071296'
@@ -125,6 +126,37 @@ bot.on("message", async message => {
             await message.channel.send('toot')
         }
         pfpNumber = pfpNumber + 1
+    }
+    if (message.content.startsWith('!testwelcome')) {
+        PImage.decodePNGFromStream(fs.createReadStream(`scorecards/welcomeCard.png`)).then((img) => {
+            var img2 = PImage.make(500,250);
+            var c = img2.getContext('2d');
+            c.drawImage(img,
+                0, 0, img.width, img.height, // source dimensions
+                0, 0, 500, 250               // destination dimensions
+            );
+            var ctx = c
+            var fnt = PImage.registerFont('scorefont.ttf', 'Score Font')
+            fnt.load(() => {
+                ctx.fillStyle = #ffffff;
+                ctx.font = "20pt 'Score Font'";
+                ctx.fillText(`${person.username}`, 148, 158);
+                ctx.font = "20pt 'Score Font'";
+                ctx.fillText(`Member #${guild.memberCount}`, 324, 207);
+                var stream = fs.createReadStream(`scorecards/welcomepfp${person.id}.png`)
+                PImage.decodePNGFromStream(stream).then((pfp) => {
+                    c.drawImage(pfp,
+                        0, 0, pfp.width, pfp.height,
+                        52, 44, 123, 115
+                    )
+                    console.log(`scorecards/welcomepfp${person.id}.png`)
+                    PImage.encodePNGToStream(img2,fs.createWriteStream('scorecards/welcome.png')).then(() => {
+                        console.log(`${message.author.username} has just checked their score`);
+                        message.channel.send({files:[{attachment: 'scorecards/welcome.png', name:'welcome.png'}] })
+                    });
+                })
+            });
+        });  
     }
 })
 
