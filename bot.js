@@ -112,8 +112,8 @@ async function welcomecard(person, guild) {
                 ctx.fillStyle = '#ffffff'
                 ctx.font = "20pt 'Score Font'";
                 ctx.fillText(`Member #${guild.memberCount}`, 324, 207);
-                request(person.avatarURL).pipe(fs.createWriteStream(`scorecards/welcomepfp${person.id}.png`))
-                PImage.decodePNGFromStream(fs.createReadStream(`scorecards/welcomepfp${person.id}.png`)).then((pfp) => {
+                //request(person.avatarURL).pipe(fs.createWriteStream(`scorecards/welcomepfp${person.id}.png`))
+                PImage.decodePNGFromStream(fsCreateReadStream('scorecards/welcomepfp${person.id}', person.avatarURL, {encoding: 'utf8'})).then((pfp) => {
                     c.drawImage(pfp,
                         0, 0, pfp.width, pfp.height,
                         52, 44, 72, 72
@@ -186,7 +186,7 @@ bot.on("message", async message => {
         /*https.get(person.avatarURL, response => {
             response.pipe(file)
         })*/
-        request(person.avatarURL).pipe(file)
+        //request(person.avatarURL).pipe(file)
         message.channel.send({files: [{attachment: `scorecards/welcomepfp${person.id}.png`, name: "test.png"}]})
     }
 })
