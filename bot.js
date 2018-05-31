@@ -146,6 +146,7 @@ bot.on("message", async message => {
                 ctx.fillStyle = '#000000';
                 ctx.font = "40pt 'Score Font'";
                 ctx.fillText(`${person.username}`, 148, 158);
+                ctx.fillStyle = '#ffffff'
                 ctx.font = "20pt 'Score Font'";
                 ctx.fillText(`Member #${guild.memberCount}`, 324, 207);
                 /*PImage.decodePNGFromStream('scorecards/beerbongs.png').then((pfp) => {
