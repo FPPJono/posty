@@ -61,7 +61,6 @@ function decimalToHexString(number) {
 async function scorecard(role, color, person, message) {
     console.log(`scorecards/pfp${person.id}${pfpNumber.toString()}.png`)
     var stream2 = request(person.avatarURL).pipe(fs.createWriteStream(`scorecards/pfp${person.id}${pfpNumber.toString()}.png`))
-    const pathToUrl = local => person.avatarURL.replace("https", "http") + path.resolve('/', local)
     PImage.decodePNGFromStream(fs.createReadStream(`scorecards/${role}.png`)).then((img) => {
         var img2 = PImage.make(500,500);
         var c = img2.getContext('2d');
@@ -133,6 +132,7 @@ bot.on("message", async message => {
         } else {
             var person = message.author
         }
+        var stream2 = request(person.avatarURL).pipe(fs.createWriteStream(`scorecards/welcomepfp${person.id}.png`))
         PImage.decodePNGFromStream(fs.createReadStream(`scorecards/welcomeCard.png`)).then((img) => {
             var img2 = PImage.make(500,250);
             var c = img2.getContext('2d');
@@ -149,7 +149,8 @@ bot.on("message", async message => {
                 ctx.fillStyle = '#ffffff'
                 ctx.font = "20pt 'Score Font'";
                 ctx.fillText(`Member #${guild.memberCount}`, 324, 207);
-                PImage.decodePNGFromStream(fs.createReadStream('scorecards/beerbongs.png')).then((pfp) => {
+                var stream = fs.createReadStream(`scorecards/welcomepfp${person.id}.png`)
+                PImage.decodePNGFromStream(stream).then((pfp) => {
                     c.drawImage(pfp,
                         0, 0, pfp.width, pfp.height,
                         52, 44, 72, 72
