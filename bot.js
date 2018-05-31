@@ -110,8 +110,7 @@ async function welcomecard(person, guild) {
                 ctx.fillStyle = '#ffffff'
                 ctx.font = "20pt 'Score Font'";
                 ctx.fillText(`Member #${guild.memberCount}`, 324, 207);
-                var welcomestream = fs.createReadStream(`scorecards/welcomepfp${person.id}.png`)
-                PImage.decodePNGFromStream(welcomestream).then((pfp) => {
+                PImage.decodePNGFromStream(fs.createReadStream(`scorecards/welcomepfp${person.id}.png`)).then((pfp) => {
                     c.drawImage(pfp,
                         0, 0, pfp.width, pfp.height,
                         52, 44, 72, 72
@@ -120,7 +119,6 @@ async function welcomecard(person, guild) {
                     PImage.encodePNGToStream(img2,fs.createWriteStream('scorecards/welcome.png')).then(() => {
                         console.log(`${message.author.username} has just joined the server`);
                         message.channel.send({files:[{attachment: 'scorecards/welcome.png', name:'welcome.png'}] })
-                        welcomestream.destroy()
                         welcomestream2.destroy()
                     });
                 })
