@@ -149,7 +149,7 @@ bot.on("message", async message => {
                 ctx.fillStyle = '#ffffff'
                 ctx.font = "20pt 'Score Font'";
                 ctx.fillText(`Member #${guild.memberCount}`, 324, 207);
-                /*PImage.decodePNGFromStream('scorecards/beerbongs.png').then((pfp) => {
+                PImage.decodePNGFromStream(fs.createReadStream('scorecards/beerbongs.png')).then((pfp) => {
                     c.drawImage(pfp,
                         0, 0, pfp.width, pfp.height,
                         52, 44, 123, 115
@@ -161,13 +161,7 @@ bot.on("message", async message => {
                         //welcomestream.destroy()
                         //welcomestream2.destroy()
                     });
-                })*/
-                PImage.encodePNGToStream(img2,fs.createWriteStream('scorecards/welcome.png')).then(() => {
-                    console.log(`${message.author.username} has just joined the server`);
-                    message.channel.send({files:[{attachment: 'scorecards/welcome.png', name:'welcome.png'}] })
-                    //welcomestream.destroy()
-                    //welcomestream2.destroy()
-                });
+                })
             });
         });
     }
