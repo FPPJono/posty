@@ -64,7 +64,7 @@ function decimalToHexString(number) {
 
 async function scorecard(role, color, person, message) {
     console.log(`scorecards/pfp${person.id}${pfpNumber.toString()}.png`)
-    var stream2 = request(person.avatarURL).pipe(fs.createWriteStream(`scorecards/pfp${person.id}${pfpNumber.toString()}.png`))
+    request(person.avatarURL).pipe(fs.createWriteStream(`scorecards/pfp${person.id}${pfpNumber.toString()}.png`))
     PImage.decodePNGFromStream(fs.createReadStream(`scorecards/${role}.png`)).then((img) => {
         var img2 = PImage.make(500,500);
         var c = img2.getContext('2d');
@@ -78,8 +78,7 @@ async function scorecard(role, color, person, message) {
             ctx.fillStyle = color;
             ctx.font = "50pt 'Score Font'";
             ctx.fillText(`${person.username.toUpperCase()}`, 135, 80);
-            var stream = fs.createReadStream(`scorecards/pfp${person.id}${(pfpNumber - 1).toString()}.png`)
-            PImage.decodePNGFromStream(stream).then((pfp) => {
+            PImage.decodePNGFromStream(fs.createReadStream(`scorecards/pfp${person.id}${(pfpNumber - 1).toString()}.png`)).then((pfp) => {
                 c.drawImage(pfp,
                     0, 0, pfp.width, pfp.height,
                     15, 15, 110, 110
@@ -89,7 +88,6 @@ async function scorecard(role, color, person, message) {
                     console.log(`${message.author.username} has just checked their score`);
                     message.channel.send({files:[{attachment: 'scorecards/score.png', name:'score.png'}] })
                     stream.pause()
-                    stream2.destroy()
                 });
             })
         });
@@ -188,7 +186,7 @@ bot.on("message", async message => {
         /*https.get(person.avatarURL, response => {
             response.pipe(file)
         })*/
-        request(person.avatarURL).pipe(fs.createWriteStream(`scorecards/welcomepfp${person.id}.png`))
+        request(person.avatarURL).pipe(file))
         message.channel.send({files: [{attachment: `scorecards/welcomepfp${person.id}.png`, name: "test.png"}]})
     }
 })
