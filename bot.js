@@ -92,46 +92,7 @@ async function scorecard(role, color, person, message) {
     });   
 }
 
-bot.on('ready', () => {
-    console.log('I am ready!');
-    bot.user.setPresence({ game: { name: 'I turned on !!', type: 0 } }); //playing game
-    wait(5000)
-    bot.user.setPresence({ game: { name: 'something heck idk', type: 0 } });
-    bot.user.setUsername("Leon Dechino");
-});
-
-bot.on("message", async message => {
-    var sender = message.author;
-    if (message.author.bot) return;
-    const args = message.content.split(" ");
-    let rip = message.content.toLowerCase()
-    let guild = message.guild
-    if (message.content.startsWith('!score')) { 
-       if (message.mentions.users.array().toString().length >= 1) {
-            var person = message.mentions.users.first()
-        } else {
-            var person = message.author
-        }
-        if (guild.member(person).roles.has(beerbongs)) {
-            await scorecard('beerbongs', '#000000', person, message)
-        }
-        if (guild.member(person).roles.has(august26)) {
-            await scorecard('august26', '#bb001d', person, message)
-        }
-        if (guild.member(person).roles.has(stoney)) {
-            await scorecard('stoney', '#ffffff', person, message)
-        }
-        if (message.author.id === '246840305741987840') {
-            await message.channel.send('toot')
-        }
-        pfpNumber = pfpNumber + 1
-    }
-    if (message.content.startsWith('!testwelcome')) {
-       if (message.mentions.users.array().toString().length >= 1) {
-            var person = message.mentions.users.first()
-        } else {
-            var person = message.author
-        }
+async function welcomecard(person, guild) {
         var welcomestream2 = request(person.avatarURL).pipe(fs.createWriteStream(`scorecards/welcomepfp${person.id}.png`))
         PImage.decodePNGFromStream(fs.createReadStream(`scorecards/welcomeCard.png`)).then((img) => {
             var img2 = PImage.make(500,250);
@@ -165,6 +126,52 @@ bot.on("message", async message => {
                 })
             });
         });
+}
+
+bot.on('ready', () => {
+    console.log('I am ready!');
+    bot.user.setPresence({ game: { name: 'I turned on !!', type: 0 } }); //playing game
+    wait(5000)
+    bot.user.setPresence({ game: { name: 'something heck idk', type: 0 } });
+    bot.user.setUsername("Leon Dechino");
+});
+
+bot.on("message", async message => {
+    var sender = message.author;
+    if (message.author.bot) return;
+    const args = message.content.split(" ");
+    let rip = message.content.toLowerCase()
+    let guild = message.guild
+    if (message.content.startsWith('!score')) { 
+       if (message.mentions.users.array().toString().length >= 1) {
+            var person = message.mentions.users.first()
+        } else {
+            var person = message.author
+        }
+        if (message.author.id === '246840305741987840') {
+            await message.channel.send('toot')
+        }
+        pfpNumber = pfpNumber + 1
+        if (guild.member(person).roles.has(beerbongs)) {
+            await scorecard('beerbongs', '#000000', person, message)
+            return()
+        }
+        if (guild.member(person).roles.has(august26)) {
+            await scorecard('august26', '#bb001d', person, message)
+            return()
+        }
+        if (guild.member(person).roles.has(stoney)) {
+            await scorecard('stoney', '#ffffff', person, message)
+            return()
+        }
+    }
+    if (message.content.startsWith('!testwelcome')) {
+       if (message.mentions.users.array().toString().length >= 1) {
+            var person = message.mentions.users.first()
+        } else {
+            var person = message.author
+        }
+        welcomecard(person, guild)
     }
 })
 
