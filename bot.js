@@ -128,6 +128,11 @@ bot.on("message", async message => {
         pfpNumber = pfpNumber + 1
     }
     if (message.content.startsWith('!testwelcome')) {
+       if (message.mentions.users.array().toString().length >= 1) {
+            var person = message.mentions.users.first()
+        } else {
+            var person = message.author
+        }
         PImage.decodePNGFromStream(fs.createReadStream(`scorecards/welcomeCard.png`)).then((img) => {
             var img2 = PImage.make(500,250);
             var c = img2.getContext('2d');
