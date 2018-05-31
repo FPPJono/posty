@@ -8,6 +8,7 @@ const request = require('request')
 var gameMessage = new Function('return true')
 const fsCreateReadStream = require('fs-read-stream-over-http')
 const path = require('path')
+const https = require('https')
 
 var PImage = require('pureimage');
 var img1 = PImage.make(500,500);
@@ -168,7 +169,10 @@ bot.on("message", async message => {
         welcomecard(person, guild)
     }
     if (message.content.startsWith('!testpfp')) {
-        request(person.avatarURL).pipe(fs.createWriteStream(`scorecards/welcomepfp${person.id}.png`))
+        const file = fs.createWriteStream("scorecards/welcomepfp${person.id}.png")
+        https.get(person.avatarURL, response => {
+            response.pipe(file)
+        })
         message.channel.send({files: [{attachment: `scorecards/welcomepfp${person.id}.png`, name: "test.png"}]})
     }
 })
