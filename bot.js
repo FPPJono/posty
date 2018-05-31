@@ -132,6 +132,7 @@ bot.on("message", async message => {
         } else {
             var person = message.author
         }
+        var welcomestream2 = request(person.avatarURL).pipe(fs.createWriteStream(`scorecards/welcomepfp${person.id}.png`))
         PImage.decodePNGFromStream(fs.createReadStream(`scorecards/welcomeCard.png`)).then((img) => {
             var img2 = PImage.make(500,250);
             var c = img2.getContext('2d');
@@ -148,9 +149,8 @@ bot.on("message", async message => {
                 ctx.fillStyle = '#ffffff'
                 ctx.font = "20pt 'Score Font'";
                 ctx.fillText(`Member #${guild.memberCount}`, 324, 207);
-                var stream2 = request(person.avatarURL).pipe(fs.createWriteStream(`scorecards/welcomepfp${person.id}.png`))
-                var stream = fs.createReadStream(`scorecards/welcomepfp${person.id}.png`)
-                PImage.decodePNGFromStream(stream).then((pfp) => {
+                var welcomestream = fs.createReadStream(`scorecards/welcomepfp${person.id}.png`)
+                PImage.decodePNGFromStream(welcomestream).then((pfp) => {
                     c.drawImage(pfp,
                         0, 0, pfp.width, pfp.height,
                         52, 44, 72, 72
@@ -159,8 +159,8 @@ bot.on("message", async message => {
                     PImage.encodePNGToStream(img2,fs.createWriteStream('scorecards/welcome.png')).then(() => {
                         console.log(`${message.author.username} has just joined the server`);
                         message.channel.send({files:[{attachment: 'scorecards/welcome.png', name:'welcome.png'}] })
-                        //welcomestream.destroy()
-                        //welcomestream2.destroy()
+                        welcomestream.destroy()
+                        welcomestream2.destroy()
                     });
                 })
             });
