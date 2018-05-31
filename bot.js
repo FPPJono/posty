@@ -144,7 +144,7 @@ bot.on("message", async message => {
             var fnt = PImage.registerFont('scorefont.ttf', 'Score Font')
             fnt.load(() => {
                 ctx.fillStyle = '#ffffff';
-                ctx.font = "20pt 'Score Font'";
+                ctx.font = "40pt 'Score Font'";
                 ctx.fillText(`${person.username}`, 148, 158);
                 ctx.font = "20pt 'Score Font'";
                 ctx.fillText(`Member #${guild.memberCount}`, 324, 207);
