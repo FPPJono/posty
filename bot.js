@@ -166,7 +166,7 @@ bot.on("guildMemberAdd", async member => {
     welcomecard(member.user, guild)
     async.waterfall([
         function (done){
-            guild.channels.get(welcome).send(`Welcome <@${person.id}> to Posty's Rockstar Club!`, {files:[{attachment: 'scorecards/welcome.png', name:'welcome.png'}] })
+            guild.channels.get(welcome).send(`Welcome <@${member.id}> to Posty's Rockstar Club!`, {files:[{attachment: 'scorecards/welcome.png', name:'welcome.png'}] })
             done(null, 'card sent!')
         }, function (step1Result, done){
             guild.channels.get(welcome).send('test?')
