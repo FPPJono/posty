@@ -202,19 +202,19 @@ bot.on('message', message => {
     }
     if (rip.startsWith('!role')) {
         if (rip.startsWith('!role b')) {
-            guild.member.get(message.author).addRole(beerbongs)
-            guild.member.get(message.author).removeRole(august26)
-            guild.member.get(message.author).removeRole(stoney)
+            message.member.addRole(beerbongs)
+            message.member.removeRole(august26)
+            message.member.removeRole(stoney)
         }
         if (rip.startsWith('!role a')) {
-            guild.member.get(message.author).addRole(august26)
-            guild.member.get(message.author).removeRole(stoney)
-            guild.member.get(message.author).removeRole(beerbongs)
+            message.member.addRole(august26)
+            message.member.removeRole(stoney)
+            message.member.removeRole(beerbongs)
         }
         if (rip.startsWith('!role s')) {
-            guild.member.get(message.author).removeRole(august26)
-            guild.member.get(message.author).addRole(stoney)
-            guild.member.get(message.author).removeRole(beerbongs)
+            message.member.removeRole(august26)
+            message.member.addRole(stoney)
+            message.member.removeRole(beerbongs)
         }
     }
     if (rip.startsWith(PREFIX + "playing")) {
