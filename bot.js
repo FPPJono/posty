@@ -164,15 +164,13 @@ bot.on('ready', () => {
 bot.on("guildMemberAdd", async member => {
     let guild = member.guild;
     async.waterfall([
-        function firstStep(done){
+        function (done){
             welcomecard(member.user, guild)
             done(null, 'card sent!')
-        },
-        function secondStep(step1Result, done){
+        }, function (step1Result, done){
             wait(2000)
             done(null, 'waited!')
-        },
-        function thirdStep(step2Result, done){
+        }, function (step2Result, done){
             guild.channels.get(welcome).send(`Welcome <@${member.id}> to Posty's Rockstar Club!`)
             done(null)
         }
