@@ -147,6 +147,7 @@ async function welcomecard(person, guild) {
                 PImage.encodePNGToStream(img2,fs.createWriteStream('scorecards/welcome.png')).then(() => {
                     console.log(`${person.username} has just joined the server`);
                     guild.channels.get(welcome).send(`Welcome <@${person.id}> to Posty's Rockstar Club!`, {files:[{attachment: 'scorecards/welcome.png', name:'welcome.png'}] })
+                    guild.channels.get(welcome).send("test"))
                 });
             })
         });
@@ -163,14 +164,7 @@ bot.on('ready', () => {
 
 bot.on("guildMemberAdd", async member => {
     let guild = member.guild;
-    function welcomemessage(guild){
-        guild.channels.get(welcome).send("hoot")
-    }
-    async function sendmessages(guild){
-        await welcomecard(member.user, guild)
-        welcomemessage(guild)
-    }
-    sendmessages(guild)
+    welcomecard(member.user, guild)
     let RoleMember = guild.member(member.user);
     RoleMember.addRole(beerbongs);
 });
