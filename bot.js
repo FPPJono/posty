@@ -59,9 +59,7 @@ function decimalToHexString(number) {
 }
 
 async function scorecard(role, color, person, message) {
-    destination = `scorecards/pfp${person.id}.png`
-    console.log(destination)
-    await download.image({url: person.avatarURL, dest:`scorecards/pfp${person.id}.png`})
+    await download.image({url: person.avatarURL, dest:`scorecards/pfp.png`})
     PImage.decodePNGFromStream(fs.createReadStream(`scorecards/${role}.png`)).then((img) => {
         var img2 = PImage.make(500,500);
         var c = img2.getContext('2d');
@@ -75,7 +73,7 @@ async function scorecard(role, color, person, message) {
             ctx.fillStyle = color;
             ctx.font = "50pt 'Score Font'";
             ctx.fillText(`${person.username.toUpperCase()}`, 135, 80);
-            PImage.decodePNGFromStream(fs.createReadStream(`scorecards/pfp${person.id}.png`)).then((pfp) => {
+            PImage.decodePNGFromStream(fs.createReadStream(`scorecards/pfp.png`)).then((pfp) => {
                 c.drawImage(pfp,
                     0, 0, pfp.width, pfp.height,
                     15, 15, 110, 110
@@ -90,7 +88,7 @@ async function scorecard(role, color, person, message) {
 }
 
 async function welcomecard(person, guild, message) {
-    await download.image({url: person.avatarURL, dest:`scorecards/welcomepfp${person.id}.png`})
+    await download.image({url: person.avatarURL, dest:`scorecards/welcomepfp.png`})
     PImage.decodePNGFromStream(fs.createReadStream(`scorecards/welcomeCard.png`)).then((img) => {
         var img2 = PImage.make(500,250);
         var c = img2.getContext('2d');
@@ -107,7 +105,7 @@ async function welcomecard(person, guild, message) {
             ctx.fillStyle = '#ffffff'
             ctx.font = "20pt 'Score Font'";
             ctx.fillText(`Member #${guild.memberCount}`, 324, 207);
-            PImage.decodePNGFromStream(fs.createReadStream(`scorecards/welcomepfp${person.id}.png`)).then((pfp) => {
+            PImage.decodePNGFromStream(fs.createReadStream(`scorecards/welcomepfp.png`)).then((pfp) => {
                 c.drawImage(pfp,
                     0, 0, pfp.width, pfp.height,
                     52, 44, 72, 72
@@ -147,6 +145,13 @@ function customRole(message, color, name, x, file) {
     });   
 }
 
+function testCommand(message) {
+    if (message.author.id != testacc) {
+        message.channel.send("``sorry that is being worked on``")
+        return
+    }
+}
+
 bot.on('ready', () => {
     console.log('I am ready!');
     bot.user.setPresence({ game: { name: 'I turned on !!', type: 0 } }); //playing game
@@ -167,10 +172,6 @@ bot.on("message", async message => {
         var person = message.author
     }
     if (message.content.startsWith('!score')) { 
-        if (message.author.id != testacc) {
-            message.channel.send("``sorry that is being worked on``")
-            return
-        }
         if (person.id === '246840305741987840') {
             await message.channel.send('toot')
         }
@@ -188,20 +189,8 @@ bot.on("message", async message => {
         }
     }
     if (message.content.startsWith('!testwelcome')) {
-        if (message.author.id != testacc) {
-            message.channel.send("``sorry that is being worked on``")
-            return
-        }
         await welcomecard(person, guild, message)
         return
-    }
-    if (message.content.startsWith('!testpfp')) {
-        if (message.author.id != testacc) {
-            message.channel.send("``sorry that is being worked on``")
-            return
-        }
-        await download.image({url: person.avatarURL, dest: `scorecards/welcomepfp${person.id}.png`})
-        message.channel.send({files: [{attachment: `scorecards/welcomepfp${person.id}.png`, name: "test.png"}]})
     }
 })
 
