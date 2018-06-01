@@ -6,9 +6,6 @@ const fs = require('fs')
 const PNG = require('pngjs')
 const request = require('request')
 var gameMessage = new Function('return true')
-const fsCreateReadStream = require('fs-read-stream-over-http')
-const path = require('path')
-const https = require('https')
 
 var PImage = require('pureimage');
 var img1 = PImage.make(500,500);
