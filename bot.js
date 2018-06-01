@@ -169,7 +169,7 @@ bot.on("guildMemberAdd", async member => {
             guild.channels.get(welcome).send("hoot")
         })
     }
-    sendSecond(guild)
+    sendmessages(guild)
     let RoleMember = guild.member(member.user);
     RoleMember.addRole(beerbongs);
 });
