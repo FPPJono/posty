@@ -91,7 +91,7 @@ async function scorecard(role, color, person, message) {
     });   
 }
 
-async function welcomecard(person, guild) {
+async function welcomecard(person, guild, message) {
         /*request(person.avatarURL).pipe(fs.createWriteStream(`scorecards/welcomepfp${person.id}.png`))
         PImage.decodePNGFromStream(fs.createReadStream(`scorecards/welcomeCard.png`)).then((img) => {
             var img2 = PImage.make(500,250);
@@ -224,7 +224,7 @@ bot.on("message", async message => {
             message.channel.send("``sorry that is being worked on``")
             return
         }
-        welcomecard(person, guild)
+        welcomecard(person, guild, message)
     }
     if (message.content.startsWith('!testpfp')) {
         if (message.author.id != testacc) {
