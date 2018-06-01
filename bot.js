@@ -63,7 +63,7 @@ function decimalToHexString(number) {
 }
 
 async function scorecard(role, color, person, message) {
-    request(person.avatarURL).pipe(fs.createWriteStream(`scorecards/pfp${person.id}${pfpNumber.toString()}.png`))
+    download.image(`scorecards/pfp${person.id}.png`)
     PImage.decodePNGFromStream(fs.createReadStream(`scorecards/${role}.png`)).then((img) => {
         var img2 = PImage.make(500,500);
         var c = img2.getContext('2d');
@@ -77,7 +77,7 @@ async function scorecard(role, color, person, message) {
             ctx.fillStyle = color;
             ctx.font = "50pt 'Score Font'";
             ctx.fillText(`${person.username.toUpperCase()}`, 135, 80);
-            PImage.decodePNGFromStream(fs.createReadStream(`scorecards/pfp${person.id}${pfpNumber.toString()}.png`)).then((pfp) => {
+            PImage.decodePNGFromStream(fs.createReadStream(`scorecards/pfp${person.id}.png`)).then((pfp) => {
                 c.drawImage(pfp,
                     0, 0, pfp.width, pfp.height,
                     15, 15, 110, 110
@@ -92,7 +92,7 @@ async function scorecard(role, color, person, message) {
 }
 
 async function welcomecard(person, guild, message) {
-    request(person.avatarURL).pipe(fs.createWriteStream(`scorecards/welcomepfp${person.id}.png`))
+    download.image(`scorecards/welcomepfp${person.id}.png`)
     PImage.decodePNGFromStream(fs.createReadStream(`scorecards/welcomeCard.png`)).then((img) => {
         var img2 = PImage.make(500,250);
         var c = img2.getContext('2d');
@@ -204,9 +204,10 @@ bot.on("message", async message => {
             return
         }
         //const file = fs.createWriteStream(`scorecards/welcomepfp${person.id}.png`)
-        https.get(person.avatarURL, response => {
+        /*https.get(person.avatarURL, response => {
             response.pipe(fs.createWriteStream(`scorecards/welcomepfp${person.id}.png`))
-        })
+        })*/
+        download.image(person.avatarURL, `scorecards/welcomepfp${person.id}.png`)
         //request(person.avatarURL).pipe(fs.createWriteStream(`scorecards/welcomepfp${person.id}.png`))
         message.channel.send({files: [{attachment: `scorecards/welcomepfp${person.id}.png`, name: "test.png"}]})
     }
