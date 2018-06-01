@@ -129,6 +129,28 @@ async function welcomecard(person, guild) {
         });
 }
 
+function customRole(message, color, name) {
+        PImage.decodePNGFromStream(fs.createReadStream(`scorecards/welcomecard.png`)).then((img) => {
+            var img2 = PImage.make(500,250);
+            var c = img2.getContext('2d');
+            c.drawImage(img,
+                0, 0, img.width, img.height, // source dimensions
+                0, 0, 500, 250               // destination dimensions
+            );
+            var ctx = c
+            var fnt = PImage.registerFont('scorefont.ttf', 'Score Font')
+            fnt.load(() => {
+                ctx.fillStyle = color
+                ctx.font = "40pt 'Score Font'";
+                ctx.fillText(`You Have Gotten The`, 148, 158);  
+                ctx.fillText(`${name} Role`, 80, 170);
+                PImage.encodePNGToStream(img2,fs.createWriteStream('scorecards/role.png')).then(() => {
+                    message.channel.send({files:[{attachment: 'scorecards/role.png', name:'role.png'}] })
+                });
+            });
+        });   
+}
+
 bot.on('ready', () => {
     console.log('I am ready!');
     bot.user.setPresence({ game: { name: 'I turned on !!', type: 0 } }); //playing game
@@ -202,6 +224,7 @@ bot.on('message', message => {
     }
     if (rip.startsWith('!role')) {
         if (rip.startsWith('!role b')) {
+            customRole(message, '#ffffff', "Beerbongs and Bentleys")
             message.member.addRole(beerbongs)
             message.member.removeRole(august26)
             message.member.removeRole(stoney)
