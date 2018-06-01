@@ -171,6 +171,7 @@ bot.on("guildMemberAdd", async member => {
             wait(2000)
             done(null, 'waited!')
         }, function (step2Result, done){
+            await wait(2000)
             guild.channels.get(welcome).send(`hello read rules plz`)
             done(null)
         }
