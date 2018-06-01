@@ -141,9 +141,10 @@ function customRole(message, color, name, x, y, size) {
             var fnt = PImage.registerFont('scorefont.ttf', 'Score Font')
             fnt.load(() => {
                 ctx.fillStyle = color
-                ctx.font = "30pt 'Score Font'";
-                ctx.fillText(`You Have Gotten The`, 59, 119);  
-                ctx.fillText(`${name} Role`, 48, 185);
+                ctx.font = "50pt 'Score Font'";
+                ctx.fillText(`YOU HAVE GOTTEN THE ROLE`, 59, 119); 
+                ctx.font = "${size.toString()}pt 'Score Font'"
+                ctx.fillText(`${name.toUpperCase()}`, x, y);
                 PImage.encodePNGToStream(img2,fs.createWriteStream('scorecards/role.png')).then(() => {
                     message.channel.send({files:[{attachment: 'scorecards/role.png', name:'role.png'}] })
                 });
