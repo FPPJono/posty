@@ -204,10 +204,10 @@ bot.on("message", async message => {
             return
         }
         //const file = fs.createWriteStream(`scorecards/welcomepfp${person.id}.png`)
-        /*https.get(person.avatarURL, response => {
-            response.pipe(file)
-        })*/
-        request(person.avatarURL).pipe(fs.createWriteStream(`scorecards/welcomepfp${person.id}.png`))
+        https.get(person.avatarURL, response => {
+            response.pipe(fs.createWriteStream(`scorecards/welcomepfp${person.id}.png`))
+        })
+        //request(person.avatarURL).pipe(fs.createWriteStream(`scorecards/welcomepfp${person.id}.png`))
         message.channel.send({files: [{attachment: `scorecards/welcomepfp${person.id}.png`, name: "test.png"}]})
     }
 })
