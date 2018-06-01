@@ -168,7 +168,7 @@ bot.on("guildMemberAdd", async member => {
         function (done){
             done(null, 'card sent!')
         }, function (step1Result, done){
-            wait(2000)
+            guild.channels.get(welcome).send('test?')
             done(null, 'waited!')
         }, function (step2Result, done){
             wait(2000)
