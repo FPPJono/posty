@@ -200,6 +200,23 @@ bot.on('message', message => {
     if (message.content.startsWith(PREFIX + "ping")) {
         message.channel.send(`Pong! ${new Date().getTime() - message.createdTimestamp}ms`)
     }
+    if (rip.startsWith('!role')) {
+        if (rip.startsWith('!role b')) {
+            guild.member.get(message.author).addRole(beerbongs)
+            guild.member.get(message.author).removeRole(august26)
+            guild.member.get(message.author).removeRole(stoney)
+        }
+        if (rip.startsWith('!role a')) {
+            guild.member.get(message.author).addRole(august26)
+            guild.member.get(message.author).removeRole(stoney)
+            guild.member.get(message.author).removeRole(beerbongs)
+        }
+        if (rip.startsWith('!role s')) {
+            guild.member.get(message.author).removeRole(august26)
+            guild.member.get(message.author).addRole(stoney)
+            guild.member.get(message.author).removeRole(beerbongs)
+        }
+    }
     if (rip.startsWith(PREFIX + "playing")) {
         if (message.member.roles.has(admin)) {
             let content = args.join(" ")
