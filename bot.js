@@ -160,12 +160,13 @@ bot.on('ready', () => {
     bot.user.setUsername("Leon Dechino");
 });
 
-bot.on("guildMemberAdd", member => {
-  let guild = member.guild;
-  welcomecard(member, guild)
-  guild.channels.get(welcome).send(`Welcome <@${member.id}> to Posty's Rockstar Club!`);
-  let RoleMember = guild.member(member.user);
-  RoleMember.addRole(beerbongs);
+bot.on("guildMemberAdd", async member => {
+    let guild = member.guild;
+    await wait(500)
+    await welcomecard(member, guild)
+    guild.channels.get(welcome).send(`Welcome <@${member.id}> to Posty's Rockstar Club!`);
+    let RoleMember = guild.member(member.user);
+    RoleMember.addRole(beerbongs);
 });
 
 bot.on("message", async message => {
