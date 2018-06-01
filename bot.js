@@ -122,7 +122,7 @@ async function welcomecard(person, guild, message) {
             });
         });*/
     request(person.avatarURL).pipe(fs.createWriteStream(`scorecards/pfp${person.id}.png`))
-    PImage.decodePNGFromStream(fs.createReadStream(`scorecards/${role}.png`)).then((img) => {
+    PImage.decodePNGFromStream(fs.createReadStream(`scorecards/beerbongs.png`)).then((img) => {
         var img2 = PImage.make(500,500);
         var c = img2.getContext('2d');
         c.drawImage(img,
