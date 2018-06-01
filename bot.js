@@ -166,8 +166,8 @@ bot.on("guildMemberAdd", async member => {
     function welcomemessage(guild){
         guild.channels.get(welcome).send("hoot")
     }
-    function sendmessages(guild){
-        welcomecard(member.user, guild)
+    async function sendmessages(guild){
+        await welcomecard(member.user, guild)
         welcomemessage(guild)
     }
     sendmessages(guild)
