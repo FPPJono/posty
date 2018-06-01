@@ -146,7 +146,8 @@ async function welcomecard(person, guild) {
                 )
                 PImage.encodePNGToStream(img2,fs.createWriteStream('scorecards/welcome.png')).then(() => {
                     console.log(`${person.username} has just joined the server`);
-                    guild.channels.get(welcome).send(`Welcome <@${person.id}> to Posty's Rockstar Club!`, {files:[{attachment: 'scorecards/welcome.png', name:'welcome.png'}] })
+                    await guild.channels.get(welcome).send(`Welcome <@${person.id}> to Posty's Rockstar Club!`, {files:[{attachment: 'scorecards/welcome.png', name:'welcome.png'}] })
+                    wait(1000)
                     guild.channels.get(welcome).send("test")
                 });
             })
