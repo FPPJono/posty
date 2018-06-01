@@ -163,7 +163,7 @@ bot.on('ready', () => {
 
 bot.on("guildMemberAdd", async member => {
     let guild = member.guild;
-    await welcomecard(member.user, guild)
+    welcomecard(member.user, guild)
     async.waterfall([
         function (done){
             done(null, 'card sent!')
