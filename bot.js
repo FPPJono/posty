@@ -150,7 +150,7 @@ async function welcomecard(person, guild) {
                     function message(channel){
                         channel.send("bef")
                     }
-                    setTimeOut(message, 1000, guild.channels.get(welcome))
+                    setTimeout(message, 1000, guild.channels.get(welcome))
                 });
             })
         });
