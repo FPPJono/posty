@@ -92,87 +92,61 @@ async function scorecard(role, color, person, message) {
 }
 
 async function welcomecard(person, guild, message) {
-        /*request(person.avatarURL).pipe(fs.createWriteStream(`scorecards/welcomepfp${person.id}.png`))
-        PImage.decodePNGFromStream(fs.createReadStream(`scorecards/welcomeCard.png`)).then((img) => {
-            var img2 = PImage.make(500,250);
-            var c = img2.getContext('2d');
-            c.drawImage(img,
-                0, 0, img.width, img.height, // source dimensions
-                0, 0, 500, 250               // destination dimensions
-            );
-            var ctx = c
-            var fnt = PImage.registerFont('scorefont.ttf', 'Score Font')
-            fnt.load(() => {
-                ctx.fillStyle = '#000000';
-                ctx.font = "40pt 'Score Font'";
-                ctx.fillText(`${person.username}`, 148, 158);
-                ctx.fillStyle = '#ffffff'
-                ctx.font = "20pt 'Score Font'";
-                ctx.fillText(`Member #${guild.memberCount}`, 324, 207);
-                PImage.decodePNGFromStream(fs.createReadStream(`scorecards/welcomepfp${person.id}.png`)).then((pfp) => {
-                    c.drawImage(pfp,
-                        0, 0, pfp.width, pfp.height,
-                        52, 44, 72, 72
-                    )
-                    PImage.encodePNGToStream(img2,fs.createWriteStream('scorecards/welcome.png')).then(() => {
-                        console.log(`${message.author.username} has just joined the server`);
-                        message.channel.send({files:[{attachment: 'scorecards/welcome.png', name:'welcome.png'}] })
-                    });
-                })
-            });
-        });*/
-    request(person.avatarURL).pipe(fs.createWriteStream(`scorecards/pfp${person.id}.png`))
-    PImage.decodePNGFromStream(fs.createReadStream(`scorecards/beerbongs.png`)).then((img) => {
-        var img2 = PImage.make(500,500);
+    request(person.avatarURL).pipe(fs.createWriteStream(`scorecards/welcomepfp${person.id}.png`))
+    PImage.decodePNGFromStream(fs.createReadStream(`scorecards/welcomeCard.png`)).then((img) => {
+        var img2 = PImage.make(500,250);
         var c = img2.getContext('2d');
         c.drawImage(img,
             0, 0, img.width, img.height, // source dimensions
-            0, 0, 500, 500               // destination dimensions
+            0, 0, 500, 250               // destination dimensions
         );
         var ctx = c
         var fnt = PImage.registerFont('scorefont.ttf', 'Score Font')
         fnt.load(() => {
-            ctx.fillStyle = '#ffffff';
-            ctx.font = "50pt 'Score Font'";
-            ctx.fillText(`${person.username.toUpperCase()}`, 135, 80);
-            PImage.decodePNGFromStream(fs.createReadStream(`scorecards/pfp${person.id}.png`)).then((pfp) => {
+            ctx.fillStyle = '#000000';
+            ctx.font = "40pt 'Score Font'";
+            ctx.fillText(`${person.username}`, 148, 158);
+            ctx.fillStyle = '#ffffff'
+            ctx.font = "20pt 'Score Font'";
+            ctx.fillText(`Member #${guild.memberCount}`, 324, 207);
+            PImage.decodePNGFromStream(fs.createReadStream(`scorecards/welcomepfp${person.id}.png`)).then((pfp) => {
                 c.drawImage(pfp,
                     0, 0, pfp.width, pfp.height,
-                    15, 15, 110, 110
+                    52, 44, 72, 72
                 )
-                PImage.encodePNGToStream(img2,fs.createWriteStream('scorecards/score.png')).then(() => {
-                    console.log(`${message.author.username} has just checked their score`);
-                    message.channel.send({files:[{attachment: 'scorecards/score.png', name:'score.png'}] })
+                PImage.encodePNGToStream(img2,fs.createWriteStream('scorecards/welcome.png')).then(() => {
+                    console.log(`${message.author.username} has just joined the server`);
+                    message.channel.send({files:[{attachment: 'scorecards/welcome.png', name:'welcome.png'}] })
                 });
             })
         });
-    });  
+    });
 }
 
 function customRole(message, color, name, x, file) {
-        PImage.decodePNGFromStream(fs.createReadStream(`scorecards/${file}role.png`)).then((img) => {
-            var img2 = PImage.make(500,250);
-            var c = img2.getContext('2d');
-            c.drawImage(img,
-                0, 0, img.width, img.height, // source dimensions
-                0, 0, 500, 250               // destination dimensions
-            );
-            var ctx = c
-            var fnt = PImage.registerFont('scorefont.ttf', 'Score Font')
-            fnt.load(() => {
-                ctx.fillStyle = color
-                ctx.font = "40pt 'Score Font'";
-                ctx.fillText(`YOU HAVE CLAIMED`, 50, 80)
-                ctx.fillText("THE", 200, 120)
-                ctx.fillText("ROLE", 190, 200)
-                ctx.font = "30pt 'Score Font'"
-                ctx.fillText(`${name.toUpperCase()}`, x, 153);
-                ctx.fillRect(x,157,(name.toString().length * 18.5),3);
-                PImage.encodePNGToStream(img2,fs.createWriteStream('scorecards/role.png')).then(() => {
-                    message.channel.send({files:[{attachment: 'scorecards/role.png', name:'role.png'}] })
-                });
+    PImage.decodePNGFromStream(fs.createReadStream(`scorecards/${file}role.png`)).then((img) => {
+        var img2 = PImage.make(500,250);
+        var c = img2.getContext('2d');
+        c.drawImage(img,
+            0, 0, img.width, img.height, // source dimensions
+            0, 0, 500, 250               // destination dimensions
+        );
+        var ctx = c
+        var fnt = PImage.registerFont('scorefont.ttf', 'Score Font')
+        fnt.load(() => {
+            ctx.fillStyle = color
+            ctx.font = "40pt 'Score Font'";
+            ctx.fillText(`YOU HAVE CLAIMED`, 50, 80)
+            ctx.fillText("THE", 200, 120)
+            ctx.fillText("ROLE", 190, 200)
+            ctx.font = "30pt 'Score Font'"
+            ctx.fillText(`${name.toUpperCase()}`, x, 153);
+            ctx.fillRect(x,157,(name.toString().length * 18.5),3);
+            PImage.encodePNGToStream(img2,fs.createWriteStream('scorecards/role.png')).then(() => {
+                message.channel.send({files:[{attachment: 'scorecards/role.png', name:'role.png'}] })
             });
-        });   
+        });
+    });   
 }
 
 bot.on('ready', () => {
@@ -221,7 +195,8 @@ bot.on("message", async message => {
             message.channel.send("``sorry that is being worked on``")
             return
         }
-        welcomecard(person, guild, message)
+        await welcomecard(person, guild, message)
+        return
     }
     if (message.content.startsWith('!testpfp')) {
         if (message.author.id != testacc) {
