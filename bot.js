@@ -203,11 +203,11 @@ bot.on("message", async message => {
             message.channel.send("``sorry that is being worked on``")
             return
         }
-        const file = fs.createWriteStream(`scorecards/welcomepfp${person.id}.png`)
+        //const file = fs.createWriteStream(`scorecards/welcomepfp${person.id}.png`)
         /*https.get(person.avatarURL, response => {
             response.pipe(file)
         })*/
-        request(person.avatarURL).pipe(file)
+        request(person.avatarURL).pipe(fs.createWriteStream(`scorecards/welcomepfp${person.id}.png`))
         message.channel.send({files: [{attachment: `scorecards/welcomepfp${person.id}.png`, name: "test.png"}]})
     }
 })
