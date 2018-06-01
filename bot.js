@@ -129,7 +129,7 @@ async function welcomecard(person, guild) {
         });
 }
 
-function customRole(message, color, name, x, y, size) {
+function customRole(message, color, name, x) {
         PImage.decodePNGFromStream(fs.createReadStream(`scorecards/welcomeCard.png`)).then((img) => {
             var img2 = PImage.make(500,250);
             var c = img2.getContext('2d');
@@ -143,9 +143,10 @@ function customRole(message, color, name, x, y, size) {
                 ctx.fillStyle = color
                 ctx.font = "40pt 'Score Font'";
                 ctx.fillText(`YOU HAVE CLAIMED`, 50, 80)
-                ctx.fillText("THE", 170, 114)
+                ctx.fillText("THE", 200, 114)
+                ctx.fillText("ROLE", 190, 182)
                 ctx.font = "30pt 'Score Font'"
-                ctx.fillText(`${name.toUpperCase()}`, x, y);
+                ctx.fillText(`${name.toUpperCase()}`, x, );
                 PImage.encodePNGToStream(img2,fs.createWriteStream('scorecards/role.png')).then(() => {
                     message.channel.send({files:[{attachment: 'scorecards/role.png', name:'role.png'}] })
                 });
@@ -226,7 +227,7 @@ bot.on('message', message => {
     }
     if (rip.startsWith('!role')) {
         if (rip.startsWith('!role b')) {
-            customRole(message, '#ffffff', "Beerbongs and Bentleys", 48, 185)
+            customRole(message, '#ffffff', "Beerbongs and Bentleys", 45)
             message.member.addRole(beerbongs)
             message.member.removeRole(august26)
             message.member.removeRole(stoney)
