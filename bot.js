@@ -143,10 +143,10 @@ function customRole(message, color, name, x) {
                 ctx.fillStyle = color
                 ctx.font = "40pt 'Score Font'";
                 ctx.fillText(`YOU HAVE CLAIMED`, 50, 80)
-                ctx.fillText("THE", 200, 114)
-                ctx.fillText("ROLE", 190, 182)
+                ctx.fillText("THE", 200, 120)
+                ctx.fillText("ROLE", 190, 200)
                 ctx.font = "30pt 'Score Font'"
-                ctx.fillText(`${name.toUpperCase()}`, x, );
+                ctx.fillText(`${name.toUpperCase()}`, x, 148);
                 PImage.encodePNGToStream(img2,fs.createWriteStream('scorecards/role.png')).then(() => {
                     message.channel.send({files:[{attachment: 'scorecards/role.png', name:'role.png'}] })
                 });
