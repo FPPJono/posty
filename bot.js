@@ -164,8 +164,10 @@ bot.on('ready', () => {
 bot.on("guildMemberAdd", async member => {
     let guild = member.guild;
     welcomecard(member.user, guild)
-    function sendSecond(guild){
-        guild.channels.get(welcome).send("hoot")
+    function sendmessages(guild){
+        welcomecard(member.user, guild, function(){
+            guild.channels.get(welcome).send("hoot")
+        })
     }
     sendSecond(guild)
     let RoleMember = guild.member(member.user);
