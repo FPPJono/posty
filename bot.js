@@ -87,38 +87,6 @@ async function scorecard(role, color, person, message) {
     });   
 }
 
-async function welcomecard(person, guild, message) {
-    await download.image({url: person.avatarURL, dest:`scorecards/welcomepfp.png`})
-    PImage.decodePNGFromStream(fs.createReadStream(`scorecards/welcomeCard.png`)).then((img) => {
-        var img2 = PImage.make(500,250);
-        var c = img2.getContext('2d');
-        c.drawImage(img,
-            0, 0, img.width, img.height, // source dimensions
-            0, 0, 500, 250               // destination dimensions
-        );
-        var ctx = c
-        var fnt = PImage.registerFont('scorefont.ttf', 'Score Font')
-        fnt.load(() => {
-            ctx.fillStyle = '#000000';
-            ctx.font = "40pt 'Score Font'";
-            ctx.fillText(`${person.username}`, 148, 158);
-            ctx.fillStyle = '#ffffff'
-            ctx.font = "20pt 'Score Font'";
-            ctx.fillText(`Member #${guild.memberCount}`, 324, 207);
-            PImage.decodePNGFromStream(fs.createReadStream(`scorecards/welcomepfp.png`)).then((pfp) => {
-                c.drawImage(pfp,
-                    0, 0, pfp.width, pfp.height,
-                    52, 44, 72, 72
-                )
-                PImage.encodePNGToStream(img2,fs.createWriteStream('scorecards/welcome.png')).then(() => {
-                    console.log(`${message.author.username} has just joined the server`);
-                    message.channel.send({files:[{attachment: 'scorecards/welcome.png', name:'welcome.png'}] })
-                });
-            })
-        });
-    });
-}
-
 function customRole(message, color, name, x, file) {
     PImage.decodePNGFromStream(fs.createReadStream(`scorecards/${file}role.png`)).then((img) => {
         var img2 = PImage.make(500,250);
@@ -152,12 +120,52 @@ function testCommand(message) {
     }
 }
 
+async function welcomecard(person, guild) {
+    await download.image({url: person.avatarURL, dest:`scorecards/welcomepfp.png`})
+    PImage.decodePNGFromStream(fs.createReadStream(`scorecards/welcomeCard.png`)).then((img) => {
+        var img2 = PImage.make(500,250);
+        var c = img2.getContext('2d');
+        c.drawImage(img,
+            0, 0, img.width, img.height, // source dimensions
+            0, 0, 500, 250               // destination dimensions
+        );
+        var ctx = c
+        var fnt = PImage.registerFont('scorefont.ttf', 'Score Font')
+        fnt.load(() => {
+            ctx.fillStyle = '#000000';
+            ctx.font = "40pt 'Score Font'";
+            ctx.fillText(`${person.username}`, 148, 158);
+            ctx.fillStyle = '#ffffff'
+            ctx.font = "20pt 'Score Font'";
+            ctx.fillText(`Member #${guild.memberCount}`, 324, 207);
+            PImage.decodePNGFromStream(fs.createReadStream(`scorecards/welcomepfp.png`)).then((pfp) => {
+                c.drawImage(pfp,
+                    0, 0, pfp.width, pfp.height,
+                    52, 44, 72, 72
+                )
+                PImage.encodePNGToStream(img2,fs.createWriteStream('scorecards/welcome.png')).then(() => {
+                    console.log(`${person.username} has just joined the server`);
+                    guild.channels.get(welcome).send({files:[{attachment: 'scorecards/welcome.png', name:'welcome.png'}] })
+                });
+            })
+        });
+    });
+}
+
 bot.on('ready', () => {
     console.log('I am ready!');
     bot.user.setPresence({ game: { name: 'I turned on !!', type: 0 } }); //playing game
     wait(5000)
     bot.user.setPresence({ game: { name: 'something heck idk', type: 0 } });
     bot.user.setUsername("Leon Dechino");
+});
+
+bot.on("guildMemberAdd", member => {
+  let guild = member.guild;
+  welcomecard(member, guild)
+  guild.channels.get(welcome).send(`Welcome <@${member.id}> to Posty's Rockstar Club!`);
+  let RoleMember = guild.member(member.user);
+  RoleMember.addRole(beerbongs);
 });
 
 bot.on("message", async message => {
