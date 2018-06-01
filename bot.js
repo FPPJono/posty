@@ -169,7 +169,7 @@ bot.on("guildMemberAdd", async member => {
             done(null, 'card sent!')
         },
         function secondStep(step1Result, done){
-            wait(500)
+            wait(2000)
             done(null, 'waited!')
         },
         function thirdStep(step2Result, done){
@@ -177,7 +177,6 @@ bot.on("guildMemberAdd", async member => {
             done(null)
         }
     ])
-    guild.channels.get(welcome).send(`Welcome <@${member.id}> to Posty's Rockstar Club!`)
     //await guild.channels.get(welcome).send(`Welcome <@${member.id}> to Posty's Rockstar Club!`);
     let RoleMember = guild.member(member.user);
     RoleMember.addRole(beerbongs);
