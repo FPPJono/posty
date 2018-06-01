@@ -206,7 +206,7 @@ bot.on("message", async message => {
         /*https.get(person.avatarURL, response => {
             response.pipe(fs.createWriteStream(`scorecards/welcomepfp${person.id}.png`))
         })*/
-        download.image(person.avatarURL, `scorecards/welcomepfp${person.id}.png`)
+        download.image({url: person.avatarURL, dest: `scorecards/welcomepfp${person.id}.png`})
         //request(person.avatarURL).pipe(fs.createWriteStream(`scorecards/welcomepfp${person.id}.png`))
         message.channel.send({files: [{attachment: `scorecards/welcomepfp${person.id}.png`, name: "test.png"}]})
     }
