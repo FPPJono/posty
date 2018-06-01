@@ -92,7 +92,7 @@ async function scorecard(role, color, person, message) {
 }
 
 async function welcomecard(person, guild) {
-        request(person.avatarURL).pipe(fs.createWriteStream(`scorecards/welcomepfp${person.id}.png`))
+        /*request(person.avatarURL).pipe(fs.createWriteStream(`scorecards/welcomepfp${person.id}.png`))
         PImage.decodePNGFromStream(fs.createReadStream(`scorecards/welcomeCard.png`)).then((img) => {
             var img2 = PImage.make(500,250);
             var c = img2.getContext('2d');
@@ -120,7 +120,36 @@ async function welcomecard(person, guild) {
                     });
                 })
             });
+        });*/
+    request(person.avatarURL).pipe(fs.createWriteStream(`scorecards/welcomepfp${person.id}.png`))
+    PImage.decodePNGFromStream(fs.createReadStream(`scorecards/welcomeCard.png`)).then((img) => {
+        var img2 = PImage.make(500,250);
+        var c = img2.getContext('2d');
+        c.drawImage(img,
+            0, 0, img.width, img.height, // source dimensions
+            0, 0, 500, 250              // destination dimensions
+        );
+        var ctx = c
+        var fnt = PImage.registerFont('scorefont.ttf', 'Score Font')
+        fnt.load(() => {
+            ctx.fillStyle = '#000000'
+            ctx.font = "40pt 'Score Font'";
+            ctx.fillText(`${person.username.toUpperCase()}`, 148, 158);
+            ctx.fillStyle = '#ffffff'
+            ctx.font = "20pt 'Score Font'";
+            ctx.fillText(`Member #${guild.memberCount}`, 324, 207);
+            PImage.decodePNGFromStream(fs.createReadStream(`scorecards/welcomepfp${person.id}.png`)).then((pfp) => {
+                c.drawImage(pfp,
+                    0, 0, pfp.width, pfp.height,
+                    52, 44, 72, 72
+                )
+                PImage.encodePNGToStream(img2,fs.createWriteStream('scorecards/score.png')).then(() => {
+                    console.log(`${message.author.username} has just checked their score`);
+                    message.channel.send({files:[{attachment: 'scorecards/score.png', name:'welcome.png'}] })
+                });
+            })
         });
+    }); 
 }
 
 function customRole(message, color, name, x, file) {
