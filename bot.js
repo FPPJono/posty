@@ -61,7 +61,7 @@ function decimalToHexString(number) {
 }
 
 async function scorecard(role, color, person, message) {
-    download.image(`scorecards/pfp${person.id}.png`)
+    download.image(url: person.avatarURL, dest:`scorecards/pfp${person.id}.png`)
     PImage.decodePNGFromStream(fs.createReadStream(`scorecards/${role}.png`)).then((img) => {
         var img2 = PImage.make(500,500);
         var c = img2.getContext('2d');
@@ -90,7 +90,7 @@ async function scorecard(role, color, person, message) {
 }
 
 async function welcomecard(person, guild, message) {
-    download.image(`scorecards/welcomepfp${person.id}.png`)
+    download.image(url: person.avatarURL, dest:`scorecards/welcomepfp${person.id}.png`)
     PImage.decodePNGFromStream(fs.createReadStream(`scorecards/welcomeCard.png`)).then((img) => {
         var img2 = PImage.make(500,250);
         var c = img2.getContext('2d');
