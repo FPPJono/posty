@@ -130,7 +130,7 @@ async function welcomecard(person, guild) {
 }
 
 function customRole(message, color, name) {
-        PImage.decodePNGFromStream(fs.createReadStream(`scorecards/welcomecard.png`)).then((img) => {
+        PImage.decodePNGFromStream(fs.createReadStream(`scorecards/welcomeCard.png`)).then((img) => {
             var img2 = PImage.make(500,250);
             var c = img2.getContext('2d');
             c.drawImage(img,
