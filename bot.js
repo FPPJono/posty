@@ -129,8 +129,8 @@ async function welcomecard(person, guild) {
         });
 }
 
-function customRole(message, color, name, x) {
-        PImage.decodePNGFromStream(fs.createReadStream(`scorecards/welcomeCard.png`)).then((img) => {
+function customRole(message, color, name, x, file) {
+        PImage.decodePNGFromStream(fs.createReadStream(`scorecards/${file}role.png`)).then((img) => {
             var img2 = PImage.make(500,250);
             var c = img2.getContext('2d');
             c.drawImage(img,
@@ -228,7 +228,7 @@ bot.on('message', message => {
     }
     if (rip.startsWith('!role')) {
         if (rip.startsWith('!role b')) {
-            customRole(message, '#ffffff', "Beerbongs and Bentleys", 45)
+            customRole(message, '#ffffff', "Beerbongs and Bentleys", 45, "beerbongs")
             message.member.addRole(beerbongs)
             message.member.removeRole(august26)
             message.member.removeRole(stoney)
