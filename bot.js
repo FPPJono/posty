@@ -162,8 +162,9 @@ bot.on('ready', () => {
 
 bot.on("guildMemberAdd", async member => {
     let guild = member.guild;
-    await welcomecard(member.user, guild)
-    await wait(500).then(guild.channels.get(welcome).send(`Welcome <@${member.id}> to Posty's Rockstar Club!`))
+    welcomecard(member.user, guild)
+    await wait(3000)
+    guild.channels.get(welcome).send(`Welcome <@${member.id}> to Posty's Rockstar Club!`)
     //await guild.channels.get(welcome).send(`Welcome <@${member.id}> to Posty's Rockstar Club!`);
     let RoleMember = guild.member(member.user);
     RoleMember.addRole(beerbongs);
