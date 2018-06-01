@@ -142,8 +142,9 @@ function customRole(message, color, name, x, y, size) {
             fnt.load(() => {
                 ctx.fillStyle = color
                 ctx.font = "40pt 'Score Font'";
-                ctx.fillText(`YOU HAVE CLAIMED\n      THE`, 59, 80); 
-                ctx.font = "${size}pt 'Score Font'"
+                ctx.fillText(`YOU HAVE CLAIMED`, 50, 80)
+                ctx.fillText("THE", 170, 114)
+                ctx.font = "30pt 'Score Font'"
                 ctx.fillText(`${name.toUpperCase()}`, x, y);
                 PImage.encodePNGToStream(img2,fs.createWriteStream('scorecards/role.png')).then(() => {
                     message.channel.send({files:[{attachment: 'scorecards/role.png', name:'role.png'}] })
@@ -225,7 +226,7 @@ bot.on('message', message => {
     }
     if (rip.startsWith('!role')) {
         if (rip.startsWith('!role b')) {
-            customRole(message, '#ffffff', "Beerbongs and Bentleys", 48, 185, "30")
+            customRole(message, '#ffffff', "Beerbongs and Bentleys", 48, 185)
             message.member.addRole(beerbongs)
             message.member.removeRole(august26)
             message.member.removeRole(stoney)
