@@ -234,13 +234,13 @@ bot.on('message', message => {
             message.member.removeRole(stoney)
         }
         if (rip.startsWith('!role a')) {
-            customRole(message, '#bb001d', "August 26", 165, "august")
+            customRole(message, '#bb001d', "August 26", 150, "august")
             message.member.addRole(august26)
             message.member.removeRole(stoney)
             message.member.removeRole(beerbongs)
         }
         if (rip.startsWith('!role s')) {
-            customRole(message, '#ffffff', "Stoney", 190, "stoney")
+            customRole(message, '#ffffff', "Stoney", 185, "stoney")
             message.member.removeRole(august26)
             message.member.addRole(stoney)
             message.member.removeRole(beerbongs)
