@@ -163,11 +163,12 @@ bot.on('ready', () => {
 
 bot.on("guildMemberAdd", async member => {
     let guild = member.guild;
-    welcomecard(member.user, guild)
+    function welcomemessage(guild){
+        guild.channels.get(welcome).send("hoot")
+    }
     function sendmessages(guild){
-        welcomecard(member.user, guild, function(){
-            guild.channels.get(welcome).send("hoot")
-        })
+        welcomecard(member.user, guild)
+        welcomemessage(guild)
     }
     sendmessages(guild)
     let RoleMember = guild.member(member.user);
