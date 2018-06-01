@@ -164,19 +164,9 @@ bot.on('ready', () => {
 bot.on("guildMemberAdd", async member => {
     let guild = member.guild;
     welcomecard(member.user, guild)
-    async.waterfall([
-        function (done){
-            guild.channels.get(welcome).send(`Welcome <@${member.id}> to Posty's Rockstar Club!`, {files:[{attachment: 'scorecards/welcome.png', name:'welcome.png'}] })
-            done(null, 'card sent!')
-        }, function (step1Result, done){
-            guild.channels.get(welcome).send('test?')
-            done(null, 'waited!')
-        }, function (step2Result, done){
-            wait(2000)
-            guild.channels.get(welcome).send(`hello read rules plz`)
-            done(null)
-        }
-    ])
+    function sendSecond(){
+        guild.channels.get(welcome).send("hoot")
+    }
     let RoleMember = guild.member(member.user);
     RoleMember.addRole(beerbongs);
 });
