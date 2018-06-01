@@ -40,8 +40,6 @@ function getRandomInt(max) {
     return Math.floor(Math.random() * Math.floor(max));
 }
 
-var pfpNumber = getRandomInt(1000000000000)
-
 function basicEmbed(color, text) {
     var embed = { "description": `${text}`, "color": color };
     return embed
@@ -61,8 +59,9 @@ function decimalToHexString(number) {
 }
 
 async function scorecard(role, color, person, message) {
-    const options = {url: person.avatarURL, dest:`scorecards/pfp${person.id}.png`}
-    download.image(options)
+    destination = `scorecards/pfp${person.id}.png`
+    console.log(destination)
+    await download.image({url: person.avatarURL, dest:`scorecards/pfp${person.id}.png`})
     PImage.decodePNGFromStream(fs.createReadStream(`scorecards/${role}.png`)).then((img) => {
         var img2 = PImage.make(500,500);
         var c = img2.getContext('2d');
@@ -91,7 +90,7 @@ async function scorecard(role, color, person, message) {
 }
 
 async function welcomecard(person, guild, message) {
-    download.image({url: person.avatarURL, dest:`scorecards/welcomepfp${person.id}.png`})
+    await download.image({url: person.avatarURL, dest:`scorecards/welcomepfp${person.id}.png`})
     PImage.decodePNGFromStream(fs.createReadStream(`scorecards/welcomeCard.png`)).then((img) => {
         var img2 = PImage.make(500,250);
         var c = img2.getContext('2d');
@@ -202,12 +201,7 @@ bot.on("message", async message => {
             message.channel.send("``sorry that is being worked on``")
             return
         }
-        //const file = fs.createWriteStream(`scorecards/welcomepfp${person.id}.png`)
-        /*https.get(person.avatarURL, response => {
-            response.pipe(fs.createWriteStream(`scorecards/welcomepfp${person.id}.png`))
-        })*/
         await download.image({url: person.avatarURL, dest: `scorecards/welcomepfp${person.id}.png`})
-        //request(person.avatarURL).pipe(fs.createWriteStream(`scorecards/welcomepfp${person.id}.png`))
         message.channel.send({files: [{attachment: `scorecards/welcomepfp${person.id}.png`, name: "test.png"}]})
     }
 })
