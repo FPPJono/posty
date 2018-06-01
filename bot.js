@@ -141,8 +141,8 @@ function customRole(message, color, name, x, y, size) {
             var fnt = PImage.registerFont('scorefont.ttf', 'Score Font')
             fnt.load(() => {
                 ctx.fillStyle = color
-                ctx.font = "50pt 'Score Font'";
-                ctx.fillText(`YOU HAVE GOTTEN THE ROLE`, 59, 119); 
+                ctx.font = "40pt 'Score Font'";
+                ctx.fillText(`YOU HAVE CLAIMED THE`, 59, 80); 
                 ctx.font = "${size.toString()}pt 'Score Font'"
                 ctx.fillText(`${name.toUpperCase()}`, x, y);
                 PImage.encodePNGToStream(img2,fs.createWriteStream('scorecards/role.png')).then(() => {
