@@ -21,8 +21,7 @@ const testacc = '270017125815418901'
 //channels
 const memesChannel = '450243552681918465'
 const hof = '450244347137359874'
-const collections = '450243593026666507'
-const artChannel = '450243533799161856'
+const artChannel = '452219856712892416'
 const suggestChannel = '450568346824343555'
 const welcome = '450165137001807873'
 
@@ -250,12 +249,6 @@ bot.on('message', message => {
         } else
             message.channel.send("sorry, that command is for staff only")
                 .then(m => m.delete(5000));
-    }
-    if (message.channel.id === collections) {
-        let a = message.attachments.array().length;
-        if (a >= 1) {
-            message.react('👌')
-        }
     }
     if (message.channel.id === artChannel) {
         let a = message.attachments.array().length;
