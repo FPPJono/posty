@@ -150,7 +150,7 @@ async function welcomecard(person, guild) {
                     function message(channel){
                         channel.send(`Welcome <@${person.id}> to Posty's Rockstar Club!\nPlease make sure to read the <#450165074938691585> and enjoy your time here!`)
                     }
-                    setTimeout(message, 1000, guild.channels.get(welcome))
+                    setTimeout(message, 20, guild.channels.get(welcome))
                 });
             })
         });
