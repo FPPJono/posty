@@ -5,6 +5,7 @@ const PREFIX = "!";
 const fs = require('fs')
 const PNG = require('pngjs')
 const request = require('request')
+const async = require("async")
 var gameMessage = new Function('return true')
 const download = require('image-downloader')
 
@@ -162,8 +163,20 @@ bot.on('ready', () => {
 
 bot.on("guildMemberAdd", async member => {
     let guild = member.guild;
-    await welcomecard(member.user, guild)
-    await wait(3000)
+    async.waterfall([
+        function firstStep(done){
+            welcomecard(member.user, guild)
+            done(null, 'card sent!')
+        },
+        function secondStep(step1Result, done){
+            wait(500)
+            done(null, 'waited!')
+        },
+        function thirdStep(step2Result, done){
+            guild.channels.get(welcome).send(`Welcome <@${member.id}> to Posty's Rockstar Club!`)
+            done(null)
+        }
+    ])
     guild.channels.get(welcome).send(`Welcome <@${member.id}> to Posty's Rockstar Club!`)
     //await guild.channels.get(welcome).send(`Welcome <@${member.id}> to Posty's Rockstar Club!`);
     let RoleMember = guild.member(member.user);
