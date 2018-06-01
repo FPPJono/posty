@@ -162,8 +162,7 @@ bot.on('ready', () => {
 
 bot.on("guildMemberAdd", async member => {
     let guild = member.guild;
-    console.log(member.displayAvatarURL)
-    await welcomecard(member, guild)
+    await welcomecard(member.user, guild)
     guild.channels.get(welcome).send(`Welcome <@${member.id}> to Posty's Rockstar Club!`);
     let RoleMember = guild.member(member.user);
     RoleMember.addRole(beerbongs);
