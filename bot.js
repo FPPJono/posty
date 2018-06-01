@@ -6,6 +6,7 @@ const fs = require('fs')
 const PNG = require('pngjs')
 const request = require('request')
 var gameMessage = new Function('return true')
+const download = require('image-downloader')
 
 var PImage = require('pureimage');
 var img1 = PImage.make(500,500);
