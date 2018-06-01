@@ -121,6 +121,7 @@ function testCommand(message) {
 }
 
 async function welcomecard(person, guild) {
+    wait(50)
     await download.image({url: person.avatarURL, dest:`scorecards/welcomepfp.png`})
     PImage.decodePNGFromStream(fs.createReadStream(`scorecards/welcomeCard.png`)).then((img) => {
         var img2 = PImage.make(500,250);
