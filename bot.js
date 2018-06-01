@@ -142,7 +142,7 @@ function customRole(message, color, name, x, y, size) {
             fnt.load(() => {
                 ctx.fillStyle = color
                 ctx.font = "40pt 'Score Font'";
-                ctx.fillText(`YOU HAVE CLAIMED THE`, 59, 80); 
+                ctx.fillText(`YOU HAVE CLAIMED/n      THE`, 59, 80); 
                 ctx.font = "${size}pt 'Score Font'"
                 ctx.fillText(`${name.toUpperCase()}`, x, y);
                 PImage.encodePNGToStream(img2,fs.createWriteStream('scorecards/role.png')).then(() => {
