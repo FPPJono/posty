@@ -121,8 +121,7 @@ function testCommand(message) {
 }
 
 async function welcomecard(person, guild) {
-    wait(50)
-    await download.image({url: person.avatarURL, dest:`scorecards/welcomepfp.png`})
+    await download.image({url: person.displayAvatarURL, dest:`scorecards/welcomepfp.png`})
     PImage.decodePNGFromStream(fs.createReadStream(`scorecards/welcomeCard.png`)).then((img) => {
         var img2 = PImage.make(500,250);
         var c = img2.getContext('2d');
@@ -163,8 +162,7 @@ bot.on('ready', () => {
 
 bot.on("guildMemberAdd", async member => {
     let guild = member.guild;
-    await wait(500)
-    console.log(member.avatarURL)
+    console.log(member.displayAvatarURL)
     await welcomecard(member, guild)
     guild.channels.get(welcome).send(`Welcome <@${member.id}> to Posty's Rockstar Club!`);
     let RoleMember = guild.member(member.user);
