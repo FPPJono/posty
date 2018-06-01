@@ -196,10 +196,6 @@ bot.on("message", async message => {
             return
         }
     }
-    if (message.content.startsWith('!testwelcome')) {
-        await welcomecard(person, guild, message)
-        return
-    }
 })
 
 bot.on('message', message => {
