@@ -83,12 +83,8 @@ async function scorecard(role, color, person, message, data) {
         var userScore = JSON.parse(info.toString().replace("[","").replace("]",""))
         console.log(`zoot ${userScore.score}`)
     })
-    getScore()
-    function logScore() {
-        console.log(userScore.score)
-        console.log(JSON.stringify(userScore))
-    }
-    setTimeout(logScore, 100)
+    console.log(userScore.score)
+    console.log(JSON.stringify(userScore))
     PImage.decodePNGFromStream(fs.createReadStream(`scorecards/${role}.png`)).then((img) => {
         var img2 = PImage.make(500,500);
         var c = img2.getContext('2d');
