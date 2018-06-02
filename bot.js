@@ -216,6 +216,7 @@ bot.on("message", async message => {
         function updateScore(){
             database.update("id", message.author.id, {score: userScore.score + 1})
             console.log(userScore.score + 1)
+            console.log(userScore.score)
         }
         setTimeout(updateScore, 100)
     }, function(err){
