@@ -95,8 +95,9 @@ async function scorecard(role, color, person, message, data) {
                 ctx.fillText(`${person.username.toUpperCase()}`, 135, 80);
                 ctx.font = "35pt 'Score Font'"
                 ctx.fillText(userScore.score, 14, 221)
-                ctx.fillText(userScore.credits, 14, 365)
                 ctx.fillText(userScore.level, 14, 292)
+                ctx.fillText(userScore.credits, 14, 365)
+                ctx.fillText(userScore.untilLevel, 14, 435)
                 PImage.decodePNGFromStream(fs.createReadStream(`scorecards/pfp.png`)).then((pfp) => {
                     c.drawImage(pfp,
                         0, 0, pfp.width, pfp.height,
