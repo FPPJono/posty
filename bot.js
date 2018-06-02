@@ -213,12 +213,12 @@ bot.on("message", async message => {
     const database = sheetsu({address:'https://sheetsu.com/apis/v1.0su/9711bae69421'})
     database.read({search:{id:message.author.id}}).then(function(info){
         var userScore = JSON.parse(info.toString().replace("[","").replace("]",""))
-        function updateScore(){
+        function updateScore(userScore){
             database.update("id", message.author.id, {score: userScore.score + 1})
             console.log(userScore.score + 1)
             console.log(userScore.score)
         }
-        setTimeout(updateScore, 100)
+        setTimeout(updateScore, 100, userScore)
     }, function(err){
         database.create({id:message.author.id, score: 1, level: 0, credits: 0, untilLevel:50})
     })
