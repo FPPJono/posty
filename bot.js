@@ -82,7 +82,7 @@ async function scorecard(role, color, person, message, data) {
     data.read({search:{userid:person.id}}).then(function(info) {
         var userScore = JSON.parse(info.toString().replace("[","").replace("]",""))
     })
-    funcion logScore() {
+    function logScore() {
         console.log(userScore.score)
     }
     setTimeout(logScore, 10)
