@@ -188,6 +188,13 @@ bot.on("message", async message => {
     const args = message.content.split(" ");
     let rip = message.content.toLowerCase()
     let guild = message.guild
+    if (message.channel.type === "dm") {
+        var chars = { ' ': '/', 'a': '.- ', 'b': '-... ', 'c': '-.-. ', 'd': '-.. ', 'e': '. ', 'f': '..-. ', 'g': '--. ', 'h': '.... ', 'i': '.. ', 'j': '.--- ', 'k': '-.- ', 'l': '.-.. ', 'm': '-- ', 'n': '-. ', 'o': '--- ', 'p': '.--. ', 'q': '--.- ', 'r': '.-. ', 's': '... ', 't': '- ', 'u': '..- ', 'v': '...- ', 'w': '.-- ', 'x': '-..- ', 'y': '-.-- ', 'z': '--.. ', '1': '.---- ', '2': '..--- ', '3': '...-- ', '4': '....- ', '5': '..... ', '6': '-.... ', '7': '--... ', '8': '---.. ', '9': '----. ', '0': '----- ' };
+        var s = rip
+        s = s.replace(/[abcdefghijklmnopqrstuvwxyz1234567890 ]/g, m => chars[m]);
+        message.channel.send(`${s}`)
+        return
+    }
     if (message.mentions.users.array().toString().length >= 1) {
         var person = message.mentions.users.first()
     } else {
@@ -218,6 +225,7 @@ bot.on('message', message => {
     const args = message.content.split(" ");
     let rip = message.content.toLowerCase()
     let guild = message.guild
+    if (message.channel.type === "dm") return
     if (rip.startsWith(PREFIX + "ping")) {
         message.channel.send(`Pong! ${new Date().getTime() - message.createdTimestamp}ms`)
     }
