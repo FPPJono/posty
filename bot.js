@@ -6,6 +6,7 @@ const fs = require('fs')
 const PNG = require('pngjs')
 const request = require('request')
 const async = require("async")
+var PreviewGIF = require('preview-gif')
 var gameMessage = new Function('return true')
 const download = require('image-downloader')
 
@@ -69,7 +70,13 @@ function decimalToHexString(number) {
 }
 
 async function scorecard(role, color, person, message) {
-    await download.image({url: person.avatarURL, dest:`scorecards/pfp.png`})
+    if (person.displayAvatarURL.includes("png"))||(person.displayAvatarURL.includes("jpg")){
+        await download.image({url: person.displayAvatarURL, dest:`scorecards/welcomepfp.png`})
+    }else if(person.displayAvatarURL.includes("gif")){
+        await gifFrames({url:person.displayAvatarURL, frames:0, outputType: 'png'}).then(function(frameData){
+            frameData[0].getImage().pipe(fs.createWriteStream(`scorecards/welcomepfp.png`))
+        })
+    }
     PImage.decodePNGFromStream(fs.createReadStream(`scorecards/${role}.png`)).then((img) => {
         var img2 = PImage.make(500,500);
         var c = img2.getContext('2d');
@@ -131,7 +138,13 @@ function testCommand(message) {
 }
 
 async function welcomecard(person, guild) {
-    await download.image({url: person.displayAvatarURL, dest:`scorecards/welcomepfp.png`})
+    if (person.displayAvatarURL.includes("png"))||(person.displayAvatarURL.includes("jpg")){
+        await download.image({url: person.displayAvatarURL, dest:`scorecards/welcomepfp.png`})
+    }else if(person.displayAvatarURL.includes("gif")){
+        await gifFrames({url:person.displayAvatarURL, frames:0, outputType: 'png'}).then(function(frameData){
+            frameData[0].getImage().pipe(fs.createWriteStream(`scorecards/welcomepfp.png`))
+        })
+    }
     PImage.decodePNGFromStream(fs.createReadStream(`scorecards/welcomeCard.png`)).then((img) => {
         var img2 = PImage.make(500,250);
         var c = img2.getContext('2d');
