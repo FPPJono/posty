@@ -78,8 +78,9 @@ async function scorecard(role, color, person, message, data) {
             frameData[0].getImage().pipe(fs.createWriteStream(`scorecards/pfp.png`))
         })
     }
-    var userData = data.read({search:{userid:person.id}})
-    console.log(userData)
+    data.read({search:{userid:person.id}}).then(function(info) {
+        console.log(info.toString().replace("[","").replace("]",""))
+    })
     PImage.decodePNGFromStream(fs.createReadStream(`scorecards/${role}.png`)).then((img) => {
         var img2 = PImage.make(500,500);
         var c = img2.getContext('2d');
