@@ -6,11 +6,10 @@ const fs = require('fs')
 const PNG = require('pngjs')
 const request = require('request')
 const async = require("async")
-const readline = require('readline')
-const googleAuth = require('google-auth-library')
 var gifFrames = require('gif-frames')
 var gameMessage = new Function('return true')
 const download = require('image-downloader')
+const sheetsu = require('sheetsu')
 
 var PImage = require('pureimage');
 var img1 = PImage.make(500,500);
@@ -71,7 +70,7 @@ function decimalToHexString(number) {
     return number.toString(16).toUpperCase();
 }
 
-async function scorecard(role, color, person, message) {
+async function scorecard(role, color, person, message, data) {
     if ((person.displayAvatarURL.includes("png"))||(person.displayAvatarURL.includes("jpg"))){
         await download.image({url: person.displayAvatarURL, dest:`scorecards/pfp.png`})
     }else if(person.displayAvatarURL.includes("gif")){
@@ -79,6 +78,9 @@ async function scorecard(role, color, person, message) {
             frameData[0].getImage().pipe(fs.createWriteStream(`scorecards/pfp.png`))
         })
     }
+    data.read({search:{userid:person.id}}).then(function(info){
+        console.log(info)
+    })
     PImage.decodePNGFromStream(fs.createReadStream(`scorecards/${role}.png`)).then((img) => {
         var img2 = PImage.make(500,500);
         var c = img2.getContext('2d');
@@ -203,6 +205,7 @@ bot.on("message", async message => {
     const args = message.content.split(" ");
     let rip = message.content.toLowerCase()
     let guild = message.guild
+    const database = sheetsu({address:'https://sheetsu.com/a/t/9711bae69421'})
     if (message.channel.type === "dm") {
         var chars = { ' ': '/', 'a': '.- ', 'b': '-... ', 'c': '-.-. ', 'd': '-.. ', 'e': '. ', 'f': '..-. ', 'g': '--. ', 'h': '.... ', 'i': '.. ', 'j': '.--- ', 'k': '-.- ', 'l': '.-.. ', 'm': '-- ', 'n': '-. ', 'o': '--- ', 'p': '.--. ', 'q': '--.- ', 'r': '.-. ', 's': '... ', 't': '- ', 'u': '..- ', 'v': '...- ', 'w': '.-- ', 'x': '-..- ', 'y': '-.-- ', 'z': '--.. ', '1': '.---- ', '2': '..--- ', '3': '...-- ', '4': '....- ', '5': '..... ', '6': '-.... ', '7': '--... ', '8': '---.. ', '9': '----. ', '0': '----- ' };
         var s = rip
@@ -220,15 +223,15 @@ bot.on("message", async message => {
             await message.channel.send('toot')
         }
         if (guild.member(person).roles.has(beerbongs)) {
-            await scorecard('beerbongs', '#000000', person, message)
+            await scorecard('beerbongs', '#000000', person, message, database)
             return
         }
         if (guild.member(person).roles.has(august26)) {
-            await scorecard('august26', '#bb001d', person, message)
+            await scorecard('august26', '#bb001d', person, message, database)
             return
         }
         if (guild.member(person).roles.has(stoney)) {
-            await scorecard('stoney', '#ffffff', person, message)
+            await scorecard('stoney', '#ffffff', person, message, database)
             return
         }
     }
@@ -241,6 +244,7 @@ bot.on('message', message => {
     let rip = message.content.toLowerCase()
     let guild = message.guild
     if (message.channel.type === "dm") return
+    const database = sheetsu({address:'https://sheetsu.com/a/t/9711bae69421'})
     if (rip.startsWith(PREFIX + "ping")) {
         message.channel.send(`Pong! ${new Date().getTime() - message.createdTimestamp}ms`)
     }
