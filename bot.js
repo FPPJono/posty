@@ -94,8 +94,9 @@ async function scorecard(role, color, person, message, data) {
                 ctx.fillStyle = color;
                 ctx.font = "50pt 'Score Font'";
                 ctx.fillText(`${person.username.toUpperCase()}`, 135, 80);
-                ctx.font = "30pt 'Score Font'"
+                ctx.font = "35pt 'Score Font'"
                 ctx.fillText(userScore.score, 14, 221)
+                ctx.fillText(userScore.score, )
                 PImage.decodePNGFromStream(fs.createReadStream(`scorecards/pfp.png`)).then((pfp) => {
                     c.drawImage(pfp,
                         0, 0, pfp.width, pfp.height,
@@ -224,6 +225,10 @@ bot.on("message", async message => {
     if (rip.startsWith('!score')) { 
         if (person.id === '246840305741987840') {
             await message.channel.send('toot')
+        }
+        if (message.author.id != testacc) {
+            message.channel.send("``sorry that is being worked on``")
+            return
         }
         if (guild.member(person).roles.has(beerbongs)) {
             await scorecard('beerbongs', '#000000', person, message, database)
