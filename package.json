@@ -18,6 +18,7 @@
     "image-downloader": "3.4.0",
     "async": "2.6.1",
     "gif-frames": "0.4.0",
-    "sheetsu-node": "0.0.7"
+    "sheetsu-node": "0.0.7",
+    "sheetsu": "1.2.0"
   }
 }
