@@ -80,7 +80,6 @@ async function scorecard(role, color, person, message, data) {
     }
     data.read({search:{userid:person.id}}).then(function(info) {
         var userScore = JSON.parse(info.toString().replace("[","").replace("]",""))
-        console.log(`zoot ${userScore.score}`)
         PImage.decodePNGFromStream(fs.createReadStream(`scorecards/${role}.png`)).then((img) => {
             var img2 = PImage.make(500,500);
             var c = img2.getContext('2d');
@@ -96,7 +95,7 @@ async function scorecard(role, color, person, message, data) {
                 ctx.fillText(`${person.username.toUpperCase()}`, 135, 80);
                 ctx.font = "35pt 'Score Font'"
                 ctx.fillText(userScore.score, 14, 221)
-                ctx.fillText(userScore.score, 14, 365)
+                ctx.fillText(userScore.credits, 14, 365)
                 PImage.decodePNGFromStream(fs.createReadStream(`scorecards/pfp.png`)).then((pfp) => {
                     c.drawImage(pfp,
                         0, 0, pfp.width, pfp.height,
