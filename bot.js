@@ -78,38 +78,37 @@ async function scorecard(role, color, person, message, data) {
             frameData[0].getImage().pipe(fs.createWriteStream(`scorecards/pfp.png`))
         })
     }
-    var userScore = "filler"
-    await data.read({search:{userid:person.id}}).then(function(info) {
+    data.read({search:{userid:person.id}}).then(function(info) {
         var userScore = JSON.parse(info.toString().replace("[","").replace("]",""))
         console.log(`zoot ${userScore.score}`)
-    })
-    console.log(userScore.score)
-    console.log(JSON.stringify(userScore))
-    PImage.decodePNGFromStream(fs.createReadStream(`scorecards/${role}.png`)).then((img) => {
-        var img2 = PImage.make(500,500);
-        var c = img2.getContext('2d');
-        c.drawImage(img,
-            0, 0, img.width, img.height, // source dimensions
-            0, 0, 500, 500               // destination dimensions
-        );
-        var ctx = c
-        var fnt = PImage.registerFont('scorefont.ttf', 'Score Font')
-        fnt.load(() => {
-            ctx.fillStyle = color;
-            ctx.font = "50pt 'Score Font'";
-            ctx.fillText(`${person.username.toUpperCase()}`, 135, 80);
-            PImage.decodePNGFromStream(fs.createReadStream(`scorecards/pfp.png`)).then((pfp) => {
-                c.drawImage(pfp,
-                    0, 0, pfp.width, pfp.height,
-                    15, 15, 110, 110
-                )
-                PImage.encodePNGToStream(img2,fs.createWriteStream('scorecards/score.png')).then(() => {
-                    console.log(`${message.author.username} has just checked their score`);
-                    message.channel.send({files:[{attachment: 'scorecards/score.png', name:'score.png'}] })
-                });
-            })
+        PImage.decodePNGFromStream(fs.createReadStream(`scorecards/${role}.png`)).then((img) => {
+            var img2 = PImage.make(500,500);
+            var c = img2.getContext('2d');
+            c.drawImage(img,
+                0, 0, img.width, img.height, // source dimensions
+                0, 0, 500, 500               // destination dimensions
+            );
+            var ctx = c
+            var fnt = PImage.registerFont('scorefont.ttf', 'Score Font')
+            fnt.load(() => {
+                ctx.fillStyle = color;
+                ctx.font = "50pt 'Score Font'";
+                ctx.fillText(`${person.username.toUpperCase()}`, 135, 80);
+                ctx.font = "30pt 'Score Font'"
+                ctx.fillText(userScore.score, 14, 221)
+                PImage.decodePNGFromStream(fs.createReadStream(`scorecards/pfp.png`)).then((pfp) => {
+                    c.drawImage(pfp,
+                        0, 0, pfp.width, pfp.height,
+                        15, 15, 110, 110
+                    )
+                    PImage.encodePNGToStream(img2,fs.createWriteStream('scorecards/score.png')).then(() => {
+                        console.log(`${message.author.username} has just checked their score`);
+                        message.channel.send({files:[{attachment: 'scorecards/score.png', name:'score.png'}] })
+                    });
+                })
+            });
         });
-    });
+    })
 }
 
 function customRole(message, color, name, x, file) {
