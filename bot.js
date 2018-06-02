@@ -82,7 +82,7 @@ async function scorecard(role, color, person, message, data) {
     data.read({search:{userid:person.id}}).then(function(info) {
         var userScore = JSON.parse(info.toString().replace("[","").replace("]",""))
     })
-    console.log(userScore.score)
+    console.log(userScore.score())
     PImage.decodePNGFromStream(fs.createReadStream(`scorecards/${role}.png`)).then((img) => {
         var img2 = PImage.make(500,500);
         var c = img2.getContext('2d');
