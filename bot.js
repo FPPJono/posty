@@ -9,7 +9,7 @@ const async = require("async")
 var gifFrames = require('gif-frames')
 var gameMessage = new Function('return true')
 const download = require('image-downloader')
-const sheetsu = require('sheetsu')
+const sheetsu = require('sheetsu-node')
 
 var PImage = require('pureimage');
 var img1 = PImage.make(500,500);
