@@ -79,9 +79,12 @@ async function scorecard(role, color, person, message, data) {
         })
     }
     var userScore = "filler"
-    data.read({search:{userid:person.id}}).then(function(info) {
-        var userScore = JSON.parse(info.toString().replace("[","").replace("]",""))
-    })
+    function getScore() {
+        data.read({search:{userid:person.id}}).then(function(info) {
+            var userScore = JSON.parse(info.toString().replace("[","").replace("]",""))
+        })
+    }
+    getScore()
     function logScore() {
         console.log(userScore.score)
         console.log(JSON.stringify(userScore))
