@@ -214,6 +214,7 @@ bot.on("message", async message => {
     database.read({search:{id:message.author.id}}).then(function(info){
         var userScore = JSON.parse(info.toString().replace("[","").replace("]",""))
         database.update("id", message.author.id, {score: userScore.score + 1})
+        console.log(userScore.score + 1)
     }, function(err){
         database.create({id:message.author.id, score: 1, level: 0, credits: 0, untilLevel:50})
     })
