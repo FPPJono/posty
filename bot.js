@@ -70,7 +70,7 @@ function decimalToHexString(number) {
 }
 
 async function scorecard(role, color, person, message) {
-    if (person.displayAvatarURL.includes("png"))||(person.displayAvatarURL.includes("jpg")){
+    if ((person.displayAvatarURL.includes("png"))||(person.displayAvatarURL.includes("jpg"))){
         await download.image({url: person.displayAvatarURL, dest:`scorecards/welcomepfp.png`})
     }else if(person.displayAvatarURL.includes("gif")){
         await gifFrames({url:person.displayAvatarURL, frames:0, outputType: 'png'}).then(function(frameData){
@@ -138,7 +138,7 @@ function testCommand(message) {
 }
 
 async function welcomecard(person, guild) {
-    if (person.displayAvatarURL.includes("png"))||(person.displayAvatarURL.includes("jpg")){
+    if ((person.displayAvatarURL.includes("png"))||(person.displayAvatarURL.includes("jpg"))){
         await download.image({url: person.displayAvatarURL, dest:`scorecards/welcomepfp.png`})
     }else if(person.displayAvatarURL.includes("gif")){
         await gifFrames({url:person.displayAvatarURL, frames:0, outputType: 'png'}).then(function(frameData){
