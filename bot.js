@@ -6,7 +6,7 @@ const fs = require('fs')
 const PNG = require('pngjs')
 const request = require('request')
 const async = require("async")
-var PreviewGIF = require('preview-gif')
+var gifFrames = require('gif-frames')
 var gameMessage = new Function('return true')
 const download = require('image-downloader')
 
