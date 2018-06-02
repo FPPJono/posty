@@ -71,10 +71,10 @@ function decimalToHexString(number) {
 
 async function scorecard(role, color, person, message) {
     if ((person.displayAvatarURL.includes("png"))||(person.displayAvatarURL.includes("jpg"))){
-        await download.image({url: person.displayAvatarURL, dest:`scorecards/welcomepfp.png`})
+        await download.image({url: person.displayAvatarURL, dest:`scorecards/pfp.png`})
     }else if(person.displayAvatarURL.includes("gif")){
         await gifFrames({url:person.displayAvatarURL, frames:0, outputType: 'png'}).then(function(frameData){
-            frameData[0].getImage().pipe(fs.createWriteStream(`scorecards/welcomepfp.png`))
+            frameData[0].getImage().pipe(fs.createWriteStream(`scorecards/pfp.png`))
         })
     }
     function makeTheCard(person) {
