@@ -212,6 +212,7 @@ bot.on("message", async message => {
     let guild = message.guild
     const database = sheetsu({address:'https://sheetsu.com/apis/v1.0su/9711bae69421'})
     database.read({search:{id:message.author.id}}).then(function(info) {
+        console.log(info)
         var userScore = JSON.parse(info.toString().replace("[","").replace("]",""))
         function updateScore(userScore){
             database.update("id", message.author.id, {score: userScore.score + 1})
