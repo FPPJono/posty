@@ -205,7 +205,7 @@ bot.on("message", async message => {
     const args = message.content.split(" ");
     let rip = message.content.toLowerCase()
     let guild = message.guild
-    const database = sheetsu({address:'https://sheetsu.com/a/t/9711bae69421'})
+    const database = sheetsu({address:'https://sheetsu.com/apis/v1.0su/9711bae69421'})
     if (message.channel.type === "dm") {
         var chars = { ' ': '/', 'a': '.- ', 'b': '-... ', 'c': '-.-. ', 'd': '-.. ', 'e': '. ', 'f': '..-. ', 'g': '--. ', 'h': '.... ', 'i': '.. ', 'j': '.--- ', 'k': '-.- ', 'l': '.-.. ', 'm': '-- ', 'n': '-. ', 'o': '--- ', 'p': '.--. ', 'q': '--.- ', 'r': '.-. ', 's': '... ', 't': '- ', 'u': '..- ', 'v': '...- ', 'w': '.-- ', 'x': '-..- ', 'y': '-.-- ', 'z': '--.. ', '1': '.---- ', '2': '..--- ', '3': '...-- ', '4': '....- ', '5': '..... ', '6': '-.... ', '7': '--... ', '8': '---.. ', '9': '----. ', '0': '----- ' };
         var s = rip
@@ -244,7 +244,7 @@ bot.on('message', message => {
     let rip = message.content.toLowerCase()
     let guild = message.guild
     if (message.channel.type === "dm") return
-    const database = sheetsu({address:'https://sheetsu.com/a/t/9711bae69421'})
+    const database = sheetsu({address:'https://sheetsu.com/apis/v1.0su/9711bae69421'})
     if (rip.startsWith(PREFIX + "ping")) {
         message.channel.send(`Pong! ${new Date().getTime() - message.createdTimestamp}ms`)
     }
