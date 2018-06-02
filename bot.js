@@ -79,12 +79,10 @@ async function scorecard(role, color, person, message, data) {
         })
     }
     var userScore = "filler"
-    function getScore() {
-        data.read({search:{userid:person.id}}).then(function(info) {
-            var userScore = JSON.parse(info.toString().replace("[","").replace("]",""))
-            console.log(`zoot ${userScore.score}`)
-        })
-    }
+    await data.read({search:{userid:person.id}}).then(function(info) {
+        var userScore = JSON.parse(info.toString().replace("[","").replace("]",""))
+        console.log(`zoot ${userScore.score}`)
+    })
     getScore()
     function logScore() {
         console.log(userScore.score)
