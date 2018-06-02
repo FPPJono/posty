@@ -17,6 +17,8 @@
     "tmp": "0.0.33",
     "image-downloader": "3.4.0",
     "async": "2.6.1",
-    "gif-frames": "0.4.0"
+    "gif-frames": "0.4.0",
+    "google-auth-library": "1.5.0",
+    "google-apis": "1.0.0"
   }
 }
