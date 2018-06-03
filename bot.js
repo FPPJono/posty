@@ -223,10 +223,6 @@ bot.on("message", async message => {
         if (person.id === '246840305741987840') {
             await message.channel.send('sucky wucky 😏')
         }
-        if (message.author.id != testacc) {
-            message.channel.send("``sorry that is being worked on``")
-            return
-        }
         if (guild.member(person).roles.has(beerbongs)) {
             await scorecard('beerbongs', '#000000', person, message, database)
             return
