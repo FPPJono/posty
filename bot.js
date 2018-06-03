@@ -58,7 +58,7 @@ function basicEmbed(color, text) {
 }
 
 function topicEmbed(color, text, title) {
-    var embed = { "description": `${text}`, "color": color "author": {"name": title}};
+    var embed = { "description": `${text}`, "color": color, "author": {"name": title}};
     return embed
 }
 
