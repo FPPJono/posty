@@ -78,39 +78,36 @@ async function scorecard(role, color, person, message, data) {
             frameData[0].getImage().pipe(fs.createWriteStream(`scorecards/pfp.png`))
         })
     }
-    data.read({search:{userid:person.id}}).then(function(info) {
-        var userScore = JSON.parse(info.toString().replace("[","").replace("]",""))
-        PImage.decodePNGFromStream(fs.createReadStream(`scorecards/${role}.png`)).then((img) => {
-            var img2 = PImage.make(500,500);
-            var c = img2.getContext('2d');
-            c.drawImage(img,
-                0, 0, img.width, img.height, // source dimensions
-                0, 0, 500, 500               // destination dimensions
-            );
-            var ctx = c
-            var fnt = PImage.registerFont('scorefont.ttf', 'Score Font')
-            fnt.load(() => {
-                ctx.fillStyle = color;
-                ctx.font = "50pt 'Score Font'";
-                ctx.fillText(`${person.username.toUpperCase()}`, 135, 80);
-                ctx.font = "35pt 'Score Font'"
-                ctx.fillText(userScore.score, 14, 221)
-                ctx.fillText(userScore.level, 14, 292)
-                ctx.fillText(userScore.credits, 14, 365)
-                ctx.fillText(userScore.untilLevel, 14, 435)
-                PImage.decodePNGFromStream(fs.createReadStream(`scorecards/pfp.png`)).then((pfp) => {
-                    c.drawImage(pfp,
-                        0, 0, pfp.width, pfp.height,
-                        15, 15, 110, 110
-                    )
-                    PImage.encodePNGToStream(img2,fs.createWriteStream('scorecards/score.png')).then(() => {
-                        console.log(`${message.author.username} has just checked their score`);
-                        message.channel.send({files:[{attachment: 'scorecards/score.png', name:'score.png'}] })
-                    });
-                })
-            });
+    PImage.decodePNGFromStream(fs.createReadStream(`scorecards/${role}.png`)).then((img) => {
+        var img2 = PImage.make(500,500);
+        var c = img2.getContext('2d');
+        c.drawImage(img,
+            0, 0, img.width, img.height, // source dimensions
+            0, 0, 500, 500               // destination dimensions
+        );
+        var ctx = c
+        var fnt = PImage.registerFont('scorefont.ttf', 'Score Font')
+        fnt.load(() => {
+            ctx.fillStyle = color;
+            ctx.font = "50pt 'Score Font'";
+            ctx.fillText(`${person.username.toUpperCase()}`, 135, 80);
+            ctx.font = "35pt 'Score Font'"
+            /*ctx.fillText(userScore.score, 14, 221)
+            ctx.fillText(userScore.level, 14, 292)
+            ctx.fillText(userScore.credits, 14, 365)
+            ctx.fillText(userScore.untilLevel, 14, 435)*/
+            PImage.decodePNGFromStream(fs.createReadStream(`scorecards/pfp.png`)).then((pfp) => {
+                c.drawImage(pfp,
+                    0, 0, pfp.width, pfp.height,
+                    15, 15, 110, 110
+               )
+                PImage.encodePNGToStream(img2,fs.createWriteStream('scorecards/score.png')).then(() => {
+                    console.log(`${message.author.username} has just checked their score`);
+                    message.channel.send({files:[{attachment: 'scorecards/score.png', name:'score.png'}] })
+                });
+            })
         });
-    })
+    });
 }
 
 function customRole(message, color, name, x, file) {
@@ -210,18 +207,6 @@ bot.on("message", async message => {
     const args = message.content.split(" ");
     let rip = message.content.toLowerCase()
     let guild = message.guild
-    const database = sheetsu({address:'https://sheetsu.com/apis/v1.0su/81bdad5561e7'})
-    database.read({search:{userid:message.author.id}}).then(function(info) {
-        console.log(info)
-        if(info.includes("error")){
-            database.create({"userid":message.author.id, "score": 1, "level": 0, "credits": 0, "untilLevel":50})
-            console.log(`added values for ${message.author.nickname}`)
-        } else {
-            var userScore = JSON.parse(info.toString().replace("[","").replace("]",""))
-            database.update("userid", `${message.author.id}`, {score: userScore.score + 1})
-            console.log(userScore.score + 1)
-        }
-    })
     if (message.channel.type === "dm") {
         var chars = { ' ': '/', 'a': '.- ', 'b': '-... ', 'c': '-.-. ', 'd': '-.. ', 'e': '. ', 'f': '..-. ', 'g': '--. ', 'h': '.... ', 'i': '.. ', 'j': '.--- ', 'k': '-.- ', 'l': '.-.. ', 'm': '-- ', 'n': '-. ', 'o': '--- ', 'p': '.--. ', 'q': '--.- ', 'r': '.-. ', 's': '... ', 't': '- ', 'u': '..- ', 'v': '...- ', 'w': '.-- ', 'x': '-..- ', 'y': '-.-- ', 'z': '--.. ', '1': '.---- ', '2': '..--- ', '3': '...-- ', '4': '....- ', '5': '..... ', '6': '-.... ', '7': '--... ', '8': '---.. ', '9': '----. ', '0': '----- ' };
         var s = rip
@@ -236,7 +221,7 @@ bot.on("message", async message => {
     }
     if (rip.startsWith('!score')) { 
         if (person.id === '246840305741987840') {
-            await message.channel.send('toot')
+            await message.channel.send('sucky wucky 😏')
         }
         if (message.author.id != testacc) {
             message.channel.send("``sorry that is being worked on``")
@@ -264,7 +249,6 @@ bot.on('message', message => {
     let rip = message.content.toLowerCase()
     let guild = message.guild
     if (message.channel.type === "dm") return
-    const database = sheetsu({address:'https://sheetsu.com/apis/v1.0su/81bdad5561e7'})
     if (rip.startsWith(PREFIX + "ping")) {
         message.channel.send(`Pong! ${new Date().getTime() - message.createdTimestamp}ms`)
     }
