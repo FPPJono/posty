@@ -152,6 +152,10 @@ async function welcomecard(person, guild) {
         })
     }
     PImage.decodePNGFromStream(fs.createReadStream(`scorecards/welcomeCard.png`)).then((img) => {
+        var size = (530 / person.username.toString().length)
+        if (size > 40){
+            size = 40
+        }
         var img2 = PImage.make(500,250);
         var c = img2.getContext('2d');
         c.drawImage(img,
@@ -162,7 +166,7 @@ async function welcomecard(person, guild) {
         var fnt = PImage.registerFont('scorefont.ttf', 'Score Font')
         fnt.load(() => {
             ctx.fillStyle = '#000000';
-            ctx.font = `${530 / person.username.toString().length}pt 'Score Font'`;
+            ctx.font = `${size}pt 'Score Font'`;
             ctx.fillText(`${person.username}`, 134, 158);
             ctx.fillStyle = '#ffffff'
             ctx.font = "20pt 'Score Font'";
