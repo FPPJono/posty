@@ -232,10 +232,10 @@ bot.on("message", async message => {
             message.channel.send({embed})
         } else if (rip.substr(6).startsWith('staff')){
             var embed = basicEmbed(getRandomInt(16777215), "!send [message] *sends a message*\n!warn @person [warning] *sends warning to member*\n!playing [thing] *sets playing status*\n!watching [thing] *sets watching status*\n!clear [number from 2-100] *deletes a certain number of messages*")
-            message.channel.send({})
+            message.channel.send({embed})
         } else if (rip.substr(6).startsWith('info')){
             var embed = basicEmbed(getRandomInt(16777215), "!ping *pings the bot*\n!userinfo (@person) *gets info about yourself or another member*\n!avatar *sends current profile pic of you or person mentioned*\n!suggest [suggestion] *sends a suggestion to a staff channel*")
-            message.channel.send({})
+            message.channel.send({embed})
         } else if (rip.substr(6).startsWith('user')){
             var embed = basicEmbed(getRandomInt(16777215), "!role [album] *gives album role*\n!score *sends score of person. WIP*")
             message.channel.send({embed})
