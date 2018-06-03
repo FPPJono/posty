@@ -223,7 +223,7 @@ bot.on("message", async message => {
         if (person.id === '246840305741987840') {
             await message.channel.send('sucky wucky 😏')
         }
-        if (guild.member(person).id === testaccount){
+        if (guild.member(person).id === testacc){
             await scorecard('sparkscore', `#${decimalToHexString(getRandomInt(16777215))}`, person, message)
             return
         }
