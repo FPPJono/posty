@@ -214,11 +214,11 @@ bot.on("message", async message => {
     database.read({search:{userid:message.author.id}}).then(function(info) {
         console.log(info)
         if(info.includes("error")){
-            database.create({id:message.author.id, score: 1, level: 0, credits: 0, untilLevel:50})
+            database.create("userid":message.author.id, "score": 1, "level": 0, "credits": 0, "untilLevel":50})
             console.log(`added values for ${message.author.nickname}`)
         } else {
             var userScore = JSON.parse(info.toString().replace("[","").replace("]",""))
-            database.update("id", `${message.author.id}`, {score: userScore.score + 1})
+            database.update("userid", `${message.author.id}`, {score: userScore.score + 1})
             console.log(userScore.score + 1)
         }
     })
