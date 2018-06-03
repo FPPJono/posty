@@ -70,7 +70,7 @@ function decimalToHexString(number) {
     return number.toString(16).toUpperCase();
 }
 
-async function scorecard(role, color, person, message, data) {
+async function scorecard(role, color, person, message) {
     if ((person.displayAvatarURL.includes("png"))||(person.displayAvatarURL.includes("jpg"))){
         await download.image({url: person.displayAvatarURL, dest:`scorecards/pfp.png`})
     }else if(person.displayAvatarURL.includes("gif")){
@@ -224,15 +224,15 @@ bot.on("message", async message => {
             await message.channel.send('sucky wucky 😏')
         }
         if (guild.member(person).roles.has(beerbongs)) {
-            await scorecard('beerbongs', '#000000', person, message, database)
+            await scorecard('beerbongs', '#000000', person, message)
             return
         }
         if (guild.member(person).roles.has(august26)) {
-            await scorecard('august26', '#bb001d', person, message, database)
+            await scorecard('august26', '#bb001d', person, message)
             return
         }
         if (guild.member(person).roles.has(stoney)) {
-            await scorecard('stoney', '#ffffff', person, message, database)
+            await scorecard('stoney', '#ffffff', person, message)
             return
         }
     }
