@@ -211,20 +211,21 @@ bot.on("message", async message => {
     let rip = message.content.toLowerCase()
     let guild = message.guild
     const database = sheetsu({address:'https://sheetsu.com/apis/v1.0su/9711bae69421'})
-    database.read({search:{id:message.author.id}}).then(function(info) {
+    database.read({search:{userid:message.author.id}}).then(function(info) {
         console.log(info)
         console.log(message.author.id)
-        var userScore = JSON.parse(info.toString().replace("[","").replace("]",""))
-        function updateScore(userScore){
-            database.update("id", message.author.id, {score: userScore.score + 1})
-            console.log(userScore.score + 1)
-            console.log(userScore.score)
+        if(info.includes("error")){
+            database.create({id:message.author.id, score: 1, level: 0, credits: 0, untilLevel:50})
+        } else {
+            var userScore = JSON.parse(info.toString().replace("[","").replace("]",""))
+            function updateScore(userScore){
+                database.update("id", message.author.id, {score: userScore.score + 1})
+                console.log(userScore.score + 1)
+                console.log(userScore.score)
+            }
+            setTimeout(updateScore, 100, userScore)
         }
-        setTimeout(updateScore, 100, userScore)
-    }, function(err){
-        console.log(err)
-        database.create({id:message.author.id, score: 1, level: 0, credits: 0, untilLevel:50})
-    });
+    })
     if (message.channel.type === "dm") {
         var chars = { ' ': '/', 'a': '.- ', 'b': '-... ', 'c': '-.-. ', 'd': '-.. ', 'e': '. ', 'f': '..-. ', 'g': '--. ', 'h': '.... ', 'i': '.. ', 'j': '.--- ', 'k': '-.- ', 'l': '.-.. ', 'm': '-- ', 'n': '-. ', 'o': '--- ', 'p': '.--. ', 'q': '--.- ', 'r': '.-. ', 's': '... ', 't': '- ', 'u': '..- ', 'v': '...- ', 'w': '.-- ', 'x': '-..- ', 'y': '-.-- ', 'z': '--.. ', '1': '.---- ', '2': '..--- ', '3': '...-- ', '4': '....- ', '5': '..... ', '6': '-.... ', '7': '--... ', '8': '---.. ', '9': '----. ', '0': '----- ' };
         var s = rip
