@@ -57,6 +57,11 @@ function basicEmbed(color, text) {
     return embed
 }
 
+function topicEmbed(color, text, title) {
+    var embed = { "description": `${text}`, "color": color "author": {"name": title}};
+    return embed
+}
+
 function wait(ms) {
     var start = new Date().getTime();
     var end = start;
@@ -225,22 +230,22 @@ bot.on("message", async message => {
     }
     if (rip.startsWith('!help')) {
         if (rip.substr(6).startsWith('random')){
-            var embed = basicEmbed(getRandomInt(16777215), "!randomhex *sends a random color*\n!rate [thing] *rates a thing*\n!coinflip *flips a coin!*\n!8ball [question] *uses a magic 8ball*")
+            var embed = topicEmbed(getRandomInt(16777215), "!randomhex *sends a random color*\n!rate [thing] *rates a thing*\n!coinflip *flips a coin!*\n!8ball [question] *uses a magic 8ball*", "Random Commands")
             message.channel.send({embed})
         } else if (rip.substr(6).startsWith('converting')){
-            var embed = basicEmbed(getRandomInt(16777215), "!morse *converts text to morse code*\n!emote *converts text to emotes*")
+            var embed = topicEmbed(getRandomInt(16777215), "!morse *converts text to morse code*\n!emote *converts text to emotes*", "Converting Commands")
             message.channel.send({embed})
         } else if (rip.substr(6).startsWith('staff')){
-            var embed = basicEmbed(getRandomInt(16777215), "!send [message] *sends a message*\n!warn @person [warning] *sends warning to member*\n!playing [thing] *sets playing status*\n!watching [thing] *sets watching status*\n!clear [number from 2-100] *deletes a certain number of messages*")
+            var embed = topicEmbed(getRandomInt(16777215), "!send [message] *sends a message*\n!warn @person [warning] *sends warning to member*\n!playing [thing] *sets playing status*\n!watching [thing] *sets watching status*\n!clear [number from 2-100] *deletes a certain number of messages*", "Staff Commands")
             message.channel.send({embed})
         } else if (rip.substr(6).startsWith('info')){
-            var embed = basicEmbed(getRandomInt(16777215), "!ping *pings the bot*\n!userinfo (@person) *gets info about yourself or another member*\n!avatar *sends current profile pic of you or person mentioned*\n!suggest [suggestion] *sends a suggestion to a staff channel*")
+            var embed = topicEmbed(getRandomInt(16777215), "!ping *pings the bot*\n!userinfo (@person) *gets info about yourself or another member*\n!avatar *sends current profile pic of you or person mentioned*\n!suggest [suggestion] *sends a suggestion to a staff channel*", "Info Commands")
             message.channel.send({embed})
         } else if (rip.substr(6).startsWith('user')){
-            var embed = basicEmbed(getRandomInt(16777215), "!role [album] *gives album role*\n!score *sends score of person. WIP*")
+            var embed = topicEmbed(getRandomInt(16777215), "!role [album] *gives album role*\n!score *sends score of person. WIP*", "User Commands")
             message.channel.send({embed})
         } else {
-            var embed = basicEmbed(getRandomInt(16777215), "Command Sections\nRandom\nConverting\nStaff\nInfo\nUser")
+            var embed = topicEmbed(getRandomInt(16777215), "Random\nConverting\nStaff\nInfo\nUser", "Command Sections")
             message.channel.send({embed})
         }
     }
