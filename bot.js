@@ -210,7 +210,7 @@ bot.on("message", async message => {
     const args = message.content.split(" ");
     let rip = message.content.toLowerCase()
     let guild = message.guild
-    const database = sheetsu({address:'https://sheetsu.com/apis/v1.0su/9711bae69421'})
+    const database = sheetsu({address:'https://sheetsu.com/apis/v1.0su/81bdad5561e7'})
     database.read({search:{userid:message.author.id}}).then(function(info) {
         console.log(info)
         if(info.includes("error")){
@@ -264,7 +264,7 @@ bot.on('message', message => {
     let rip = message.content.toLowerCase()
     let guild = message.guild
     if (message.channel.type === "dm") return
-    const database = sheetsu({address:'https://sheetsu.com/apis/v1.0su/9711bae69421'})
+    const database = sheetsu({address:'https://sheetsu.com/apis/v1.0su/81bdad5561e7'})
     if (rip.startsWith(PREFIX + "ping")) {
         message.channel.send(`Pong! ${new Date().getTime() - message.createdTimestamp}ms`)
     }
