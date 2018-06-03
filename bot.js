@@ -162,8 +162,8 @@ async function welcomecard(person, guild) {
         var fnt = PImage.registerFont('scorefont.ttf', 'Score Font')
         fnt.load(() => {
             ctx.fillStyle = '#000000';
-            ctx.font = "40pt 'Score Font'";
-            ctx.fillText(`${person.username}`, 148, 158);
+            ctx.font = `${230 / person.username.toString().length}pt 'Score Font'`;
+            ctx.fillText(`${person.username}`, 134, 158);
             ctx.fillStyle = '#ffffff'
             ctx.font = "20pt 'Score Font'";
             ctx.fillText(`Member #${guild.memberCount}`, 324, 207);
