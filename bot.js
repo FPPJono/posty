@@ -226,22 +226,22 @@ bot.on("message", async message => {
     if (rip.startsWith('!help')) {
         switch (rip.substr(6)) {
             case 'random':
-                var embed = basicEmbed("!randomhex *sends a random color*\n!rate [thing] *rates a thing*\n!coinflip *flips a coin!*\n!8ball [question] *uses a magic 8ball*", getRandomInt(16777215))
+                var embed = basicEmbed(getRandomInt(16777215), "!randomhex *sends a random color*\n!rate [thing] *rates a thing*\n!coinflip *flips a coin!*\n!8ball [question] *uses a magic 8ball*")
                 message.channel.send({embed})
             case 'converting':
-                var embed = basicEmbed("!morse *converts text to morse code*\n!emote *converts text to emotes*", getRandomInt(16777215))
+                var embed = basicEmbed(getRandomInt(16777215), "!morse *converts text to morse code*\n!emote *converts text to emotes*")
                 message.channel.send({embed})
             case 'staff':
-                var embed = basicEmbed("!send [message] *sends a message*\n!warn @person [warning] *sends warning to member*\n!playing [thing] *sets playing status*\n!watching [thing] *sets watching status*\n!clear [number from 2-100] *deletes a certain number of messages*",getRandomInt(16777215))
+                var embed = basicEmbed(getRandomInt(16777215), "!send [message] *sends a message*\n!warn @person [warning] *sends warning to member*\n!playing [thing] *sets playing status*\n!watching [thing] *sets watching status*\n!clear [number from 2-100] *deletes a certain number of messages*")
                 message.channel.send({})
             case 'info':
-                var embed = basicEmbed("!ping *pings the bot*\n!userinfo (@person) *gets info about yourself or another member*\n!avatar *sends current profile pic of you or person mentioned*\n!suggest [suggestion] *sends a suggestion to a staff channel*",getRandomInt(16777215))
+                var embed = basicEmbed(getRandomInt(16777215), "!ping *pings the bot*\n!userinfo (@person) *gets info about yourself or another member*\n!avatar *sends current profile pic of you or person mentioned*\n!suggest [suggestion] *sends a suggestion to a staff channel*")
                 message.channel.send({})
             case 'user':
-                var embed = basicEmbed("!role [album] *gives album role*\n!score *sends score of person. WIP*",getRandomInt(16777215))
+                var embed = basicEmbed(getRandomInt(16777215), "!role [album] *gives album role*\n!score *sends score of person. WIP*")
                 message.channel.send({embed})
             default:
-                var embed = basicEmbed("Command Sections\nRandom\nConverting\nStaff\nInfo\nUser",getRandomInt(16777215))
+                var embed = basicEmbed(getRandomInt(16777215), "Command Sections\nRandom\nConverting\nStaff\nInfo\nUser")
                 message.channel.send({embed})
         }
     }
