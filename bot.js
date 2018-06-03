@@ -216,6 +216,7 @@ bot.on("message", async message => {
         console.log(message.author.id)
         if(info.includes("error")){
             database.create({id:message.author.id, score: 1, level: 0, credits: 0, untilLevel:50})
+            console.log(`added values for ${message.author.nickname}`)
         } else {
             var userScore = JSON.parse(info.toString().replace("[","").replace("]",""))
             function updateScore(userScore){
