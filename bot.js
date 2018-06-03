@@ -239,7 +239,7 @@ bot.on("message", async message => {
         } if (rip.substr(6).startsWith('user')){
             var embed = basicEmbed(getRandomInt(16777215), "!role [album] *gives album role*\n!score *sends score of person. WIP*")
             message.channel.send({embed})
-        } else:
+        } else {
             var embed = basicEmbed(getRandomInt(16777215), "Command Sections\nRandom\nConverting\nStaff\nInfo\nUser")
             message.channel.send({embed})
         }
