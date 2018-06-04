@@ -243,16 +243,24 @@ bot.on("message", async message => {
             var embed = richEmbed(getRandomInt(16777215), commands, descriptions, "Random Commands") 
             message.channel.send({embed})
         } else if (rip.substr(6).startsWith('converting')){
-            var embed = topicEmbed(getRandomInt(16777215), "!morse **converts text to morse code**\n!emote **converts text to emotes**", "Converting Commands")
+            var commands = ["!morse", "!emote"]
+            var descriptions = ["converts text to morse code", "converts text to emotes"]
+            var embed = richEmbed(getRandomInt(16777215), commands, descriptions, "Converting Commands")
             message.channel.send({embed})
         } else if (rip.substr(6).startsWith('staff')){
-            var embed = topicEmbed(getRandomInt(16777215), "!send [message] **sends a message**\n!warn @person [warning] **sends warning to member**\n!playing [thing] **sets playing status**\n!watching [thing] **sets watching status**\n!listening [thing] **sets what the bot is listening to**\n!clear [number from 2-100] **deletes a certain number of messages**", "Staff Commands")
+            var commands = ["!send [message]", "!warn @person [warning]", "!playing [thing]", "!watching [thing]", "!listening [thing]", "!clear [number from 2-100]"]
+            var descriptions = ["sends a message", "sends warning to member", "sets playing status", "sets watching status", "sets listening status", "deletes certain amount of messages"]
+            var embed = richEmbed(getRandomInt(16777215), commands, descriptions, "Staff Commands")
             message.channel.send({embed})
         } else if (rip.substr(6).startsWith('info')){
-            var embed = topicEmbed(getRandomInt(16777215), "!ping **pings the bot**\n!userinfo (@person) **gets info about yourself or another member**\n!avatar **sends current profile pic of you or person mentioned**\n!suggest [suggestion] **sends a suggestion to a staff channel**", "Info Commands")
+            var commands = ["!ping", "!userinfo (@person)", "!avatar", "!suggest [suggestion]"]
+            var descriptions = ["pings the bot", "gets info about yourself or another member", "sends current profile pic of you or person mentioned", "sends a suggestion to a staff channel"]
+            var embed = richEmbed(getRandomInt(16777215), commands, descriptions, "Info Commands")
             message.channel.send({embed})
         } else if (rip.substr(6).startsWith('user')){
-            var embed = topicEmbed(getRandomInt(16777215), "!role [album] **gives album role**\n!score **sends score of person. WIP**", "User Commands")
+            var commands = ["!role [album]"", "!score"]
+            var descriptions = ["gives album role", "sends score of person (WIP)"]
+            var embed = richEmbed(getRandomInt(16777215), commands, descriptions, "User Commands")
             message.channel.send({embed})
         } else {
             var embed = topicEmbed(getRandomInt(16777215), "Random\nConverting\nStaff\nInfo\nUser", "Command Sections")
