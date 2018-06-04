@@ -67,6 +67,7 @@ function richEmbed(color, commands, descriptions, title) {
     for (var i in commands) {
         embed.fields.push({"name": commands[i], "value": descriptions[i]})
     }
+    return embed
 }
 
 function wait(ms) {
