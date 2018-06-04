@@ -312,6 +312,16 @@ bot.on('message', message => {
             message.channel.send("sorry, that command is for staff only")
                 .then(m => m.delete(5000));
     }
+    if (rip.startsWith(PREFIX + "listening")) {
+        if (message.member.roles.has(admin)) {
+            let content = args.join(" ")
+            var useContent = content.substr(10);
+            bot.user.setPresence({ game: { name: useContent, type: 2 } });
+            console.log(`${sender.username} made me listening to ${useContent}`)
+        } else
+            message.channel.send("sorry, that command is for staff only")
+                .then(m => m.delete(5000));
+    }
     if (rip.startsWith(PREFIX + "watching")) {
         if (message.member.roles.has(admin)) {
             let content = args.join(" ")
