@@ -62,6 +62,13 @@ function topicEmbed(color, text, title) {
     return embed
 }
 
+function richEmbed(color, commands, descriptions, title) {
+    var embed = {"color":color, "author":{"name":title}, "fields":[]}
+    for (var i in commands) {
+        embed.fields.push({"name": commands[i], "value": descriptions[i]})
+    }
+}
+
 function wait(ms) {
     var start = new Date().getTime();
     var end = start;
@@ -230,7 +237,9 @@ bot.on("message", async message => {
     }
     if (rip.startsWith('!help')) {
         if (rip.substr(6).startsWith('random')){
-            var embed = topicEmbed(getRandomInt(16777215), "!randomhex **sends a random color**\n!rate [thing] **rates a thing**\n!coinflip **flips a coin!**\n!8ball [question] **uses a magic 8ball**", "Random Commands")
+            var commands = ["!randomhex", "!rate", "!coinflip", "!8ball"]
+            var descriptions = ["sends a random color", "rates a thing", "flips a coin", "uses a magic 8ball"]
+            var embed = richEmbed(getRandomInt(16777215), commands, descriptions, "Random Commands") 
             message.channel.send({embed})
         } else if (rip.substr(6).startsWith('converting')){
             var embed = topicEmbed(getRandomInt(16777215), "!morse **converts text to morse code**\n!emote **converts text to emotes**", "Converting Commands")
