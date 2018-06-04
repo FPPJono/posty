@@ -230,19 +230,19 @@ bot.on("message", async message => {
     }
     if (rip.startsWith('!help')) {
         if (rip.substr(6).startsWith('random')){
-            var embed = topicEmbed(getRandomInt(16777215), "!randomhex *sends a random color*\n!rate [thing] *rates a thing*\n!coinflip *flips a coin!*\n!8ball [question] *uses a magic 8ball*", "Random Commands")
+            var embed = topicEmbed(getRandomInt(16777215), "!randomhex **sends a random color**\n!rate [thing] **rates a thing**\n!coinflip **flips a coin!**\n!8ball [question] **uses a magic 8ball**", "Random Commands")
             message.channel.send({embed})
         } else if (rip.substr(6).startsWith('converting')){
-            var embed = topicEmbed(getRandomInt(16777215), "!morse *converts text to morse code*\n!emote *converts text to emotes*", "Converting Commands")
+            var embed = topicEmbed(getRandomInt(16777215), "!morse **converts text to morse code**\n!emote **converts text to emotes**", "Converting Commands")
             message.channel.send({embed})
         } else if (rip.substr(6).startsWith('staff')){
-            var embed = topicEmbed(getRandomInt(16777215), "!send [message] *sends a message*\n!warn @person [warning] *sends warning to member*\n!playing [thing] *sets playing status*\n!watching [thing] *sets watching status*\n!clear [number from 2-100] *deletes a certain number of messages*", "Staff Commands")
+            var embed = topicEmbed(getRandomInt(16777215), "!send [message] **sends a message**\n!warn @person [warning] **sends warning to member**\n!playing [thing] **sets playing status**\n!watching [thing] **sets watching status**\n!listening [thing] **sets what the bot is listening to**\n!clear [number from 2-100] **deletes a certain number of messages**", "Staff Commands")
             message.channel.send({embed})
         } else if (rip.substr(6).startsWith('info')){
-            var embed = topicEmbed(getRandomInt(16777215), "!ping *pings the bot*\n!userinfo (@person) *gets info about yourself or another member*\n!avatar *sends current profile pic of you or person mentioned*\n!suggest [suggestion] *sends a suggestion to a staff channel*", "Info Commands")
+            var embed = topicEmbed(getRandomInt(16777215), "!ping **pings the bot**\n!userinfo (@person) **gets info about yourself or another member**\n!avatar **sends current profile pic of you or person mentioned**\n!suggest [suggestion] **sends a suggestion to a staff channel**", "Info Commands")
             message.channel.send({embed})
         } else if (rip.substr(6).startsWith('user')){
-            var embed = topicEmbed(getRandomInt(16777215), "!role [album] *gives album role*\n!score *sends score of person. WIP*", "User Commands")
+            var embed = topicEmbed(getRandomInt(16777215), "!role [album] **gives album role**\n!score **sends score of person. WIP**", "User Commands")
             message.channel.send({embed})
         } else {
             var embed = topicEmbed(getRandomInt(16777215), "Random\nConverting\nStaff\nInfo\nUser", "Command Sections")
