@@ -263,7 +263,7 @@ bot.on("message", async message => {
             var embed = richEmbed(getRandomInt(16777215), commands, descriptions, "User Commands")
             message.channel.send({embed})
         } else {
-            var embed = topicEmbed(getRandomInt(16777215), "Random\nConverting\nStaff\nInfo\nUser", "Command Sections")
+            var embed = topicEmbed(getRandomInt(16777215), "Random\nConverting\nStaff\nInfo\nUser\nUse !help [category] to check commands from each section", "Command Sections")
             message.channel.send({embed})
         }
     }
