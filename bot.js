@@ -258,7 +258,7 @@ bot.on("message", async message => {
             var embed = richEmbed(getRandomInt(16777215), commands, descriptions, "Info Commands")
             message.channel.send({embed})
         } else if (rip.substr(6).startsWith('user')){
-            var commands = ["!role [album]"", "!score"]
+            var commands = ["!role [album]", "!score"]
             var descriptions = ["gives album role", "sends score of person (WIP)"]
             var embed = richEmbed(getRandomInt(16777215), commands, descriptions, "User Commands")
             message.channel.send({embed})
