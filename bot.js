@@ -33,6 +33,7 @@ const admin = '450156424694071296'
 const beerbongs = '450155434356113418'
 const stoney = '450155315095142413'
 const august26 = '450155482263584768'
+const announcements = '453402930763268098'
 
 //Role Tiers
 const fans = '452239200444743700' //Tier 1
@@ -254,17 +255,17 @@ bot.on("message", async message => {
             var embed = richEmbed(getRandomInt(16777215), commands, descriptions, "Staff Commands")
             message.channel.send({embed})
         } else if (rip.substr(6).startsWith('info')){
-            var commands = ["!ping", "!userinfo (@person)", "!avatar", "!suggest [suggestion]"]
-            var descriptions = ["pings the bot", "gets info about yourself or another member", "sends current profile pic of you or person mentioned", "sends a suggestion to a staff channel"]
+            var commands = ["!ping", "!userinfo (@person)", "!avatar", "!suggest [suggestion]", "!score"]
+            var descriptions = ["pings the bot", "gets info about yourself or another member", "sends current profile pic of you or person mentioned", "sends a suggestion to a staff channel", "sends the score of a person (WIP)"]
             var embed = richEmbed(getRandomInt(16777215), commands, descriptions, "Info Commands")
             message.channel.send({embed})
-        } else if (rip.substr(6).startsWith('user')){
-            var commands = ["!role [album]", "!score"]
-            var descriptions = ["gives album role", "sends score of person (WIP)"]
-            var embed = richEmbed(getRandomInt(16777215), commands, descriptions, "User Commands")
+        } else if (rip.substr(6).startsWith('roles')){
+            var commands = ["!role [album]", "!announcements"]
+            var descriptions = ["gives album role", "turns on/off announcements pings"]
+            var embed = richEmbed(getRandomInt(16777215), commands, descriptions, "Role Commands")
             message.channel.send({embed})
         } else {
-            var embed = topicEmbed(getRandomInt(16777215), "Random\nConverting\nStaff\nInfo\nUser\nUse !help [category] to check commands from each section", "Command Sections")
+            var embed = topicEmbed(getRandomInt(16777215), "Random\nConverting\nStaff\nInfo\nRoles\nUse !help [category] to check commands from each section", "Command Sections")
             message.channel.send({embed})
         }
     }
@@ -319,6 +320,15 @@ bot.on('message', message => {
             message.member.removeRole(august26)
             message.member.addRole(stoney)
             message.member.removeRole(beerbongs)
+        }
+    }
+    if (rip.startsWith('!announcements')) {
+        if (message.member.roles.has(announcements)) {
+            message.member.removeRole(announcements)
+            message.channel.send("```You will no longer be pinged in any announcements posts```")
+        } else {
+            message.member.addRole(announcements)
+            message.channel.send("```You will now be pinged in all important announcements posts```")
         }
     }
     if (rip.startsWith(PREFIX + "playing")) {
