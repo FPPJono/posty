@@ -290,6 +290,57 @@ bot.on("message", async message => {
             return
         }
     }
+    //level tier testing stuff
+    if (rip.startsWith('!notice')) {
+        if (message.author.id != testacc) return
+        if (message.member.roles.has(noticeMe)) {
+            message.channel.send("you already have this role")
+            return
+        } else if (message.member.roles.has(fans)) {
+            message.member.addRole(noticeMe)
+            message.channel.send("you now have the notice me role")
+            message.author.send("Congratulations on getting the notice me role!\nhere are all the new perks you have:\nbedtime is 7pm")
+        }
+    }
+    if (rip.startsWith('!rockstar')) {
+        if (message.author.id != testacc) return
+        if (message.member.roles.has(rockstar)) {
+            message.channel.send("you already have this role")
+            return
+        } else if (message.member.roles.has(noticeMe)) {
+            message.member.addRole(rockstar)
+            message.channel.send("you now have the rockstar role")
+            message.author.send("Congratulations on getting the rockstar role!\nhere are all the new perks you have:\nbedtime is 8pm")
+        }else{
+            message.channel.send("you must have the notice me role for this")
+        }
+    }
+    if (rip.startsWith('!goflex')) {
+        if (message.author.id != testacc) return
+        if (message.member.roles.has(goFlex)) {
+            message.channel.send("you already have this role")
+            return
+        } else if (message.member.roles.has(rockstar)) {
+            message.member.addRole(goFlex)
+            message.channel.send("you now have the go flex role")
+            message.author.send("Congratulations on getting the go flex role!\nhere are all the new perks you have:\nbedtime is 9pm")
+        }else{
+            message.channel.send("you must have the rockstar role for this")
+        }
+    }
+    if (rip.startsWith('!hollywood')) {
+        if (message.author.id != testacc) return
+        if (message.member.roles.has(hollywoodDreamers)) {
+            message.channel.send("you already have this role")
+            return
+        } else if (message.member.roles.has(goFlex)) {
+            message.member.addRole(hollywoodDreamers)
+            message.channel.send("you now have the hollywood dreamers role")
+            message.author.send("Congratulations on getting the hollywood dreamers role!\nhere are all the new perks you have:\nbedtime is 10pm")
+        }else{
+            message.channel.send("you must have the go flex role for this")
+        }
+    }
 })
 
 bot.on('message', message => {
@@ -532,7 +583,6 @@ bot.on('message', message => {
         s = s.replace(/[abcdefghijklmnopqrstuvwxyz ]/g, m => chars[m]);
         message.channel.send(`${s}`)
     }
-
 });
 
 // Sneaky Sneaky Token. Dont Share Kiddos
