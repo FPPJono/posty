@@ -244,6 +244,7 @@ bot.on("message", async message => {
         } else {
             message.channel.send('dong!')
         }
+    }
     if (rip.startsWith('!help')) {
         if (rip.substr(6).startsWith('random')){
             var commands = ["!randomhex", "!rate", "!coinflip", "!8ball"]
