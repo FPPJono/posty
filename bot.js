@@ -255,8 +255,8 @@ bot.on("message", async message => {
             var embed = richEmbed(getRandomInt(16777215), commands, descriptions, "Staff Commands")
             message.channel.send({embed})
         } else if (rip.substr(6).startsWith('info')){
-            var commands = ["!ping", "!userinfo (@person)", "!avatar", "!suggest [suggestion]", "!score"]
-            var descriptions = ["pings the bot", "gets info about yourself or another member", "sends current profile pic of you or person mentioned", "sends a suggestion to a staff channel", "sends the score of a person (WIP)"]
+            var commands = ["!ping", "!userinfo (@person)", "!avatar", "!suggest [suggestion]", "!score", "!perkinfo [perk]"]
+            var descriptions = ["pings the bot", "gets info about yourself or another member", "sends current profile pic of you or person mentioned", "sends a suggestion to a staff channel", "sends the score of a person (WIP)", "sends information about a perk"]
             var embed = richEmbed(getRandomInt(16777215), commands, descriptions, "Info Commands")
             message.channel.send({embed})
         } else if (rip.substr(6).startsWith('roles')){
@@ -266,6 +266,17 @@ bot.on("message", async message => {
             message.channel.send({embed})
         } else {
             var embed = topicEmbed(getRandomInt(16777215), "Random\nConverting\nStaff\nInfo\nRoles\nUse !help [category] to check commands from each section", "Command Sections")
+            message.channel.send({embed})
+        }
+    }
+    if (rip.startsWith('!perkinfo')) {
+        if (rip.startsWith('!perkinfo n')) 
+            var commands = ["name higher in member hierarchy", "access to bonus command", "new !daily background", "badge on !score"]
+            var descriptions = [" ", "!image", "notice me themed", "replaces previous badge"]
+            var embed = richEmbed(getRandomInt(16777215), commands, descriptions, "Notice Me")
+            message.channel.send({embed})
+        } else {
+            var embed = topicEmbed(getRandomInt(16777215), "Notice me\nGo Flex\nRockstar\nHollywood Dreamers", "Perks")
             message.channel.send({embed})
         }
     }
