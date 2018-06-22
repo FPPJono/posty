@@ -238,6 +238,12 @@ bot.on("message", async message => {
     } else {
         var person = message.author
     }
+    if (rip.startsWith('!ding')) {
+        if (message.author.id === '341242586213908491') {
+            message.channel.send('youre a hoe')
+        } else {
+            message.channel.send('dong!')
+        }
     if (rip.startsWith('!help')) {
         if (rip.substr(6).startsWith('random')){
             var commands = ["!randomhex", "!rate", "!coinflip", "!8ball"]
