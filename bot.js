@@ -272,7 +272,7 @@ bot.on("message", async message => {
     if (rip.startsWith('!perkinfo')) {
         if (rip.startsWith('!perkinfo n')) {
             var commands = ["name higher in member hierarchy", "access to bonus command", "new !daily background", "badge on !score"]
-            var descriptions = [" ", "!image", "notice me themed", "replaces previous badge"]
+            var descriptions = ["makes you more *notice*able", "!image", "notice me themed", "replaces previous badge"]
             var embed = richEmbed(getRandomInt(16777215), commands, descriptions, "Notice Me")
             message.channel.send({embed})
         } else {
