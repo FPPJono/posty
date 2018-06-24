@@ -85,7 +85,7 @@ function decimalToHexString(number) {
     return number.toString(16).toUpperCase();
 }
 
-async function scorecard(role, color, person, message) {
+async function scorecard(role, color, person, message, height) {
     if ((person.displayAvatarURL.includes("png"))||(person.displayAvatarURL.includes("jpg"))){
         await download.image({url: person.displayAvatarURL, dest:`scorecards/pfp.png`})
     }else if(person.displayAvatarURL.includes("gif")){
@@ -111,7 +111,7 @@ async function scorecard(role, color, person, message) {
             ctx.fillText("currently", 14, 292)
             ctx.fillText("doesn't", 14, 365)
             ctx.fillText("work", 14, 435)
-            ctx.fillRect(340, 208, 150, 150)
+            ctx.fillRect(340, height, 150, 150)
             PImage.decodePNGFromStream(fs.createReadStream(`scorecards/pfp.png`)).then((pfp) => {
                 c.drawImage(pfp,
                     0, 0, pfp.width, pfp.height,
@@ -293,19 +293,19 @@ bot.on("message", async message => {
             await message.channel.send('sucky wucky 😏')
         }
         if (guild.member(person).id === testacc){
-            await scorecard('sparkscore', `#${decimalToHexString(getRandomInt(16777215))}`, person, message)
+            await scorecard('sparkscore', `#${decimalToHexString(getRandomInt(16777215))}`, person, message, 375)
             return
         }
         if (guild.member(person).roles.has(beerbongs)) {
-            await scorecard('beerbongs', '#000000', person, message)
+            await scorecard('beerbongs', '#000000', person, message, 200)
             return
         }
         if (guild.member(person).roles.has(august26)) {
-            await scorecard('august26', '#bb001d', person, message)
+            await scorecard('august26', '#bb001d', person, message, 375)
             return
         }
         if (guild.member(person).roles.has(stoney)) {
-            await scorecard('stoney', '#ffffff', person, message)
+            await scorecard('stoney', '#ffffff', person, message, 208)
             return
         }
     }
