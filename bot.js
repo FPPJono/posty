@@ -293,7 +293,7 @@ bot.on("message", async message => {
             await message.channel.send('sucky wucky 😏')
         }
         if (guild.member(person).id === testacc){
-            await scorecard('sparkscore', `#${decimalToHexString(getRandomInt(16777215))}`, person, message, 375)
+            await scorecard('sparkscore', `#${decimalToHexString(getRandomInt(16777215))}`, person, message, 340)
             return
         }
         if (guild.member(person).roles.has(beerbongs)) {
@@ -301,7 +301,7 @@ bot.on("message", async message => {
             return
         }
         if (guild.member(person).roles.has(august26)) {
-            await scorecard('august26', '#bb001d', person, message, 375)
+            await scorecard('august26', '#bb001d', person, message, 340)
             return
         }
         if (guild.member(person).roles.has(stoney)) {
