@@ -111,7 +111,7 @@ async function scorecard(role, color, person, message) {
             ctx.fillText("currently", 14, 292)
             ctx.fillText("doesn't", 14, 365)
             ctx.fillText("work", 14, 435)
-            ctx.fillRect(340, 340, 150, 150)
+            ctx.fillRect(340, 220, 150, 150)
             PImage.decodePNGFromStream(fs.createReadStream(`scorecards/pfp.png`)).then((pfp) => {
                 c.drawImage(pfp,
                     0, 0, pfp.width, pfp.height,
