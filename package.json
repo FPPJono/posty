@@ -19,6 +19,7 @@
     "async": "2.6.1",
     "gif-frames": "0.4.0",
     "sheetsu-node": "0.0.7",
-    "sheetsu": "1.2.0"
+    "sheetsu": "1.2.0",
+    "gifshot":"0.4.5"
   }
 }
