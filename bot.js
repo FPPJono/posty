@@ -86,7 +86,6 @@ function decimalToHexString(number) {
 }
 
 async function scorecard(role, color, person, message, height) {
-    let guild = message.guild
     if ((person.displayAvatarURL.includes("png"))||(person.displayAvatarURL.includes("jpg"))){
         await download.image({url: person.displayAvatarURL, dest:`scorecards/pfp.png`})
     }else if(person.displayAvatarURL.includes("gif")){
@@ -94,9 +93,6 @@ async function scorecard(role, color, person, message, height) {
             frameData[0].getImage().pipe(fs.createWriteStream(`scorecards/pfp.png`))
         })
     }
-    if (person.username.toString().length < guild.fetchMember(person).nickname.toString().length) {
-        var name = person.username.toString()
-    } else var name = guild.fetchMember(person).nickname.toString()
     var size = (800 / name.length)
     if (size > 50){
         size = 50
@@ -297,6 +293,11 @@ bot.on("message", async message => {
         }
     }
     if (rip.startsWith('!score')) { 
+        console.log(person.username.toString())
+        console.log(guild.fetchMember(person).nickname)
+        /*if (person.username.toString().length < guild.fetchMember(person).nickname.toString().length) {
+            var name = person.username.toString()
+        } else var name = guild.fetchMember(person).nickname.toString()*/
         if (person.id === '246840305741987840') {
             await message.channel.send('sucky wucky 😏')
         }
