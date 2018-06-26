@@ -94,6 +94,13 @@ async function scorecard(role, color, person, message, height) {
         })
     }
     PImage.decodePNGFromStream(fs.createReadStream(`scorecards/${role}.png`)).then((img) => {
+        if (person.username.toString().length > person.nickname.toString().length) {
+            var name = person.username.toString()
+        } else var name = person.nickname.toString()
+        var size = (800 / name.length)
+        if (size > 50){
+            size = 50
+        }
         var img2 = PImage.make(500,500);
         var c = img2.getContext('2d');
         c.drawImage(img,
@@ -104,7 +111,7 @@ async function scorecard(role, color, person, message, height) {
         var fnt = PImage.registerFont('scorefont.ttf', 'Score Font')
         fnt.load(() => {
             ctx.fillStyle = color;
-            ctx.font = "50pt 'Score Font'";
+            ctx.font = `${size}pt 'Score Font'`;
             ctx.fillText(`${person.username.toUpperCase()}`, 135, 80);
             ctx.font = "35pt 'Score Font'"
             ctx.fillText("this", 14, 221)
