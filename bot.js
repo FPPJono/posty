@@ -287,7 +287,7 @@ bot.on("message", async message => {
     }
     if (rip.startsWith('!score')) { 
         console.log(person.username.toString())
-        var personMember = guild.fetchMember(person)
+        var personMember = guild.member(person)
         console.log(personMember.nickname)
         var name = "befpacito"
         /*if (person.username.toString().length < guild.fetchMember(person).nickname.toString().length) {
