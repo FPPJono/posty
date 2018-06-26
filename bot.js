@@ -122,7 +122,7 @@ async function scorecard(role, color, person, message, height, name) {
                     15, 15, 110, 110
                )
                 PImage.encodePNGToStream(img2,fs.createWriteStream('scorecards/score.png')).then(() => {
-                    console.log(`${message.author.username} has just checked their score`);
+                    console.log(`${person}'s score has just been checked`);
                     message.channel.send({files:[{attachment: 'scorecards/score.png', name:'score.png'}] })
                 });
             })
@@ -286,9 +286,6 @@ bot.on("message", async message => {
         }
     }
     if (rip.startsWith('!score')) { 
-        console.log(person.username.toString())
-        var personMember = guild.member(person)
-        console.log(personMember.nickname)
         if (guild.member(person).nickname != null){
             if (person.username.toString().length < guild.member(person).nickname.toString().length) {
                 var name = person.username.toString()
