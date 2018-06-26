@@ -85,7 +85,7 @@ function decimalToHexString(number) {
     return number.toString(16).toUpperCase();
 }
 
-async function scorecard(role, color, person, message, height) {
+async function scorecard(role, color, person, message, height, name) {
     if ((person.displayAvatarURL.includes("png"))||(person.displayAvatarURL.includes("jpg"))){
         await download.image({url: person.displayAvatarURL, dest:`scorecards/pfp.png`})
     }else if(person.displayAvatarURL.includes("gif")){
@@ -295,7 +295,8 @@ bot.on("message", async message => {
     if (rip.startsWith('!score')) { 
         console.log(person.username.toString())
         var personMember = guild.fetchMember(person)
-        console.log(personMember.nickname.toString())
+        console.log(personMember.id.toString())
+        var name = "befpacito"
         /*if (person.username.toString().length < guild.fetchMember(person).nickname.toString().length) {
             var name = person.username.toString()
         } else var name = guild.fetchMember(person).nickname.toString()*/
@@ -303,19 +304,19 @@ bot.on("message", async message => {
             await message.channel.send('sucky wucky 😏')
         }
         if (guild.member(person).id === testacc){
-            await scorecard('sparkscore', `#${decimalToHexString(getRandomInt(16777215))}`, person, message, 340)
+            await scorecard('sparkscore', `#${decimalToHexString(getRandomInt(16777215))}`, person, message, 340, name)
             return
         }
         if (guild.member(person).roles.has(beerbongs)) {
-            await scorecard('beerbongs', '#000000', person, message, 200)
+            await scorecard('beerbongs', '#000000', person, message, 200, name)
             return
         }
         if (guild.member(person).roles.has(august26)) {
-            await scorecard('august26', '#bb001d', person, message, 340)
+            await scorecard('august26', '#bb001d', person, message, 340, name)
             return
         }
         if (guild.member(person).roles.has(stoney)) {
-            await scorecard('stoney', '#ffffff', person, message, 208)
+            await scorecard('stoney', '#ffffff', person, message, 208, name)
             return
         }
     }
