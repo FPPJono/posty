@@ -109,7 +109,7 @@ async function scorecard(role, color, person, message, height, name) {
         fnt.load(() => {
             ctx.fillStyle = color;
             ctx.font = `${size}pt 'Score Font'`;
-            ctx.fillText(`${person.username.toUpperCase()}`, 135, 80);
+            ctx.fillText(`${name.toUpperCase()}`, 135, 80);
             ctx.font = "35pt 'Score Font'"
             ctx.fillText("this", 14, 221)
             ctx.fillText("currently", 14, 292)
@@ -289,10 +289,9 @@ bot.on("message", async message => {
         console.log(person.username.toString())
         var personMember = guild.member(person)
         console.log(personMember.nickname)
-        var name = "befpacito"
-        /*if (person.username.toString().length < guild.fetchMember(person).nickname.toString().length) {
+        if (person.username.toString().length < guild.member(person).nickname.toString().length) {
             var name = person.username.toString()
-        } else var name = guild.fetchMember(person).nickname.toString()*/
+        } else var name = guild.member(person).nickname.toString()
         if (person.id === '246840305741987840') {
             await message.channel.send('sucky wucky 😏')
         }
