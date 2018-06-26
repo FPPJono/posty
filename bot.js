@@ -94,7 +94,7 @@ async function scorecard(role, color, person, message, height) {
         })
     }
     PImage.decodePNGFromStream(fs.createReadStream(`scorecards/${role}.png`)).then((img) => {
-        if (person.username.toString().length > person.nickname.toString().length) {
+        if (person.username.toString().length < guild.fetchMember(person).nickname.toString().length) {
             var name = person.username.toString()
         } else var name = person.nickname.toString()
         var size = (800 / name.length)
