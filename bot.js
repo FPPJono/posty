@@ -240,15 +240,10 @@ bot.on("message", async message => {
     }
     if (message.mentions.users.array().toString().length >= 1) {
         var person = message.mentions.users.first()
+        var personMember = guild.fetchMember(person)
     } else {
         var person = message.author
-    }
-    if (rip.startsWith('!ding')) {
-        if (message.author.id === '341242586213908491') {
-            message.channel.send('youre a hoe')
-        } else {
-            message.channel.send('dong!')
-        }
+        var personMember = guild.fetchMember(person)
     }
     if (rip.startsWith('!help')) {
         if (rip.substr(6).startsWith('random')){
@@ -294,7 +289,6 @@ bot.on("message", async message => {
     }
     if (rip.startsWith('!score')) { 
         console.log(person.username.toString())
-        var personMember = guild.fetchMember(person)
         console.log(personMember.id.toString())
         var name = "befpacito"
         /*if (person.username.toString().length < guild.fetchMember(person).nickname.toString().length) {
