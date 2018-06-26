@@ -289,7 +289,7 @@ bot.on("message", async message => {
         console.log(person.username.toString())
         var personMember = guild.member(person)
         console.log(personMember.nickname)
-        if (guild.member(person).nickname != null){
+        if (guild.member(person).nickname != 'null'){
             if (person.username.toString().length < guild.member(person).nickname.toString().length) {
                 var name = person.username.toString()
             } else var name = guild.member(person).nickname.toString()
