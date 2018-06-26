@@ -96,7 +96,7 @@ async function scorecard(role, color, person, message, height) {
     }
     if (person.username.toString().length < guild.fetchMember(person).nickname.toString().length) {
         var name = person.username.toString()
-    } else var name = person.nickname.toString()
+    } else var name = guild.fetchMember(person).nickname.toString()
     var size = (800 / name.length)
     if (size > 50){
         size = 50
