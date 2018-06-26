@@ -93,7 +93,7 @@ async function scorecard(role, color, person, message, height, name) {
             frameData[0].getImage().pipe(fs.createWriteStream(`scorecards/pfp.png`))
         })
     }
-    var size = (800 / name.length)
+    var size = (700 / name.length)
     if (size > 50){
         size = 50
     }
