@@ -95,7 +95,6 @@ async function gifScore(role, color, person, message, height, name) {
     var i = 0
     while(i < 6) {
         wait(1500)
-        if (i == 6) {break}
         await gifFrames({url:person.displayAvatarURL, frames:i, outputType: 'png'}).then(function(frameData){
             frameData[0].getImage().pipe(fs.createWriteStream(`scorecards/pfp.png`))
         })
@@ -127,7 +126,6 @@ async function gifScore(role, color, person, message, height, name) {
                     PImage.encodePNGToStream(img2,fs.createWriteStream(`scorecards/score${namenum.toString()}.png`)).then(() => {
                         console.log(`frame ${namenum} of ${name}'s score has been made`);
                         frames.push(`scorecards/score${namenum}.png`)
-                        message.channel.send({files:[{attachment: `scorecards/score${namenum}.png`, name:'score.png'}] })
                     });
                 })
             });
@@ -136,7 +134,7 @@ async function gifScore(role, color, person, message, height, name) {
         console.log(`i value is now ${i}`)
     }
     const outputGifFile = 'scorecards/score.gif'
-    await GifCreationService.createAnimatedGifFromPngImages(frames, outputGifFile, {repeat:true, fps:24, quality:10})
+    await GifCreationService.createAnimatedGifFromPngImages(frames, outputGifFile, {repeat:true, fps:24, quality:0})
     .then(outputGifFile => {
         console.log(`${person.username}'s score has just been checked, id:${person.id}`)
     })
