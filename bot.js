@@ -134,7 +134,7 @@ async function gifScore(role, color, person, message, height, name) {
         var i = i + 1
         console.log(`i value is now ${i}`)
     }
-    wait(3000)
+    wait(10000)
     const outputGifFile = 'scorecards/score.gif'
     await GifCreationService.createAnimatedGifFromPngImages(frames, outputGifFile, {repeat:true, fps:10, quality:1})
     .then(outputGifFile => {
