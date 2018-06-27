@@ -137,7 +137,7 @@ async function gifScore(role, color, person, message, height, name) {
         console.log(`i value is now ${i}`)
     }
     const outputGifFile = 'scorecards/score.gif'
-    GifCreationService.createAnimatedGifFromPngImages(frames, outputGifFile, {repeat:true, fps:10, quality:1})
+    await GifCreationService.createAnimatedGifFromPngImages(frames, outputGifFile, {repeat:true, fps:10, quality:1})
     .then(outputGifFile => {
         console.log(`${person.username}'s score has just been checked, id:${person.id}`)
     })
