@@ -136,7 +136,7 @@ async function gifScore(role, color, person, message, height, name) {
     GifCreationService.createAnimatedGifFromPngImages(frames, outputGifFile, {repeat:true, fps:10, quality:1})
     .then(outputGifFile => {
         console.log(`${person.username}'s score has just been checked, id:${person.id}`)
-    }
+    })
     message.channel.send({files:[{attachment: 'scorecards/score.gif', name:'score.gif'}] })
 }
 
