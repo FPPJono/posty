@@ -102,6 +102,8 @@ async function gifScore(role, color, person, message, height, name) {
         })
         PImage.decodePNGFromStream(fs.createReadStream(`scorecards/${role}.png`)).then((img) => {
             console.log(i)
+            var i = i + 1
+            console.log(i)
             var img2 = PImage.make(500,500);
             var c = img2.getContext('2d');
             c.drawImage(img,
@@ -128,8 +130,6 @@ async function gifScore(role, color, person, message, height, name) {
                     PImage.encodePNGToStream(img2,fs.createWriteStream(`scorecards/score${i}.png`)).then(() => {
                         console.log(`frame ${i} of ${name}'s score has been made`);
                         frames.push(`scorecards/score${i}.png`)
-                        var i = i + 1
-                        console.log(i)
                     });
                 })
             });
