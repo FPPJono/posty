@@ -98,7 +98,7 @@ async function gifScore(role, color, person, message, height, name) {
     while(i < 5) {
         console.log(i)
         await gifFrames({url:person.displayAvatarURL, frames:i, outputType: 'png'}).then(function(frameData){
-            console.log(i)
+            console.log(`its ${i}`)
             frameData[i].getImage().pipe(fs.createWriteStream(`scorecards/pfp.png`))
         })
         PImage.decodePNGFromStream(fs.createReadStream(`scorecards/${role}.png`)).then((img) => {
