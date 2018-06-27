@@ -93,8 +93,9 @@ async function gifScore(role, color, person, message, height, name) {
     }
     var frames = []
     var i = 0
-    while(i < 5) {
+    while(i < 6) {
         wait(1500)
+        if (i == 6) {break}
         await gifFrames({url:person.displayAvatarURL, frames:i, outputType: 'png'}).then(function(frameData){
             frameData[0].getImage().pipe(fs.createWriteStream(`scorecards/pfp.png`))
         })
@@ -136,7 +137,7 @@ async function gifScore(role, color, person, message, height, name) {
     }
     wait(10000)
     const outputGifFile = 'scorecards/score.gif'
-    await GifCreationService.createAnimatedGifFromPngImages(frames, outputGifFile, {repeat:true, fps:10, quality:1})
+    await GifCreationService.createAnimatedGifFromPngImages(frames, outputGifFile, {repeat:true, fps:24, quality:1})
     .then(outputGifFile => {
         console.log(`${person.username}'s score has just been checked, id:${person.id}`)
     })
