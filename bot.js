@@ -125,7 +125,7 @@ async function gifScore(role, color, person, message, height, name) {
                     var namenum = getRandomInt(1000000000000)
                     PImage.encodePNGToStream(img2,fs.createWriteStream(`scorecards/score${namenum.toString()}.png`)).then(() => {
                         console.log(`frame ${namenum} of ${name}'s score has been made`);
-                        frames.push(`scorecards/score${namenum}`)
+                        frames.push(`scorecards/score${namenum}.png`)
                         message.channel.send({files:[{attachment: `scorecards/score${namenum}.png`, name:'score.png'}] })
                     });
                 })
