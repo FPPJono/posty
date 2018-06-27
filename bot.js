@@ -94,10 +94,8 @@ async function gifScore(role, color, person, message, height, name) {
     var frames = []
     var i = 0
     while(i < 5) {
-        console.log(i)
         wait(1500)
         await gifFrames({url:person.displayAvatarURL, frames:i, outputType: 'png'}).then(function(frameData){
-            console.log(`its ${i}`)
             frameData[0].getImage().pipe(fs.createWriteStream(`scorecards/pfp.png`))
         })
         await PImage.decodePNGFromStream(fs.createReadStream(`scorecards/${role}.png`)).then((img) => {
@@ -124,23 +122,15 @@ async function gifScore(role, color, person, message, height, name) {
                         0, 0, pfp.width, pfp.height,
                         15, 15, 110, 110
                    )
-                    PImage.encodePNGToStream(img2,fs.createWriteStream(`scorecards/score.png`)).then(() => {
+                    var namenum = getRandomInt(1000000000000)
+                    PImage.encodePNGToStream(img2,fs.createWriteStream(`scorecards/score${namenum}.png`)).then(() => {
                         console.log(`frame yes of ${name}'s score has been made`);
-                        message.channel.send({files:[{attachment: 'scorecards/score.png', name:'score.png'}] })
+                        frames.push{namenum}
+                        message.channel.send({files:[{attachment: 'scorecards/score${namenum}.png', name:'score.png'}] })
                     });
                 })
             });
         });
-        fs.readFile('scorecards/score.png', function(error, data) {
-            if (error) {
-                console.log(error);
-                return;
-            }
-            fs.rename('scorecards/score.png', `scorecards/score${i}`, function(err) {
-                if ( err ) console.log('ERROR: ' + err);
-            });
-        });
-        frames.push(`scorecards/score${i}.png`)
         var i = i + 1
         console.log(`i value is now ${i}`)
     }
