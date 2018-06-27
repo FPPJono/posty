@@ -132,8 +132,8 @@ async function gifScore(role, color, person, message, height, name) {
                 })
             });
         });
-        await var i = i + 1
-        console.log(i)
+        var i = i + 1
+        console.log(`i value is now ${i}`)
     }
     const outputGifFile = 'scorecards/score.gif'
     GifCreationService.createAnimatedGifFromPngImages(frames, outputGifFile, {repeat:true, fps:10, quality:1})
