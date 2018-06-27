@@ -126,6 +126,7 @@ async function gifScore(role, color, person, message, height, name) {
                     PImage.encodePNGToStream(img2,fs.createWriteStream(`scorecards/score${i}.png`)).then(() => {
                         console.log(`frame ${i + 1} of ${name}'s score has been made`);
                         frames.push(`scorecards/score${i}`)
+                        var i = i + 1
                     });
                 })
             });
