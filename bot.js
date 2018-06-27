@@ -131,7 +131,15 @@ async function gifScore(role, color, person, message, height, name) {
                 })
             });
         });
-        fs.rename('scorecards/score.png', `scorecards/score${i}.png`)
+        fs.readFile('scorecards/score.png', function(error, data) {
+            if (error) {
+                console.log(error);
+                return;
+            }
+            fs.rename('scorecards/score.png', `scorecards/score${i}`, function(err) {
+                if ( err ) console.log('ERROR: ' + err);
+            });
+        });
         frames.push(`scorecards/score${i}.png`)
         var i = i + 1
         console.log(`i value is now ${i}`)
