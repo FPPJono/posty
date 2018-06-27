@@ -86,8 +86,6 @@ function decimalToHexString(number) {
     return number.toString(16).toUpperCase();
 }
 
-
-
 async function gifScore(role, color, person, message, height, name) {
     var size = (600 / name.length)
     if (size > 50){
@@ -128,12 +126,13 @@ async function gifScore(role, color, person, message, height, name) {
                    )
                     PImage.encodePNGToStream(img2,fs.createWriteStream(`scorecards/score.png`)).then(() => {
                         console.log(`frame yes of ${name}'s score has been made`);
-                        frames.push(`scorecards/score.png`)
                         message.channel.send({files:[{attachment: 'scorecards/score.png', name:'score.png'}] })
                     });
                 })
             });
         });
+        fs.rename('scorecards/score.png', `scorecards/score${i}.png`)
+        frames.push(`scorecards/score${i}.png`)
         var i = i + 1
         console.log(`i value is now ${i}`)
     }
