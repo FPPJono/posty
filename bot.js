@@ -100,7 +100,7 @@ async function gifScore(role, color, person, message, height, name) {
             console.log(`its ${i}`)
             frameData[0].getImage().pipe(fs.createWriteStream(`scorecards/pfp.png`))
         })
-        PImage.decodePNGFromStream(fs.createReadStream(`scorecards/${role}.png`)).then((img) => {
+        await PImage.decodePNGFromStream(fs.createReadStream(`scorecards/${role}.png`)).then((img) => {
             var img2 = PImage.make(500,500);
             var c = img2.getContext('2d');
             c.drawImage(img,
