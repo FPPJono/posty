@@ -101,9 +101,7 @@ async function gifScore(role, color, person, message, height, name) {
             frameData[i].getImage().pipe(fs.createWriteStream(`scorecards/pfp.png`))
         })
         PImage.decodePNGFromStream(fs.createReadStream(`scorecards/${role}.png`)).then((img) => {
-            console.log(i)
-            var i = i + 1
-            console.log(i)
+            console.log(`${i} does this even make it here`)
             var img2 = PImage.make(500,500);
             var c = img2.getContext('2d');
             c.drawImage(img,
@@ -134,6 +132,8 @@ async function gifScore(role, color, person, message, height, name) {
                 })
             });
         });
+        var i = i + 1
+        console.log(i)
     }
     const outputGifFile = 'scorecards/score.gif'
     GifCreationService.createAnimatedGifFromPngImages(frames, outputGifFile, {repeat:true, fps:10, quality:1})
