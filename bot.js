@@ -96,11 +96,8 @@ async function gifScore(role, color, person, message, height, name) {
     var frameCount = 0
     await gifFrames({url:person.displayAvatarURL, frames:'all', outputType: 'png'}).then(function(frameData){
         frameCount = frameData.length
-        console.log(`${frameCount} in function`)
-        message.channel.send(`if this works but the other doesnt Im a hoe: frame count ${frameCount}`)
     })
-    console.log(`${frameCount} slightly out of function`)
-    message.channel.send(`frame count: ${frameCount}`)
+    message.channel.send(`\`\`sending animated score card, estimated wait time ${frameCount * 1.5} seconds\`\``)
     while(i < frameCount) {
         wait(1500)
         await gifFrames({url:person.displayAvatarURL, frames:i, outputType: 'png'}).then(function(frameData){
