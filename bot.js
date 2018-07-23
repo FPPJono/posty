@@ -95,7 +95,7 @@ async function gifScore(role, color, person, message, height, name) {
     var i = 0
     var frameCount = 0
     await gifFrames({url:person.displayAvatarURL, frames:all, outputType: 'png'}).then(function(frameData){
-        frameData.length + 1 = frameCount
+        frameData.length = frameCount
         console.log(`users pfp contains ${frameCount} frames yehaw`)
     })
     console.log(`users pfp contains ${frameCount} frames`)
