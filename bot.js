@@ -81,13 +81,13 @@ function wait(ms) {
     }
 }
 
-function getFrames(person) {
+async function getFrames(person) {
     var frameCount = 0
-    gifFrames({url:person.displayAvatarURL, frames:'all', outputType: 'png'}).then(function(frameData){
+    await gifFrames({url:person.displayAvatarURL, frames:'all', outputType: 'png'}).then(function(frameData){
         frameCount = frameData.length
         console.log(`${frameCount} in function`)
     })
-    console.log(`${frameCount}slightly out of function`)
+    console.log(`${frameCount} slightly out of function`)
     return frameCount
 }
 
