@@ -97,7 +97,8 @@ async function gifScore(role, color, person, message, height, name) {
     await gifFrames({url:person.displayAvatarURL, frames:i, outputType: 'png'}).then(function(frameData){
         frameData.length = frameCount
     })
-    while(i < 6) {
+    console.log(`users pfp contains ${frameCount} frames`)
+    while(i < frameCount) {
         wait(1500)
         await gifFrames({url:person.displayAvatarURL, frames:i, outputType: 'png'}).then(function(frameData){
             frameData[0].getImage().pipe(fs.createWriteStream(`scorecards/pfp.png`))
