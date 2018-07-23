@@ -10,7 +10,6 @@ var gifFrames = require('gif-frames')
 var gameMessage = new Function('return true')
 const download = require('image-downloader')
 const sheetsu = require('sheetsu-node')
-const canvas = require('canvas-prebuilt')
 const GifCreationService = require('gif-creation-service')
 
 var PImage = require('pureimage');
