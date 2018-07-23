@@ -93,6 +93,10 @@ async function gifScore(role, color, person, message, height, name) {
     }
     var frames = []
     var i = 0
+    var frameCount = 0
+    await gifFrames({url:person.displayAvatarURL, frames:i, outputType: 'png'}).then(function(frameData){
+        frameData.length = frameCount
+    })
     while(i < 6) {
         wait(1500)
         await gifFrames({url:person.displayAvatarURL, frames:i, outputType: 'png'}).then(function(frameData){
