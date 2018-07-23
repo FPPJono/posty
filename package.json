@@ -20,6 +20,7 @@
     "gif-frames": "0.4.0",
     "sheetsu-node": "0.0.7",
     "sheetsu": "1.2.0",
-    "gif-creation-service": "0.0.2"
+    "gif-creation-service": "0.0.2",
+    "canvas-prebuilt": "1.6.5-prerelease.1"
   }
 }
