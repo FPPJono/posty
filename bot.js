@@ -103,8 +103,8 @@ async function gifScore(role, color, person, message, height, name) {
     }
     var frames = []
     var i = 0
-    frameCount = 0
-    await getFrames(person)
+    frameCount = getFrames(person)
+    wait(1000)
     message.channel.send(`test ${frameCount}`)
     while(i < frameCount) {
         wait(1500)
