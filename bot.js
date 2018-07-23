@@ -86,6 +86,7 @@ function getFrames(person) {
         var frameCount = frameData.length
         return frameCount
     })
+    console.log(frameCount.toString())
 }
 
 function decimalToHexString(number) {
