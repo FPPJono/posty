@@ -81,6 +81,13 @@ function wait(ms) {
     }
 }
 
+function getFrames(person) {
+    gifFrames({url:person.displayAvatarURL, frames:'all', outputType: 'png'}).then(function(frameData){
+        var frameCount = frameData.length
+        return frameCount
+    })
+}
+
 function decimalToHexString(number) {
     if (number < 0) { number = 0xFFFFFFFF + number + 1 }
     return number.toString(16).toUpperCase();
@@ -93,50 +100,48 @@ async function gifScore(role, color, person, message, height, name) {
     }
     var frames = []
     var i = 0
-    gifFrames({url:person.displayAvatarURL, frames:'all', outputType: 'png'}).then(function(frameData){
-        var frameCount = frameData.length
-        console.log(`users pfp contains ${frameCount} frames yehaw`)
-        while(i < frameCount) {
-            wait(1500)
-            await gifFrames({url:person.displayAvatarURL, frames:i, outputType: 'png'}).then(function(frameData){
-                frameData[0].getImage().pipe(fs.createWriteStream(`scorecards/pfp.png`))
-            })
-            await PImage.decodePNGFromStream(fs.createReadStream(`scorecards/${role}.png`)).then((img) => {
-                var img2 = PImage.make(500,500);
-                var c = img2.getContext('2d');
-                c.drawImage(img,
-                    0, 0, img.width, img.height, // source dimensions
-                    0, 0, 500, 500               // destination dimensions
-                );
-                var ctx = c
-                var fnt = PImage.registerFont('scorefont.ttf', 'Score Font')
-                fnt.load(() => {
-                    ctx.fillStyle = color;
-                    ctx.font = `${size}pt 'Score Font'`;
-                    ctx.fillText(`${name.toUpperCase()}`, 135, 80);
-                    ctx.font = "35pt 'Score Font'"
-                    ctx.fillText("this", 14, 221)
-                    ctx.fillText("currently", 14, 292)
-                    ctx.fillText("doesn't", 14, 365)
-                    ctx.fillText("work", 14, 435)
-                    ctx.fillRect(340, height, 150, 150)
-                    PImage.decodePNGFromStream(fs.createReadStream(`scorecards/pfp.png`)).then((pfp) => {
-                        c.drawImage(pfp,
-                            0, 0, pfp.width, pfp.height,
-                            15, 15, 110, 110
-                        )
-                        var namenum = getRandomInt(1000000000000)
-                        PImage.encodePNGToStream(img2,fs.createWriteStream(`scorecards/score${namenum.toString()}.png`)).then(() => {
-                            console.log(`frame ${namenum} of ${name}'s score has been made`);
-                            frames.push(`scorecards/score${namenum}.png`)
-                        });
-                    })
-                });
+    frameCount = getFrames(person)
+    console.log(`users pfp contains ${frameCount} frames`)
+    while(i < frameCount) {
+        wait(1500)
+        await gifFrames({url:person.displayAvatarURL, frames:i, outputType: 'png'}).then(function(frameData){
+            frameData[0].getImage().pipe(fs.createWriteStream(`scorecards/pfp.png`))
+        })
+        await PImage.decodePNGFromStream(fs.createReadStream(`scorecards/${role}.png`)).then((img) => {
+            var img2 = PImage.make(500,500);
+            var c = img2.getContext('2d');
+            c.drawImage(img,
+                0, 0, img.width, img.height, // source dimensions
+                0, 0, 500, 500               // destination dimensions
+            );
+            var ctx = c
+            var fnt = PImage.registerFont('scorefont.ttf', 'Score Font')
+            fnt.load(() => {
+                ctx.fillStyle = color;
+                ctx.font = `${size}pt 'Score Font'`;
+                ctx.fillText(`${name.toUpperCase()}`, 135, 80);
+                ctx.font = "35pt 'Score Font'"
+                ctx.fillText("this", 14, 221)
+                ctx.fillText("currently", 14, 292)
+                ctx.fillText("doesn't", 14, 365)
+                ctx.fillText("work", 14, 435)
+                ctx.fillRect(340, height, 150, 150)
+                PImage.decodePNGFromStream(fs.createReadStream(`scorecards/pfp.png`)).then((pfp) => {
+                    c.drawImage(pfp,
+                        0, 0, pfp.width, pfp.height,
+                        15, 15, 110, 110
+                   )
+                    var namenum = getRandomInt(1000000000000)
+                    PImage.encodePNGToStream(img2,fs.createWriteStream(`scorecards/score${namenum.toString()}.png`)).then(() => {
+                        console.log(`frame ${namenum} of ${name}'s score has been made`);
+                        frames.push(`scorecards/score${namenum}.png`)
+                    });
+                })
             });
-            var i = i + 1
-            console.log(`i value is now ${i}`)
-        }
-    })
+        });
+        var i = i + 1
+        console.log(`i value is now ${i}`)
+    }
     const outputGifFile = 'scorecards/score.gif'
     await GifCreationService.createAnimatedGifFromPngImages(frames, outputGifFile, {repeat:true, fps:24, quality:0})
     .then(outputGifFile => {
