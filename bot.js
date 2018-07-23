@@ -81,11 +81,12 @@ function wait(ms) {
     }
 }
 
-async function getFrames(person) {
+async function getFrames(person, message) {
     var frameCount = 0
     await gifFrames({url:person.displayAvatarURL, frames:'all', outputType: 'png'}).then(function(frameData){
         frameCount = frameData.length
         console.log(`${frameCount} in function`)
+        message.channel.send(`if this works but the other doesnt Im a hoe: frame count ${frameCount}`)
     })
     console.log(`${frameCount} slightly out of function`)
     return frameCount
@@ -103,9 +104,9 @@ async function gifScore(role, color, person, message, height, name) {
     }
     var frames = []
     var i = 0
-    frameCount = getFrames(person)
+    frameCount = getFrames(person, message)
     wait(1000)
-    message.channel.send(`test ${frameCount}`)
+    message.channel.send(`frame count: ${frameCount}`)
     while(i < frameCount) {
         wait(1500)
         await gifFrames({url:person.displayAvatarURL, frames:i, outputType: 'png'}).then(function(frameData){
