@@ -82,11 +82,12 @@ function wait(ms) {
 }
 
 function getFrames(person) {
+    var frameCount = 0
     gifFrames({url:person.displayAvatarURL, frames:'all', outputType: 'png'}).then(function(frameData){
-        var frameCount = frameData.length
-        return frameCount
+        frameCount = frameData.length
     })
     console.log(frameCount.toString())
+    return frameCount
 }
 
 function decimalToHexString(number) {
