@@ -85,6 +85,7 @@ function getFrames(person) {
     var frameCount = 0
     gifFrames({url:person.displayAvatarURL, frames:'all', outputType: 'png'}).then(function(frameData){
         frameCount = frameData.length
+        console.log(frameCount.toString())
     })
     console.log(frameCount.toString())
     return frameCount
