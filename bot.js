@@ -307,7 +307,24 @@ bot.on("message", async message => {
     if (rip.startsWith('!tint')) {
         var color = rip.substr(rip.indexOf('#') + 1, 6)
         var tintedImage = imgdye(person.avatarURL, `#${color}`, 1)
-        message.channel.send("noodle", {files:[{attachment: tintedImage, name:'tint.png'}] })
+        if ((person.displayAvatarURL.includes("png"))||(person.displayAvatarURL.includes("jpg"))){
+            await download.image({url: person.displayAvatarURL, dest:`pfp.png`})
+        }else if(person.displayAvatarURL.includes("gif")){
+            await gifFrames({url:person.displayAvatarURL, frames:0, outputType: 'png'}).then(function(frameData){
+                frameData[0].getImage().pipe(fs.createWriteStream(`pfp.png`))
+            })
+        }
+        PImage.decodePNGFromStream(fs.createReadStream(`pfp.png`)).then((img) => {
+            var tintedImage = imgdye(img, `#${color}`, 1)
+            var img2 = PImage.make(500,500);
+            var c = img2.getContext('2d');
+            c.drawImage(tintedImage,
+                0, 0, tintedImage.width, tintedImage.height, // source dimensions
+                0, 0, 500, 500               // destination dimensions
+            );
+            PImage.encodePNGToStream(img2,fs.createWriteStream('tint.png'))
+        });
+        message.channel.send("noodle", {files:[{attachment: 'tint.png', name:'tint.png'}] })
     }
     if (rip.startsWith('!help')) {
         if (rip.substr(6).startsWith('random')){
