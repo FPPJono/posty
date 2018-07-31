@@ -305,7 +305,7 @@ bot.on("message", async message => {
         var person = message.author
     }
     if (rip.startsWith('!tint')) {
-        var color = rip.substr(rip.index('#') + 1, 6)
+        var color = rip.substr(rip.indexOf('#') + 1, 6)
         message.channel.send(color)
         //var tintedImage = imgdye(person.avatarURL, `#${}`)
     }
