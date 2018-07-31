@@ -306,8 +306,8 @@ bot.on("message", async message => {
     }
     if (rip.startsWith('!tint')) {
         var color = rip.substr(rip.indexOf('#') + 1, 6)
-        message.channel.send(color)
-        //var tintedImage = imgdye(person.avatarURL, `#${}`)
+        var tintedImage = imgdye(person.avatarURL, `#${color}`, 1)
+        message.channel.send("noodle", {files:[{attachment: tintedImage, name:'tint.png'}] })
     }
     if (rip.startsWith('!help')) {
         if (rip.substr(6).startsWith('random')){
