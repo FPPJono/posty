@@ -11,6 +11,7 @@ var gameMessage = new Function('return true')
 const download = require('image-downloader')
 const sheetsu = require('sheetsu-node')
 const GifCreationService = require('gif-creation-service')
+const imgdye = require('imgdye')
 
 var PImage = require('pureimage');
 var img1 = PImage.make(500,500);
@@ -302,6 +303,11 @@ bot.on("message", async message => {
         var person = message.mentions.users.first()
     } else {
         var person = message.author
+    }
+    if (rip.startsWith('!tint')) {
+        var color = rip.substr(rip.index('#') + 1, 6)
+        message.channel.send(color)
+        //var tintedImage = imgdye(person.avatarURL, `#${}`)
     }
     if (rip.startsWith('!help')) {
         if (rip.substr(6).startsWith('random')){
