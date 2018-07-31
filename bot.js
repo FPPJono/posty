@@ -323,9 +323,9 @@ bot.on("message", async message => {
                 0, 0, 500, 500               // destination dimensions
             );
             PImage.encodePNGToStream(img2,fs.createWriteStream('tint.png'))
-        });*/
+        });
         message.channel.send("noodle", {files:[{attachment: 'tint.png', name:'tint.png'}] })
-    }
+    }*/
     if (rip.startsWith('!help')) {
         if (rip.substr(6).startsWith('random')){
             var commands = ["!randomhex", "!rate", "!coinflip", "!8ball"]
