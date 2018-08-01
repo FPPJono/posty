@@ -315,7 +315,7 @@ bot.on("message", async message => {
             var attachedfiles = (message.attachments).array()
             var correctURL = attachedfiles[0].url
             console.log(correctURL)
-            if ((correctURL.includes('png'))||((correctURL.includes('jpg'))) {
+            if ((correctURL.includes('png'))||(correctURL.includes('jpg'))) {
                 await download.image({url: correctURL, dest:`pfp.png`})
                 Jimp.read("pfp.png").then(function (image) {
                     image.greyscale()
