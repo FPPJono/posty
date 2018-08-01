@@ -270,6 +270,16 @@ async function welcomecard(person, guild) {
     });
 }
 
+function tintImage(fileLocation, message) {
+    Jimp.read("pfp.png").then(function (image) {
+        image.greyscale()
+             .write("tint.png")
+    }).catch(function (err) {
+        console.error(err);
+    });
+    message.channel.send({files:[{attachment: 'tint.png', name:'tint.png'}] })
+}
+
 bot.on('ready', () => {
     console.log('I am ready!');
     bot.user.setPresence({ game: { name: 'I turned on !!', type: 0 } }); //playing game
@@ -316,39 +326,16 @@ bot.on("message", async message => {
             var correctURL = attachedfiles[0].url
             console.log(correctURL)
             if ((correctURL.includes('png'))||(correctURL.includes('jpg'))) {
-                await download.image({url: correctURL, dest:`pfp.png`})
-                Jimp.read("pfp.png").then(function (image) {
-                    image.greyscale()
-                         .write("tint.png")
-                }).catch(function (err) {
-                    console.error(err);
-                });
+                tintImage(correctURL, message)
             }
-        } else {
-            if ((person.displayAvatarURL.includes("png"))||(person.displayAvatarURL.includes("jpg"))){
-                await download.image({url: person.displayAvatarURL, dest:`pfp.png`})
-                Jimp.read("pfp.png").then(function (image) {
-                    image.greyscale()
-                         .write("tint.png")
-                }).catch(function (err) {
-                    console.error(err);
-                });
-            }else if(person.displayAvatarURL.includes("gif")){
-                await gifFrames({url:person.displayAvatarURL, frames:0, outputType: 'png'}).then(function(frameData){
-                    frameData[0].getImage().pipe(fs.createWriteStream(`pfp.png`))
-                    Jimp.read("pfp.png").then(function (image) {
-                        image.greyscale()
-                             .write("tint.png")
-                    }).catch(function (err) {
-                        console.error(err);
-                    });
-                })
-            }
+        } else if ((person.displayAvatarURL.includes("png"))||(person.displayAvatarURL.includes("jpg"))){
+            tintImage(person.displayAvatarURL, message)
+        }else if(person.displayAvatarURL.includes("gif")){
+            await gifFrames({url:person.displayAvatarURL, frames:0, outputType: 'png'}).then(function(frameData){
+                frameData[0].getImage().pipe(fs.createWriteStream(`pfp.png`))
+                tintImage('pfp.png', message)
+            })
         }
-        function message(){
-            message.channel.send({files:[{attachment: 'tint.png', name:'tint.png'}] })
-        }
-        setTimeout(message, 100)
     }
     if (rip.startsWith('!help')) {
         if (rip.substr(6).startsWith('random')){
