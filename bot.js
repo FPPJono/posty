@@ -311,9 +311,12 @@ bot.on("message", async message => {
             message.channel.send("please set a hex value for the image to be tinted to \n``Correct Usage: !tint #6 character hex value (@person)``")
             return;
         }
-        if (message.attachments.array().length >= 1) {
-            if ((message.attachments.array()[0].url.includes('png'))||(message.attachments.array()[0].url.includes('jpg'))) {
-                await download.image({url: message.attachments.array()[0].url, dest:`pfp.png`})
+        if ((message.attachments).array().length >= 1) {
+            var attachedfiles = (message.attachments).array()
+            var correctURL = attachedfiles[0].url
+            console.log(correctURL)
+            if ((correctURL.includes('png'))||((correctURL.includes('jpg'))) {
+                await download.image({url: correctURL, dest:`pfp.png`})
                 Jimp.read("pfp.png").then(function (image) {
                     image.greyscale()
                          .write("tint.png")
