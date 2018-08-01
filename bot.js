@@ -11,7 +11,7 @@ var gameMessage = new Function('return true')
 const download = require('image-downloader')
 const sheetsu = require('sheetsu-node')
 const GifCreationService = require('gif-creation-service')
-const imgdye = require('imgdye')
+const Jimp = require('jimp')
 
 var PImage = require('pureimage');
 var img1 = PImage.make(500,500);
@@ -304,7 +304,7 @@ bot.on("message", async message => {
     } else {
         var person = message.author
     }
-    /*if (rip.startsWith('!tint')) {
+    if (rip.startsWith('!tint')) {
         var color = rip.substr(rip.indexOf('#') + 1, 6)
         if ((person.displayAvatarURL.includes("png"))||(person.displayAvatarURL.includes("jpg"))){
             await download.image({url: person.displayAvatarURL, dest:`pfp.png`})
@@ -313,19 +313,16 @@ bot.on("message", async message => {
                 frameData[0].getImage().pipe(fs.createWriteStream(`pfp.png`))
             })
         }
-        PImage.decodePNGFromStream(fs.createReadStream(`pfp.png`)).then((img) => {
-            var testImage = document.querySelector('.avatar')
-            var tintedImage = imgdye(img, `#${color}`, 1)
-            var img2 = PImage.make(500,500);
-            var c = img2.getContext('2d');
-            c.drawImage(tintedImage,
-                0, 0, tintedImage.width, tintedImage.height, // source dimensions
-                0, 0, 500, 500               // destination dimensions
-            );
-            PImage.encodePNGToStream(img2,fs.createWriteStream('tint.png'))
+        Jimp.read("pfp.png").then(function (image) {
+            image.resize(256, 256)            // resize
+                 .quality(60)                 // set JPEG quality
+                 .greyscale()                 // set greyscale
+                 .write("tint.png"); // save
+        }).catch(function (err) {
+            console.error(err);
         });
         message.channel.send("noodle", {files:[{attachment: 'tint.png', name:'tint.png'}] })
-    }*/
+    }
     if (rip.startsWith('!help')) {
         if (rip.substr(6).startsWith('random')){
             var commands = ["!randomhex", "!rate", "!coinflip", "!8ball"]
