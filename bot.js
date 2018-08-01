@@ -304,6 +304,7 @@ bot.on("message", async message => {
     } else {
         var person = message.author
     }
+    var attachedfiles = (message.attachments).array()
     if (rip.startsWith('!tint')) {
         if (rip.includes('#')) {
             var color = rip.substr(rip.indexOf('#') + 1, 6)
@@ -311,8 +312,7 @@ bot.on("message", async message => {
             message.channel.send("please set a hex value for the image to be tinted to \n``Correct Usage: !tint #6 character hex value (@person)``")
             return;
         }
-        if ((message.attachments).array().length >= 1) {
-            var attachedfiles = (message.attachments).array()
+        if (attachedfiles.length >= 1) {
             var correctURL = attachedfiles[0].url
             console.log(correctURL)
             if ((correctURL.includes('png'))||(correctURL.includes('jpg'))) {
