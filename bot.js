@@ -312,8 +312,8 @@ bot.on("message", async message => {
             return;
         }
         if (message.attachments.array().length >= 1) {
-            if ((message.attachments.array[0].url.includes('png'))||(message.attachments.array[0].url.includes('jpg'))) {
-                await download.image({url: message.attachments.array[0].url, dest:`pfp.png`})
+            if ((message.attachments.array()[0].url.includes('png'))||(message.attachments.array()[0].url.includes('jpg'))) {
+                await download.image({url: message.attachments.array()[0].url, dest:`pfp.png`})
                 Jimp.read("pfp.png").then(function (image) {
                     image.greyscale()
                          .write("tint.png")
