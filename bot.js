@@ -305,7 +305,9 @@ bot.on("message", async message => {
         var person = message.author
     }
     if (rip.startsWith('!tint')) {
-        var color = rip.substr(rip.indexOf('#') + 1, 6)
+        if !rip.includes('#') {
+            var color = rip.substr(rip.indexOf('#') + 1, 6)
+        } else message.channel.send("please set a hex value for the image to be tinted to \n``Correct Usage: !tint #6 character hex value (@person)``")
         if ((person.displayAvatarURL.includes("png"))||(person.displayAvatarURL.includes("jpg"))){
             await download.image({url: person.displayAvatarURL, dest:`pfp.png`})
         }else if(person.displayAvatarURL.includes("gif")){
