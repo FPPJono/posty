@@ -21,6 +21,6 @@
     "sheetsu-node": "0.0.7",
     "sheetsu": "1.2.0",
     "gif-creation-service": "0.0.2",
-    "imgdye": "1.0.1"
+    "jimp": "0.2.28"
   }
 }
