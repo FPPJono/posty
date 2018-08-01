@@ -342,7 +342,10 @@ bot.on("message", async message => {
                 })
             }
         }
-        message.channel.send({files:[{attachment: 'tint.png', name:'tint.png'}] })
+        function message(){
+            message.channel.send({files:[{attachment: 'tint.png', name:'tint.png'}] })
+        }
+        setTimeout(message, 100)
     }
     if (rip.startsWith('!help')) {
         if (rip.substr(6).startsWith('random')){
