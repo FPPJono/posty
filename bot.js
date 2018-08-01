@@ -271,7 +271,7 @@ async function welcomecard(person, guild) {
 }
 
 function tintImage(fileLocation, message) {
-    Jimp.read("pfp.png").then(function (image) {
+    Jimp.read(fileLocation).then(function (image) {
         image.greyscale()
              .write("tint.png")
     }).catch(function (err) {
