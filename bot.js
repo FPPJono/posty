@@ -271,13 +271,14 @@ async function welcomecard(person, guild) {
 }
 
 async function tintImage(fileLocation, message) {
-    Jimp.read(fileLocation).then(function (image) {
+    Jimp.read(fileLocation).then(async function (image) {
         await image.greyscale()
         await image.write("tint.png")
+        message.channel.send({files:[{attachment: 'tint.png', name:'tint.png'}] })
     }).catch(function (err) {
         console.error(err);
     });
-    message.channel.send({files:[{attachment: 'tint.png', name:'tint.png'}] })
+
 }
 
 bot.on('ready', () => {
