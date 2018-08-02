@@ -323,13 +323,14 @@ bot.on("message", async message => {
             message.channel.send("please set a hex value for the image to be tinted to \n``Correct Usage: !tint #6 character hex value (@person)``")
             return;
         }
-        if (attachedfiles.length >= 1) {
+        /*if (attachedfiles.length >= 1) {
             var correctURL = attachedfiles[0].url
             console.log(correctURL)
             if ((correctURL.includes('png'))||(correctURL.includes('jpg'))) {
                 tintImage(correctURL, message)
             }
-        } else if ((person.displayAvatarURL.includes("png"))||(person.displayAvatarURL.includes("jpg"))){
+        }*/
+        if ((person.displayAvatarURL.includes("png"))||(person.displayAvatarURL.includes("jpg"))){
             tintImage(person.displayAvatarURL, message)
         }else if(person.displayAvatarURL.includes("gif")){
             await gifFrames({url:person.displayAvatarURL, frames:0, outputType: 'png'}).then(function(frameData){
