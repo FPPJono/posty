@@ -271,6 +271,7 @@ async function welcomecard(person, guild) {
 }
 
 async function tintImage(fileLocation, message) {
+    console.log(fileLocation)
     Jimp.read(fileLocation).then(async function (image) {
         await image.greyscale()
         await image.write("tint.png")
