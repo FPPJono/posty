@@ -307,7 +307,7 @@ bot.on("message", async message => {
     var attachedfiles = (message.attachments).array()
     if (rip.startsWith('!tint')) {
         if (rip.includes('#')) {
-            if rip.substr(rip.indexOf('#') + 1).length >= 6 {
+            if (rip.substr(rip.indexOf('#') + 1).length >= 6) {
                 var color = rip.substr(rip.indexOf('#') + 1, 6)
             } else {
                 message.channel.send("``hex value is too short, must be 6 characters``")
