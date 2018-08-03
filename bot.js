@@ -315,11 +315,19 @@ bot.on("message", async message => {
             message.channel.send("please set a hex value for the image to be tinted to \n``Correct Usage: !tint #6 character hex value (@person)``")
             return;
         }
-        if ((person.displayAvatarURL.includes("png"))||(person.displayAvatarURL.includes("jpg"))){
-            await download.image({url: person.displayAvatarURL, dest:`scorecards/welcomepfp.png`})
+        let a = message.attachments.array().length;
+        var correctURL = 'https://raw.githubusercontent.com/FPPJono/posty/master/attachmentnotfound.jpg'
+        if (a >= 1) {
+            correctURL = message.attachments[0].url
+            console.log(correctURL)
+        }
+        if ((correctURL.includes('png'))||(correctURL.includes('jpg'))) {
+            await download.image({url: correctURL, dest: 'pfp.png'})
+        }else if ((person.displayAvatarURL.includes("png"))||(person.displayAvatarURL.includes("jpg"))){
+            await download.image({url: person.displayAvatarURL, dest:`pfp.png`})
         }else if(person.displayAvatarURL.includes("gif")){
             await gifFrames({url:person.displayAvatarURL, frames:0, outputType: 'png'}).then(function(frameData){
-                frameData[0].getImage().pipe(fs.createWriteStream(`scorecards/welcomepfp.png`))
+                frameData[0].getImage().pipe(fs.createWriteStream(`pfp.png`))
             })
         }
         message.channel.send({files:[{attachment:'pfp.png', name:'pfp.png'}]})
