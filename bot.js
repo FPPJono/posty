@@ -353,7 +353,7 @@ bot.on("message", async message => {
         message.channel.send("noodle", {files:[{attachment: 'tint.png', name:'tint.png'}] })
         //message.channel.send({files:[{attachment:'tint.png', name:'tint.png'}]})
     }
-    /*if (rip.startsWith('!tint')) {
+    if (rip.startsWith('!tint')) {
         if (rip.includes('#')) {
             var color = rip.substr(rip.indexOf('#') + 1, 6)
         } else message.channel.send("please set a hex value for the image to be tinted to \n``Correct Usage: !tint #6 character hex value (@person)``")
@@ -376,8 +376,8 @@ bot.on("message", async message => {
                 });
             })
         }
-        message.channel.send({files:[{attachment: 'tint.png', name:'tint.png'}] })
-    }*/
+        message.channel.send("test", {files:[{attachment: 'tint.png', name:'tint.png'}] })
+    }
     if (rip.startsWith('!help')) {
         if (rip.substr(6).startsWith('random')){
             var commands = ["!randomhex", "!rate", "!coinflip", "!8ball"]
