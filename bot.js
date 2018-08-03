@@ -320,7 +320,7 @@ bot.on("message", async message => {
         let a = message.attachments.array().length;
         var correctURL = 'https://raw.githubusercontent.com/FPPJono/posty/master/attachmentnotfound.jpg'
         if (a >= 1) {
-            correctURL = message.attachments[0].url.toLowerCase()
+            correctURL = message.attachments.array()[0].url.toLowerCase()
             console.log(correctURL)
         }
         if (((correctURL.includes('png'))||(correctURL.includes('jpg')))&&(a >=1)) {
