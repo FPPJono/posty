@@ -270,18 +270,6 @@ async function welcomecard(person, guild) {
     });
 }
 
-async function tintImage(fileLocation, message) {
-    console.log(fileLocation)
-    Jimp.read(fileLocation).then(async function (image) {
-        await image.greyscale()
-        await image.write("tint.png")
-        message.channel.send({files:[{attachment: 'tint.png', name:'tint.png'}] })
-    }).catch(function (err) {
-        console.error(err);
-    });
-
-}
-
 bot.on('ready', () => {
     console.log('I am ready!');
     bot.user.setPresence({ game: { name: 'I turned on !!', type: 0 } }); //playing game
@@ -332,11 +320,23 @@ bot.on("message", async message => {
             }
         }*/
         if ((person.displayAvatarURL.includes("png"))||(person.displayAvatarURL.includes("jpg"))){
-            tintImage(person.displayAvatarURL, message)
+            Jimp.read(person.displayAvatarURL).then(async function (image) {
+                await image.greyscale()
+                await image.write("tint.png")
+                message.channel.send({files:[{attachment: 'tint.png', name:'tint.png'}] })
+            }).catch(function (err) {
+                console.error(err);
+            });
         }else if(person.displayAvatarURL.includes("gif")){
             await gifFrames({url:person.displayAvatarURL, frames:0, outputType: 'png'}).then(function(frameData){
                 frameData[0].getImage().pipe(fs.createWriteStream(`pfp.png`))
-                tintImage('pfp.png', message)
+                Jimp.read('pfp.png').then(async function (image) {
+                    await image.greyscale()
+                    await image.write("tint.png")
+                    message.channel.send({files:[{attachment: 'tint.png', name:'tint.png'}] })
+                }).catch(function (err) {
+                    console.error(err);
+                });
             })
         }
     }
