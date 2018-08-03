@@ -309,7 +309,7 @@ bot.on("message", async message => {
         if (rip.includes('#')) {
             if (rip.substr(rip.indexOf('#') + 1).length >= 6) {
                 var color = rip.substr(rip.indexOf('#') + 1, 6)
-                var color = "0xFF" + color
+                var color = `0xFF${color}`
             } else {
                 message.channel.send("``hex value is too short, must be 6 characters``")
                 return;
