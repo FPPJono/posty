@@ -312,7 +312,7 @@ bot.on("message", async message => {
             message.channel.send("please set a hex value for the image to be tinted to \n``Correct Usage: !tint #6 character hex value (@person)``")
             return;
         }
-        if (attachedfiles.length >= 1) {
+        /*if (attachedfiles.length >= 1) {
             var correctURL = attachedfiles[0].url
             console.log(correctURL)
             if ((correctURL.includes('png'))||(correctURL.includes('jpg'))) {
@@ -342,7 +342,24 @@ bot.on("message", async message => {
                     console.error(err);
                 });
             })
+        }*/
+        if ((person.displayAvatarURL.includes("png"))||(person.displayAvatarURL.includes("jpg"))){
+            await download.image({url: person.displayAvatarURL, dest:`pfp.png`})
+        }else if(person.displayAvatarURL.includes("gif")){
+            await gifFrames({url:person.displayAvatarURL, frames:0, outputType: 'png'}).then(function(frameData){
+                frameData[0].getImage().pipe(fs.createWriteStream(`pfp.png`))
+            })
         }
+        Jimp.read("pfp.png").then(function (image) {
+            image.resize(256, 256)            // resize
+                 .quality(60)                 // set JPEG quality
+                 .greyscale()                 // set greyscale
+                 .write("tint.png"); // save
+        }).catch(function (err) {
+            console.error(err);
+        });
+        message.channel.send("noodle", {files:[{attachment: 'tint.png', name:'tint.png'}] })
+        message.channel.send({files:[{attachment: 'tint.png', name:'tint.png'}] })
         message.channel.send({files:[{attachment: 'tint.png', name:'tint.png'}] })
     }
     if (rip.startsWith('!help')) {
