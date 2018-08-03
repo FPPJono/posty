@@ -329,7 +329,6 @@ bot.on("message", async message => {
                 image.greyscale()
                      .write("tint.png")
                 console.log("done")
-                message.channel.send("noodle", {files:[{attachment: 'tint.png', name:'tint.png'}] })
             }).catch(function (err) {
                 console.error(err);
             });
@@ -339,7 +338,6 @@ bot.on("message", async message => {
                 image.greyscale()
                      .write("tint.png")
                 console.log("done")
-                message.channel.send("noodle", {files:[{attachment: 'tint.png', name:'tint.png'}] })
             }).catch(function (err) {
                 console.error(err);
             });
@@ -350,7 +348,6 @@ bot.on("message", async message => {
                     image.greyscale()
                          .write("tint.png")
                     console.log("done")
-                    message.channel.send("noodle", {files:[{attachment: 'tint.png', name:'tint.png'}] })
                 }).catch(function (err) {
                     console.error(err);
                 });
@@ -359,7 +356,7 @@ bot.on("message", async message => {
         function tint(message){
             message.channel.send("noodle", {files:[{attachment: 'tint.png', name:'tint.png'}] })
         }
-        //setTimeout(tint, 100, message)
+        setTimeout(tint, 500, message)
         //message.channel.send({files:[{attachment:'tint.png', name:'tint.png'}]})
     }
     if (rip.startsWith('!help')) {
