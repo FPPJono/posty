@@ -327,6 +327,8 @@ bot.on("message", async message => {
             await download.image({url: correctURL, dest: 'pfp.png'})
             Jimp.read("pfp.png").then(function (image) {
                 image.greyscale()
+                     .background(color)
+                     .fade(0.3)
                      .write("tint.png")
                 console.log("done")
             }).catch(function (err) {
@@ -336,6 +338,8 @@ bot.on("message", async message => {
             await download.image({url: person.displayAvatarURL, dest:`pfp.png`})
             Jimp.read("pfp.png").then(function (image) {
                 image.greyscale()
+                     .background(color)
+                     .fade(0.3)
                      .write("tint.png")
                 console.log("done")
             }).catch(function (err) {
@@ -346,6 +350,8 @@ bot.on("message", async message => {
                 frameData[0].getImage().pipe(fs.createWriteStream(`pfp.png`))
                 Jimp.read("pfp.png").then(function (image) {
                     image.greyscale()
+                         .background(color)
+                         .fade(0.3)
                          .write("tint.png")
                     console.log("done")
                 }).catch(function (err) {
@@ -356,7 +362,7 @@ bot.on("message", async message => {
         function tint(message){
             message.channel.send("noodle", {files:[{attachment: 'tint.png', name:'tint.png'}] })
         }
-        setTimeout(tint, 500, message)
+        setTimeout(tint, 200, message)
         //message.channel.send({files:[{attachment:'tint.png', name:'tint.png'}]})
     }
     if (rip.startsWith('!help')) {
