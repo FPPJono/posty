@@ -328,6 +328,7 @@ bot.on("message", async message => {
             Jimp.read("pfp.png").then(function (image) {
                 image.greyscale()
                      .write("tint.png")
+                console.log("done")
             }).catch(function (err) {
                 console.error(err);
             });
@@ -336,6 +337,7 @@ bot.on("message", async message => {
             Jimp.read("pfp.png").then(function (image) {
                 image.greyscale()
                      .write("tint.png")
+                console.log("done")
             }).catch(function (err) {
                 console.error(err);
             });
@@ -345,6 +347,7 @@ bot.on("message", async message => {
                 Jimp.read("pfp.png").then(function (image) {
                     image.greyscale()
                          .write("tint.png")
+                    console.log("done")
                 }).catch(function (err) {
                     console.error(err);
                 });
@@ -352,31 +355,6 @@ bot.on("message", async message => {
         }
         message.channel.send("noodle", {files:[{attachment: 'tint.png', name:'tint.png'}] })
         //message.channel.send({files:[{attachment:'tint.png', name:'tint.png'}]})
-    }
-    if (rip.startsWith('!tint')) {
-        if (rip.includes('#')) {
-            var color = rip.substr(rip.indexOf('#') + 1, 6)
-        } else message.channel.send("please set a hex value for the image to be tinted to \n``Correct Usage: !tint #6 character hex value (@person)``")
-        if ((person.displayAvatarURL.includes("png"))||(person.displayAvatarURL.includes("jpg"))){
-            await download.image({url: person.displayAvatarURL, dest:`pfp.png`})
-            Jimp.read("pfp.png").then(function (image) {
-                image.greyscale()
-                     .write("tint.png")
-            }).catch(function (err) {
-                console.error(err);
-            });
-        }else if(person.displayAvatarURL.includes("gif")){
-            await gifFrames({url:person.displayAvatarURL, frames:0, outputType: 'png'}).then(function(frameData){
-                frameData[0].getImage().pipe(fs.createWriteStream(`pfp.png`))
-                Jimp.read("pfp.png").then(function (image) {
-                    image.greyscale()
-                         .write("tint.png")
-                }).catch(function (err) {
-                    console.error(err);
-                });
-            })
-        }
-        message.channel.send("test", {files:[{attachment: 'tint.png', name:'tint.png'}] })
     }
     if (rip.startsWith('!help')) {
         if (rip.substr(6).startsWith('random')){
