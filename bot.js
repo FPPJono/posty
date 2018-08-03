@@ -332,7 +332,7 @@ bot.on("message", async message => {
                 frameData[0].getImage().pipe(fs.createWriteStream(`pfp.png`))
             })
         }
-        Jimp.read("pfp.png").then(function (image) {
+        await Jimp.read("pfp.png").then(function (image) {
             image.quality(60)                 // set JPEG quality
                  .greyscale()                 // set greyscale
                  .write("tint.png"); // save
