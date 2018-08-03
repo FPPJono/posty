@@ -325,28 +325,21 @@ bot.on("message", async message => {
         }
         if (((correctURL.toLowerCase().includes('png'))||(correctURL.toLowerCase().includes('jpg')))&&(a >=1)) {
             await download.image({url: correctURL, dest: 'pfp.png'})
-            Jimp.read('pfp.png').then(function(image) {
-                image.greyscale()
-                     .write(`tint.png`)
-            })
-            message.channel.send({files:[{attachment:'tint.png', name:'tint.png'}]})
         }else if ((person.displayAvatarURL.includes("png"))||(person.displayAvatarURL.includes("jpg"))){
             await download.image({url: person.displayAvatarURL, dest:`pfp.png`})
-            Jimp.read('pfp.png').then(function(image) {
-                image.greyscale()
-                     .write(`tint.png`)
-            })
-            message.channel.send({files:[{attachment:'tint.png', name:'tint.png'}]})
         }else if(person.displayAvatarURL.includes("gif")){
             await gifFrames({url:person.displayAvatarURL, frames:0, outputType: 'png'}).then(function(frameData){
                 frameData[0].getImage().pipe(fs.createWriteStream(`pfp.png`))
             })
-            Jimp.read('pfp.png').then(function(image) {
-                image.greyscale()
-                     .write(`tint.png`)
-            })
-            message.channel.send({files:[{attachment:'tint.png', name:'tint.png'}]})
         }
+        Jimp.read("pfp.png").then(function (image) {
+            image.quality(60)                 // set JPEG quality
+                 .greyscale()                 // set greyscale
+                 .write("tint.png"); // save
+        }).catch(function (err) {
+            console.error(err);
+        });
+        message.channel.send("noodle", {files:[{attachment: 'tint.png', name:'tint.png'}] })
         //message.channel.send({files:[{attachment:'tint.png', name:'tint.png'}]})
     }
     if (rip.startsWith('!help')) {
