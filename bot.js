@@ -353,10 +353,10 @@ bot.on("message", async message => {
                 });
             })
         }
-        function message(){
+        function tint(message){
             message.channel.send("noodle", {files:[{attachment: 'tint.png', name:'tint.png'}] })
         }
-        setTimeout(message, 100)
+        setTimeout(tint, 100, message)
         //message.channel.send({files:[{attachment:'tint.png', name:'tint.png'}]})
     }
     if (rip.startsWith('!help')) {
