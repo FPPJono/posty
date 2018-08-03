@@ -358,6 +358,7 @@ bot.on("message", async message => {
                  .quality(60)                 // set JPEG quality
                  .greyscale()                 // set greyscale
                  .write("tint.png"); // save
+            console.log("iss done")
         }).catch(function (err) {
             console.error(err);
         });
