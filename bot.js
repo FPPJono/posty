@@ -320,7 +320,7 @@ bot.on("message", async message => {
             }
         }*/
         if ((person.displayAvatarURL.includes("png"))||(person.displayAvatarURL.includes("jpg"))){
-            Jimp.read(person.displayAvatarURL).then(function (image) {
+            Jimp.read(person.displayAvatarURL).then(function (err, image) {
                 image.greyscale()
                      .write("tint.png")
             }).catch(function (err) {
