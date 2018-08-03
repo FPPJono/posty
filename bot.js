@@ -320,23 +320,23 @@ bot.on("message", async message => {
             }
         }*/
         if ((person.displayAvatarURL.includes("png"))||(person.displayAvatarURL.includes("jpg"))){
-            Jimp.read(person.displayAvatarURL).then(async function (image) {
-                await image.greyscale()
-                await image.write("tint.png")
-                message.channel.send({files:[{attachment: 'tint.png', name:'tint.png'}] })
+            Jimp.read(person.displayAvatarURL).then(function (image) {
+                image.greyscale()
+                     .write("tint.png")
             }).catch(function (err) {
                 console.error(err);
             });
+            message.channel.send({files:[{attachment: 'tint.png', name:'tint.png'}] })
         }else if(person.displayAvatarURL.includes("gif")){
             await gifFrames({url:person.displayAvatarURL, frames:0, outputType: 'png'}).then(function(frameData){
                 frameData[0].getImage().pipe(fs.createWriteStream(`pfp.png`))
-                Jimp.read('pfp.png').then(async function (image) {
-                    await image.greyscale()
-                    await image.write("tint.png")
-                    message.channel.send({files:[{attachment: 'tint.png', name:'tint.png'}] })
+                Jimp.read('pfp.png').then(function (image) {
+                    image.greyscale()
+                         .write("tint.png")
                 }).catch(function (err) {
                     console.error(err);
                 });
+                message.channel.send({files:[{attachment: 'tint.png', name:'tint.png'}] })
             })
         }
     }
