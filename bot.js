@@ -311,6 +311,8 @@ bot.on("message", async message => {
                 var color = rip.substr(rip.indexOf('#') + 1, 6)
             } else {
                 message.channel.send("``hex value is too short, must be 6 characters``")
+                return;
+            }
         } else {
             message.channel.send("please set a hex value for the image to be tinted to \n``Correct Usage: !tint #6 character hex value (@person)``")
             return;
