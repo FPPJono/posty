@@ -325,17 +325,25 @@ bot.on("message", async message => {
         }
         if (((correctURL.toLowerCase().includes('png'))||(correctURL.toLowerCase().includes('jpg')))&&(a >=1)) {
             await download.image({url: correctURL, dest: 'pfp.png'})
+            Jimp.read('pfp.png').then(function(image) {
+                image.greyscale()
+                     .write(`tint.png`)
+            })
         }else if ((person.displayAvatarURL.includes("png"))||(person.displayAvatarURL.includes("jpg"))){
             await download.image({url: person.displayAvatarURL, dest:`pfp.png`})
+            Jimp.read('pfp.png').then(function(image) {
+                image.greyscale()
+                     .write(`tint.png`)
+            })
         }else if(person.displayAvatarURL.includes("gif")){
             await gifFrames({url:person.displayAvatarURL, frames:0, outputType: 'png'}).then(function(frameData){
                 frameData[0].getImage().pipe(fs.createWriteStream(`pfp.png`))
             })
+            Jimp.read('pfp.png').then(function(image) {
+                image.greyscale()
+                     .write(`tint.png`)
+            })
         }
-        Jimp.read('pfp.png').then(function(image) {
-            image.greyscale()
-                 .write(`tint.png`)
-        })
         message.channel.send({files:[{attachment:'tint.png', name:'tint.png'}]})
     }
     if (rip.startsWith('!help')) {
