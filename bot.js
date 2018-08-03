@@ -332,7 +332,11 @@ bot.on("message", async message => {
                 frameData[0].getImage().pipe(fs.createWriteStream(`pfp.png`))
             })
         }
-        message.channel.send({files:[{attachment:'pfp.png', name:'pfp.png'}]})
+        Jimp.read('pfp.png').then(function(image) {
+            image.greyscale()
+                 .write(`tint.png`)
+        })
+        message.channel.send({files:[{attachment:'tint.png', name:'tint.png'}]})
     }
     if (rip.startsWith('!help')) {
         if (rip.substr(6).startsWith('random')){
