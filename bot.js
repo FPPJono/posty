@@ -381,6 +381,9 @@ bot.on("message", async message => {
         }
         if (((correctURL.toLowerCase().includes('png'))||(correctURL.toLowerCase().includes('jpg')))&&(a >=1)) {
             await download.image({url: correctURL, dest: 'imgtoinvert.png'})
+            sizeOf('imgtoinvert.png', function(err, dimensions) {
+                setTimeout(invert, dimensions.width*dimensions.height/500, message)
+            })
             Jimp.read("imgtoinvert.png").then(function (image) {
                 image.invert()
                 image.write("invert.jpg")
@@ -388,13 +391,13 @@ bot.on("message", async message => {
         }else if(correctURL.toLowerCase().includes("gif")){
             await gifFrames({url:correctURL, frames:0, outputType: 'png'}).then(function(frameData){
                 frameData[0].getImage().pipe(fs.createWriteStream(`imgtoinvert.png`))
+                sizeOf('imgtoinvert.png', function(err, dimensions) {
+                    setTimeout(invert, dimensions.width*dimensions.height/500, message)
+                })
                 Jimp.read("imgtoinvert.png").then(function (image) {
                     image.invert()
                          .write("invert.jpg")
         })})}
-        sizeOf('imgtoinvert.png', function(err, dimensions) {
-            setTimeout(invert, dimensions.width*dimensions.height/500, message)
-        })
     }
     if (rip.startsWith('!help')) {
         if (rip.substr(6).startsWith('random')){
