@@ -388,7 +388,9 @@ bot.on("message", async message => {
                 Jimp.read("imgtoinvert.png").then(function (image) {
                     image.invert()
                          .write("invert.jpg")
-        })})}
+                })
+            })
+        }
         function invert(message){
             message.channel.send({files:[{attachment: 'invert.jpg', name:'invert.jpg'}] })
         }
