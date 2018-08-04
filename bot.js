@@ -366,6 +366,39 @@ bot.on("message", async message => {
         }
         setTimeout(tint, 200, message)
     }
+    if (rip.startsWith('!invert')) {
+        let a = message.attachments.array().length;
+        var correctURL = 'https://raw.githubusercontent.com/FPPJono/posty/master/attachmentnotfound.jpg'
+        if (a >= 1) {
+            correctURL = message.attachments.array()[0].url
+            console.log(correctURL)
+        }
+        if (((correctURL.toLowerCase().includes('png'))||(correctURL.toLowerCase().includes('jpg')))&&(a >=1)) {
+            await download.image({url: correctURL, dest: 'pfp.png'})
+            Jimp.read("pfp.png").then(function (image) {
+                image.invert()
+                     .write("invert.jpg")
+            })
+        }else if ((person.displayAvatarURL.includes("png"))||(person.displayAvatarURL.includes("jpg"))){
+            await download.image({url: person.displayAvatarURL, dest:`pfp.png`})
+            Jimp.read("pfp.png").then(function (image) {
+                image.invert()
+                     .write("invert.jpg")
+            })
+        }else if(person.displayAvatarURL.includes("gif")){
+            await gifFrames({url:person.displayAvatarURL, frames:0, outputType: 'png'}).then(function(frameData){
+                frameData[0].getImage().pipe(fs.createWriteStream(`pfp.png`))
+                Jimp.read("pfp.png").then(function (image) {
+                    image.invert()
+                         .write("invert.jpg")
+                })
+            })
+        }
+        function invert(message){
+            message.channel.send({files:[{attachment: 'invert.jpg', name:'invert.jpg'}] })
+        }
+        setTimeout(invert, 200, message)
+    }
     if (rip.startsWith('!help')) {
         if (rip.substr(6).startsWith('random')){
             var commands = ["!randomhex", "!rate", "!coinflip", "!8ball"]
