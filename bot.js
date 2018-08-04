@@ -372,6 +372,9 @@ bot.on("message", async message => {
         var correctURL = 'https://raw.githubusercontent.com/FPPJono/posty/master/attachmentnotfound.jpg'
         if (a >= 1) {
             correctURL = message.attachments.array()[0].url
+            if ((correctURL.toLowerCase().includes('png'))||(correctURL.toLowerCase().includes('jpg'))) {
+                correctURL = message.attachments.array()[0].url
+            } else {correctURL = person.displayAvatarURL}
             console.log(correctURL)
         }
         if (((correctURL.toLowerCase().includes('png'))||(correctURL.toLowerCase().includes('jpg')))&&(a >=1)) {
@@ -380,9 +383,7 @@ bot.on("message", async message => {
                 image.invert()
                      .write("tint.jpg")
                 console.log("done")
-            }).catch(function (err) {
-                console.error(err);
-            });
+            })
         }else if(correctURL.toLowerCase().includes("gif")){
             await gifFrames({url:correctURL, frames:0, outputType: 'png'}).then(function(frameData){
                 frameData[0].getImage().pipe(fs.createWriteStream(`pfp.png`))
@@ -390,13 +391,11 @@ bot.on("message", async message => {
                     image.invert()
                          .write("tint.jpg")
                     console.log("done")
-                }).catch(function (err) {
-                    console.error(err);
-                });
+                })
             })
         }
         function tint(message){
-            message.channel.send({files:[{attachment: 'tint.jpg', name:'tint.jpg'}] })
+            message.channel.send({files:[{attachment: 'tint.jpg', name:'invert.jpg'}] })
         }
         setTimeout(tint, 300, message)
     }
