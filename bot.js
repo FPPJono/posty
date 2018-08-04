@@ -382,6 +382,7 @@ bot.on("message", async message => {
         if (((correctURL.toLowerCase().includes('png'))||(correctURL.toLowerCase().includes('jpg')))&&(a >=1)) {
             await download.image({url: correctURL, dest: 'imgtoinvert.png'})
             sizeOf('imgtoinvert.png', function(err, dimensions) {
+                console.log(dimensions.width*dimensions.height/500)
                 setTimeout(invert, dimensions.width*dimensions.height/500, message)
             })
             Jimp.read("imgtoinvert.png").then(function (image) {
@@ -392,6 +393,7 @@ bot.on("message", async message => {
             await gifFrames({url:correctURL, frames:0, outputType: 'png'}).then(function(frameData){
                 frameData[0].getImage().pipe(fs.createWriteStream(`imgtoinvert.png`))
                 sizeOf('imgtoinvert.png', function(err, dimensions) {
+                    console.log(dimensions.width*dimensions.height/500)
                     setTimeout(invert, dimensions.width*dimensions.height/500, message)
                 })
                 Jimp.read("imgtoinvert.png").then(function (image) {
