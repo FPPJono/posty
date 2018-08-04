@@ -306,79 +306,15 @@ bot.on("message", async message => {
         var person = message.author
     }
     var attachedfiles = (message.attachments).array()
-    if (rip.startsWith('!tint')) {
-        if (rip.includes('#')) {
-            if (rip.substr(rip.indexOf('#') + 1).length >= 6) {
-                var color = rip.substr(rip.indexOf('#') + 1, 6)
-                var color = `${color}FF`
-                var color = `#ffffffff`
-            } else {
-                message.channel.send("``hex value is too short, must be 6 characters``")
-                return;
-            }
-        } else {
-            message.channel.send("please set a hex value for the image to be tinted to \n``Correct Usage: !tint #6 character hex value (@person)``")
-            return;
-        }
-        let a = message.attachments.array().length;
-        var correctURL = 'https://raw.githubusercontent.com/FPPJono/posty/master/attachmentnotfound.jpg'
-        if (a >= 1) {
-            correctURL = message.attachments.array()[0].url
-            console.log(correctURL)
-        }
-        if (((correctURL.toLowerCase().includes('png'))||(correctURL.toLowerCase().includes('jpg')))&&(a >=1)) {
-            await download.image({url: correctURL, dest: 'pfp.png'})
-            Jimp.read("pfp.png").then(function (image) {
-                image.greyscale()
-                     .background(color)
-                     .fade(0.3)
-                     .write("tint.jpg")
-                console.log("done")
-            }).catch(function (err) {
-                console.error(err);
-            });
-        }else if ((person.displayAvatarURL.includes("png"))||(person.displayAvatarURL.includes("jpg"))){
-            await download.image({url: person.displayAvatarURL, dest:`pfp.png`})
-            Jimp.read("pfp.png").then(function (image) {
-                image.greyscale()
-                     .background(color)
-                     .fade(0.3)
-                     .write("tint.jpg")
-                console.log("done")
-            }).catch(function (err) {
-                console.error(err);
-            });
-        }else if(person.displayAvatarURL.includes("gif")){
-            await gifFrames({url:person.displayAvatarURL, frames:0, outputType: 'png'}).then(function(frameData){
-                frameData[0].getImage().pipe(fs.createWriteStream(`pfp.png`))
-                Jimp.read("pfp.png").then(function (image) {
-                    image.greyscale()
-                         .background(color)
-                         .fade(0.3)
-                         .write("tint.jpg")
-                    console.log("done")
-                }).catch(function (err) {
-                    console.error(err);
-                });
-            })
-        }
-        function tint(message){
-            message.channel.send("noodle", {files:[{attachment: 'tint.jpg', name:'tint.jpg'}] })
-        }
-        setTimeout(tint, 200, message)
-    }
     if (rip.startsWith('!invert')) {
         let a = message.attachments.array().length;
         var correctURL = 'https://raw.githubusercontent.com/FPPJono/posty/master/attachmentnotfound.jpg'
-        if (a >= 1) {
-            if (message.attachments.array()[0].url.includes('png')||message.attachments.array()[0].url.includes('jpg')||message.attachments.array()[0].url.includes('gif')) {
-                correctURL = message.attachments.array()[0].url
-            } else {
-                correctURL = person.displayAvatarURL
-                console.log(person.displayAvatarURL)
-            }
-            console.log(correctURL)
+        if (message.attachments.array()[0].url.includes('png')||message.attachments.array()[0].url.includes('jpg')||message.attachments.array()[0].url.includes('gif')) {
+            correctURL = message.attachments.array()[0].url
+        } else {
+            correctURL = person.displayAvatarURL
         }
+        console.log(correctURL)
         if ((correctURL.toLowerCase().includes('png'))||(correctURL.toLowerCase().includes('jpg'))) {
             await download.image({url: correctURL, dest: 'pfp.png'})
             Jimp.read("pfp.png").then(function (image) {
