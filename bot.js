@@ -385,7 +385,7 @@ bot.on("message", async message => {
                 await image.write("invert.jpg")
                 invert(message)
             })
-        }else if(correctURL.toLowerCase.includes("gif")){
+        }else if(correctURL.toLowerCase().includes("gif")){
             await gifFrames({url:correctURL, frames:0, outputType: 'png'}).then(async function(frameData){
                 frameData[0].getImage().pipe(fs.createWriteStream(`pfp.png`))
                 await Jimp.read("pfp.png").then(function (image) {
