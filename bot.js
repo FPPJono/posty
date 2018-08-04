@@ -381,8 +381,8 @@ bot.on("message", async message => {
         if (((correctURL.toLowerCase().includes('png'))||(correctURL.toLowerCase().includes('jpg')))&&(a >=1)) {
             await download.image({url: correctURL, dest: 'pfp.png'})
             Jimp.read("pfp.png").then(async function (image) {
-                image.invert()
-                     .write("invert.jpg")
+                await image.invert()
+                await image.write("invert.jpg")
                 invert(message)
             })
         }else if(correctURL.toLowerCase.includes("gif")){
