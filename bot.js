@@ -370,34 +370,31 @@ bot.on("message", async message => {
         let a = message.attachments.array().length;
         var correctURL = 'https://raw.githubusercontent.com/FPPJono/posty/master/attachmentnotfound.jpg'
         if (a >= 1) {
-            correctURL = message.attachments.array()[0].url
+            if (message.attachments.array()[0].url.includes('png')||message.attachments.array()[0].url.includes('jpg')||message.attachments.array()[0].url.includes('gif')) {
+                correctURL = message.attachments.array()[0].url
+            } else correctURL = person.displayAvatarURL
             console.log(correctURL)
-        }
-        if (((correctURL.toLowerCase().includes('png'))||(correctURL.toLowerCase().includes('jpg')))&&(a >=1)) {
-            await download.image({url: correctURL, dest: 'pfp.png'})
-            Jimp.read("pfp.png").then(function (image) {
-                image.invert()
-                     .write("invert.jpg")
-            })
-        }else if ((person.displayAvatarURL.includes("png"))||(person.displayAvatarURL.includes("jpg"))){
-            await download.image({url: person.displayAvatarURL, dest:`pfp.png`})
-            Jimp.read("pfp.png").then(function (image) {
-                image.invert()
-                     .write("invert.jpg")
-            })
-        }else if(person.displayAvatarURL.includes("gif")){
-            await gifFrames({url:person.displayAvatarURL, frames:0, outputType: 'png'}).then(function(frameData){
-                frameData[0].getImage().pipe(fs.createWriteStream(`pfp.png`))
-                Jimp.read("pfp.png").then(function (image) {
-                    image.invert()
-                         .write("invert.jpg")
-                })
-            })
         }
         function invert(message){
             message.channel.send({files:[{attachment: 'invert.jpg', name:'invert.jpg'}] })
         }
-        setTimeout(invert, 200, message)
+        if (((correctURL.toLowerCase().includes('png'))||(correctURL.toLowerCase().includes('jpg')))&&(a >=1)) {
+            await download.image({url: correctURL, dest: 'pfp.png'})
+            Jimp.read("pfp.png").then(async function (image) {
+                image.invert()
+                     .write("invert.jpg")
+                invert(message)
+            })
+        }else if(correctURL.toLowerCase.includes("gif")){
+            await gifFrames({url:correctURL, frames:0, outputType: 'png'}).then(async function(frameData){
+                frameData[0].getImage().pipe(fs.createWriteStream(`pfp.png`))
+                await Jimp.read("pfp.png").then(function (image) {
+                    image.invert()
+                         .write("invert.jpg")
+                })
+                invert(message)
+            })
+        }
     }
     if (rip.startsWith('!help')) {
         if (rip.substr(6).startsWith('random')){
