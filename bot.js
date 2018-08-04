@@ -376,9 +376,6 @@ bot.on("message", async message => {
             } else correctURL = person.displayAvatarURL
             console.log(correctURL)
         }
-        function invert(message){
-            message.channel.send({files:[{attachment: 'invert.jpg', name:'invert.jpg'}] })
-        }
         if (((correctURL.toLowerCase().includes('png'))||(correctURL.toLowerCase().includes('jpg')))&&(a >=1)) {
             await download.image({url: correctURL, dest: 'imgtoinvert.png'})
             Jimp.read("imgtoinvert.png").then(function (image) {
@@ -392,6 +389,9 @@ bot.on("message", async message => {
                     image.invert()
                          .write("invert.jpg")
         })})}
+        function invert(message){
+            message.channel.send({files:[{attachment: 'invert.jpg', name:'invert.jpg'}] })
+        }
         setTimeout(invert, 400, message)
     }
     if (rip.startsWith('!help')) {
