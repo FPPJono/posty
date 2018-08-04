@@ -12,6 +12,7 @@ const download = require('image-downloader')
 const sheetsu = require('sheetsu-node')
 const GifCreationService = require('gif-creation-service')
 const Jimp = require('jimp')
+const sizeOf = require('image-size')
 
 var PImage = require('pureimage');
 var img1 = PImage.make(500,500);
@@ -379,22 +380,21 @@ bot.on("message", async message => {
             message.channel.send({files:[{attachment: 'invert.jpg', name:'invert.jpg'}] })
         }
         if (((correctURL.toLowerCase().includes('png'))||(correctURL.toLowerCase().includes('jpg')))&&(a >=1)) {
-            await download.image({url: correctURL, dest: 'pfp.png'})
-            Jimp.read("pfp.png").then(async function (image) {
-                await image.invert()
-                await image.write("invert.jpg")
-                invert(message)
+            await download.image({url: correctURL, dest: 'imgtoinvert.png'})
+            Jimp.read("imgtoinvert.png").then(function (image) {
+                image.invert()
+                image.write("invert.jpg")
             })
         }else if(correctURL.toLowerCase().includes("gif")){
-            await gifFrames({url:correctURL, frames:0, outputType: 'png'}).then(async function(frameData){
-                frameData[0].getImage().pipe(fs.createWriteStream(`pfp.png`))
-                await Jimp.read("pfp.png").then(function (image) {
+            await gifFrames({url:correctURL, frames:0, outputType: 'png'}).then(function(frameData){
+                frameData[0].getImage().pipe(fs.createWriteStream(`imgtoinvert.png`))
+                Jimp.read("imgtoinvert.png").then(function (image) {
                     image.invert()
                          .write("invert.jpg")
-                })
-                invert(message)
-            })
-        }
+        })})}
+        sizeOf('imgtoinvert.png', function(err, dimensions) {
+            setTimeout(invert, dimensions.width*dimensions.height/500, message)
+        })
     }
     if (rip.startsWith('!help')) {
         if (rip.substr(6).startsWith('random')){
