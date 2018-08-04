@@ -373,10 +373,13 @@ bot.on("message", async message => {
         if (a >= 1) {
             if (message.attachments.array()[0].url.includes('png')||message.attachments.array()[0].url.includes('jpg')||message.attachments.array()[0].url.includes('gif')) {
                 correctURL = message.attachments.array()[0].url
-            } else correctURL = person.displayAvatarURL
+            } else {
+                correctURL = person.displayAvatarURL
+                console.log(person.displayAvatarURL)
+            }
             console.log(correctURL)
         }
-        if (((correctURL.toLowerCase().includes('png'))||(correctURL.toLowerCase().includes('jpg')))&&(a >=1)) {
+        if ((correctURL.toLowerCase().includes('png'))||(correctURL.toLowerCase().includes('jpg'))) {
             await download.image({url: correctURL, dest: 'pfp.png'})
             Jimp.read("pfp.png").then(function (image) {
                 image.invert()
