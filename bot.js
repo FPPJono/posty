@@ -371,30 +371,34 @@ bot.on("message", async message => {
         let a = message.attachments.array().length;
         var correctURL = 'https://raw.githubusercontent.com/FPPJono/posty/master/attachmentnotfound.jpg'
         if (a >= 1) {
-            if (message.attachments.array()[0].url.includes('png')||message.attachments.array()[0].url.includes('jpg')||message.attachments.array()[0].url.includes('gif')) {
-                correctURL = message.attachments.array()[0].url
-            } else correctURL = person.displayAvatarURL
+            correctURL = message.attachments.array()[0].url
             console.log(correctURL)
         }
         if (((correctURL.toLowerCase().includes('png'))||(correctURL.toLowerCase().includes('jpg')))&&(a >=1)) {
-            await download.image({url: correctURL, dest: 'imgtoinvert.png'})
-            Jimp.read("imgtoinvert.png").then(function (image) {
+            await download.image({url: correctURL, dest: 'pfp.png'})
+            Jimp.read("pfp.png").then(function (image) {
                 image.invert()
-                image.write("invert.jpg")
-            })
+                     .write("tint.jpg")
+                console.log("done")
+            }).catch(function (err) {
+                console.error(err);
+            });
         }else if(correctURL.toLowerCase().includes("gif")){
             await gifFrames({url:correctURL, frames:0, outputType: 'png'}).then(function(frameData){
-                frameData[0].getImage().pipe(fs.createWriteStream(`imgtoinvert.png`))
-                Jimp.read("imgtoinvert.png").then(function (image) {
+                frameData[0].getImage().pipe(fs.createWriteStream(`pfp.png`))
+                Jimp.read("pfp.png").then(function (image) {
                     image.invert()
-                         .write("invert.jpg")
-                })
+                         .write("tint.jpg")
+                    console.log("done")
+                }).catch(function (err) {
+                    console.error(err);
+                });
             })
         }
-        function invert(message){
-            message.channel.send({files:[{attachment: 'invert.jpg', name:'invert.jpg'}] })
+        function tint(message){
+            message.channel.send({files:[{attachment: 'tint.jpg', name:'tint.jpg'}] })
         }
-        setTimeout(invert, 400, message)
+        setTimeout(tint, 300, message)
     }
     if (rip.startsWith('!help')) {
         if (rip.substr(6).startsWith('random')){
