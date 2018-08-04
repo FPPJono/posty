@@ -371,10 +371,9 @@ bot.on("message", async message => {
         let a = message.attachments.array().length;
         var correctURL = 'https://raw.githubusercontent.com/FPPJono/posty/master/attachmentnotfound.jpg'
         if (a >= 1) {
-            correctURL = message.attachments.array()[0].url
-            if ((correctURL.toLowerCase().includes('png'))||(correctURL.toLowerCase().includes('jpg'))) {
+            if (message.attachments.array()[0].url.includes('png')||message.attachments.array()[0].url.includes('jpg')||message.attachments.array()[0].url.includes('gif')) {
                 correctURL = message.attachments.array()[0].url
-            } else {correctURL = person.displayAvatarURL}
+            } else correctURL = person.displayAvatarURL
             console.log(correctURL)
         }
         if (((correctURL.toLowerCase().includes('png'))||(correctURL.toLowerCase().includes('jpg')))&&(a >=1)) {
