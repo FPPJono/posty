@@ -29,6 +29,8 @@ const hof = '450244347137359874'
 const artChannel = '452219856712892416'
 const suggestChannel = '450568346824343555'
 const welcome = '450165137001807873'
+const deleteEditChannel = '487786929320886322'
+const slurChannel = '487786161742413835'
 
 
 //roles
@@ -69,6 +71,14 @@ function topicEmbed(color, text, title) {
 
 function richEmbed(color, commands, descriptions, title) {
     var embed = {"color":color, "author":{"name":title}, "fields":[]}
+    for (var i in commands) {
+        embed.fields.push({"name": commands[i], "value": descriptions[i]})
+    }
+    return embed
+}
+
+function pfpEmbed(color, commands, descriptions, title, pfpurl) {
+    var embed = {"color":color, "author":{"name":title}, "fields":[], "thumbnail":{"url":pfpurl}}
     for (var i in commands) {
         embed.fields.push({"name": commands[i], "value": descriptions[i]})
     }
@@ -298,6 +308,29 @@ bot.on("message", async message => {
         var s = rip
         s = s.replace(/[abcdefghijklmnopqrstuvwxyz1234567890 ]/g, m => chars[m]);
         message.channel.send(`${s}`)
+        return
+    }
+    const swearWords = ["nigger", "chink", "tranny", "fag", "dyke", "nigga", "kike", "autistic", "negroid", "dike", "negro"];
+    var swearCheck = message.content.toLowerCase().replace(/halfaglass/g,"").replace(/klondike/g,"").replace(/warfage/g,"").replace(/of a g/g, "").replace(/f ago/g, "").replace(/\s+/g, '');
+    if (swearWords.some(word => swearCheck.includes(word))) {
+        var slursFound = []
+        if (swearCheck.includes("nigger")) slursFound.push("nigger")
+        if (swearCheck.includes("negro")) slursFound.push("negro")
+        if (swearCheck.includes("chink")) slursFound.push("chink")
+        if (swearCheck.includes("nigga")) slursFound.push("nigga")
+        if (swearCheck.includes("tranny")) slursFound.push("tranny")
+        if (swearCheck.includes("fag")) slursFound.push("fag")
+        if ((swearCheck.includes("dyke"))||(swearCheck.includes("dike"))) slursFound.push("dike")
+        if (swearCheck.includes("kike")) slursFound.push("kike")
+        if (swearCheck.includes("autistic")) slursFound.push("autistic")
+        if (swearCheck.includes("negroid")) slursFound.push("negroid")
+        let guild = message.guild;
+        let color = message.guild.member(message.author).displayColor
+        message.delete()
+        message.channel.send("Please refrain from using slurs. A copy of your message has been sent to the Admins.")
+            .then(m => m.delete(7500));
+        var embed = pfpEmbed(color, ["Message sent in channel:", "Message content:", "User ID:", "Slurs found:"], [`<#${message.channel.id}>`,`${message.content.substr(0, 1024)}`,`${message.author.id}`,`${slursFound.toString().replace(/,/g,", ")}`], `${message.author.username} has been detected using slurs`, `${message.author.avatarURL}`)
+        guild.channels.get(slurChannel).send({ embed });
         return
     }
     if (message.mentions.users.array().toString().length >= 1) {
@@ -619,7 +652,7 @@ bot.on('message', message => {
             guild.member(message.mentions.users.first()).send(`you have been warned for: \`${warning}\` Please improve your behaviour or you may be kicked or banned from this server in the future.`)
         } else message.channel.send("sorry that command is for staff only");
     }
-    if (rip.startsWith(PREFIX + "userinfo")) {
+    if (message.content.startsWith(PREFIX + "userinfo")) {
         let guild = message.guild;
         if (message.mentions.users.array().toString().length >= 1) {
             var person = message.mentions.users.first()
@@ -627,58 +660,17 @@ bot.on('message', message => {
             var person = message.author
         }
         let color = message.guild.member(person).displayColor
-        const embed = {
-            "color": color,
-            "thumbnail": {
-                "url": `${person.avatarURL}`
-            },
-            "author": {
-                "name": `${person.username}`,
-                "icon_url": `${person.avatarURL}`
-            },
-            "fields": [
-                {
-                    "name": "Display name",
-                    "value": `${message.guild.member(person).displayName}`
-                },
-                {
-                    "name": "User ID",
-                    "value": `${person.id}`
-                },
-                {
-                    "name": "Roles",
-                    "value": `${message.guild.member(person).roles.array().toString().substr(0, 1024)}`
-                },
-                {
-                    "name": "Top Role Color",
-                    "value": `${message.guild.member(person).displayHexColor}`
-                },
-                {
-                    "name": "Joined",
-                    "value": `${message.guild.member(person).joinedAt.toUTCString()}`
-                }
-            ]
-        };
+        var embed = pfpEmbed(color, ["Display Name", "User ID", "Roles", "Top Role Colour", "Joined"], [`${message.guild.member(person).displayName}`,`${person.id}`,`${message.guild.member(person).roles.array().toString().substr(0, 1024)}`,`${message.guild.member(person).displayHexColor}`,`${message.guild.member(person).joinedAt.toUTCString()}`], `Info About ${person.username}`, `${person.avatarURL}`)
         message.channel.send({ embed });
     }
-    if (rip.startsWith(PREFIX + "suggest")) {
+    if (message.content.startsWith(PREFIX + "suggest")) {
         let guild = message.guild;
         let suggestion = message.content.substr(8)
         let color = message.guild.member(message.author).displayColor
         message.delete()
         message.channel.send(`\`\`\`Thank you for your suggestion!\`\`\``)
             .then(m => m.delete(5000));
-        const embed = {
-            "description": `${message.author.username} has suggested the change/modification below:\n${suggestion}`,
-            "color": color,
-            "thumbnail": {
-                "url": `${message.author.avatarURL}`
-            },
-            "author": {
-                "name": "The Suggestion Box",
-                "icon_url": "https://github.com/FPPJono/posty/blob/master/post-malone-youtube-640x407.jpg?raw=true"
-            }
-        };
+        var embed = pfpEmbed(color, ["Suggestion:"], [`${suggestion.substr(0, 1024)}`], `${message.author.username} has suggested the following`, `${message.author.avatarURL}`)
         guild.channels.get(suggestChannel).send({ embed });
     }
     if (rip.startsWith(PREFIX + "avatar")) {
@@ -702,6 +694,54 @@ bot.on('message', message => {
         s = s.replace(/[abcdefghijklmnopqrstuvwxyz ]/g, m => chars[m]);
         message.channel.send(`${s}`)
     }
+});
+
+//Delete Edit Log Code
+bot.on('messageUpdate', (omsg, nmsg) => {
+    if (omsg.author.bot) return;
+    if (omsg.content === nmsg.content) return;
+    console.log(`${omsg.author.username} just edited their message`);
+    let guild = omsg.guild;
+    let color = guild.member(omsg.author).displayColor
+    var embed = pfpEmbed(color, ["Channel", "Original Message Content", "New Message Content"], [`<#${omsg.channel.id}>`,`${omsg.content.substr(0, 1024)}`, `${nmsg.content.substr(0,1024)}`], `${omsg.author.username} just edited their message!`, `${omsg.author.avatarURL}`)
+    guild.channels.get(deleteEditChannel).send({ embed });
+    const swearWords = ["nigger", "chink", "tranny", "fag", "dyke", "nigga", "kike", "autistic", "negroid", "dike", "negro"];
+    var swearCheck = nmsg.content.toLowerCase().replace(/halfaglass/g,"").replace(/klondike/g,"").replace(/warfage/g,"").replace(/of a g/g, "").replace(/f ago/g, "").replace(/\s+/g, '');
+    if (swearWords.some(word => swearCheck.includes(word))) {
+        var slursFound = []
+        if (swearCheck.includes("nigger")) slursFound.push("nigger")
+        if (swearCheck.includes("negro")) slursFound.push("negro")
+        if (swearCheck.includes("chink")) slursFound.push("chink")
+        if (swearCheck.includes("nigga")) slursFound.push("nigga")
+        if (swearCheck.includes("tranny")) slursFound.push("tranny")
+        if (swearCheck.includes("fag")) slursFound.push("fag")
+        if ((swearCheck.includes("dyke"))||(swearCheck.includes("dike"))) slursFound.push("dike")
+        if (swearCheck.includes("kike")) slursFound.push("kike")
+        if (swearCheck.includes("autistic")) slursFound.push("autistic")
+        if (swearCheck.includes("negroid")) slursFound.push("negroid")
+        let guild = nmsg.guild;
+        let color = nmsg.guild.member(nmsg.author).displayColor
+        nmsg.delete()
+        nmsg.channel.send("Please refrain from using slurs. A copy of your message has been sent to the Admins.")
+            .then(m => m.delete(7500));
+        var embed = pfpEmbed(color, ["Message sent in channel:", "Message content:", "User ID:", "Slurs found:"], [`<#${nmsg.channel.id}>`,`${nmsg.content.substr(0, 1024)}`,`${nmsg.author.id}`,`${slursFound.toString().replace(/,/g,", ")}`], `${nmsg.author.username} has been detected using slurs`, `${nmsg.author.avatarURL}`)
+        guild.channels.get(slurChannel).send({ embed });
+        return
+    }
+});
+
+bot.on('messageDelete', message => {
+    let guild = message.guild;
+    if (message.author.bot) return;
+    let rip = message.content.toLowerCase()
+    if ((rip.startsWith('!clear')) || (rip.startsWith('!send')) || (rip.startsWith('!warn')) || (rip.startsWith('!suggest')) || (rip.startsWith('!type')) || (rip.startsWith('!stoptype'))||(rip.startsWith('♥'))) return;
+    const swearWords = ["nigger", "chink", "tranny", "fag", "dyke", "nigga", "kike", "autist", "negroid", "dike"];
+    var swearCheck = rip.replace(/\s/g, '')
+    if (swearWords.some(word => swearCheck.includes(word))) return;
+    console.log(`${message.author.username} just deleted their message`)
+    let color = message.guild.member(message.author).displayColor
+    var embed = pfpEmbed(color, ["Channel", "Message Content"], [`<#${message.channel.id}>`,`${message.content.substr(0, 1024)}`], `${message.author.username}'s message was just deleted`, `${message.author.avatarURL}`)
+    guild.channels.get(deleteEditChannel).send({ embed });
 });
 
 // Sneaky Sneaky Token. Dont Share Kiddos
