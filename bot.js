@@ -726,8 +726,6 @@ bot.on('messageUpdate', (omsg, nmsg) => {
         guild.channels.get(slurChannel).send({ embed });
         return
     }
-        return
-    }
 });
 
 bot.on('messageDelete', message => {
